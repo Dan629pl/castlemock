@@ -17,56 +17,49 @@
         <java.release>25</java.release>
         <java.version>1.25</java.version>
         <jwt.version>4.5.0</jwt.version>
-        <jaxb.version>2.3.1</jaxb.version>
+        <jaxb.version>2.3.9</jaxb.version>
         <antlr.version>4.13.2</antlr.version>
-        <log4j.version>2.24.3</log4j.version>
+        <log4j.version>2.25.3</log4j.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <junit.version>4.13.1</junit.version>
-        <jsr305.version>3.0.2</jsr305.version>
-        <cxf.rt.version>4.1.1</cxf.rt.version>
+        <junit.version>4.13.2</junit.version>
+        <cxf.rt.version>4.1.4</cxf.rt.version>
         <wsdl4j.version>1.6.3</wsdl4j.version>
-        <guava.version>33.4.6-jre</guava.version>
+        <guava.version>33.5.0-jre</guava.version>
         <taglibs.version>1.2.5</taglibs.version>
-        <jackson.version>2.18.3</jackson.version>
+        <jackson.version>2.19.4</jackson.version>
         <jaxb.api.version>2.3.1</jaxb.api.version>
-        <sun.jaxb.version>2.3.0</sun.jaxb.version>
-        <mockito.version>1.10.19</mockito.version>
-        <snakeyaml.version>2.4</snakeyaml.version>
-        <springdoc.version>2.8.6</springdoc.version>
+        <snakeyaml.version>2.5</snakeyaml.version>
+        <springdoc.version>2.8.15</springdoc.version>
         <jaxb.impl.version>2.3.9</jaxb.impl.version>
-        <datafaker.version>1.9.0</datafaker.version>
-        <maven.jar.version>3.1.1</maven.jar.version>
-        <json.path.version>2.9.0</json.path.version>
-        <joda.time.version>2.12.5</joda.time.version>
+        <datafaker.version>2.5.3</datafaker.version>
+        <maven.jar.version>3.5.0</maven.jar.version>
+        <json.path.version>2.10.0</json.path.version>
+        <joda.time.version>2.14.0</joda.time.version>
         <activation.version>1.1.1</activation.version>
-        <jaxb.core.version>4.0.5</jaxb.core.version>
-        <maven.exec.version>1.2.1</maven.exec.version>
-        <commons.io.version>2.18.0</commons.io.version>
-        <httpclient.version>4.5.13</httpclient.version>
-        <byte.buddy.version>1.17.4</byte.buddy.version>
+        <jaxb.core.version>4.0.6</jaxb.core.version>
+        <maven.exec.version>3.6.3</maven.exec.version>
+        <commons.io.version>2.21.0</commons.io.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <byte.buddy.version>1.18.3</byte.buddy.version>
         <antlr.maven.version>4.13.2</antlr.maven.version>
         <raml.parser.version>1.0.51</raml.parser.version>
-        <jaxb.runtime.version>4.0.5</jaxb.runtime.version>
-        <swagger.core.version>2.2.28</swagger.core.version>
-        <commons.lang.version>3.14.0</commons.lang.version>
-        <mockito.core.version>3.6.28</mockito.core.version>
-        <commons.codec.version>1.16.0</commons.codec.version>
-        <junit.jupiter.version>5.10.1</junit.jupiter.version>
+        <jaxb.runtime.version>4.0.6</jaxb.runtime.version>
+        <swagger.core.version>2.2.41</swagger.core.version>
+        <commons.lang.version>3.20.0</commons.lang.version>
+        <mockito.core.version>3.12.4</mockito.core.version> <!--JEST NOWSZA -->
+        <commons.codec.version>1.20.0</commons.codec.version>
+        <junit.jupiter.version>5.12.2</junit.jupiter.version>
         <javax.servlet.version>4.0.1</javax.servlet.version>
-        <tomcat.embedd.version>11.0.8</tomcat.embedd.version>
-        <json.schema.validator>2.2.13</json.schema.validator>
-        <xmlschema.core.version>2.2.5</xmlschema.core.version>
+        <tomcat.embedd.version>11.0.15</tomcat.embedd.version>
         <maven.compiler.version>3.12.1</maven.compiler.version>
         <spring.boot.version>3.5.9</spring.boot.version>
-        <swagger.parser.version>2.1.25</swagger.parser.version>
+        <swagger.parser.version>2.1.37</swagger.parser.version>
         <jakarta.servlet.version>6.1.0</jakarta.servlet.version>
-        <maven.war.plugin.version>3.2.3</maven.war.plugin.version>
-        <common.beanutils.version>1.9.4</common.beanutils.version>
-        <jakarta.xml.bind.version>4.0.2</jakarta.xml.bind.version>
-        <maven.build.helper.version>1.7</maven.build.helper.version>
-        <common.collections.version>3.2.2</common.collections.version>
-        <jakarta.validation.version>3.1.0</jakarta.validation.version>
-        <hibernate.validator.version>8.0.2.Final</hibernate.validator.version>
+        <common.beanutils.version>1.11.0</common.beanutils.version>
+        <jakarta.xml.bind.version>4.0.4</jakarta.xml.bind.version>
+        <maven.build.helper.version>3.6.1</maven.build.helper.version>
+        <jakarta.validation.version>3.1.1</jakarta.validation.version>
+        <hibernate.validator.version>8.0.3.Final</hibernate.validator.version>
     </properties>
 
     <modules>
@@ -390,11 +383,6 @@
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate.validator.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${common.collections.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>

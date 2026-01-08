@@ -36,7 +36,7 @@ public abstract class AbstractExpression implements Expression {
      * @since 1.13
      */
     protected String randomString(final int length){
-        return RandomStringUtils.randomAlphanumeric(length);
+        return RandomStringUtils.insecure().nextAlphanumeric(length);
     }
 
 

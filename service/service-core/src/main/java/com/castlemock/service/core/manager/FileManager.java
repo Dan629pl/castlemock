@@ -128,7 +128,7 @@ public class FileManager {
     }
 
     private String generateNewFileName(){
-        return "UploadedFile-" + RandomStringUtils.random(6, true, true);
+        return "UploadedFile-" + RandomStringUtils.insecure().next(6, true, true);
     }
 
 

@@ -30,7 +30,7 @@ public final class IdUtility {
      * @return A generated ID
      */
     public static String generateId(){
-        return RandomStringUtils.random(6, true, true);
+        return RandomStringUtils.insecure().next(6, true, true);
     }
 
 }
