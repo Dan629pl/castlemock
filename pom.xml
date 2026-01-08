@@ -65,7 +65,7 @@
     <modules>
         <module>app</module>
         <module>model</module>
-        <module>deploy-tomcat-jar</module>
+        <module>deploy</module>
         <module>repository</module>
         <module>web</module>
         <module>service</module>
