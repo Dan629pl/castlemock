@@ -44,7 +44,7 @@ public class CreateRestMockResponseService extends AbstractRestProjectService im
     public ServiceResult<CreateRestMockResponseOutput> process(final ServiceTask<CreateRestMockResponseInput> serviceTask) {
         final CreateRestMockResponseInput input = serviceTask.getInput();
         final RestMockResponse mockResponse = RestMockResponse.builder()
-                .id(RandomStringUtils.random(6, true, true))
+                .id(RandomStringUtils.insecure().next(6, true, true))
                 .body(input.getBody().orElse(""))
                 .contentEncodings(input.getContentEncodings())
                 .headerQueries(input.getHeaderQueries())

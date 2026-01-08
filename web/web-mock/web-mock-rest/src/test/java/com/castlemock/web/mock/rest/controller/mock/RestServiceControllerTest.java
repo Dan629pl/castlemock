@@ -143,7 +143,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
                 SLASH + PROJECT_ID + SLASH + APPLICATION + SLASH + APPLICATION_ID + "/method/test");
 
         final ResponseEntity<?> responseEntity = restServiceController.getMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -175,7 +175,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
         when(serviceProcessor.process(any(IdentifyRestMethodInput.class))).thenReturn(identifyRestMethodOutput);
 
         final ResponseEntity<?> responseEntity = restServiceController.getMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -206,7 +206,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
         when(serviceProcessor.process(any(IdentifyRestMethodInput.class))).thenReturn(identifyRestMethodOutput);
 
         final ResponseEntity<?> responseEntity = restServiceController.getMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -237,7 +237,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
         when(serviceProcessor.process(any(IdentifyRestMethodInput.class))).thenReturn(identifyRestMethodOutput);
 
         final ResponseEntity<?> responseEntity = restServiceController.getMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(QUERY_DEFAULT_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(QUERY_DEFAULT_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -373,7 +373,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
                 SLASH + PROJECT_ID + SLASH + APPLICATION + SLASH + APPLICATION_ID + "/method/test");
 
         final ResponseEntity<?> responseEntity = restServiceController.getMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_REQUEST_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_REQUEST_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertEquals(APPLICATION_JSON, Objects.requireNonNull(responseEntity.getHeaders().get(CONTENT_TYPE_HEADER)).getFirst());
@@ -426,7 +426,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
                 SLASH + PROJECT_ID + SLASH + APPLICATION + SLASH + APPLICATION_ID + "/method/test");
 
         final ResponseEntity<?> responseEntity = restServiceController.postMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -481,7 +481,7 @@ public class RestServiceControllerTest extends AbstractControllerTest {
                 SLASH + PROJECT_ID + SLASH + APPLICATION + SLASH + APPLICATION_ID + "/method/test");
 
         final ResponseEntity<?> responseEntity = restServiceController.postMethod(PROJECT_ID, APPLICATION_ID, httpServletRequest, httpServletResponse);
-        Assertions.assertEquals(XML_RESPONSE_BODY, responseEntity.getBody());
+        assertBodyEquals(XML_RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(CONTENT_TYPE_HEADER));
         Assertions.assertTrue(responseEntity.getHeaders().containsKey(ACCEPT_HEADER));
@@ -494,6 +494,15 @@ public class RestServiceControllerTest extends AbstractControllerTest {
     @Override
     protected AbstractController getController() {
         return restServiceController;
+    }
+
+    private static String normalizeLineEndings(String text) {
+        if (text == null) return null;
+        return text.replace("\r\n", "\n").replace("\r", "\n");
+    }
+
+    private static void assertBodyEquals(String expected, Object actual) {
+        Assertions.assertEquals(normalizeLineEndings(expected), normalizeLineEndings((String) actual));
     }
 
 

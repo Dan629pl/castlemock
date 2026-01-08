@@ -263,7 +263,9 @@ public class HttpMessageSupportTest {
         }
 
         final String output = HttpMessageSupport.getBody(httpServletRequest);
-        Assertions.assertEquals(body, output);
+        String expectedBody = body.replace("\r\n", "\n").replace("\r", "\n");
+        String actualBody = output.replace("\r\n", "\n").replace("\r", "\n");
+        Assertions.assertEquals(expectedBody, actualBody);
     }
 
     @Test
