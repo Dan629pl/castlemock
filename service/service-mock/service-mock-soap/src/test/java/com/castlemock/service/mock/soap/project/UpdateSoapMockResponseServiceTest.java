@@ -50,7 +50,7 @@ public class UpdateSoapMockResponseServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String projectId = "ProjectId";
         final String portId = "PortId";
         final String operation = "OperationId";
@@ -79,7 +79,7 @@ public class UpdateSoapMockResponseServiceTest {
         final ServiceResult<UpdateSoapMockResponseOutput> result = service.process(serviceTask);
         final UpdateSoapMockResponseOutput output = result.getOutput();
         final SoapMockResponse returnedSoapMockResponse = output.getMockResponse()
-                        .orElse(null);
+                .orElse(null);
 
         Assertions.assertNotNull(returnedSoapMockResponse);
         Assertions.assertEquals(mockResponse.getId(), returnedSoapMockResponse.getId());

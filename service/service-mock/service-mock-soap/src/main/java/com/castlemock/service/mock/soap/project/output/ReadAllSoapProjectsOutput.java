@@ -35,6 +35,10 @@ public final class ReadAllSoapProjectsOutput implements Output {
         this.projects = Optional.ofNullable(builder.projects).orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public List<SoapProject> getProjects() {
         return projects;
     }
@@ -59,23 +63,19 @@ public final class ReadAllSoapProjectsOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private List<SoapProject> projects;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projects(final List<SoapProject> projects){
+        public Builder projects(final List<SoapProject> projects) {
             this.projects = projects;
             return this;
         }
 
-        public ReadAllSoapProjectsOutput build(){
+        public ReadAllSoapProjectsOutput build() {
             return new ReadAllSoapProjectsOutput(this);
         }
     }

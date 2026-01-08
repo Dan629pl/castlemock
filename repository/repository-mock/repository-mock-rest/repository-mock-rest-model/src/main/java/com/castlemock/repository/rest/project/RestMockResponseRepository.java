@@ -27,6 +27,7 @@ public interface RestMockResponseRepository extends Repository<RestMockResponse,
     /**
      * Find all {@link RestMockResponse} that matches the provided
      * <code>methodId</code>.
+     *
      * @param methodId The id of the method.
      * @return A list of {@link RestMockResponse}.
      */
@@ -35,6 +36,7 @@ public interface RestMockResponseRepository extends Repository<RestMockResponse,
     /**
      * Retrieve the {@link com.castlemock.model.mock.rest.domain.RestMethod} id
      * for the {@link RestMockResponse} with the provided id.
+     *
      * @param mockResponseId The id of the {@link RestMockResponse}.
      * @return The id of the method.
      * @since 1.20

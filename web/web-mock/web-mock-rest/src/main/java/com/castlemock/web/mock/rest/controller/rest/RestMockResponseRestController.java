@@ -48,15 +48,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/rest")
-@Tag(name="REST - Mocked response", description="REST Operations for Castle Mock REST mocked response")
+@Tag(name = "REST - Mocked response", description = "REST Operations for Castle Mock REST mocked response")
 public class RestMockResponseRestController extends AbstractRestController {
 
     @Autowired
-    public RestMockResponseRestController(final ServiceProcessor serviceProcessor){
+    public RestMockResponseRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get mocked response")
+    @Operation(summary = "Get mocked response")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved mocked response")})
     @RequestMapping(method = RequestMethod.GET,
@@ -83,9 +83,10 @@ public class RestMockResponseRestController extends AbstractRestController {
                 .build());
         return output.getMockResponse()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-    @Operation(summary =  "Delete mocked response")
+    @Operation(summary = "Delete mocked response")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted mocked response")})
     @RequestMapping(method = RequestMethod.DELETE,
@@ -114,7 +115,7 @@ public class RestMockResponseRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Update mocked response")
+    @Operation(summary = "Update mocked response")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated mocked response")})
     @RequestMapping(method = RequestMethod.PUT,
@@ -136,9 +137,10 @@ public class RestMockResponseRestController extends AbstractRestController {
                 .toUpdateRestMockResponseInput(request, projectId, applicationId, resourceId, methodId, responseId));
         return output.getMockResponse()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-    @Operation(summary =  "Create mocked response")
+    @Operation(summary = "Create mocked response")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully created mocked response")})
     @RequestMapping(method = RequestMethod.POST,
@@ -160,7 +162,7 @@ public class RestMockResponseRestController extends AbstractRestController {
         return ResponseEntity.ok(output.getMockResponse());
     }
 
-    @Operation(summary =  "Duplicate mocked response")
+    @Operation(summary = "Duplicate mocked response")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully duplicated mocked responses")})
     @RequestMapping(method = RequestMethod.POST,

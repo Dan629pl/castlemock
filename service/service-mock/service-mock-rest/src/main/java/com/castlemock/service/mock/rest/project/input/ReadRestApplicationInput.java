@@ -35,16 +35,16 @@ public final class ReadRestApplicationInput implements Input {
         this.applicationId = Objects.requireNonNull(builder.applicationId, "applicationId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
 
     public String getApplicationId() {
         return applicationId;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -77,18 +77,18 @@ public final class ReadRestApplicationInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public ReadRestApplicationInput build(){
+        public ReadRestApplicationInput build() {
             return new ReadRestApplicationInput(this);
         }
 

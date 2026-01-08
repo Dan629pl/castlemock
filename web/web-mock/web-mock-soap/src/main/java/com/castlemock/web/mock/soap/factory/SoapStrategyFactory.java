@@ -18,7 +18,6 @@ package com.castlemock.web.mock.soap.factory;
 
 import com.castlemock.model.mock.soap.domain.SoapOperation;
 import com.castlemock.model.mock.soap.domain.SoapOperationStatus;
-import com.castlemock.web.mock.soap.utility.SoapClient;
 import com.castlemock.web.mock.soap.stategy.DisabledSoapStrategy;
 import com.castlemock.web.mock.soap.stategy.EchoSoapStrategy;
 import com.castlemock.web.mock.soap.stategy.ForwardSoapStrategy;
@@ -26,6 +25,7 @@ import com.castlemock.web.mock.soap.stategy.MockSoapStrategy;
 import com.castlemock.web.mock.soap.stategy.RecordOnceSoapStrategy;
 import com.castlemock.web.mock.soap.stategy.RecordingSoapStrategy;
 import com.castlemock.web.mock.soap.stategy.SoapStrategy;
+import com.castlemock.web.mock.soap.utility.SoapClient;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

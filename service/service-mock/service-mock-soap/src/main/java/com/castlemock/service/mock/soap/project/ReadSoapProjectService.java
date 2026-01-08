@@ -43,6 +43,7 @@ public class ReadSoapProjectService extends AbstractSoapProjectService implement
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -67,7 +68,8 @@ public class ReadSoapProjectService extends AbstractSoapProjectService implement
                     final Map<SoapOperationStatus, Integer> soapOperationStatusCount = getSoapOperationStatusCount(operations);
                     return port.toBuilder()
                             .statusCount(soapOperationStatusCount)
-                            .build();})
+                            .build();
+                })
                 .toList();
 
         return project.toBuilder()
@@ -79,19 +81,20 @@ public class ReadSoapProjectService extends AbstractSoapProjectService implement
 
     /**
      * Count the operation statuses
+     *
      * @param soapOperations The list of operations, which status will be counted
      * @return The result of the status count
      */
-    private Map<SoapOperationStatus, Integer> getSoapOperationStatusCount(final List<SoapOperation> soapOperations){
+    private Map<SoapOperationStatus, Integer> getSoapOperationStatusCount(final List<SoapOperation> soapOperations) {
         Preconditions.checkNotNull(soapOperations, "The operation list cannot be null");
         final Map<SoapOperationStatus, Integer> statuses = new HashMap<>();
 
-        for(SoapOperationStatus soapOperationStatus : SoapOperationStatus.values()){
+        for (SoapOperationStatus soapOperationStatus : SoapOperationStatus.values()) {
             statuses.put(soapOperationStatus, 0);
         }
-        for(SoapOperation soapOperation : soapOperations){
+        for (SoapOperation soapOperation : soapOperations) {
             SoapOperationStatus soapOperationStatus = soapOperation.getStatus();
-            statuses.put(soapOperationStatus, statuses.get(soapOperationStatus)+1);
+            statuses.put(soapOperationStatus, statuses.get(soapOperationStatus) + 1);
         }
         return statuses;
     }

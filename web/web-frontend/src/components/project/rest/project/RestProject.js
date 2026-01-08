@@ -31,10 +31,17 @@ import CreateApplicationModal from "./modal/CreateApplicationModal";
 import UploadDefinitionModal from "./modal/UploadDefinitionModal"
 import {isOnlyReader} from "../../../../utility/AuthorizeUtility";
 import AuthenticationContext from "../../../../context/AuthenticationContext";
-import {faCloudDownloadAlt, faFile, faTrash, faCloudUploadAlt, faEdit, faCodeBranch} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCloudDownloadAlt,
+    faCloudUploadAlt,
+    faCodeBranch,
+    faEdit,
+    faFile,
+    faTrash
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 const SELECT = true;
 const DESELECT = false;
 
@@ -112,9 +119,9 @@ class RestProject extends PureComponent {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             applications.push(application);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = applications.indexOf(application);
             applications.splice(index, 1);
         }
@@ -124,7 +131,7 @@ class RestProject extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let applications = [];
             this.state.project.applications.forEach(value => {
                 let application = {
@@ -136,7 +143,7 @@ class RestProject extends PureComponent {
             this.setState({
                 selectedApplications: applications
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedApplications: []
             });
@@ -144,7 +151,7 @@ class RestProject extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -170,7 +177,7 @@ class RestProject extends PureComponent {
 
     onExportProjectClick() {
         axios({
-            url:  process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.state.projectId + "/export",
+            url: process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.state.projectId + "/export",
             method: 'GET',
             responseType: 'blob'
         }).then((response) => {
@@ -185,7 +192,6 @@ class RestProject extends PureComponent {
                 validateErrorResponse(error)
             });
     }
-
 
 
     render() {
@@ -207,23 +213,45 @@ class RestProject extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update project</span></button>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#createApplicationModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faFile} className="button-icon"/><span>Create application</span></button>
-                                    <div className="btn-group demo-button-disabled menu-button" role="group" >
-                                        <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled={isOnlyReader(context.authentication.role)}>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updateProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faEdit} className="button-icon"/><span>Update project</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#createApplicationModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faFile} className="button-icon"/><span>Create application</span></button>
+                                    <div className="btn-group demo-button-disabled menu-button" role="group">
+                                        <button id="btnGroupDrop1" type="button"
+                                                className="btn btn-primary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                disabled={isOnlyReader(context.authentication.role)}>
                                             <FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/>
                                             Upload
                                         </button>
                                         <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            <button className="dropdown-item" data-toggle="modal" data-target="#uploadRAMLDefinitionModal">RAML</button>
-                                            <button className="dropdown-item" data-toggle="modal" data-target="#uploadSWAGGERDefinitionModal">Swagger V2</button>
-                                            <button className="dropdown-item" data-toggle="modal" data-target="#uploadOPENAPIDefinitionModal">OpenAPI V3</button>
-                                            <button className="dropdown-item" data-toggle="modal" data-target="#uploadWADLDefinitionModal">WADL</button>
+                                            <button className="dropdown-item" data-toggle="modal"
+                                                    data-target="#uploadRAMLDefinitionModal">RAML
+                                            </button>
+                                            <button className="dropdown-item" data-toggle="modal"
+                                                    data-target="#uploadSWAGGERDefinitionModal">Swagger V2
+                                            </button>
+                                            <button className="dropdown-item" data-toggle="modal"
+                                                    data-target="#uploadOPENAPIDefinitionModal">OpenAPI V3
+                                            </button>
+                                            <button className="dropdown-item" data-toggle="modal"
+                                                    data-target="#uploadWADLDefinitionModal">WADL
+                                            </button>
                                         </div>
                                     </div>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" onClick={this.onExportProjectClick}><FontAwesomeIcon icon={faCloudDownloadAlt} className="button-icon"/><span>Export project</span></button>
-                                    <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete project</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            onClick={this.onExportProjectClick}><FontAwesomeIcon
+                                        icon={faCloudDownloadAlt} className="button-icon"/><span>Export project</span>
+                                    </button>
+                                    <button className="btn btn-danger demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#deleteProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faTrash} className="button-icon"/><span>Delete project</span></button>
                                 </div>
                             )}</AuthenticationContext.Consumer>
                     </div>
@@ -243,7 +271,7 @@ class RestProject extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.project.applications}
                                              keyField="id"
                                              search>
@@ -254,26 +282,36 @@ class RestProject extends PureComponent {
                                                 <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <BootstrapTable {...props.baseProps} bootstrap4
-                                                            data={this.state.project.applications} columns={this.columns}
+                                                            data={this.state.project.applications}
+                                                            columns={this.columns}
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             selectRow={this.selectRow}
                                                             noDataIndication="Click on the 'Upload' to upload a REST API definition"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedApplications.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedApplications.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch} className="button-icon"/><span>Update endpoint</span></button>
-                                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch}
+                                                                                                    className="button-icon"/><span>Update endpoint</span>
+                                        </button>
+                                        <button className="btn btn-danger demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedApplications.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#deleteApplicationsModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete application</span></button>
+                                                data-target="#deleteApplicationsModal"><FontAwesomeIcon icon={faTrash}
+                                                                                                        className="button-icon"/><span>Delete application</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
@@ -282,15 +320,24 @@ class RestProject extends PureComponent {
                 </section>
 
                 <CreateApplicationModal projectId={this.state.projectId}/>
-                <DeleteApplicationsModal projectId={this.state.projectId} selectedApplications={this.state.selectedApplications} getProject={this.getProject}/>
+                <DeleteApplicationsModal projectId={this.state.projectId}
+                                         selectedApplications={this.state.selectedApplications}
+                                         getProject={this.getProject}/>
                 <DeleteProjectModal projectId={this.state.projectId}/>
-                <UpdateEndpointModal projectId={this.state.projectId} getProject={this.getProject} selectedApplications={this.state.selectedApplications}/>
-                <UpdateProjectModal projectId={this.state.projectId} getProject={this.getProject} project={this.state.project}/>
-                <UpdateStatusModal projectId={this.state.projectId} getProject={this.getProject} selectedApplications={this.state.selectedApplications}/>
-                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject} definitionType={"SWAGGER"} />
-                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject} definitionType={"OPENAPI"} />
-                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject} definitionType={"RAML"} />
-                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject} definitionType={"WADL"} />
+                <UpdateEndpointModal projectId={this.state.projectId} getProject={this.getProject}
+                                     selectedApplications={this.state.selectedApplications}/>
+                <UpdateProjectModal projectId={this.state.projectId} getProject={this.getProject}
+                                    project={this.state.project}/>
+                <UpdateStatusModal projectId={this.state.projectId} getProject={this.getProject}
+                                   selectedApplications={this.state.selectedApplications}/>
+                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject}
+                                       definitionType={"SWAGGER"}/>
+                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject}
+                                       definitionType={"OPENAPI"}/>
+                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject}
+                                       definitionType={"RAML"}/>
+                <UploadDefinitionModal projectId={this.state.projectId} getProject={this.getProject}
+                                       definitionType={"WADL"}/>
             </div>
         )
     }

@@ -24,7 +24,7 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteSoapPortInput implements Input{
+public final class DeleteSoapPortInput implements Input {
 
     private final String projectId;
     private final String portId;
@@ -32,6 +32,10 @@ public final class DeleteSoapPortInput implements Input{
     private DeleteSoapPortInput(final Builder builder) {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
         this.portId = Objects.requireNonNull(builder.portId, "portId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -63,29 +67,25 @@ public final class DeleteSoapPortInput implements Input{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public DeleteSoapPortInput build(){
+        public DeleteSoapPortInput build() {
             return new DeleteSoapPortInput(this);
         }
     }

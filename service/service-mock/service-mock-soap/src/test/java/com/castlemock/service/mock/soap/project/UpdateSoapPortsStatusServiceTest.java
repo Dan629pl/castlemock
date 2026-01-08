@@ -31,7 +31,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -52,7 +51,7 @@ public class UpdateSoapPortsStatusServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapOperation soapOperation = SoapOperationTestBuilder.builder().build();
         final String projectId = "SOAP PROJECT";
         final String portId = "SOAP PORT";

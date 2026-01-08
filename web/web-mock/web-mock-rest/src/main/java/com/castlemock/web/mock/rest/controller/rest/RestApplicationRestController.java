@@ -50,15 +50,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/rest")
-@Tag(name="REST - Application", description="REST Operations for Castle Mock REST Application")
+@Tag(name = "REST - Application", description = "REST Operations for Castle Mock REST Application")
 public class RestApplicationRestController extends AbstractRestController {
 
     @Autowired
-    public RestApplicationRestController(final ServiceProcessor serviceProcessor){
+    public RestApplicationRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get Application")
+    @Operation(summary = "Get Application")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved REST Application")})
     @RequestMapping(method = RequestMethod.GET, value = "/project/{projectId}/application/{applicationId}")
@@ -77,7 +77,7 @@ public class RestApplicationRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Delete Application")
+    @Operation(summary = "Delete Application")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted REST Application")})
     @RequestMapping(method = RequestMethod.DELETE, value = "/project/{projectId}/application/{applicationId}")
@@ -96,7 +96,7 @@ public class RestApplicationRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Update Application")
+    @Operation(summary = "Update Application")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated REST Application")})
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/application/{applicationId}")
@@ -117,7 +117,7 @@ public class RestApplicationRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Create Application")
+    @Operation(summary = "Create Application")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully created REST Application")})
     @RequestMapping(method = RequestMethod.POST, value = "/project/{projectId}/application")
@@ -133,7 +133,7 @@ public class RestApplicationRestController extends AbstractRestController {
         return ResponseEntity.ok(output.getApplication());
     }
 
-    @Operation(summary =  "Update resource statuses")
+    @Operation(summary = "Update resource statuses")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated REST resource statuses")})
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/application/{applicationId}/resource/status")
@@ -144,7 +144,7 @@ public class RestApplicationRestController extends AbstractRestController {
             @PathVariable(value = "projectId") final String projectId,
             @Parameter(name = "applicationId", description = "The id of the application")
             @PathVariable(value = "applicationId") final String applicationId,
-            @RequestBody UpdateRestResourceStatusesRequest request){
+            @RequestBody UpdateRestResourceStatusesRequest request) {
         request.getResourceIds()
                 .forEach(resourceId -> super.serviceProcessor.process(UpdateRestResourcesStatusInput.builder()
                         .projectId(projectId)
@@ -155,7 +155,7 @@ public class RestApplicationRestController extends AbstractRestController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary =  "Update Resource forwarded endpoints")
+    @Operation(summary = "Update Resource forwarded endpoints")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated REST Resource forwarded endpoints")})
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/application/{applicationId}/resource/endpoint/forwarded")
@@ -166,7 +166,7 @@ public class RestApplicationRestController extends AbstractRestController {
             @PathVariable(value = "projectId") final String projectId,
             @Parameter(name = "applicationId", description = "The id of the application")
             @PathVariable(value = "applicationId") final String applicationId,
-            @org.springframework.web.bind.annotation.RequestBody UpdateRestResourceForwardedEndpointsRequest request){
+            @org.springframework.web.bind.annotation.RequestBody UpdateRestResourceForwardedEndpointsRequest request) {
         super.serviceProcessor.process(UpdateRestResourcesForwardedEndpointInput.builder()
                 .projectId(projectId)
                 .applicationId(applicationId)

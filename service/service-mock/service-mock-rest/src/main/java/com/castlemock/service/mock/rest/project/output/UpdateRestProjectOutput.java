@@ -34,6 +34,10 @@ public final class UpdateRestProjectOutput implements Output {
         this.project = builder.project;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<RestProject> getProject() {
         return Optional.ofNullable(project);
     }
@@ -58,10 +62,6 @@ public final class UpdateRestProjectOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestProject project;
@@ -69,12 +69,12 @@ public final class UpdateRestProjectOutput implements Output {
         private Builder() {
         }
 
-        public Builder project(final RestProject project){
+        public Builder project(final RestProject project) {
             this.project = project;
             return this;
         }
 
-        public UpdateRestProjectOutput build(){
+        public UpdateRestProjectOutput build() {
             return new UpdateRestProjectOutput(this);
         }
 

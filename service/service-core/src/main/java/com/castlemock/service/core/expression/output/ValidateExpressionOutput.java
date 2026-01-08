@@ -32,12 +32,12 @@ public final class ValidateExpressionOutput implements Output {
         this.output = Objects.requireNonNull(builder.output);
     }
 
-    public String getOutput() {
-        return output;
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public String getOutput() {
+        return output;
     }
 
     @Override

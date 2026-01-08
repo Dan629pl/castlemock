@@ -15,9 +15,6 @@
  */
 
 import React, {PureComponent} from "react";
-import ToolkitProvider from "react-bootstrap-table2-toolkit";
-import BootstrapTable from "react-bootstrap-table-next";
-import PaginationFactory from "react-bootstrap-table2-paginator";
 import axios from "axios";
 import validateErrorResponse from "../../../../utility/HttpResponseValidator";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
@@ -39,11 +36,11 @@ class ValidateExpressionModal extends PureComponent {
     }
 
     setRequestBody(event) {
-        this.setState({ requestBody: event.target.value });
+        this.setState({requestBody: event.target.value});
     }
 
     setResponseBody(event) {
-        this.setState({ responseBody: event.target.value });
+        this.setState({responseBody: event.target.value});
     }
 
     onValidateExpressionClick() {
@@ -62,6 +59,7 @@ class ValidateExpressionModal extends PureComponent {
                 validateErrorResponse(error)
             });
     }
+
     render() {
         return (
             <div className="modal fade" id="validateExpressionModal" tabIndex="-1" role="dialog"
@@ -75,13 +73,13 @@ class ValidateExpressionModal extends PureComponent {
                             </button>
                         </div>
                         <div className="modal-body">
-                           <dl className="row">
-                               <dt className="col-sm-2 content-title">Request Body</dt>
+                            <dl className="row">
+                                <dt className="col-sm-2 content-title">Request Body</dt>
                                 <dd className="col-sm-10">
                                     <textarea className="form-control" rows="5" onChange={this.setRequestBody}/>
                                 </dd>
                             </dl>
-                             <dl className="row">
+                            <dl className="row">
                                 <dt className="col-sm-2 content-title">Response Body / Expression</dt>
                                 <dd className="col-sm-10">
                                     <textarea className="form-control" rows="5" onChange={this.setResponseBody}/>
@@ -91,8 +89,12 @@ class ValidateExpressionModal extends PureComponent {
                             <textarea className="form-control" rows="5" value={this.state.output}/>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" onClick={this.onValidateExpressionClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Validate</button>
-                            <button className="btn btn-primary" data-dismiss="modal"><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Close</button>
+                            <button className="btn btn-success" onClick={this.onValidateExpressionClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Validate
+                            </button>
+                            <button className="btn btn-primary" data-dismiss="modal"><FontAwesomeIcon
+                                icon={faCheckCircle} className="button-icon"/>Close
+                            </button>
                         </div>
                     </div>
                 </div>

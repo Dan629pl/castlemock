@@ -45,7 +45,7 @@ public class UpdateRestMethodRequest {
     private final String defaultMockResponseId;
     private final Boolean automaticForward;
 
-    private UpdateRestMethodRequest(final Builder builder){
+    private UpdateRestMethodRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.httpMethod = Objects.requireNonNull(builder.httpMethod, "httpMethod");
         this.status = Objects.requireNonNull(builder.status, "status");
@@ -56,6 +56,10 @@ public class UpdateRestMethodRequest {
         this.networkDelay = builder.networkDelay;
         this.defaultMockResponseId = builder.defaultMockResponseId;
         this.automaticForward = builder.automaticForward;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -128,10 +132,6 @@ public class UpdateRestMethodRequest {
                 ", defaultMockResponseId='" + defaultMockResponseId + '\'' +
                 ", automaticForward='" + automaticForward + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

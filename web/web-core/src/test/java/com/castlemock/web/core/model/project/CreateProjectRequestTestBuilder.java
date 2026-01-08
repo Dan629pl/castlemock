@@ -18,7 +18,7 @@ package com.castlemock.web.core.model.project;
 
 public final class CreateProjectRequestTestBuilder {
 
-    private CreateProjectRequestTestBuilder(){
+    private CreateProjectRequestTestBuilder() {
 
     }
 

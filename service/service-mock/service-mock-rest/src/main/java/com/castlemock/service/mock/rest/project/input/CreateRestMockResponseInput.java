@@ -69,6 +69,10 @@ public final class CreateRestMockResponseInput implements Input {
         this.headerQueries = builder.headerQueries;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -184,10 +188,6 @@ public final class CreateRestMockResponseInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
         private String projectId;
         private String applicationId;
@@ -208,22 +208,22 @@ public final class CreateRestMockResponseInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String restProjectId){
+        public Builder projectId(final String restProjectId) {
             this.projectId = restProjectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
@@ -284,11 +284,10 @@ public final class CreateRestMockResponseInput implements Input {
         }
 
 
-        public CreateRestMockResponseInput build(){
+        public CreateRestMockResponseInput build() {
             return new CreateRestMockResponseInput(this);
         }
     }
-
 
 
 }

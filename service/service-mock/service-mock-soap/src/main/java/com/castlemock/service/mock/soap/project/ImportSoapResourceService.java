@@ -34,6 +34,7 @@ public class ImportSoapResourceService extends AbstractSoapProjectService implem
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -46,7 +47,7 @@ public class ImportSoapResourceService extends AbstractSoapProjectService implem
         final SoapResource soapResource = input.getResource();
         final String raw = input.getRaw();
 
-        if(SoapResourceType.WSDL.equals(soapResource.getType())){
+        if (SoapResourceType.WSDL.equals(soapResource.getType())) {
             // Remove the already existing WSDL file if a new one is being uploaded.
             this.resourceRepository.findSoapResources(projectId, SoapResourceType.WSDL)
                     .stream()

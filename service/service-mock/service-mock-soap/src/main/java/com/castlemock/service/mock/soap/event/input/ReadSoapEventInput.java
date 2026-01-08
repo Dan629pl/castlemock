@@ -32,24 +32,24 @@ public final class ReadSoapEventInput implements Input {
         this.soapEventId = Objects.requireNonNull(builder.soapEventId, "soapEventId");
     }
 
-    public String getSoapEventId() {
-        return soapEventId;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public String getSoapEventId() {
+        return soapEventId;
     }
 
     public static final class Builder {
 
         private String soapEventId;
 
-        public Builder soapEventId(final String soapEventId){
+        public Builder soapEventId(final String soapEventId) {
             this.soapEventId = soapEventId;
             return this;
         }
 
-        public ReadSoapEventInput build(){
+        public ReadSoapEventInput build() {
             return new ReadSoapEventInput(this);
         }
 

@@ -46,7 +46,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Authentication", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Authentication", description = "REST Operations for Castle Mock Core")
 public class AuthenticationRestController extends AbstractRestController {
 
     private final AuthenticationManager authenticationManager;
@@ -55,7 +55,7 @@ public class AuthenticationRestController extends AbstractRestController {
     @Autowired
     public AuthenticationRestController(final ServiceProcessor serviceProcessor,
                                         final AuthenticationManager authenticationManager,
-                                        final JWTEncoderDecoder jwtEncoderDecoder){
+                                        final JWTEncoderDecoder jwtEncoderDecoder) {
         super(serviceProcessor);
         this.authenticationManager = Objects.requireNonNull(authenticationManager, "authenticationManager");
         this.jwtEncoderDecoder = Objects.requireNonNull(jwtEncoderDecoder, "jwtEncoderDecoder");
@@ -63,13 +63,14 @@ public class AuthenticationRestController extends AbstractRestController {
 
     /**
      * Authenticate user
+     *
      * @return Token upon successfully authenticating the user.
      */
-    @Operation(summary =  "Login", description = "Authenticate user")
+    @Operation(summary = "Login", description = "Authenticate user")
     @RequestMapping(method = RequestMethod.POST, value = "/login")
     public @ResponseBody ResponseEntity<AuthenticationResponse> login(@RequestBody final AuthenticationRequest request, final HttpServletResponse httpServletResponse) {
         final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        if(authentication.isAuthenticated()){
+        if (authentication.isAuthenticated()) {
             final ReadUserByUsernameOutput output = serviceProcessor.process(ReadUserByUsernameInput.builder()
                     .username(request.getUsername())
                     .build());
@@ -83,7 +84,7 @@ public class AuthenticationRestController extends AbstractRestController {
             claims.put("userId", user.getId());
             final String token = jwtEncoderDecoder.createToken(claims);
 
-            final Cookie tokenCookie = new Cookie("token",token);
+            final Cookie tokenCookie = new Cookie("token", token);
             tokenCookie.setMaxAge(7 * 24 * 60 * 60);
             tokenCookie.setHttpOnly(true);
             tokenCookie.setPath("/");
@@ -101,18 +102,19 @@ public class AuthenticationRestController extends AbstractRestController {
 
     /**
      * Logout user
+     *
      * @return Token upon successfully logout the user.
      */
-    @Operation(summary =  "Logout", description = "Logout user")
+    @Operation(summary = "Logout", description = "Logout user")
     @RequestMapping(method = RequestMethod.GET, value = "/logout")
     public @ResponseBody ResponseEntity<Void> logout(final HttpServletResponse httpServletResponse) {
-        final Cookie tokenCookie = new Cookie("token",null);
+        final Cookie tokenCookie = new Cookie("token", null);
         tokenCookie.setMaxAge(0);
         tokenCookie.setHttpOnly(true);
         tokenCookie.setPath("/");
         httpServletResponse.addCookie(tokenCookie);
 
-        final Cookie sessionCookie = new Cookie("JSESSIONID",null);
+        final Cookie sessionCookie = new Cookie("JSESSIONID", null);
         sessionCookie.setMaxAge(0);
         sessionCookie.setHttpOnly(true);
         sessionCookie.setPath("/");

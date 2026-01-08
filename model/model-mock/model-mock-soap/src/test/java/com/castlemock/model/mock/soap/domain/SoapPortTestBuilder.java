@@ -26,7 +26,7 @@ public final class SoapPortTestBuilder {
 
     }
 
-    public static SoapPort.Builder builder(){
+    public static SoapPort.Builder builder() {
         return SoapPort.builder()
                 .id("SOAP PORT")
                 .invokeAddress("soapproject")
@@ -34,7 +34,7 @@ public final class SoapPortTestBuilder {
                 .operations(List.of())
                 .projectId("SOAP PROJECT")
                 .statusCount(Map.of())
-                .uri( "UrlPath");
+                .uri("UrlPath");
     }
 
     public static SoapPort build() {

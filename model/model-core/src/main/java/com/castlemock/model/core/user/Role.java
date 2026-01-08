@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The Role enum contains the various role values a user can have
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see User
+ * @since 1.0
  */
 @XmlType
 @XmlEnum

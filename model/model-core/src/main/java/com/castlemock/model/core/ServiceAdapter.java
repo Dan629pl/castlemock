@@ -27,11 +27,12 @@ import java.util.List;
  * @since 1.0
  *
  */
-public interface ServiceAdapter<P, D extends P, I extends Serializable>  {
+public interface ServiceAdapter<P, D extends P, I extends Serializable> {
 
 
     /**
      * The method is responsible for retrieving all instances from all the various service types.
+     *
      * @return A list containing all the instance independent from type
      */
     List<D> readAll();

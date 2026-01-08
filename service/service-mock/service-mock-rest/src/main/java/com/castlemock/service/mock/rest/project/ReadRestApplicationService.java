@@ -38,6 +38,7 @@ public class ReadRestApplicationService extends AbstractRestProjectService imple
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -54,7 +55,7 @@ public class ReadRestApplicationService extends AbstractRestProjectService imple
                 .build());
     }
 
-    private RestApplication prepareApplication (final RestApplication application) {
+    private RestApplication prepareApplication(final RestApplication application) {
         final List<RestResource> resources = this.resourceRepository.findWithApplicationId(application.getId())
                 .stream()
                 .map(resource -> resource.toBuilder()

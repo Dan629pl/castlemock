@@ -18,6 +18,7 @@ package com.castlemock.model.core;
 
 /**
  * The Plugin class is used to create plugins and extensions for Castle Mock
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */

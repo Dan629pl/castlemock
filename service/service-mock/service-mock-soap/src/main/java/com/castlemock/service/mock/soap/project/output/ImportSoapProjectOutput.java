@@ -25,12 +25,16 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ImportSoapProjectOutput implements Output{
+public final class ImportSoapProjectOutput implements Output {
 
     private final SoapProject project;
 
     private ImportSoapProjectOutput(final Builder builder) {
         this.project = Objects.requireNonNull(builder.project, "project");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public SoapProject getProject() {
@@ -57,23 +61,19 @@ public final class ImportSoapProjectOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapProject project;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder project(final SoapProject project){
+        public Builder project(final SoapProject project) {
             this.project = project;
             return this;
         }
 
-        public ImportSoapProjectOutput build(){
+        public ImportSoapProjectOutput build() {
             return new ImportSoapProjectOutput(this);
         }
     }

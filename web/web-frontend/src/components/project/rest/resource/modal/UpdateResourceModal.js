@@ -31,8 +31,7 @@ class UpdateResourceModal extends PureComponent {
         this.getResource = this.getResource.bind(this);
 
         this.state = {
-            updateResource: {
-            }
+            updateResource: {}
         };
 
         this.getResource();
@@ -69,7 +68,7 @@ class UpdateResourceModal extends PureComponent {
 
     getResource() {
         axios
-            .get(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId  + "/application/" + this.props.applicationId + "/resource/" + this.props.resourceId)
+            .get(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId + "/application/" + this.props.applicationId + "/resource/" + this.props.resourceId)
             .then(response => {
                 this.setState({
                     updateResource: {
@@ -99,18 +98,23 @@ class UpdateResourceModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" defaultValue={this.state.updateResource.name} onChange={this.setName}/>
+                                    <input className="form-control" type="text"
+                                           defaultValue={this.state.updateResource.name} onChange={this.setName}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Uri</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" defaultValue={this.state.updateResource.uri} onChange={this.setUri}/>
+                                    <input className="form-control" type="text"
+                                           defaultValue={this.state.updateResource.uri} onChange={this.setUri}/>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateResourceClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-success" data-dismiss="modal"
+                                    onClick={this.onUpdateResourceClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                          className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

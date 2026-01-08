@@ -43,6 +43,7 @@ public class ExportRestProjectService extends AbstractRestProjectService impleme
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -66,15 +67,15 @@ public class ExportRestProjectService extends AbstractRestProjectService impleme
         final List<RestMockResponse> mockResponses = new ArrayList<>();
 
 
-        for(RestApplication application : applications){
+        for (RestApplication application : applications) {
             List<RestResource> tempResources = this.resourceRepository.findWithApplicationId(application.getId());
             resources.addAll(tempResources);
 
-            for(RestResource tempResource : tempResources){
+            for (RestResource tempResource : tempResources) {
                 List<RestMethod> tempMethods = this.methodRepository.findWithResourceId(tempResource.getId());
                 methods.addAll(tempMethods);
 
-                for(RestMethod tempMethod : tempMethods){
+                for (RestMethod tempMethod : tempMethods) {
                     List<RestMockResponse> tempMockResponses = this.mockResponseRepository.findWithMethodId(tempMethod.getId());
                     mockResponses.addAll(tempMockResponses);
                 }

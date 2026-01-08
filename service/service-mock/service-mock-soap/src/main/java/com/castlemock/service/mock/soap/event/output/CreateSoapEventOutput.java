@@ -33,24 +33,24 @@ public final class CreateSoapEventOutput implements Output {
         this.createdSoapEvent = Objects.requireNonNull(createdSoapEvent, "createdSoapEvent");
     }
 
-    public SoapEvent getCreatedSoapEvent() {
-        return createdSoapEvent;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public SoapEvent getCreatedSoapEvent() {
+        return createdSoapEvent;
     }
 
     public static final class Builder {
 
         private SoapEvent createdSoapEvent;
 
-        public Builder createdSoapEvent(final SoapEvent createdSoapEvent){
+        public Builder createdSoapEvent(final SoapEvent createdSoapEvent) {
             this.createdSoapEvent = createdSoapEvent;
             return this;
         }
 
-        public CreateSoapEventOutput build(){
+        public CreateSoapEventOutput build() {
             return new CreateSoapEventOutput(this.createdSoapEvent);
         }
 

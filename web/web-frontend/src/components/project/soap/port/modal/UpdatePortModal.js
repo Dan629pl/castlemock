@@ -50,15 +50,16 @@ class UpdatePortModal extends PureComponent {
             });
     }
 
-    onUriChange(uri){
-        this.setState({ updatePort: {
+    onUriChange(uri) {
+        this.setState({
+            updatePort: {
                 ...this.state.updatePort,
                 uri: uri
             }
         });
     }
 
-    onUpdatePortClick(){
+    onUpdatePortClick() {
         axios
             .put(process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.props.projectId + "/port/" +
                 this.props.portId, this.state.updatePort)
@@ -88,13 +89,16 @@ class UpdatePortModal extends PureComponent {
                                 <div className="col-sm-9">
                                     <input className="form-control" type="text"
                                            defaultValue={this.state.updatePort.uri}
-                                           onChange={event => this.onUriChange(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                           onChange={event => this.onUriChange(event.target.value)}
+                                           onKeyDown={preventEnterEvent}/>
                                 </div>
                             </div>
 
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdatePortClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdatePortClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

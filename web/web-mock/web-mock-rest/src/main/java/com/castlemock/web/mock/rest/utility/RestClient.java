@@ -45,8 +45,8 @@ public class RestClient {
             String requestBody = null;
 
             if (HttpMethod.POST.equals(request.getHttpMethod()) ||
-                HttpMethod.PUT.equals(request.getHttpMethod()) ||
-                HttpMethod.DELETE.equals(request.getHttpMethod())) {
+                    HttpMethod.PUT.equals(request.getHttpMethod()) ||
+                    HttpMethod.DELETE.equals(request.getHttpMethod())) {
                 requestBody = request.getBody().orElse(null);
             }
 
@@ -55,26 +55,26 @@ public class RestClient {
                     .orElseThrow(() -> new IllegalStateException("Missing forwarded endpoint for the following REST method: " + restMethod.getId())) + request.getUri() + parameterUri;
 
             connection = HttpMessageSupport.establishConnection(
-                endpoint,
-                request.getHttpMethod(),
-                requestBody,
-                request.getHttpHeaders());
+                    endpoint,
+                    request.getHttpMethod(),
+                    requestBody,
+                    request.getHttpHeaders());
 
             final List<HttpContentEncoding> encodings = HttpMessageSupport.extractContentEncoding(connection);
             final List<HttpHeader> responseHttpHeaders = HttpMessageSupport.extractHttpHeaders(connection);
             final String characterEncoding = CharsetUtility.parseHttpHeaders(responseHttpHeaders);
             final String responseBody = HttpMessageSupport.extractHttpBody(connection, encodings, characterEncoding);
             return Optional.of(
-                RestResponse.builder()
-                .body(responseBody)
-                .mockResponseName(FORWARDED_RESPONSE_NAME)
-                .httpHeaders(responseHttpHeaders)
-                .httpStatusCode(connection.getResponseCode())
-                .contentEncodings(encodings)
-                .build()
+                    RestResponse.builder()
+                            .body(responseBody)
+                            .mockResponseName(FORWARDED_RESPONSE_NAME)
+                            .httpHeaders(responseHttpHeaders)
+                            .httpStatusCode(connection.getResponseCode())
+                            .contentEncodings(encodings)
+                            .build()
             );
         } catch (
-            IOException exception) {
+                IOException exception) {
             LOGGER.error("Unable to forward request", exception);
             return Optional.empty();
         } finally {

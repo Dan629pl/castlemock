@@ -24,11 +24,11 @@ import com.castlemock.model.core.Output;
  */
 public final class UpdateRestResourcesStatusOutput implements Output {
 
-    private UpdateRestResourcesStatusOutput(){
+    private UpdateRestResourcesStatusOutput() {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -37,7 +37,7 @@ public final class UpdateRestResourcesStatusOutput implements Output {
         private Builder() {
         }
 
-        public UpdateRestResourcesStatusOutput build(){
+        public UpdateRestResourcesStatusOutput build() {
             return new UpdateRestResourcesStatusOutput();
         }
 

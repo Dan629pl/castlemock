@@ -45,19 +45,19 @@ class SoapResourceRestControllerTest {
         final String resourceId = UUID.randomUUID().toString();
         final String content = "<resource></resource>";
         final SoapResource resource = SoapResourceTestBuilder.builder()
-                        .projectId(projectId)
-                        .id(resourceId)
-                        .content(content)
-                        .build();
+                .projectId(projectId)
+                .id(resourceId)
+                .content(content)
+                .build();
 
         Mockito.when(serviceProcessor.process(Mockito.eq(ReadSoapResourceInput
-                .builder()
+                        .builder()
                         .projectId(projectId)
                         .resourceId(resourceId)
                         .build())))
                 .thenReturn(ReadSoapResourceOutput.builder()
-                .resource(resource)
-                .build());
+                        .resource(resource)
+                        .build());
         Mockito.when(serviceProcessor.process(LoadSoapResourceInput
                 .builder()
                 .projectId(projectId)
@@ -159,5 +159,5 @@ class SoapResourceRestControllerTest {
                 .build());
         Mockito.verifyNoMoreInteractions(serviceProcessor);
     }
-    
+
 }

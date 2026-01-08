@@ -283,5 +283,5 @@ class SoapMockResponseRestControllerTest {
                 .build());
         Mockito.verifyNoMoreInteractions(serviceProcessor);
     }
-    
+
 }

@@ -38,14 +38,14 @@ class SystemCoreRestControllerTest {
     private SystemCoreRestController systemController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.serviceProcessor = mock(ServiceProcessor.class);
         this.systemController = new SystemCoreRestController(serviceProcessor);
     }
 
     @Test
     @DisplayName("Get system")
-    void testGetSystem(){
+    void testGetSystem() {
         final SystemInformation systemInformation = SystemInformationTestBuilder.builder().build();
         when(serviceProcessor.process(any())).thenReturn(GetSystemInformationOutput.builder()
                 .systemInformation(systemInformation)

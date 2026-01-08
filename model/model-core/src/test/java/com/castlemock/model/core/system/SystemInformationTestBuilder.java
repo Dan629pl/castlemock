@@ -18,7 +18,7 @@ package com.castlemock.model.core.system;
 
 public final class SystemInformationTestBuilder {
 
-    private SystemInformationTestBuilder(){
+    private SystemInformationTestBuilder() {
 
     }
 

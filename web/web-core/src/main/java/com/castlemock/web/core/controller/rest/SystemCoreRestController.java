@@ -32,15 +32,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - System", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - System", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class SystemCoreRestController extends AbstractRestController {
 
-    public SystemCoreRestController(final ServiceProcessor serviceProcessor){
+    public SystemCoreRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get system information",
+    @Operation(summary = "Get system information",
             description = "Get system information. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/system")
     @PreAuthorize("hasAuthority('ADMIN')")

@@ -10,21 +10,21 @@ import org.junit.jupiter.api.Test;
 public class ExpressionParserTest {
 
     @Test
-    public void testParserWithoutArguments(){
+    public void testParserWithoutArguments() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertTrue(expression.arguments.isEmpty());
     }
 
     @Test
-    public void testParserWithEmptyArguments(){
+    public void testParserWithEmptyArguments() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN()}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertTrue(expression.arguments.isEmpty());
     }
 
     @Test
-    public void testParserWithOneArgumentString(){
+    public void testParserWithOneArgumentString() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=\"Value\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -37,7 +37,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentStringWithSlash(){
+    public void testParserWithOneArgumentStringWithSlash() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=\\\"Value\\\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -51,7 +51,7 @@ public class ExpressionParserTest {
 
 
     @Test
-    public void testParserWithOneArgumentStringWithSpace(){
+    public void testParserWithOneArgumentStringWithSpace() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=\"Good day to you.\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -64,7 +64,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentStringWithNumber(){
+    public void testParserWithOneArgumentStringWithNumber() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=\"Value123\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -77,7 +77,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentInteger(){
+    public void testParserWithOneArgumentInteger() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=12)}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -89,7 +89,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentArrayString(){
+    public void testParserWithOneArgumentArrayString() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=[\"ValueA\",\"ValueB\",\"ValueC\"])}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -104,7 +104,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentArrayStringWithSlash(){
+    public void testParserWithOneArgumentArrayStringWithSlash() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=[\\\"ValueA\\\",\\\"ValueB\\\",\\\"ValueC\\\"])}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -119,7 +119,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithOneArgumentArrayInteger(){
+    public void testParserWithOneArgumentArrayInteger() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key=[1,2,3])}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(1, expression.arguments.size());
@@ -134,7 +134,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithMultipleArguments(){
+    public void testParserWithMultipleArguments() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN(Key1=\"Value1\",Key2=\"Value2\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(2, expression.arguments.size());
@@ -157,7 +157,7 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void testParserWithMultipleArgumentsWithSpaces(){
+    public void testParserWithMultipleArgumentsWithSpaces() {
         ExpressionParser.ExpressionContext expression = parse("${RANDOM_BOOLEAN( Key1=\"Value1\", Key2=\"Value2\")}");
         Assertions.assertEquals(expression.type.getText(), "RANDOM_BOOLEAN");
         Assertions.assertEquals(2, expression.arguments.size());
@@ -179,7 +179,7 @@ public class ExpressionParserTest {
         Assertions.assertEquals("Value2", secondArgumentValue.argumentString().value.getText());
     }
 
-    private ExpressionParser.ExpressionContext parse(final String input){
+    private ExpressionParser.ExpressionContext parse(final String input) {
         final CodePointCharStream stream = CharStreams.fromString(input);
         final ExpressionLexer lexer = new ExpressionLexer(stream);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);

@@ -43,7 +43,7 @@ public class UpdateRestResourcesForwardedEndpointServiceTest {
 
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestMethod method1 = RestMethodTestBuilder.builder()
                 .id("method-1")
                 .build();

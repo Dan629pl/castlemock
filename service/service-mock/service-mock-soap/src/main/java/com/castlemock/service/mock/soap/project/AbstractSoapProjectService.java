@@ -49,7 +49,7 @@ public abstract class AbstractSoapProjectService extends AbstractService<SoapPro
     @Autowired
     protected SoapResourceRepository resourceRepository;
 
-    protected Optional<SoapProject> deleteProject(final String projectId){
+    protected Optional<SoapProject> deleteProject(final String projectId) {
         final List<SoapPort> ports = this.portRepository.findWithProjectId(projectId);
         final List<SoapResource> resources = this.resourceRepository.findWithProjectId(projectId);
         ports.forEach(port -> this.deletePort(port.getId()));
@@ -58,40 +58,41 @@ public abstract class AbstractSoapProjectService extends AbstractService<SoapPro
         return this.repository.delete(projectId);
     }
 
-    protected Optional<SoapPort> deletePort(final String portId){
+    protected Optional<SoapPort> deletePort(final String portId) {
         final List<SoapOperation> operations = this.operationRepository.findWithPortId(portId);
         operations.forEach(operation -> this.deleteOperation(operation.getId()));
 
         return this.portRepository.delete(portId);
     }
 
-    protected Optional<SoapOperation> deleteOperation(final String operationId){
+    protected Optional<SoapOperation> deleteOperation(final String operationId) {
         final List<SoapMockResponse> responses = this.mockResponseRepository.findWithOperationId(operationId);
         responses.forEach(response -> this.deleteMockResponse(response.getId()));
 
         return this.operationRepository.delete(operationId);
     }
 
-    protected Optional<SoapMockResponse> deleteMockResponse(final String mockReponseId){
+    protected Optional<SoapMockResponse> deleteMockResponse(final String mockReponseId) {
         return this.mockResponseRepository.delete(mockReponseId);
     }
 
-    protected Optional<SoapResource> deleteResource(final String resourceId){
+    protected Optional<SoapResource> deleteResource(final String resourceId) {
         return this.resourceRepository.delete(resourceId);
     }
 
 
     /**
      * The save method saves a project to the database
+     *
      * @param project Project that will be saved to the database
      * @return The saved project
      */
     @Override
-    public SoapProject save(final SoapProject project){
+    public SoapProject save(final SoapProject project) {
         Preconditions.checkNotNull(project, "Project cannot be null");
         Preconditions.checkArgument(!project.getName().isEmpty(), "Invalid project name. Project name cannot be empty");
         final SoapProject projectInDatebase = repository.findSoapProjectWithName(project.getName())
-                        .orElse(null);
+                .orElse(null);
         Preconditions.checkArgument(projectInDatebase == null, "Project name is already taken");
         return super.save(project.toBuilder()
                 .updated(new Date())
@@ -100,12 +101,13 @@ public abstract class AbstractSoapProjectService extends AbstractService<SoapPro
 
     /**
      * Updates a project with new information
-     * @param soapProjectId The id of the project that will be updated
+     *
+     * @param soapProjectId  The id of the project that will be updated
      * @param updatedProject The updated version of the project
      * @return The updated version project
      */
     @Override
-    public Optional<SoapProject> update(final String soapProjectId, final SoapProject updatedProject){
+    public Optional<SoapProject> update(final String soapProjectId, final SoapProject updatedProject) {
         Preconditions.checkNotNull(soapProjectId, "Project id be null");
         Preconditions.checkNotNull(updatedProject, "Project cannot be null");
         Preconditions.checkArgument(!updatedProject.getName().isEmpty(), "Invalid project name. Project name cannot be empty");

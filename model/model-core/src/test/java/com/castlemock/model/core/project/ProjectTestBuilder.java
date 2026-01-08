@@ -20,10 +20,10 @@ import java.util.Date;
 
 public final class ProjectTestBuilder {
 
-    private ProjectTestBuilder(){
+    private ProjectTestBuilder() {
     }
 
-    public static ProjectTestBuilder.TestProject.Builder builder(){
+    public static ProjectTestBuilder.TestProject.Builder builder() {
         return ProjectTestBuilder.TestProject.builder()
                 .id("SoapProject")
                 .name("Project name")
@@ -51,12 +51,12 @@ public final class ProjectTestBuilder {
             private Builder() {
             }
 
-            public ProjectTestBuilder.TestProject build(){
+            public ProjectTestBuilder.TestProject build() {
                 return new ProjectTestBuilder.TestProject(this);
             }
         }
 
     }
 
-    
+
 }

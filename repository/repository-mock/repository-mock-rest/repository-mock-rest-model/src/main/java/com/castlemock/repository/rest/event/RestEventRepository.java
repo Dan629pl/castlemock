@@ -25,14 +25,16 @@ import java.util.List;
  * The rest event repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and rest events to the file system. Each
  * rest event is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Repository
+ * @since 1.0
  */
 public interface RestEventRepository extends Repository<RestEvent, String> {
 
     /**
      * Find events by REST method ID
+     *
      * @param restMethodId The id of the REST method
      * @return A list of {@link RestEvent} that matches the provided <code>restMethodId</code>
      */
@@ -40,12 +42,14 @@ public interface RestEventRepository extends Repository<RestEvent, String> {
 
     /**
      * The service finds the oldest event
+     *
      * @return The oldest event
      */
     RestEvent getOldestEvent();
 
     /**
      * The method finds and deletes the oldest event.
+     *
      * @return The event that was deleted.
      * @since 1.5
      */
@@ -53,6 +57,7 @@ public interface RestEventRepository extends Repository<RestEvent, String> {
 
     /**
      * The method clears and deletes all logs.
+     *
      * @since 1.7
      */
     void clearAll();

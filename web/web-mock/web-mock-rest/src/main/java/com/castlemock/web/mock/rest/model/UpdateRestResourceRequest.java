@@ -34,9 +34,13 @@ public class UpdateRestResourceRequest {
     private final String name;
     private final String uri;
 
-    private UpdateRestResourceRequest(final Builder builder){
+    private UpdateRestResourceRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.uri = Objects.requireNonNull(builder.uri, "uri");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -69,10 +73,6 @@ public class UpdateRestResourceRequest {
                 "name='" + name + '\'' +
                 ", uri='" + uri + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

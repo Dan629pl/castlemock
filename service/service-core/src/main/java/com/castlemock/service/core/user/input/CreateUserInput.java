@@ -25,9 +25,10 @@ import java.util.Objects;
 
 /**
  * Creates a new user
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see CreateUserOutput
+ * @since 1.0
  */
 public final class CreateUserInput implements Input {
 
@@ -42,9 +43,13 @@ public final class CreateUserInput implements Input {
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = Objects.requireNonNull(builder.password, "password");
         this.email = builder.email;
-        this.fullName =  builder.fullName;
+        this.fullName = builder.fullName;
         this.status = Objects.requireNonNull(builder.status, "status");
         this.role = Objects.requireNonNull(builder.role, "role");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getUsername() {
@@ -70,11 +75,6 @@ public final class CreateUserInput implements Input {
     public Role getRole() {
         return role;
     }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
 
     public static final class Builder {
         private String username;

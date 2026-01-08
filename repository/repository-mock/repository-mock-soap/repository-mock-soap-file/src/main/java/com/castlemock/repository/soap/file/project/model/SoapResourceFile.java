@@ -49,6 +49,10 @@ public class SoapResourceFile implements Saveable<String> {
         this.type = Objects.requireNonNull(builder.type, "type");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -64,10 +68,6 @@ public class SoapResourceFile implements Saveable<String> {
 
     public String getProjectId() {
         return projectId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

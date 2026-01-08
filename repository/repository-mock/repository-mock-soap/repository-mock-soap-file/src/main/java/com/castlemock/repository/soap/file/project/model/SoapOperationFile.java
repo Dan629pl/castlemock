@@ -98,6 +98,10 @@ public class SoapOperationFile implements Saveable<String> {
         this.defaultMockResponseId = builder.defaultMockResponseId;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -174,11 +178,6 @@ public class SoapOperationFile implements Saveable<String> {
     public Boolean getAutomaticForward() {
         return automaticForward;
     }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
 
     public static final class Builder {
         private String id;

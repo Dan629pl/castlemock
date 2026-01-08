@@ -47,6 +47,10 @@ public final class CreateSoapPortsInput implements Input {
         this.location = builder.location;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -95,10 +99,6 @@ public final class CreateSoapPortsInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -107,36 +107,36 @@ public final class CreateSoapPortsInput implements Input {
         private List<File> files;
         private String location;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder includeImports(final boolean includeImports){
+        public Builder includeImports(final boolean includeImports) {
             this.includeImports = includeImports;
             return this;
         }
 
-        public Builder generateResponse(final Boolean generateResponse){
+        public Builder generateResponse(final Boolean generateResponse) {
             this.generateResponse = generateResponse;
             return this;
         }
 
-        public Builder files(final List<File> files){
+        public Builder files(final List<File> files) {
             this.files = files;
             return this;
         }
 
-        public Builder location(final String location){
+        public Builder location(final String location) {
             this.location = location;
             return this;
         }
 
-        public CreateSoapPortsInput build(){
+        public CreateSoapPortsInput build() {
             return new CreateSoapPortsInput(this);
         }
 

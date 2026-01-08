@@ -39,22 +39,23 @@ import java.util.Date;
  * The class is an implementation of the file repository and provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving users to the file system. Each user is stored as a separate file.
  * The class also contains the directory and the filename extension for the user.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see UserRepository
  * @see FileRepository
  * @see UserFile
  * @see User
+ * @since 1.0
  */
 @Repository
 @Profile(Profiles.FILE)
 public class UserFileRepository extends FileRepository<UserFile, User, String> implements UserRepository {
 
+    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @Value(value = "${user.file.directory}")
     private String userFileDirectory;
     @Value(value = "${user.file.extension}")
     private String userFileExtension;
-    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     public UserFileRepository() {
         super(UserFileConverter::toUser, UserConverter::toUserFile);
@@ -65,12 +66,13 @@ public class UserFileRepository extends FileRepository<UserFile, User, String> i
      * the method {@link #initialize} has finished successful. The method is responsible for creating an administrator
      * and saving it to the file system in case of no user is registered on application startup. This is
      * a typical scenario for when users are using Castle Mock for the first time after the installation.
+     *
      * @see #initialize
      * @see UserFile
      */
     @Override
     protected void postInitiate() {
-        if(collection.isEmpty()){
+        if (collection.isEmpty()) {
             final User user = User.builder()
                     .id(IdUtility.generateId())
                     .username("admin")
@@ -89,6 +91,7 @@ public class UserFileRepository extends FileRepository<UserFile, User, String> i
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -98,6 +101,7 @@ public class UserFileRepository extends FileRepository<UserFile, User, String> i
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -111,6 +115,7 @@ public class UserFileRepository extends FileRepository<UserFile, User, String> i
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param user The instance of the type that will be checked and controlled before it is allowed to be saved on
      *             the file system.
      * @see #save

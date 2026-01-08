@@ -30,7 +30,7 @@ public class LoadSoapResourceServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapResource soapResource = SoapResourceTestBuilder.builder().build();
         final String resourceContent = "Resource content";
         Mockito.when(resourceRepository.loadSoapResource(soapResource.getId())).thenReturn(resourceContent);

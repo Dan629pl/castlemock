@@ -24,9 +24,10 @@ import java.util.Optional;
 
 /**
  * Update the current logged in user
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see UpdateCurrentUserOutput
+ * @since 1.0
  */
 public final class UpdateCurrentUserInput implements Input {
 
@@ -35,11 +36,15 @@ public final class UpdateCurrentUserInput implements Input {
     private final String email;
     private final String fullName;
 
-    private UpdateCurrentUserInput(final Builder builder){
+    private UpdateCurrentUserInput(final Builder builder) {
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = builder.password;
         this.email = builder.email;
         this.fullName = builder.fullName;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getUsername() {
@@ -56,10 +61,6 @@ public final class UpdateCurrentUserInput implements Input {
 
     public Optional<String> getFullName() {
         return Optional.ofNullable(fullName);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

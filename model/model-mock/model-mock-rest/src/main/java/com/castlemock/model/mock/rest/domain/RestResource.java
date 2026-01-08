@@ -66,7 +66,7 @@ public class RestResource {
     private final Map<RestMethodStatus, Integer> statusCount;
 
 
-    private RestResource(final Builder builder){
+    private RestResource(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.uri = Objects.requireNonNull(builder.uri, "uri");
@@ -76,6 +76,9 @@ public class RestResource {
         this.statusCount = Optional.ofNullable(builder.statusCount).orElseGet(Map::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getId() {
         return id;
@@ -94,7 +97,7 @@ public class RestResource {
     }
 
     public List<RestMethod> getMethods() {
-        return  Optional.ofNullable(methods)
+        return Optional.ofNullable(methods)
                 .map(List::copyOf)
                 .orElseGet(List::of);
     }
@@ -103,9 +106,8 @@ public class RestResource {
         return Optional.ofNullable(invokeAddress);
     }
 
-
     public Map<RestMethodStatus, Integer> getStatusCount() {
-        return  Optional.ofNullable(statusCount)
+        return Optional.ofNullable(statusCount)
                 .map(Map::copyOf)
                 .orElseGet(Map::of);
     }
@@ -140,10 +142,6 @@ public class RestResource {
                 ", methods=" + methods +
                 ", statusCount=" + statusCount +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

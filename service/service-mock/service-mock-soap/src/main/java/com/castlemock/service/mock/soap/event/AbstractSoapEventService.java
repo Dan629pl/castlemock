@@ -23,6 +23,7 @@ import com.castlemock.service.core.event.AbstractEventService;
 
 /**
  * The SOAP event service is responsible for all the functionality related to the SOAP events.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */

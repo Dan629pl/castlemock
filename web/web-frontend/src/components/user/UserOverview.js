@@ -23,11 +23,11 @@ import {Link} from "react-router-dom";
 import validateErrorResponse from "../../utility/HttpResponseValidator";
 import DeleteUsersModal from "./modal/DeleteUsersModal";
 import NewUserModal from "./modal/NewUserModal";
-import {userStatusFormatter, userRoleFormatter} from "../user/utility/UserFormatter";
-import {faUserPlus, faUserMinus} from "@fortawesome/free-solid-svg-icons";
+import {userRoleFormatter, userStatusFormatter} from "../user/utility/UserFormatter";
+import {faUserMinus, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 
 const SELECT = true;
 const DESELECT = false;
@@ -76,12 +76,12 @@ class UserOverview extends PureComponent {
             text: 'Status',
             sort: true,
             formatter: this.userStatusFormat
-        },{
+        }, {
             dataField: 'created',
             text: 'Created',
             sort: true,
             formatter: this.userDateFormat
-        },{
+        }, {
             dataField: 'updated',
             text: 'Updated',
             sort: true,
@@ -123,7 +123,7 @@ class UserOverview extends PureComponent {
 
 
     userNameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -135,7 +135,7 @@ class UserOverview extends PureComponent {
     }
 
     userStatusFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -143,7 +143,7 @@ class UserOverview extends PureComponent {
     }
 
     userRoleFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -151,7 +151,7 @@ class UserOverview extends PureComponent {
     }
 
     userDateFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -167,9 +167,9 @@ class UserOverview extends PureComponent {
             id: value.id,
             username: value.username
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             users.push(user);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = users.indexOf(user);
             users.splice(index, 1);
         }
@@ -179,7 +179,7 @@ class UserOverview extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let users = [];
             this.state.users.forEach(value => {
                 let user = {
@@ -191,7 +191,7 @@ class UserOverview extends PureComponent {
             this.setState({
                 selectedUsers: users
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedUsers: []
             });
@@ -222,29 +222,33 @@ class UserOverview extends PureComponent {
                             <h1>Users</h1>
                         </div>
                         <div className="menu">
-                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#newUserModal"><FontAwesomeIcon icon={faUserPlus} className="button-icon"/><span>New user</span></button>
+                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal"
+                                    data-target="#newUserModal"><FontAwesomeIcon icon={faUserPlus}
+                                                                                 className="button-icon"/><span>New user</span>
+                            </button>
                         </div>
                     </div>
                     <div className="panel panel-primary table-panel">
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
-                                             data={ this.state.users }
+                                             columns={this.columns}
+                                             data={this.state.users}
                                              keyField="id"
                                              search>
                                 {
                                     (props) => (
                                         <div>
                                             <div>
-                                                <SearchBar { ...props.searchProps } className={"table-filter-field"} />
+                                                <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.state.users} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
-                                                                selectRow={ this.selectRow }
+                                                <BootstrapTable {...props.baseProps} bootstrap4 data={this.state.users}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
+                                                                selectRow={this.selectRow}
                                                                 striped
                                                                 noDataIndication="Click on 'New user' button to create a new user"
-                                                                pagination={ PaginationFactory() }/>
+                                                                pagination={PaginationFactory()}/>
                                             </div>
                                         </div>
                                     )}
@@ -252,8 +256,12 @@ class UserOverview extends PureComponent {
                         </div>
                         <div className="table-result">
                             <div className="panel-buttons">
-                                <button className="btn btn-danger demo-button-disabled panel-button" disabled={this.state.selectedUsers.length === 0}
-                                        data-toggle="modal" data-target="#deleteUsersModal"><i className="fas fa-trash"/> <FontAwesomeIcon icon={faUserMinus} className="button-icon"/><span>Delete users</span></button>
+                                <button className="btn btn-danger demo-button-disabled panel-button"
+                                        disabled={this.state.selectedUsers.length === 0}
+                                        data-toggle="modal" data-target="#deleteUsersModal"><i
+                                    className="fas fa-trash"/> <FontAwesomeIcon icon={faUserMinus}
+                                                                                className="button-icon"/><span>Delete users</span>
+                                </button>
                             </div>
                         </div>
                     </div>

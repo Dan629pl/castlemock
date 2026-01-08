@@ -30,8 +30,12 @@ public final class DeleteRestMockResponseOutput implements Output {
 
     private final RestMockResponse mockResponse;
 
-    private DeleteRestMockResponseOutput(final Builder builder){
+    private DeleteRestMockResponseOutput(final Builder builder) {
         this.mockResponse = builder.mockResponse;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestMockResponse> getMockResponse() {
@@ -58,10 +62,6 @@ public final class DeleteRestMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMockResponse mockResponse;
@@ -69,12 +69,12 @@ public final class DeleteRestMockResponseOutput implements Output {
         private Builder() {
         }
 
-        public Builder mockResponse(final RestMockResponse mockResponse){
+        public Builder mockResponse(final RestMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public DeleteRestMockResponseOutput build(){
+        public DeleteRestMockResponseOutput build() {
             return new DeleteRestMockResponseOutput(this);
         }
 

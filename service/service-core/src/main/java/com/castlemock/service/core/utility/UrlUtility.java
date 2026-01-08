@@ -43,7 +43,7 @@ public class UrlUtility {
 
     private final static Pattern VARIABLE_PATTERN = Pattern.compile("\\{(.+?)\\}");
 
-    public static int getPatternMatchScore(final String pattern, final String path){
+    public static int getPatternMatchScore(final String pattern, final String path) {
         try {
             return getMatchInfo(pattern, path).getUriVariables().size();
         } catch (Exception exception) {
@@ -51,7 +51,7 @@ public class UrlUtility {
         }
     }
 
-    public static boolean isPatternMatch(final String pattern, final String path){
+    public static boolean isPatternMatch(final String pattern, final String path) {
         try {
             return getMatchInfo(pattern, path) != null;
         } catch (Exception exception) {
@@ -59,7 +59,7 @@ public class UrlUtility {
         }
     }
 
-    public static Map<String, Set<String>> getPathParameters(final String pattern, final String path){
+    public static Map<String, Set<String>> getPathParameters(final String pattern, final String path) {
         try {
             final PathPattern.PathMatchInfo matchInfo = getMatchInfo(pattern, path);
             return matchInfo.getUriVariables()
@@ -72,31 +72,31 @@ public class UrlUtility {
     }
 
     public static Map<String, Set<String>> getQueryStringParameters(final String uri,
-                                                               final Set<HttpParameter> httpParameters) {
+                                                                    final Set<HttpParameter> httpParameters) {
         final Map<String, Set<HttpParameter>> lookupHttpParameters = httpParameters
                 .stream()
                 .collect(Collectors.groupingBy(HttpParameter::getName, Collectors.toSet()));
 
 
         final HashMap<String, Set<String>> output = new HashMap<>();
-        if(uri.indexOf('?') > 0){
+        if (uri.indexOf('?') > 0) {
             final String queryString = uri.split("\\?")[1];
             final String[] queries = queryString.split("&");
 
-            for(String query : queries){
+            for (String query : queries) {
                 final String[] queryParts = query.split("=");
 
-                if(queryParts.length != 2){
+                if (queryParts.length != 2) {
                     continue;
                 }
 
                 final String queryName = queryParts[0];
                 final String queryValue = queryParts[1];
 
-                if(queryValue.startsWith("{") && queryValue.endsWith("}")){
+                if (queryValue.startsWith("{") && queryValue.endsWith("}")) {
                     final Set<HttpParameter> values = lookupHttpParameters.get(queryName);
-                    if(values != null){
-                        if(!output.containsKey(queryName)) {
+                    if (values != null) {
+                        if (!output.containsKey(queryName)) {
                             output.put(queryName, new HashSet<>());
                         }
                         values.forEach(value -> output.get(queryName).add(value.getValue()));
@@ -108,19 +108,19 @@ public class UrlUtility {
         return output;
     }
 
-    public static Set<String> getPathParameters(final String uri){
+    public static Set<String> getPathParameters(final String uri) {
         final Set<String> parameters = new HashSet<>();
         final Matcher matcher = VARIABLE_PATTERN.matcher(uri);
-        while (matcher.find()){
+        while (matcher.find()) {
             String paramName = matcher.group(1);
-            if(paramName != null){
+            if (paramName != null) {
                 parameters.add(paramName);
             }
         }
         return parameters;
     }
 
-    private static PathPattern.PathMatchInfo getMatchInfo(final String pattern, final String path){
+    private static PathPattern.PathMatchInfo getMatchInfo(final String pattern, final String path) {
         final String basePattern = getBaseUriPattern(pattern);
         final PathPatternParser parser = new PathPatternParser();
         final PathPattern pathPattern = parser.parse(basePattern);
@@ -128,9 +128,9 @@ public class UrlUtility {
         return pathPattern.matchAndExtract(pathContainer);
     }
 
-    private static String getBaseUriPattern(final String pattern){
+    private static String getBaseUriPattern(final String pattern) {
         final int index = pattern.indexOf("?");
-        if(index == -1){
+        if (index == -1) {
             return pattern;
         }
 
@@ -139,7 +139,7 @@ public class UrlUtility {
 
     @SuppressWarnings("deprecation")
     public static Optional<String> getPath(final String originalPath,
-                                          final String newPath){
+                                           final String newPath) {
 
         try {
             final URL url = new URL(originalPath);

@@ -26,10 +26,10 @@ import java.util.stream.IntStream;
 
 public final class WsdlNamespaceParser extends WsdlParser {
 
-    public Set<Namespace> parseNamespaces(final Document document){
+    public Set<Namespace> parseNamespaces(final Document document) {
         final TypeInfo typeInfo = document.getDocumentElement().getSchemaTypeInfo();
         final Set<Namespace> namespaces = new HashSet<>();
-        if(typeInfo instanceof Node node){
+        if (typeInfo instanceof Node node) {
             final NamedNodeMap nodeMap = node.getAttributes();
 
             IntStream.range(0, nodeMap.getLength())
@@ -39,7 +39,8 @@ public final class WsdlNamespaceParser extends WsdlParser {
                                 .name(attributeNode.getNodeName())
                                 .localName(attributeNode.getLocalName())
                                 .value(attributeNode.getNodeValue())
-                                .build()); });
+                                .build());
+                    });
         }
 
         return namespaces;

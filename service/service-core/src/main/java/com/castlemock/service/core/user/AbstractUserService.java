@@ -40,14 +40,14 @@ import java.util.Optional;
  */
 public abstract class AbstractUserService extends AbstractService<User, String, UserRepository> {
 
+    protected static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractUserService.class);
     @Autowired
     private SessionTokenRepository sessionTokenRepository;
 
-    protected static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractUserService.class);
-
     /**
      * Get a list of users that has the same role as the provided role
+     *
      * @param role The users has to have the same role in order to be a part of the result
      * @return A list of users that match the search credentials
      * @throws NullPointerException Throws NullPointerException if provided role is null
@@ -58,7 +58,7 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
         final List<User> result = new ArrayList<>();
 
         for (User user : findAll()) {
-            if(role.equals(user.getRole())){
+            if (role.equals(user.getRole())) {
                 result.add(user);
             }
         }
@@ -68,17 +68,18 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
 
     /**
      * The method provides the functionality to find a user by username.
+     *
      * @param username The username that the user has to match
      * @return A user that has the same username as the provided username. Null will be returned if no user matches
-     *         the provided username
-     * @throws NullPointerException Throws NullPointerException if provided username is null
+     * the provided username
+     * @throws NullPointerException     Throws NullPointerException if provided username is null
      * @throws IllegalArgumentException Throws IllegalArgumentException if provided username is empty
      */
     protected Optional<User> findByUsername(final String username) {
         Preconditions.checkNotNull(username, "Username cannot be null");
         Preconditions.checkArgument(!username.isEmpty(), "Username cannot be empty");
         for (User user : findAll()) {
-            if(username.equalsIgnoreCase(user.getUsername())){
+            if (username.equalsIgnoreCase(user.getUsername())) {
                 return Optional.of(user);
             }
         }
@@ -87,18 +88,19 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
 
     /**
      * Update an already existing user
-     * @param userId The id is used to identify which user should be updated
+     *
+     * @param userId      The id is used to identify which user should be updated
      * @param updatedUser The updatedUser contains all the new information about the user that will be updated
      * @return Returns the updated user
      */
     @Override
-    public Optional<User> update(final String userId, final User updatedUser){
+    public Optional<User> update(final String userId, final User updatedUser) {
         Preconditions.checkNotNull(updatedUser);
         Preconditions.checkArgument(!updatedUser.getUsername().isEmpty(), "Invalid username. Username cannot be empty");
         final User user = find(userId)
                 .orElse(null);
 
-        if(user == null) {
+        if (user == null) {
             return Optional.empty();
         }
 
@@ -107,10 +109,10 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
         Preconditions.checkArgument(existingUser == null || existingUser.getId().equals(userId), "Invalid username. Username is already being used");
 
         final List<User> administrators = findByRole(Role.ADMIN);
-        if(administrators.size() == 1 && userId.equals(administrators.getFirst().getId()) && !updatedUser.getRole().equals(Role.ADMIN)){
+        if (administrators.size() == 1 && userId.equals(administrators.getFirst().getId()) && !updatedUser.getRole().equals(Role.ADMIN)) {
             throw new IllegalArgumentException("Invalid user update. The last admin cannot be deleted");
         }
-        if(administrators.size() == 1 && userId.equals(administrators.getFirst().getId()) && !updatedUser.getStatus().equals(Status.ACTIVE)){
+        if (administrators.size() == 1 && userId.equals(administrators.getFirst().getId()) && !updatedUser.getStatus().equals(Status.ACTIVE)) {
             throw new IllegalArgumentException("Invalid user update. The last admin cannot be inactivated or locked");
         }
 
@@ -128,7 +130,7 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
                         .orElse(null))
                 .updated(updatedTimestamp);
 
-        if(updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()){
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
             userBuilder.password((PASSWORD_ENCODER.encode(updatedUser.getPassword())));
         }
         final User savedUser = super.save(userBuilder.build());
@@ -138,19 +140,20 @@ public abstract class AbstractUserService extends AbstractService<User, String, 
 
     /**
      * Delete user with matching user id
+     *
      * @param userId The user with the user id that will be deleted
      */
     @Override
-    public Optional<User> delete(final String userId){
+    public Optional<User> delete(final String userId) {
         LOGGER.debug("Deleting user with id " + userId);
         Preconditions.checkNotNull(userId, "User id cannot be null");
         final User userDto = find(userId).orElse(null);
 
-        if(userDto == null){
+        if (userDto == null) {
             throw new IllegalArgumentException("Unable to find the user with the user id " + userId);
         }
 
-        if(userDto.getRole().equals(Role.ADMIN) && findByRole(Role.ADMIN).size() == 1){
+        if (userDto.getRole().equals(Role.ADMIN) && findByRole(Role.ADMIN).size() == 1) {
             throw new IllegalArgumentException("Unable to delete the last administrator");
         }
         return super.delete(userId);

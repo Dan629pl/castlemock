@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-function validateErrorResponse(error, setAuthenticationState){
+function validateErrorResponse(error, setAuthenticationState) {
     if (error.response.status === 401 || error.response.status === 403) {
 
     }

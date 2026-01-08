@@ -28,13 +28,18 @@ import UpdateOperationModal from "./modal/UpdateOperationModal";
 import DeleteMockResponsesModal from "./modal/DeleteMockResponsesModal";
 import CreateMockResponseModal from "./modal/CreateMockResponseModal";
 import DuplicateMockResponseModal from "./modal/DuplicateMockResponseModal"
-import {operationStatusFormatter, operationSoapVersionFormatter,
-    operationIdentifyStrategy, operationResponseStrategy, mockResponseStatusFormatter} from "../utility/SoapFormatter"
+import {
+    mockResponseStatusFormatter,
+    operationIdentifyStrategy,
+    operationResponseStrategy,
+    operationSoapVersionFormatter,
+    operationStatusFormatter
+} from "../utility/SoapFormatter"
 import ContextContext from "../../../../context/ContextContext";
-import {faTrash, faFile, faEdit, faCopy} from "@fortawesome/free-solid-svg-icons";
+import {faCopy, faEdit, faFile, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 const SELECT = true;
 const DESELECT = false;
 
@@ -109,9 +114,9 @@ class SoapOperation extends PureComponent {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             mockResponses.push(mockResponse);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = mockResponses.indexOf(mockResponse);
             mockResponses.splice(index, 1);
         }
@@ -121,7 +126,7 @@ class SoapOperation extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let mockResponses = [];
             this.state.operation.mockResponses.forEach(value => {
                 let mockResponse = {
@@ -133,7 +138,7 @@ class SoapOperation extends PureComponent {
             this.setState({
                 selectedMockResponses: mockResponses
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedMockResponses: []
             });
@@ -141,19 +146,20 @@ class SoapOperation extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
         return (
             <div className="table-link">
-                <Link to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + this.state.operationId + "/mockresponse/" + row.id }>{cell}</Link>
+                <Link
+                    to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + this.state.operationId + "/mockresponse/" + row.id}>{cell}</Link>
             </div>
         )
     }
 
     statusFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -165,7 +171,8 @@ class SoapOperation extends PureComponent {
             .get(process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + this.state.operationId)
             .then(response => {
                 this.setState({
-                    operation: response.data});
+                    operation: response.data
+                });
             })
             .catch(error => {
                 validateErrorResponse(error)
@@ -187,7 +194,7 @@ class SoapOperation extends PureComponent {
             });
     }
 
-    onDuplicateClick(){
+    onDuplicateClick() {
         let mockResponseIds = this.state.selectedMockResponses.map(mockResponse => mockResponse.id);
         axios
             .post(process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.state.projectId + "/port/" +
@@ -210,8 +217,11 @@ class SoapOperation extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId}>Port</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId}>Port</Link>
+                                </li>
                                 <li className="breadcrumb-item">{this.state.operation.name}</li>
                             </ol>
                         </nav>
@@ -223,12 +233,16 @@ class SoapOperation extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu" align="right">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateOperationModal" disabled={isOnlyReader(context.authentication.role)}>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updateOperationModal"
+                                            disabled={isOnlyReader(context.authentication.role)}>
                                         <i className="fas fa-plus-circle"/>
                                         <FontAwesomeIcon icon={faEdit} className="button-icon"/>
                                         <span>Update operation</span>
                                     </button>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#createMockResponseModal" disabled={isOnlyReader(context.authentication.role)}>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#createMockResponseModal"
+                                            disabled={isOnlyReader(context.authentication.role)}>
                                         <i className="fas fa-plus-circle"/>
                                         <FontAwesomeIcon icon={faFile} className="button-icon"/>
                                         <span>Create response</span>
@@ -276,11 +290,15 @@ class SoapOperation extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Automatic forward with no match</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.operation.automaticForward} disabled={true}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox"
+                                                            checked={this.state.operation.automaticForward}
+                                                            disabled={true}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Simulate network delay</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.operation.simulateNetworkDelay} disabled={true}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox"
+                                                            checked={this.state.operation.simulateNetworkDelay}
+                                                            disabled={true}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Network delay</dt>
@@ -292,7 +310,8 @@ class SoapOperation extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Mock on failure</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.operation.mockOnFailure} disabled={true}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.operation.mockOnFailure}
+                                                            disabled={true}/></dd>
                         </dl>
                     </div>
                     <div className="panel panel-primary table-panel">
@@ -301,7 +320,7 @@ class SoapOperation extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.operation.mockResponses}
                                              keyField="id"
                                              search>
@@ -312,26 +331,36 @@ class SoapOperation extends PureComponent {
                                                 <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <BootstrapTable {...props.baseProps} bootstrap4
-                                                            data={this.state.operation.mockResponses} columns={this.columns}
+                                                            data={this.state.operation.mockResponses}
+                                                            columns={this.columns}
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             selectRow={this.selectRow}
                                                             noDataIndication="No mocked responses"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#duplicateModal"><FontAwesomeIcon icon={faCopy} className="button-icon"/><span>Duplicate</span></button>
-                                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#duplicateModal"><FontAwesomeIcon icon={faCopy}
+                                                                                               className="button-icon"/><span>Duplicate</span>
+                                        </button>
+                                        <button className="btn btn-danger demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#deleteMockResponsesModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete responses</span></button>
+                                                data-target="#deleteMockResponsesModal"><FontAwesomeIcon icon={faTrash}
+                                                                                                         className="button-icon"/><span>Delete responses</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
@@ -339,11 +368,21 @@ class SoapOperation extends PureComponent {
                     </div>
                 </section>
 
-                <UpdateStatusModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId} getOperation={this.getOperation} selectedMockResponses={this.state.selectedMockResponses}/>
-                <CreateMockResponseModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId}/>
-                <DeleteMockResponsesModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId} selectedMockResponses={this.state.selectedMockResponses} getOperation={this.getOperation}/>
-                <UpdateOperationModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId} operation={this.state.operation} getOperation={this.getOperation}/>
-                <DuplicateMockResponseModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId} getOperation={this.getOperation} selectedMockResponses={this.state.selectedMockResponses}/>
+                <UpdateStatusModal projectId={this.state.projectId} portId={this.state.portId}
+                                   operationId={this.state.operationId} getOperation={this.getOperation}
+                                   selectedMockResponses={this.state.selectedMockResponses}/>
+                <CreateMockResponseModal projectId={this.state.projectId} portId={this.state.portId}
+                                         operationId={this.state.operationId}/>
+                <DeleteMockResponsesModal projectId={this.state.projectId} portId={this.state.portId}
+                                          operationId={this.state.operationId}
+                                          selectedMockResponses={this.state.selectedMockResponses}
+                                          getOperation={this.getOperation}/>
+                <UpdateOperationModal projectId={this.state.projectId} portId={this.state.portId}
+                                      operationId={this.state.operationId} operation={this.state.operation}
+                                      getOperation={this.getOperation}/>
+                <DuplicateMockResponseModal projectId={this.state.projectId} portId={this.state.portId}
+                                            operationId={this.state.operationId} getOperation={this.getOperation}
+                                            selectedMockResponses={this.state.selectedMockResponses}/>
             </div>
         )
     }

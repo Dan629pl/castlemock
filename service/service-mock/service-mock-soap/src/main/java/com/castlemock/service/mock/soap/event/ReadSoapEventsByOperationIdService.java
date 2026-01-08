@@ -29,9 +29,10 @@ import java.util.List;
 
 /**
  * The service provides the functionality to retrieve all SOAP events for a specific SOAP operation.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see SoapOperation
+ * @since 1.0
  */
 @org.springframework.stereotype.Service
 public class ReadSoapEventsByOperationIdService extends AbstractSoapEventService implements Service<ReadSoapEventsByOperationIdInput, ReadSoapEventsByOperationIdOutput> {
@@ -39,6 +40,7 @@ public class ReadSoapEventsByOperationIdService extends AbstractSoapEventService
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

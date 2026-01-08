@@ -25,10 +25,14 @@ public final class Binding {
     private final Attribute type;
     private final Set<BindingOperation> operations;
 
-    private Binding(final Builder builder){
+    private Binding(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.type = Objects.requireNonNull(builder.type);
         this.operations = Objects.requireNonNull(builder.operations);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -43,36 +47,32 @@ public final class Binding {
         return operations;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Attribute type;
         private Set<BindingOperation> operations;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder type(final Attribute type){
+        public Builder type(final Attribute type) {
             this.type = type;
             return this;
         }
 
-        public Builder operations(final Set<BindingOperation> operations){
+        public Builder operations(final Set<BindingOperation> operations) {
             this.operations = operations;
             return this;
         }
 
-        public Binding build(){
+        public Binding build() {
             return new Binding(this);
         }
     }

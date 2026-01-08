@@ -24,7 +24,7 @@ import {Link} from "react-router-dom";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 
 class EventOverview extends PureComponent {
 
@@ -72,7 +72,7 @@ class EventOverview extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -84,7 +84,7 @@ class EventOverview extends PureComponent {
     }
 
     userDateFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -127,29 +127,33 @@ class EventOverview extends PureComponent {
                             <h1>Events</h1>
                         </div>
                         <div className="menu">
-                            <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteAllEventsModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Clear events</span></button>
+                            <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                    data-target="#deleteAllEventsModal"><FontAwesomeIcon icon={faTrash}
+                                                                                         className="button-icon"/><span>Clear events</span>
+                            </button>
                         </div>
                     </div>
                     <div className="panel panel-primary table-panel">
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
-                                             data={ this.state.events }
+                                             columns={this.columns}
+                                             data={this.state.events}
                                              keyField="id"
                                              search>
                                 {
                                     (props) => (
                                         <div>
                                             <div>
-                                                <SearchBar { ...props.searchProps } className={"table-filter-field"} />
+                                                <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.state.events} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
-                                                                selectRow={ this.selectRow }
+                                                <BootstrapTable {...props.baseProps} bootstrap4 data={this.state.events}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
+                                                                selectRow={this.selectRow}
                                                                 striped
                                                                 noDataIndication="No events has so far been recorded"
-                                                                pagination={ PaginationFactory() }/>
+                                                                pagination={PaginationFactory()}/>
                                             </div>
                                         </div>
                                     )}
@@ -172,7 +176,10 @@ class EventOverview extends PureComponent {
                                 <p>Do you wanna delete all the events?</p>
                             </div>
                             <div className="modal-footer">
-                                <button className="btn btn-danger" data-dismiss="modal" onClick={this.onDeleteAllEventsClick}><FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete</button>
+                                <button className="btn btn-danger" data-dismiss="modal"
+                                        onClick={this.onDeleteAllEventsClick}><FontAwesomeIcon icon={faTrash}
+                                                                                               className="button-icon"/>Delete
+                                </button>
                             </div>
                         </div>
                     </div>

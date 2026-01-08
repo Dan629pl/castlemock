@@ -37,7 +37,7 @@ public final class WsdlServiceParser extends WsdlParser {
     private static final String BINDING_NAMESPACE = "binding";
     private static final String SERVICE_NAMESPACE = "service";
 
-    public Set<Service> parseServices(final Document document){
+    public Set<Service> parseServices(final Document document) {
         final List<Element> serviceElements = DocumentUtility.getElements(document, WSDL_NAMESPACE, SERVICE_NAMESPACE);
         return serviceElements.stream()
                 .map(this::parseService)
@@ -45,7 +45,7 @@ public final class WsdlServiceParser extends WsdlParser {
     }
 
 
-    private Service parseService(final Element serviceElement){
+    private Service parseService(final Element serviceElement) {
         final List<Element> portElements = DocumentUtility.getElements(serviceElement, WSDL_NAMESPACE, PORT_NAMESPACE);
         final String name = DocumentUtility.getAttribute(serviceElement, NAME_NAMESPACE)
                 .orElseThrow(() -> new IllegalArgumentException("Unable to find service name"));
@@ -59,10 +59,10 @@ public final class WsdlServiceParser extends WsdlParser {
                 .build();
     }
 
-    private Optional<ServicePort> parseServicePort(final Element servicePortElement){
+    private Optional<ServicePort> parseServicePort(final Element servicePortElement) {
         final Optional<ServicePortAddress> address = parseServicePortAddress(servicePortElement);
 
-        if(address.isEmpty()){
+        if (address.isEmpty()) {
             return Optional.empty();
         }
 
@@ -79,15 +79,15 @@ public final class WsdlServiceParser extends WsdlParser {
                 .build());
     }
 
-    private Optional<ServicePortAddress> parseServicePortAddress(final Element servicePortElement){
+    private Optional<ServicePortAddress> parseServicePortAddress(final Element servicePortElement) {
         Optional<String> location = SoapUtility.extractSoapAddress(servicePortElement, SOAP_11_NAMESPACE);
         SoapVersion version = SoapVersion.SOAP11;
 
-        if(location.isEmpty()){
+        if (location.isEmpty()) {
             location = SoapUtility.extractSoapAddress(servicePortElement, SOAP_12_NAMESPACE);
             version = SoapVersion.SOAP12;
         }
-        if(location.isEmpty()){
+        if (location.isEmpty()) {
             return Optional.empty();
         }
 

@@ -26,6 +26,8 @@ import java.util.Objects;
 
 public class WADLRestDefinitionConverterTest {
 
+    private static final String AUTO_GENERATED_MOCK_RESPONSE_DEFAULT_NAME = "Auto-generated mocked response";
+    private static final int DEFAULT_RESPONSE_CODE = 200;
     @Mock
     private FileManager fileManager;
 
@@ -34,11 +36,8 @@ public class WADLRestDefinitionConverterTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    private static final String AUTO_GENERATED_MOCK_RESPONSE_DEFAULT_NAME = "Auto-generated mocked response";
-    private static final int DEFAULT_RESPONSE_CODE = 200;
-
     @Test
-    public void testConvertGetPath(){
+    public void testConvertGetPath() {
         final List<RestApplication> restApplications = loadApplicationsWithPath("get.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "get",
@@ -50,7 +49,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertGet(){
+    public void testConvertGet() {
         final List<RestApplication> restApplications = loadApplications("get.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "get",
@@ -62,7 +61,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPost(){
+    public void testConvertPost() {
         final List<RestApplication> restApplications = loadApplications("post.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "post",
@@ -74,7 +73,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPut(){
+    public void testConvertPut() {
         final List<RestApplication> restApplications = loadApplications("put.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "put",
@@ -86,7 +85,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertDelete(){
+    public void testConvertDelete() {
         final List<RestApplication> restApplications = loadApplications("delete.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "delete",
@@ -98,7 +97,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertHead(){
+    public void testConvertHead() {
         final List<RestApplication> restApplications = loadApplications("head.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "head",
@@ -110,7 +109,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertOptions(){
+    public void testConvertOptions() {
         final List<RestApplication> restApplications = loadApplications("options.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "options",
@@ -122,7 +121,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPatch(){
+    public void testConvertPatch() {
         final List<RestApplication> restApplications = loadApplications("patch.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "patch",
@@ -135,7 +134,7 @@ public class WADLRestDefinitionConverterTest {
 
 
     @Test
-    public void testConvertTrace(){
+    public void testConvertTrace() {
         final List<RestApplication> restApplications = loadApplications("trace.wadl", false);
         verifyApplication(restApplications.getFirst(),
                 "trace",
@@ -147,7 +146,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertGetGenerateResult(){
+    public void testConvertGetGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("get.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "get",
@@ -159,7 +158,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPostGenerateResult(){
+    public void testConvertPostGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("post.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "post",
@@ -171,7 +170,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPutGenerateResult(){
+    public void testConvertPutGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("put.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "put",
@@ -183,7 +182,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertDeleteGenerateResult(){
+    public void testConvertDeleteGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("delete.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "delete",
@@ -195,7 +194,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertHeadGenerateResult(){
+    public void testConvertHeadGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("head.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "head",
@@ -207,7 +206,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertOptionsGenerateResult(){
+    public void testConvertOptionsGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("options.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "options",
@@ -219,7 +218,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     @Test
-    public void testConvertPatchGenerateResult(){
+    public void testConvertPatchGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("patch.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "patch",
@@ -232,7 +231,7 @@ public class WADLRestDefinitionConverterTest {
 
 
     @Test
-    public void testConvertTraceGenerateResult(){
+    public void testConvertTraceGenerateResult() {
         final List<RestApplication> restApplications = loadApplications("trace.wadl", true);
         verifyApplication(restApplications.getFirst(),
                 "trace",
@@ -249,7 +248,7 @@ public class WADLRestDefinitionConverterTest {
                                    final String resourceUri,
                                    final String methodName,
                                    final HttpMethod httpMethod,
-                                   final boolean generatedResponse){
+                                   final boolean generatedResponse) {
         Assertions.assertEquals(applicationName, restApplication.getName());
         //Assertions.assertNull(restApplication.getStatusCount());
 
@@ -272,7 +271,7 @@ public class WADLRestDefinitionConverterTest {
         Assertions.assertNull(restMethod.getDefaultBody().orElse(null));
         Assertions.assertNull(restMethod.getNetworkDelay().orElse(null));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(1, restMethod.getMockResponses().size());
             RestMockResponse restMockResponse = restMethod.getMockResponses().getFirst();
             Assertions.assertEquals(AUTO_GENERATED_MOCK_RESPONSE_DEFAULT_NAME, restMockResponse.getName());
@@ -284,13 +283,13 @@ public class WADLRestDefinitionConverterTest {
 
             Assertions.assertNull(restMockResponse.getBody().orElse(null));
 
-        }else {
+        } else {
             Assertions.assertEquals(0, restMethod.getMockResponses().size());
         }
     }
 
     private List<RestApplication> loadApplications(final String path,
-                                                   final boolean generatedResponse){
+                                                   final boolean generatedResponse) {
         final WADLRestDefinitionConverter converter = new WADLRestDefinitionConverter(this.fileManager);
         final URL url = WADLRestDefinitionConverter.class.getResource(path);
         final File file;
@@ -305,7 +304,7 @@ public class WADLRestDefinitionConverterTest {
     }
 
     private List<RestApplication> loadApplicationsWithPath(final String path,
-                                                   final boolean generatedResponse){
+                                                           final boolean generatedResponse) {
         final WADLRestDefinitionConverter converter = new WADLRestDefinitionConverter(this.fileManager);
         final URL url = WADLRestDefinitionConverter.class.getResource(path);
         final File file;

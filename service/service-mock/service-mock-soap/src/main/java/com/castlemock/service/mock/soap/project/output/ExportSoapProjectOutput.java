@@ -25,12 +25,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ExportSoapProjectOutput implements Output{
+public final class ExportSoapProjectOutput implements Output {
 
     private final String project;
 
     private ExportSoapProjectOutput(final Builder builder) {
         this.project = builder.project;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getProject() {
@@ -57,23 +61,19 @@ public final class ExportSoapProjectOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String project;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder project(final String project){
+        public Builder project(final String project) {
             this.project = project;
             return this;
         }
 
-        public ExportSoapProjectOutput build(){
+        public ExportSoapProjectOutput build() {
             return new ExportSoapProjectOutput(this);
         }
     }

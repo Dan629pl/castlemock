@@ -36,13 +36,14 @@ abstract class AbstractRAMLParser {
      * is a {@link String} and should be parsed to an integer. However, the response code
      * is not always the actual response code. In fact, it can be anything. Therefore,
      * upon {@link NumberFormatException} the default response code will be returned: 200.
+     *
      * @param responseCode The response code that will be parsed into an integer.
      * @return The parsed response code. 200 if the parsing failed.
      */
-    protected int extractHttpStatusCode(final String responseCode){
+    protected int extractHttpStatusCode(final String responseCode) {
         try {
             return Integer.parseInt(responseCode);
-        } catch (Exception e){
+        } catch (Exception e) {
             return DEFAULT_RESPONSE_CODE;
         }
     }

@@ -48,6 +48,7 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -63,15 +64,15 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
         List<RestApplication> newRestApplications = new ArrayList<>();
 
-        if(input.getLocation().isPresent()){
+        if (input.getLocation().isPresent()) {
             List<RestApplication> result = restDefinitionConverter.convert(input.getLocation().get(),
                     projectId, input.getGenerateResponse().orElse(false));
             newRestApplications.addAll(result);
         }
 
         // Parse all incoming files and convert them to REST applications
-        if(input.getFiles() != null){
-            for(File file : input.getFiles()){
+        if (input.getFiles() != null) {
+            for (File file : input.getFiles()) {
                 List<RestApplication> result = restDefinitionConverter.convert(file,
                         projectId, input.getGenerateResponse().orElse(false));
                 newRestApplications.addAll(result);
@@ -85,7 +86,7 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
         // Iterate through all new REST application and see if they match an already
         // existing REST application. If so, then it should be updated and replaced
         // with the latest version.
-        for(RestApplication newRestApplication : newRestApplications){
+        for (RestApplication newRestApplication : newRestApplications) {
             updateRestApplication(newRestApplication, existingRestApplications, restApplications);
         }
 
@@ -93,22 +94,22 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
         // list of REST applications
         restApplications.addAll(existingRestApplications);
 
-        for(RestApplication application : restApplications){
+        for (RestApplication application : restApplications) {
             final RestApplication savedApplication = this.applicationRepository.save(application.toBuilder()
                     .projectId(projectId)
                     .build());
 
-            for(RestResource restResource : application.getResources()){
+            for (RestResource restResource : application.getResources()) {
                 RestResource savedResource = this.resourceRepository.save(restResource.toBuilder()
                         .applicationId(savedApplication.getId())
                         .build());
 
-                for(RestMethod method : restResource.getMethods()){
+                for (RestMethod method : restResource.getMethods()) {
                     final RestMethod savedMethod = this.methodRepository.save(method.toBuilder()
                             .resourceId(savedResource.getId())
                             .build());
 
-                    for(RestMockResponse mockResponse : method.getMockResponses()){
+                    for (RestMockResponse mockResponse : method.getMockResponses()) {
                         this.mockResponseRepository.save(mockResponse.toBuilder()
                                 .methodId(savedMethod.getId())
                                 .build());
@@ -124,19 +125,20 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
     /**
      * The method will add a new {@link RestApplication} and update an already existing {@link RestApplication}.
-     * @param newRestApplication The new {@link RestApplication} that might be added to the final list of {@link RestApplication} (resultRestApplication).
+     *
+     * @param newRestApplication       The new {@link RestApplication} that might be added to the final list of {@link RestApplication} (resultRestApplication).
      * @param existingRestApplications A list of existing {@link RestApplication}
-     * @param resultRestApplication A list of the result of {@link RestApplication}. These will be the new {@link RestApplication}.
+     * @param resultRestApplication    A list of the result of {@link RestApplication}. These will be the new {@link RestApplication}.
      * @since 1.10
      */
     private void updateRestApplication(final RestApplication newRestApplication,
                                        final List<RestApplication> existingRestApplications,
-                                       final List<RestApplication> resultRestApplication){
+                                       final List<RestApplication> resultRestApplication) {
         final RestApplication existingRestApplication = findRestApplication(existingRestApplications, newRestApplication.getName())
                 .orElse(null);
 
 
-        if(existingRestApplication == null){
+        if (existingRestApplication == null) {
             resultRestApplication.add(newRestApplication);
             return;
         }
@@ -144,7 +146,7 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
         final List<RestResource> existingRestResources =
                 this.resourceRepository.findWithApplicationId(existingRestApplication.getId());
         final List<RestResource> resultRestResources = new ArrayList<>();
-        for(RestResource newRestResource : newRestApplication.getResources()) {
+        for (RestResource newRestResource : newRestApplication.getResources()) {
             updateRestResource(newRestResource, existingRestResources, resultRestResources);
         }
         resultRestApplication.add(existingRestApplication);
@@ -160,14 +162,15 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
     /**
      * The method will add a new {@link RestResource} and update an already existing {@link RestResource}.
-     * @param newRestResource The new {@link RestResource} that might be added to the final list of {@link RestResource} (resultRestApplication).
+     *
+     * @param newRestResource       The new {@link RestResource} that might be added to the final list of {@link RestResource} (resultRestApplication).
      * @param existingRestResources A list of existing {@link RestResource}
-     * @param resultRestResources A list of the result of {@link RestResource}. These will be the new {@link RestResource}.
+     * @param resultRestResources   A list of the result of {@link RestResource}. These will be the new {@link RestResource}.
      * @since 1.10
      */
     private void updateRestResource(final RestResource newRestResource,
                                     final List<RestResource> existingRestResources,
-                                    final List<RestResource> resultRestResources){
+                                    final List<RestResource> resultRestResources) {
         // Check if the new REST resource already exists
         final RestResource existingRestResource = findRestResource(existingRestResources, newRestResource.getName())
                 .orElse(null);
@@ -184,7 +187,7 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
         final List<RestMethod> existingRestMethods = this.methodRepository.findWithResourceId(existingRestResource.getId());
         final List<RestMethod> resultRestMethods = new ArrayList<>();
-        for(RestMethod newRestMethod : newRestResource.getMethods()){
+        for (RestMethod newRestMethod : newRestResource.getMethods()) {
             updateRestMethod(newRestMethod, existingRestMethods, resultRestMethods);
         }
         resultRestResources.add(existingRestResource);
@@ -196,9 +199,10 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
     /**
      * The method will add a new {@link RestMethod} and update an already existing {@link RestMethod}.
-     * @param newRestMethod The new {@link RestMethod} that might be added to the final list of {@link RestMethod} (resultRestApplication).
+     *
+     * @param newRestMethod       The new {@link RestMethod} that might be added to the final list of {@link RestMethod} (resultRestApplication).
      * @param existingRestMethods A list of existing {@link RestMethod}
-     * @param resultRestMethods A list of the result of {@link RestMethod}. These will be the new {@link RestMethod}.
+     * @param resultRestMethods   A list of the result of {@link RestMethod}. These will be the new {@link RestMethod}.
      * @since 1.10
      */
     private void updateRestMethod(final RestMethod newRestMethod,
@@ -220,16 +224,15 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
     }
 
 
-
-
     /**
      * Find a REST application with a specific name for a rest project
+     *
      * @param name The name of the REST application
      * @return A REST application that matches the search criteria. Null otherwise.
      */
-    public Optional<RestApplication> findRestApplication(List<RestApplication> restApplications, String name){
-        for(RestApplication restApplication : restApplications){
-            if(restApplication.getName().equals(name)){
+    public Optional<RestApplication> findRestApplication(List<RestApplication> restApplications, String name) {
+        for (RestApplication restApplication : restApplications) {
+            if (restApplication.getName().equals(name)) {
                 return Optional.of(restApplication);
             }
         }
@@ -238,12 +241,13 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
     /**
      * Find a REST resource with a specific name for a REST application
+     *
      * @param name The name of the REST resource
      * @return A REST resource that matches the search criteria. Null otherwise.
      */
-    public Optional<RestResource> findRestResource(List<RestResource> restResources, String name){
-        for(RestResource restResource : restResources){
-            if(restResource.getName().equals(name)){
+    public Optional<RestResource> findRestResource(List<RestResource> restResources, String name) {
+        for (RestResource restResource : restResources) {
+            if (restResource.getName().equals(name)) {
                 return Optional.of(restResource);
             }
         }
@@ -252,12 +256,13 @@ public class ImportRestDefinitionService extends AbstractRestProjectService impl
 
     /**
      * Find a REST method with a specific name for a REST resource
+     *
      * @param name The name of the REST method
      * @return A REST method that matches the search criteria. Null otherwise.
      */
-    public Optional<RestMethod> findRestMethod(List<RestMethod> restMethods, String name){
-        for(RestMethod restMethod : restMethods){
-            if(restMethod.getName().equals(name)){
+    public Optional<RestMethod> findRestMethod(List<RestMethod> restMethods, String name) {
+        for (RestMethod restMethod : restMethods) {
+            if (restMethod.getName().equals(name)) {
                 return Optional.of(restMethod);
             }
         }

@@ -33,6 +33,10 @@ public final class CreateRestMockResponseOutput implements Output {
         this.mockResponse = Objects.requireNonNull(mockResponse, "mockResponse");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public RestMockResponse getMockResponse() {
         return mockResponse;
     }
@@ -57,10 +61,6 @@ public final class CreateRestMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMockResponse mockResponse;
@@ -68,12 +68,12 @@ public final class CreateRestMockResponseOutput implements Output {
         private Builder() {
         }
 
-        public Builder mockResponse(final RestMockResponse mockResponse){
+        public Builder mockResponse(final RestMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public CreateRestMockResponseOutput build(){
+        public CreateRestMockResponseOutput build() {
             return new CreateRestMockResponseOutput(this.mockResponse);
         }
 

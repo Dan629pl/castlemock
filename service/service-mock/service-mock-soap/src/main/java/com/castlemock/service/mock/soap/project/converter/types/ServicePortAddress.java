@@ -24,9 +24,13 @@ public final class ServicePortAddress {
     private final String location;
     private final SoapVersion version;
 
-    private ServicePortAddress(final Builder builder){
+    private ServicePortAddress(final Builder builder) {
         this.location = Objects.requireNonNull(builder.location);
         this.version = Objects.requireNonNull(builder.version);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getLocation() {
@@ -37,30 +41,26 @@ public final class ServicePortAddress {
         return version;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String location;
         private SoapVersion version;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder location(final String location){
+        public Builder location(final String location) {
             this.location = location;
             return this;
         }
 
-        public Builder version(final SoapVersion version){
+        public Builder version(final SoapVersion version) {
             this.version = version;
             return this;
         }
 
-        public ServicePortAddress build(){
+        public ServicePortAddress build() {
             return new ServicePortAddress(this);
         }
     }

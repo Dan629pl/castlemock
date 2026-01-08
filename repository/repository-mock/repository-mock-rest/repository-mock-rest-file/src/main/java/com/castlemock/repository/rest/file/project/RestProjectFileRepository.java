@@ -34,9 +34,10 @@ import java.util.Optional;
  * The class is an implementation of the file repository and provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving REST project from the file system. Each REST project is stored as
  * a separate file. The class also contains the directory and the filename extension for the REST project.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see RestProjectRepository
+ * @since 1.0
  */
 @Repository
 @Profile(Profiles.FILE)
@@ -54,6 +55,7 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -63,6 +65,7 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -73,9 +76,10 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
     /**
      * The post initialize method can be used to run functionality for a specific service. The method is called when
      * the method {@link #initialize} has finished successful.
-     *
+     * <p>
      * The method is responsible to validate the imported types and make certain that all the collections are
      * initialized.
+     *
      * @see #initialize
      * @since 1.4
      */
@@ -91,8 +95,9 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param restProject The instance of the type that will be checked and controlled before it is allowed to be saved on
-     *             the file system.
+     *                    the file system.
      * @see #save
      */
     @Override
@@ -102,10 +107,11 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
 
     /**
      * The save method provides the functionality to save an instance to the file system.
+     *
      * @param project The type that will be saved to the file system.
      * @return The type that was saved to the file system. The main reason for it is being returned is because
-     *         there could be modifications of the object during the save process. For example, if the type does not
-     *         have an identifier, then the method will generate a new identifier for the type.
+     * there could be modifications of the object during the save process. For example, if the type does not
+     * have an identifier, then the method will generate a new identifier for the type.
      */
     @Override
     protected RestProject save(final RestProjectFile project) {
@@ -114,6 +120,7 @@ public class RestProjectFileRepository extends AbstractProjectFileRepository<Res
 
     /**
      * Finds a {@link RestProject} with a provided REST project name.
+     *
      * @param restProjectName The name of the REST project that will be retrieved.
      * @return A {@link RestProject} that matches the provided name.
      * @see RestProject

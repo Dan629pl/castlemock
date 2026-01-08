@@ -49,7 +49,7 @@ public class UpdateSoapMockResponseRequest {
     private final List<HttpHeader> httpHeaders;
     private final List<SoapXPathExpression> xpathExpressions;
 
-    private UpdateSoapMockResponseRequest(final Builder builder){
+    private UpdateSoapMockResponseRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.body = Objects.requireNonNull(builder.body, "body");
         this.status = Objects.requireNonNull(builder.status, "status");
@@ -57,6 +57,10 @@ public class UpdateSoapMockResponseRequest {
         this.usingExpressions = builder.usingExpressions;
         this.httpHeaders = Optional.ofNullable(builder.httpHeaders).orElseGet(List::of);
         this.xpathExpressions = Optional.ofNullable(builder.xpathExpressions).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -98,11 +102,6 @@ public class UpdateSoapMockResponseRequest {
         return Optional.ofNullable(xpathExpressions)
                 .map(List::copyOf)
                 .orElseGet(List::of);
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

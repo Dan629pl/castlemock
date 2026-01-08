@@ -23,7 +23,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class UploadDefinitionModal extends PureComponent {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.setFile = this.setFile.bind(this);
         this.uploadDefinition = this.uploadDefinition.bind(this);
@@ -68,7 +68,7 @@ class UploadDefinitionModal extends PureComponent {
     }
 
 
-    uploadDefinition(){
+    uploadDefinition() {
         let data = new FormData();
         data.append('file', this.state.selectedFile);
         data.append('generateResponse', this.state.generateResponseUpload);
@@ -84,7 +84,7 @@ class UploadDefinitionModal extends PureComponent {
             });
     }
 
-    linkDefinition(){
+    linkDefinition() {
         axios
             .post(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId + "/definition/link", {
                 url: this.state.linkDefinitionUrl,
@@ -101,12 +101,14 @@ class UploadDefinitionModal extends PureComponent {
 
     render() {
         return (
-            <div className="modal fade" id={"upload" + this.props.definitionType + "DefinitionModal"} tabIndex="-1" role="dialog"
+            <div className="modal fade" id={"upload" + this.props.definitionType + "DefinitionModal"} tabIndex="-1"
+                 role="dialog"
                  aria-labelledby="uploadDefinitionModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="uploadDefinitionModalLabel">Upload {definitionTypeFormatter(this.props.definitionType)}</h5>
+                            <h5 className="modal-title"
+                                id="uploadDefinitionModalLabel">Upload {definitionTypeFormatter(this.props.definitionType)}</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -117,11 +119,13 @@ class UploadDefinitionModal extends PureComponent {
                                 <div className="form-group row">
                                     <label htmlFor="updateProjectName" className="col-sm-2 col-form-label">URL</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" onChange={this.setLinkDefinitionUrl}/>
+                                        <input className="form-control" type="text"
+                                               onChange={this.setLinkDefinitionUrl}/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-5 col-form-label">Generate responses for each operation</label>
+                                    <label className="col-sm-5 col-form-label">Generate responses for each
+                                        operation</label>
                                     <div className="col-sm-5">
                                         <input type="checkbox" onChange={this.setGenerateResponseLink}/>
                                     </div>
@@ -129,7 +133,9 @@ class UploadDefinitionModal extends PureComponent {
                                 <div className="upload-modal-button">
                                     <button className="btn btn-success" data-dismiss="modal"
                                             disabled={this.state.linkDefinitionUrl === ""}
-                                            onClick={this.linkDefinition}><FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/>Link</button>
+                                            onClick={this.linkDefinition}><FontAwesomeIcon icon={faCloudUploadAlt}
+                                                                                           className="button-icon"/>Link
+                                    </button>
                                 </div>
                             </div>
 
@@ -141,12 +147,13 @@ class UploadDefinitionModal extends PureComponent {
                                     <div className="input-group mb-3">
                                         <div className="custom-file">
                                             <input type="file" className="custom-file-input" onChange={this.setFile}/>
-                                            <label className="custom-file-label" >{this.state.selectedFileName}</label>
+                                            <label className="custom-file-label">{this.state.selectedFileName}</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label className="col-sm-5 col-form-label">Generate responses for each operation</label>
+                                    <label className="col-sm-5 col-form-label">Generate responses for each
+                                        operation</label>
                                     <div className="col-sm-5">
                                         <input type="checkbox" onChange={this.setGenerateResponseUpload}/>
                                     </div>
@@ -154,7 +161,9 @@ class UploadDefinitionModal extends PureComponent {
                                 <div className="upload-modal-button">
                                     <button className="btn btn-success" data-dismiss="modal"
                                             disabled={this.state.selectedFile === null}
-                                            onClick={this.uploadDefinition}><FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/>Upload</button>
+                                            onClick={this.uploadDefinition}><FontAwesomeIcon icon={faCloudUploadAlt}
+                                                                                             className="button-icon"/>Upload
+                                    </button>
                                 </div>
                             </div>
                         </div>

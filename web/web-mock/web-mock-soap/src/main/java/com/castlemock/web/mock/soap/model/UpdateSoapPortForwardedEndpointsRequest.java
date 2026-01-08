@@ -39,6 +39,10 @@ public class UpdateSoapPortForwardedEndpointsRequest {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getPortIds() {
         return Optional.of(portIds)
                 .map(Set::copyOf)
@@ -69,10 +73,6 @@ public class UpdateSoapPortForwardedEndpointsRequest {
                 "portIds=" + portIds +
                 ", forwardedEndpoint=" + forwardedEndpoint +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

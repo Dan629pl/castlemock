@@ -52,7 +52,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("api/rest/soap")
-@Tag(name="SOAP - Resource", description="REST Operations for Castle Mock SOAP")
+@Tag(name = "SOAP - Resource", description = "REST Operations for Castle Mock SOAP")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class SoapResourceRestController extends AbstractRestController {
 
@@ -62,12 +62,12 @@ public class SoapResourceRestController extends AbstractRestController {
 
     @Autowired
     public SoapResourceRestController(final ServiceProcessor serviceProcessor,
-                                     final FileManager fileManager){
+                                      final FileManager fileManager) {
         super(serviceProcessor);
         this.fileManager = Objects.requireNonNull(fileManager, "fileManager");
     }
 
-    @Operation(summary =  "Get SOAP resource")
+    @Operation(summary = "Get SOAP resource")
     @RequestMapping(method = RequestMethod.GET, value = "/project/{projectId}/resource/{resourceId}")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -81,7 +81,7 @@ public class SoapResourceRestController extends AbstractRestController {
                 .resourceId(resourceId)
                 .build());
 
-        if(output.getResource().isEmpty()) {
+        if (output.getResource().isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
@@ -100,7 +100,7 @@ public class SoapResourceRestController extends AbstractRestController {
                 }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Get SOAP resource content")
+    @Operation(summary = "Get SOAP resource content")
     @RequestMapping(method = RequestMethod.GET, value = "/project/{projectId}/resource/{resourceId}/content")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -110,15 +110,15 @@ public class SoapResourceRestController extends AbstractRestController {
             @Parameter(name = "resourceId", description = "The id of the resource")
             @PathVariable(value = "resourceId") final String resourceId) {
         final LoadSoapResourceOutput output = this.serviceProcessor.process(LoadSoapResourceInput.builder()
-                        .projectId(projectId)
-                        .resourceId(resourceId)
-                        .build());
+                .projectId(projectId)
+                .resourceId(resourceId)
+                .build());
         return output.getResource()
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Import resource", description = "The service will upload a SOAP resource. " +
+    @Operation(summary = "Import resource", description = "The service will upload a SOAP resource. " +
             "Either the project id or the resource id is required. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/project/{projectId}/resource/{resourceId}/import")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -139,8 +139,7 @@ public class SoapResourceRestController extends AbstractRestController {
             final StringBuilder stringBuilder = new StringBuilder();
 
             String line;
-            while ((line = bufferedReader.readLine()) != null)
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
             }
 
@@ -161,7 +160,7 @@ public class SoapResourceRestController extends AbstractRestController {
             LOGGER.error("Unable to import resource", e);
             throw new RuntimeException(e);
         } finally {
-            if(uploadedFile != null){
+            if (uploadedFile != null) {
                 fileManager.deleteUploadedFile(uploadedFile);
             }
         }

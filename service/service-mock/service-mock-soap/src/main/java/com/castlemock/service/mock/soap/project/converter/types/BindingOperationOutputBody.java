@@ -21,16 +21,16 @@ public final class BindingOperationOutputBody {
 
     private final String parts;
 
-    private BindingOperationOutputBody(final Builder builder){
+    private BindingOperationOutputBody(final Builder builder) {
         this.parts = builder.parts;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getParts() {
         return Optional.ofNullable(parts);
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     public static class Builder {

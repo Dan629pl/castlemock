@@ -31,30 +31,32 @@ import java.util.Set;
  * The facade class is responsible for gather all services for a specific type and collaborate with all services
  * in order to provide unified functionality. This enables the using classes to operate all service of a specific type
  * from one single point.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Service
+ * @since 1.0
  */
 @org.springframework.stereotype.Service
-public abstract class ServiceFacadeImpl<D, I extends Serializable, SA extends ServiceAdapter<D,D,I>> implements ServiceFacade<D,I> {
+public abstract class ServiceFacadeImpl<D, I extends Serializable, SA extends ServiceAdapter<D, D, I>> implements ServiceFacade<D, I> {
 
+    protected final Set<SA> services = new HashSet<>();
     @Autowired
     private ApplicationContext applicationContext;
-    protected final Set<SA> services = new HashSet<>();
 
     /**
      * The initialize method is responsible for for locating all the service instances for a specific module
      * and organizing them depending on the type.
+     *
      * @param clazz The class of the {@link ServiceAdapter} that the facade is managing
      * @see Service
      */
     @SuppressWarnings("unchecked")
-    protected void initiate(final Class<?> clazz){
+    protected void initiate(final Class<?> clazz) {
         final Map<String, Object> foundServices = applicationContext.getBeansWithAnnotation(org.springframework.stereotype.Service.class);
 
-        for(Map.Entry<String, Object> entry : foundServices.entrySet()){
+        for (Map.Entry<String, Object> entry : foundServices.entrySet()) {
             final Object value = entry.getValue();
-            if(clazz.isInstance(value)){
+            if (clazz.isInstance(value)) {
                 final SA serviceAdapter = (SA) value;
                 services.add(serviceAdapter);
             }

@@ -19,8 +19,8 @@ package com.castlemock.web.mock.soap.stategy;
 import com.castlemock.model.mock.soap.domain.SoapOperation;
 import com.castlemock.model.mock.soap.domain.SoapRequest;
 import com.castlemock.model.mock.soap.domain.SoapResponse;
-import com.castlemock.web.mock.soap.utility.SoapClient;
 import com.castlemock.web.mock.soap.factory.SoapMockStrategyResultFactory;
+import com.castlemock.web.mock.soap.utility.SoapClient;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Objects;
@@ -40,8 +40,8 @@ public final class ForwardSoapStrategy implements SoapStrategy {
 
     @Override
     public SoapStrategyResult process(final SoapRequest request, final String projectId,
-                                final String portId, final SoapOperation operation,
-                                final HttpServletRequest httpServletRequest) {
+                                      final String portId, final SoapOperation operation,
+                                      final HttpServletRequest httpServletRequest) {
         final Optional<SoapResponse> optionalSoapResponse = soapHttpClient.getResponse(request, operation);
         if (optionalSoapResponse.isPresent()) {
             final SoapResponse response = optionalSoapResponse.get();

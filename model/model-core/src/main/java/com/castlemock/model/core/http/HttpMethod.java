@@ -31,12 +31,13 @@ public enum HttpMethod {
 
     /**
      * Parse an input String and convert it to a {@link HttpMethod}.
+     *
      * @param input The input String which will be converted.
      * @return A {@link HttpMethod} based on the input String. Null will be
-     *          return if no match was found.
+     * return if no match was found.
      * @since 1.10
      */
-    public static Optional<HttpMethod> getValue(final String input){
+    public static Optional<HttpMethod> getValue(final String input) {
         return Optional.ofNullable(input)
                 .map(String::toUpperCase)
                 .map(HttpMethod::valueOf);

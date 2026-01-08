@@ -76,23 +76,26 @@ class DeleteMethodsModal extends PureComponent {
                             <p>Do you want delete the following methods?</p>
                             <div className="table-result">
                                 <ToolkitProvider bootstrap4
-                                                 columns={ this.columns}
-                                                 data={ this.props.selectedMethods }
+                                                 columns={this.columns}
+                                                 data={this.props.selectedMethods}
                                                  keyField="id">
                                     {
                                         (props) => (
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.props.selectedMethods} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.props.selectedMethods} columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
                                                                 striped
-                                                                pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                pagination={PaginationFactory({hideSizePerPage: true})}/>
                                             </div>
                                         )}
                                 </ToolkitProvider>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-danger" data-dismiss="modal" onClick={this.onDeleteMethodsClick}><FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete</button>
+                            <button className="btn btn-danger" data-dismiss="modal" onClick={this.onDeleteMethodsClick}>
+                                <FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete
+                            </button>
                         </div>
                     </div>
                 </div>

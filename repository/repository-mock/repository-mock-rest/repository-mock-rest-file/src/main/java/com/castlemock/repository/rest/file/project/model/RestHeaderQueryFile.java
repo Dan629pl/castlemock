@@ -49,6 +49,10 @@ public class RestHeaderQueryFile {
         this.matchRegex = Objects.requireNonNull(builder.matchRegex, "matchRegex");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getHeader() {
         return header;
     }
@@ -67,10 +71,6 @@ public class RestHeaderQueryFile {
 
     public boolean getMatchRegex() {
         return matchRegex;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

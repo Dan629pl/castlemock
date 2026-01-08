@@ -59,6 +59,10 @@ public final class UpdateSoapOperationInput implements Input {
         this.mockOnFailure = builder.mockOnFailure;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -143,10 +147,6 @@ public final class UpdateSoapOperationInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
@@ -161,21 +161,21 @@ public final class UpdateSoapOperationInput implements Input {
         private SoapOperationIdentifyStrategy identifyStrategy;
         private Boolean automaticForward;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
@@ -226,7 +226,7 @@ public final class UpdateSoapOperationInput implements Input {
             return this;
         }
 
-        public UpdateSoapOperationInput build(){
+        public UpdateSoapOperationInput build() {
             return new UpdateSoapOperationInput(this);
         }
     }

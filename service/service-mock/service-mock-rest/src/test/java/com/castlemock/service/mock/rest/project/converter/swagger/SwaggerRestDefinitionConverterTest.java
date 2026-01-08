@@ -34,14 +34,13 @@ public class SwaggerRestDefinitionConverterTest {
         final SwaggerRestDefinitionConverter converter = new SwaggerRestDefinitionConverter();
         final URL url = SwaggerRestDefinitionConverter.class.getResource("full.json");
         final File file = new File(Objects.requireNonNull(url).toURI());
-        final List<RestApplication> restApplications = converter.convert(file,"1", true);
+        final List<RestApplication> restApplications = converter.convert(file, "1", true);
         this.verifyResult(restApplications, true);
     }
 
 
-
     private void verifyResult(final List<RestApplication> restApplications,
-                              final boolean generatedResponse){
+                              final boolean generatedResponse) {
 
         Assertions.assertNotNull(restApplications);
         Assertions.assertEquals(1, restApplications.size());
@@ -79,7 +78,7 @@ public class SwaggerRestDefinitionConverterTest {
         Assertions.assertEquals(Long.valueOf(0L), getAllMockServicesMethod.getNetworkDelay().orElse(0L));
         Assertions.assertFalse(getAllMockServicesMethod.getSimulateNetworkDelay().orElse(false));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(4, getAllMockServicesMethod.getMockResponses().size());
 
             // JSON
@@ -111,7 +110,7 @@ public class SwaggerRestDefinitionConverterTest {
             Assertions.assertNotNull(response200Json);
             Assertions.assertEquals("successful operation (application/json)", response200Json.getName());
             Assertions.assertEquals("{\"name\":\"${RANDOM_STRING()}\",\"id\":\"${RANDOM_LONG()}\"," +
-                    "\"createdBy\":\"${RANDOM_STRING()}\",\"mockStatus\":\"${RANDOM_INTEGER()}\"}",
+                            "\"createdBy\":\"${RANDOM_STRING()}\",\"mockStatus\":\"${RANDOM_INTEGER()}\"}",
                     response200Json.getBody().orElse(null));
 
             Assertions.assertEquals(Integer.valueOf(200), response200Json.getHttpStatusCode());
@@ -174,7 +173,7 @@ public class SwaggerRestDefinitionConverterTest {
         Assertions.assertEquals(Long.valueOf(0L), createMockMethod.getNetworkDelay().orElse(0L));
         Assertions.assertFalse(createMockMethod.getSimulateNetworkDelay().orElse(false));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(1, createMockMethod.getMockResponses().size());
 
             // Invalid mock id supplied
@@ -195,9 +194,6 @@ public class SwaggerRestDefinitionConverterTest {
         } else {
             Assertions.assertEquals(0, createMockMethod.getMockResponses().size());
         }
-
-
-
 
 
         // /mock (HEAD) - headMock
@@ -262,7 +258,7 @@ public class SwaggerRestDefinitionConverterTest {
         Assertions.assertEquals(Long.valueOf(0L), getMockByIdMethod.getNetworkDelay().orElse(null));
         Assertions.assertFalse(getMockByIdMethod.getSimulateNetworkDelay().orElse(false));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(4, getMockByIdMethod.getMockResponses().size());
 
             // JSON
@@ -358,7 +354,7 @@ public class SwaggerRestDefinitionConverterTest {
         Assertions.assertEquals(Long.valueOf(0L), updateMockMethod.getNetworkDelay().orElse(null));
         Assertions.assertFalse(updateMockMethod.getSimulateNetworkDelay().orElse(false));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(2, updateMockMethod.getMockResponses().size());
 
             // Invalid mock id supplied
@@ -411,7 +407,7 @@ public class SwaggerRestDefinitionConverterTest {
         Assertions.assertEquals(Long.valueOf(0L), deleteMockMethod.getNetworkDelay().orElse(null));
         Assertions.assertFalse(deleteMockMethod.getSimulateNetworkDelay().orElse(false));
 
-        if(generatedResponse){
+        if (generatedResponse) {
             Assertions.assertEquals(1, deleteMockMethod.getMockResponses().size());
 
             // Mock not found

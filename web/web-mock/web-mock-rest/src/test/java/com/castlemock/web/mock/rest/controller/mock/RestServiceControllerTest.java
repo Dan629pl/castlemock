@@ -76,13 +76,6 @@ import static org.mockito.Mockito.when;
  */
 public class RestServiceControllerTest extends AbstractControllerTest {
 
-    @InjectMocks
-    private RestServiceController restServiceController;
-    @Mock
-    private ServiceProcessor serviceProcessor;
-    @Mock
-    private RestClient restClient;
-
     private static final String PROJECT_ID = "ProjectId";
     private static final String APPLICATION_ID = "ApplicationId";
     private static final String RESOURCE_ID = "ResourceId";
@@ -94,28 +87,39 @@ public class RestServiceControllerTest extends AbstractControllerTest {
     private static final String ACCEPT_HEADER = "Accept";
     private static final Map<String, Set<String>> PATH_PARAMETERS = Map.of("Path", Set.of("Value"));
     private static final Map<String, Set<String>> NO_MATCHING_PATH_PARAMETERS = Map.of("Path", Set.of("OtherValue"));
-
     private static final String XML_REQUEST_BODY = """
             <request>
             \t<variable>Value 1</variable>
             </request>""";
-
     private static final String XML_RESPONSE_BODY = """
             <response>
             \t<variable>Value 1</variable>
             </response>""";
-
     private static final String QUERY_DEFAULT_RESPONSE_BODY = """
             <response>
             \t<variable>Default value 1</variable>
             </response>""";
-
     private static final String JSON_REQUEST_BODY = """
             {
             \t"request": {
             \t\t"variable": "Value 1"
             \t}
             }""";
+    @InjectMocks
+    private RestServiceController restServiceController;
+    @Mock
+    private ServiceProcessor serviceProcessor;
+    @Mock
+    private RestClient restClient;
+
+    private static String normalizeLineEndings(String text) {
+        if (text == null) return null;
+        return text.replace("\r\n", "\n").replace("\r", "\n");
+    }
+
+    private static void assertBodyEquals(String expected, Object actual) {
+        Assertions.assertEquals(normalizeLineEndings(expected), normalizeLineEndings((String) actual));
+    }
 
     @Test
     @DisplayName("Get - Mock sequence")
@@ -150,7 +154,6 @@ public class RestServiceControllerTest extends AbstractControllerTest {
         Assertions.assertEquals(APPLICATION_XML, Objects.requireNonNull(responseEntity.getHeaders().get(CONTENT_TYPE_HEADER)).getFirst());
         Assertions.assertEquals(APPLICATION_XML, Objects.requireNonNull(responseEntity.getHeaders().get(ACCEPT_HEADER)).getFirst());
     }
-
 
     @Test
     @DisplayName("Get - Mock random")
@@ -496,66 +499,6 @@ public class RestServiceControllerTest extends AbstractControllerTest {
         return restServiceController;
     }
 
-    private static String normalizeLineEndings(String text) {
-        if (text == null) return null;
-        return text.replace("\r\n", "\n").replace("\r", "\n");
-    }
-
-    private static void assertBodyEquals(String expected, Object actual) {
-        Assertions.assertEquals(normalizeLineEndings(expected), normalizeLineEndings((String) actual));
-    }
-
-
-    private static class HttpServletRequestTest extends HttpServletRequestWrapper {
-
-        private final byte[] bytes;
-
-        /**
-         * Constructs a request object wrapping the given request.
-         *
-         * @param request The request to wrap
-         * @throws IllegalArgumentException if the request is null
-         */
-        public HttpServletRequestTest(HttpServletRequest request, String body) {
-            super(request);
-            this.bytes = body.getBytes();
-        }
-
-        @Override
-        public ServletInputStream getInputStream() {
-
-            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
-
-            return new ServletInputStream() {
-
-                @Override
-                public boolean isFinished() {
-                    return true;
-                }
-
-                @Override
-                public boolean isReady() {
-                    return true;
-                }
-
-                @Override
-                public void setReadListener(ReadListener listener) {
-                    // Not implemented
-                }
-
-                @Override
-                public int read() {
-                    return byteArrayInputStream.read();
-                }
-            };
-        }
-
-        @Override
-        public BufferedReader getReader() {
-            return new BufferedReader(new InputStreamReader(this.getInputStream()));
-        }
-    }
-
     @SuppressWarnings("unchecked")
     private HttpServletRequest getMockedHttpServletRequest(final String body) {
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
@@ -766,6 +709,56 @@ public class RestServiceControllerTest extends AbstractControllerTest {
                 .simulateNetworkDelay(Boolean.FALSE)
                 .status(RestMethodStatus.FORWARDED)
                 .build();
+    }
+
+    private static class HttpServletRequestTest extends HttpServletRequestWrapper {
+
+        private final byte[] bytes;
+
+        /**
+         * Constructs a request object wrapping the given request.
+         *
+         * @param request The request to wrap
+         * @throws IllegalArgumentException if the request is null
+         */
+        public HttpServletRequestTest(HttpServletRequest request, String body) {
+            super(request);
+            this.bytes = body.getBytes();
+        }
+
+        @Override
+        public ServletInputStream getInputStream() {
+
+            final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+
+            return new ServletInputStream() {
+
+                @Override
+                public boolean isFinished() {
+                    return true;
+                }
+
+                @Override
+                public boolean isReady() {
+                    return true;
+                }
+
+                @Override
+                public void setReadListener(ReadListener listener) {
+                    // Not implemented
+                }
+
+                @Override
+                public int read() {
+                    return byteArrayInputStream.read();
+                }
+            };
+        }
+
+        @Override
+        public BufferedReader getReader() {
+            return new BufferedReader(new InputStreamReader(this.getInputStream()));
+        }
     }
 
 }

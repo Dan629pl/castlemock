@@ -31,6 +31,7 @@ import java.util.List;
 /**
  * The REST event service adapter provides the functionality to translate incoming
  * requests and transform them into correct service input messages
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -42,6 +43,7 @@ public class RestEventServiceAdapter implements EventServiceAdapter<RestEvent> {
 
     /**
      * The method is responsible for retrieving all instances from all the various service types.
+     *
      * @return A list containing all the instance independent from type
      */
     @Override
@@ -57,6 +59,7 @@ public class RestEventServiceAdapter implements EventServiceAdapter<RestEvent> {
 
     /**
      * The method will clear and remove all previous events.
+     *
      * @since 1.7
      */
     @Override

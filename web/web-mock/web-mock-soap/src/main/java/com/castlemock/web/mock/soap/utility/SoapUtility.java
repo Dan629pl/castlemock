@@ -18,23 +18,23 @@ package com.castlemock.web.mock.soap.utility;
 
 public class SoapUtility {
 
-	private SoapUtility() {
+    private SoapUtility() {
 
-	}
-	
-	public static String getWsdlAddress(final String wsdl, final String correctAddressLocation) {
-		final String addressLocationTag = "<soap:address location=\"";
-		final int beginIndexAddressLocationTag = wsdl.indexOf(addressLocationTag);
-		if (beginIndexAddressLocationTag < 0) {
-			return wsdl;
-		}
+    }
 
-		final int beginIndexUrl = beginIndexAddressLocationTag + addressLocationTag.length();
-		final int endIndexUrl = wsdl.indexOf("\"", beginIndexUrl);
+    public static String getWsdlAddress(final String wsdl, final String correctAddressLocation) {
+        final String addressLocationTag = "<soap:address location=\"";
+        final int beginIndexAddressLocationTag = wsdl.indexOf(addressLocationTag);
+        if (beginIndexAddressLocationTag < 0) {
+            return wsdl;
+        }
 
-		return wsdl.substring(0, beginIndexUrl) +
-				correctAddressLocation +
-				wsdl.substring(endIndexUrl);
-	}
+        final int beginIndexUrl = beginIndexAddressLocationTag + addressLocationTag.length();
+        final int endIndexUrl = wsdl.indexOf("\"", beginIndexUrl);
+
+        return wsdl.substring(0, beginIndexUrl) +
+                correctAddressLocation +
+                wsdl.substring(endIndexUrl);
+    }
 
 }

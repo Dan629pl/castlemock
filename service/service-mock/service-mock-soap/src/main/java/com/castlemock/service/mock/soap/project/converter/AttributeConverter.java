@@ -24,12 +24,12 @@ import java.util.Set;
 
 public final class AttributeConverter {
 
-    public AttributeConverter(){
+    public AttributeConverter() {
 
     }
 
     public static SoapOperationIdentifier toSoapOperationIdentifier(final Attribute attribute,
-                                                                    final Set<Namespace> namespaces){
+                                                                    final Set<Namespace> namespaces) {
         final String name = attribute.getLocalName();
         final String namespace = attribute.getNamespace()
                 .flatMap(namespaceName -> namespaces.stream()

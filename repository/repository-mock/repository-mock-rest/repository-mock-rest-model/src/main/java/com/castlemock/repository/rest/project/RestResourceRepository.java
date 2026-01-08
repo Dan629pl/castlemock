@@ -29,6 +29,7 @@ public interface RestResourceRepository extends Repository<RestResource, String>
     /**
      * Delete all {@link RestResource} that matches the provided
      * <code>applicationId</code>.
+     *
      * @param applicationId The id of the applicationId.
      */
     void deleteWithApplicationId(String applicationId);
@@ -36,6 +37,7 @@ public interface RestResourceRepository extends Repository<RestResource, String>
     /**
      * Find all {@link RestResource} that matches the provided
      * <code>applicationId</code>.
+     *
      * @param applicationId The id of the applicationId.
      * @return A list of {@link RestResource}.
      * @since 1.20
@@ -45,6 +47,7 @@ public interface RestResourceRepository extends Repository<RestResource, String>
     /**
      * Find all {@link RestResource} ids that matches the provided
      * <code>applicationId</code>.
+     *
      * @param applicationId The id of the applicationId.
      * @return A list of {@link RestResource} ids.
      * @since 1.20
@@ -54,8 +57,9 @@ public interface RestResourceRepository extends Repository<RestResource, String>
 
     /**
      * Finds a {@link RestResource} with a URI
+     *
      * @param applicationId The id of the {@link RestApplication}
-     * @param resourceUri The URI of a {@link RestResource}
+     * @param resourceUri   The URI of a {@link RestResource}
      * @return A {@link RestResource} that matches the search criteria.
      * @see RestProject
      * @see RestApplication
@@ -66,6 +70,7 @@ public interface RestResourceRepository extends Repository<RestResource, String>
     /**
      * Retrieve the {@link com.castlemock.model.mock.rest.domain.RestApplication} id
      * for the {@link RestResource} with the provided id.
+     *
      * @param resourceId The id of the {@link RestResource}.
      * @return The id of the application.
      * @since 1.20

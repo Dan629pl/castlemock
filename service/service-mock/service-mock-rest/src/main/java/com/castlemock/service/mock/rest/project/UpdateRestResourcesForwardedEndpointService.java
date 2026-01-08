@@ -34,6 +34,7 @@ public class UpdateRestResourcesForwardedEndpointService extends AbstractRestPro
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -47,8 +48,8 @@ public class UpdateRestResourcesForwardedEndpointService extends AbstractRestPro
                 .map(this.methodRepository::findWithResourceId)
                 .flatMap(List::stream)
                 .forEach(restMethod -> this.methodRepository.update(restMethod.getId(), restMethod.toBuilder()
-                            .forwardedEndpoint(input.getForwardedEndpoint())
-                            .build()));
+                        .forwardedEndpoint(input.getForwardedEndpoint())
+                        .build()));
         return createServiceResult(UpdateRestResourcesForwardedEndpointOutput.builder().build());
     }
 }

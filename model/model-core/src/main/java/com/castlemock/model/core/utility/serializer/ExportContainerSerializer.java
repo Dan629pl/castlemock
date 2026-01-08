@@ -26,19 +26,20 @@ import org.slf4j.LoggerFactory;
 /**
  * The {@link ExportContainerSerializer} is a utility class that provides functionality to
  * serialize and eeserialize {@link ExportContainer}.
+ *
  * @author Karl Dahlgren
- * @since 1.20
  * @see ExportContainer
+ * @since 1.20
  */
 public final class ExportContainerSerializer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExportContainerSerializer.class);
 
-    private ExportContainerSerializer(){
+    private ExportContainerSerializer() {
 
     }
 
-    public static <T extends ExportContainer> String serialize(final T exportContainer){
+    public static <T extends ExportContainer> String serialize(final T exportContainer) {
         try {
             final XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.registerModule(new Jdk8Module());
@@ -52,12 +53,12 @@ public final class ExportContainerSerializer {
 
     @SuppressWarnings("unchecked")
     public static <T extends ExportContainer> T deserialize(final String raw,
-                                                            final Class<? extends ExportContainer> clazz){
+                                                            final Class<? extends ExportContainer> clazz) {
         try {
             final XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.registerModule(new Jdk8Module());
             return (T) xmlMapper.readValue(raw, clazz);
-        } catch (Throwable e ) {
+        } catch (Throwable e) {
             LOGGER.error("Unable to deserialize", e);
             throw new IllegalStateException("Unable to deserialize", e);
         }

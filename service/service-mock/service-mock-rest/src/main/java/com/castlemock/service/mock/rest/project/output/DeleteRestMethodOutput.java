@@ -30,8 +30,12 @@ public final class DeleteRestMethodOutput implements Output {
 
     private final RestMethod method;
 
-    private DeleteRestMethodOutput(final Builder builder){
+    private DeleteRestMethodOutput(final Builder builder) {
         this.method = builder.method;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestMethod> getMethod() {
@@ -58,10 +62,6 @@ public final class DeleteRestMethodOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMethod method;
@@ -69,12 +69,12 @@ public final class DeleteRestMethodOutput implements Output {
         private Builder() {
         }
 
-        public Builder method(final RestMethod method){
+        public Builder method(final RestMethod method) {
             this.method = method;
             return this;
         }
 
-        public DeleteRestMethodOutput build(){
+        public DeleteRestMethodOutput build() {
             return new DeleteRestMethodOutput(this);
         }
 

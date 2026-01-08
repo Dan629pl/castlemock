@@ -80,7 +80,8 @@ class RestEvent extends PureComponent {
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
                                 <li className="breadcrumb-item"><Link to={"/web/event"}>Log</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/event/" + this.state.eventId}>{this.state.eventId}</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/event/" + this.state.eventId}>{this.state.eventId}</Link></li>
                             </ol>
                         </nav>
                     </div>
@@ -96,19 +97,27 @@ class RestEvent extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Project id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/rest/project/" + this.state.event.projectId}>{this.state.event.projectId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/rest/project/" + this.state.event.projectId}>{this.state.event.projectId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Application id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId}>{this.state.event.applicationId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId}>{this.state.event.applicationId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Resource id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId + "/resource/" + this.state.event.resourceId}>{this.state.event.resourceId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId + "/resource/" + this.state.event.resourceId}>{this.state.event.resourceId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Method id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId + "/resource/" + this.state.event.resourceId + "/method/" + this.state.event.methodId}>{this.state.event.methodId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/rest/project/" + this.state.event.projectId + "/application/" + this.state.event.applicationId + "/resource/" + this.state.event.resourceId + "/method/" + this.state.event.methodId}>{this.state.event.methodId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Start date</dt>
@@ -140,7 +149,7 @@ class RestEvent extends PureComponent {
                                 <h2>Headers</h2>
                                 <div className="table-result">
                                     <ToolkitProvider bootstrap4
-                                                     columns={ this.columns}
+                                                     columns={this.columns}
                                                      data={this.state.event.request.httpHeaders}
                                                      keyField="name"
                                                      search>
@@ -148,11 +157,13 @@ class RestEvent extends PureComponent {
                                             (props) => (
                                                 <div>
                                                     <BootstrapTable {...props.baseProps} bootstrap4
-                                                                    data={this.state.event.request.httpHeaders} columns={this.columns}
-                                                                    defaultSorted={this.defaultSort} keyField='name' hover
+                                                                    data={this.state.event.request.httpHeaders}
+                                                                    columns={this.columns}
+                                                                    defaultSorted={this.defaultSort} keyField='name'
+                                                                    hover
                                                                     striped
                                                                     noDataIndication="No headers"
-                                                                    pagination={ PaginationFactory() }/>
+                                                                    pagination={PaginationFactory()}/>
                                                 </div>
                                             )}
                                     </ToolkitProvider>
@@ -171,7 +182,7 @@ class RestEvent extends PureComponent {
                                         <h2>Headers</h2>
                                         <div className="table-result">
                                             <ToolkitProvider bootstrap4
-                                                             columns={ this.columns}
+                                                             columns={this.columns}
                                                              data={this.state.event.response.httpHeaders}
                                                              keyField="name"
                                                              search>
@@ -179,11 +190,13 @@ class RestEvent extends PureComponent {
                                                     (props) => (
                                                         <div>
                                                             <BootstrapTable {...props.baseProps} bootstrap4
-                                                                            data={this.state.event.response.httpHeaders} columns={this.columns}
-                                                                            defaultSorted={this.defaultSort} keyField='name' hover
+                                                                            data={this.state.event.response.httpHeaders}
+                                                                            columns={this.columns}
+                                                                            defaultSorted={this.defaultSort}
+                                                                            keyField='name' hover
                                                                             striped
                                                                             noDataIndication="No headers"
-                                                                            pagination={ PaginationFactory() }/>
+                                                                            pagination={PaginationFactory()}/>
                                                         </div>
                                                     )}
                                             </ToolkitProvider>

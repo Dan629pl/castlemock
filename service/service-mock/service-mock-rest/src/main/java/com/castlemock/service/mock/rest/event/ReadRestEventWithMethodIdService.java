@@ -25,14 +25,14 @@ import com.castlemock.model.mock.rest.domain.RestMethod;
 import com.castlemock.service.mock.rest.event.input.ReadRestEventWithMethodIdInput;
 import com.castlemock.service.mock.rest.event.output.ReadRestEventWithMethodIdOutput;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
  * The service provides the functionality to retrieve a list of events that belongs to a specific REST method.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see RestMethod
+ * @since 1.0
  */
 @org.springframework.stereotype.Service
 public class ReadRestEventWithMethodIdService extends AbstractRestEventService implements Service<ReadRestEventWithMethodIdInput, ReadRestEventWithMethodIdOutput> {
@@ -40,6 +40,7 @@ public class ReadRestEventWithMethodIdService extends AbstractRestEventService i
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

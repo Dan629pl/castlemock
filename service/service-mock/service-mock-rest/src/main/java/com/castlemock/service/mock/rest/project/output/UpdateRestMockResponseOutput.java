@@ -34,6 +34,10 @@ public final class UpdateRestMockResponseOutput implements Output {
         this.mockResponse = mockResponse;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<RestMockResponse> getMockResponse() {
         return Optional.ofNullable(mockResponse);
     }
@@ -58,10 +62,6 @@ public final class UpdateRestMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMockResponse mockResponse;
@@ -69,12 +69,12 @@ public final class UpdateRestMockResponseOutput implements Output {
         private Builder() {
         }
 
-        public Builder mockResponse(final RestMockResponse mockResponse){
+        public Builder mockResponse(final RestMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public UpdateRestMockResponseOutput build(){
+        public UpdateRestMockResponseOutput build() {
             return new UpdateRestMockResponseOutput(this.mockResponse);
         }
 

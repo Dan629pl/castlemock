@@ -30,10 +30,11 @@ import java.util.stream.Collectors;
 /**
  * The Event service component is used to assembly all the events service layers and interact with them
  * in order to retrieve a unified answer independent of the event type.
+ *
  * @author Karl Dahlgren
+ * @see Event
+ * @see Event
  * @since 1.0
- * @see Event
- * @see Event
  */
 @Service
 public class EventServiceFacadeImpl extends ServiceFacadeImpl<Event, String, EventServiceAdapter<Event>> implements EventServiceFacade {
@@ -41,15 +42,16 @@ public class EventServiceFacadeImpl extends ServiceFacadeImpl<Event, String, Eve
     /**
      * The initialize method is responsible for for locating all the service instances for a specific module
      * and organizing them depending on the type.
+     *
      * @see com.castlemock.model.core.Service
      */
     @Override
-    public void initiate(){
+    public void initiate() {
         super.initiate(EventServiceAdapter.class);
     }
 
     @Override
-    public void clearAll(){
+    public void clearAll() {
         this.services.forEach(EventServiceAdapter::clearAll);
     }
 

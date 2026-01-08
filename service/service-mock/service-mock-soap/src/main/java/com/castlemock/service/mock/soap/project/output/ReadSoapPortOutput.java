@@ -26,12 +26,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadSoapPortOutput implements Output{
+public final class ReadSoapPortOutput implements Output {
 
     private final SoapPort port;
 
     private ReadSoapPortOutput(final Builder builder) {
         this.port = builder.port;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<SoapPort> getPort() {
@@ -58,23 +62,19 @@ public final class ReadSoapPortOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapPort port;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder port(final SoapPort port){
+        public Builder port(final SoapPort port) {
             this.port = port;
             return this;
         }
 
-        public ReadSoapPortOutput build(){
+        public ReadSoapPortOutput build() {
             return new ReadSoapPortOutput(this);
         }
     }

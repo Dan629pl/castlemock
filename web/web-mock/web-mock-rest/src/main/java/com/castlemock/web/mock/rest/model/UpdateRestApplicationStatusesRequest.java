@@ -38,6 +38,10 @@ public class UpdateRestApplicationStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getApplicationIds() {
         return Optional.of(applicationIds)
                 .map(Set::copyOf)
@@ -68,10 +72,6 @@ public class UpdateRestApplicationStatusesRequest {
                 "applicationIds=" + applicationIds +
                 ", status=" + status +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

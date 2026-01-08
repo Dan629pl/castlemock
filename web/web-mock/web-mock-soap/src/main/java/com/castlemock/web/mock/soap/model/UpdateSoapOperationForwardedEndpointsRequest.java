@@ -39,6 +39,10 @@ public class UpdateSoapOperationForwardedEndpointsRequest {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getOperationIds() {
         return Optional.of(operationIds)
                 .map(Set::copyOf)
@@ -69,10 +73,6 @@ public class UpdateSoapOperationForwardedEndpointsRequest {
                 "operationIds=" + operationIds +
                 ", forwardedEndpoint=" + forwardedEndpoint +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

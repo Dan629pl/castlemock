@@ -25,8 +25,8 @@ import java.util.Optional;
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadAllUsersInput
+ * @since 1.0
  */
 public final class ReadAllUsersOutput implements Output {
 
@@ -36,12 +36,12 @@ public final class ReadAllUsersOutput implements Output {
         this.users = Optional.ofNullable(builder.users).orElseGet(List::of);
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
     public static final class Builder {

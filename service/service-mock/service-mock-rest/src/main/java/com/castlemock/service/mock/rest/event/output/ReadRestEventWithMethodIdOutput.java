@@ -34,24 +34,24 @@ public final class ReadRestEventWithMethodIdOutput implements Output {
         this.restEvents = Optional.ofNullable(restEvents).orElseGet(List::of);
     }
 
-    public List<RestEvent> getRestEvents() {
-        return restEvents;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public List<RestEvent> getRestEvents() {
+        return restEvents;
     }
 
     public static final class Builder {
 
         private List<RestEvent> restEvents;
 
-        public Builder restEvents(final List<RestEvent> restEvents){
+        public Builder restEvents(final List<RestEvent> restEvents) {
             this.restEvents = restEvents;
             return this;
         }
 
-        public ReadRestEventWithMethodIdOutput build(){
+        public ReadRestEventWithMethodIdOutput build() {
             return new ReadRestEventWithMethodIdOutput(this.restEvents);
         }
 

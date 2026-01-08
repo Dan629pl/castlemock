@@ -26,12 +26,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadRestApplicationOutput implements Output{
+public final class ReadRestApplicationOutput implements Output {
 
     private final RestApplication applicationId;
 
     private ReadRestApplicationOutput(final RestApplication applicationId) {
         this.applicationId = applicationId;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestApplication> getApplicationId() {
@@ -58,10 +62,6 @@ public final class ReadRestApplicationOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestApplication restApplication;
@@ -69,12 +69,12 @@ public final class ReadRestApplicationOutput implements Output{
         private Builder() {
         }
 
-        public Builder application(final RestApplication restApplication){
+        public Builder application(final RestApplication restApplication) {
             this.restApplication = restApplication;
             return this;
         }
 
-        public ReadRestApplicationOutput build(){
+        public ReadRestApplicationOutput build() {
             return new ReadRestApplicationOutput(this.restApplication);
         }
 

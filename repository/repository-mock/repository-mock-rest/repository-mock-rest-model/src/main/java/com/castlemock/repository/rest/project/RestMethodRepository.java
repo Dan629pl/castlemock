@@ -26,6 +26,7 @@ public interface RestMethodRepository extends Repository<RestMethod, String> {
     /**
      * Delete all {@link RestMethod} that matches the provided
      * <code>resourceId</code>.
+     *
      * @param resourceId The id of the resource.
      */
     void deleteWithResourceId(String resourceId);
@@ -33,6 +34,7 @@ public interface RestMethodRepository extends Repository<RestMethod, String> {
     /**
      * Find all {@link RestMethod} that matches the provided
      * <code>resourceId</code>.
+     *
      * @param resourceId The id of the resource.
      * @return A list of {@link RestMethod}.
      * @since 1.20
@@ -42,6 +44,7 @@ public interface RestMethodRepository extends Repository<RestMethod, String> {
     /**
      * Find all {@link RestMethod} ids that matches the provided
      * <code>resourceId</code>.
+     *
      * @param resourceId The id of the resource.
      * @return A list of {@link RestMethod} ids.
      * @since 1.20
@@ -52,6 +55,7 @@ public interface RestMethodRepository extends Repository<RestMethod, String> {
     /**
      * Retrieve the {@link com.castlemock.model.mock.rest.domain.RestResource} id
      * for the {@link RestMethod} with the provided id.
+     *
      * @param methodId The id of the {@link RestMethod}.
      * @return The id of the resource.
      * @since 1.20

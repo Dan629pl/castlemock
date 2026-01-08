@@ -22,17 +22,19 @@ import com.castlemock.model.core.event.Event;
 /**
  * The event service adapter provides the functionality to translate incoming
  * requests and transform them into correct service input messages
- * @author Karl Dahlgren
- * @since 1.0
+ *
  * @param <D> The dto event type
+ * @author Karl Dahlgren
  * @see Event
  * @see Event
+ * @since 1.0
  */
 public interface EventServiceAdapter<D extends Event> extends ServiceAdapter<Event, D, String> {
 
 
     /**
      * The method will clear and remove all previous events.
+     *
      * @since 1.7
      */
     void clearAll();

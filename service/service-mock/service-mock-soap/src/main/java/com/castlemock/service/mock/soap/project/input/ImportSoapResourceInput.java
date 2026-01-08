@@ -37,6 +37,10 @@ public final class ImportSoapResourceInput implements Input {
         this.raw = Objects.requireNonNull(builder.raw, "raw");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -72,35 +76,31 @@ public final class ImportSoapResourceInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private SoapResource resource;
         private String raw;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder resource(final SoapResource resource){
+        public Builder resource(final SoapResource resource) {
             this.resource = resource;
             return this;
         }
 
-        public Builder raw(final String raw){
+        public Builder raw(final String raw) {
             this.raw = raw;
             return this;
         }
 
-        public ImportSoapResourceInput build(){
+        public ImportSoapResourceInput build() {
             return new ImportSoapResourceInput(this);
         }
     }

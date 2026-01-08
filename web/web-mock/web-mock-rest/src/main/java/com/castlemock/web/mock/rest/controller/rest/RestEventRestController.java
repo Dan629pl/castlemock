@@ -37,15 +37,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/rest")
-@Tag(name="REST - Event")
+@Tag(name = "REST - Event")
 public class RestEventRestController extends AbstractRestController {
 
     @Autowired
-    public RestEventRestController(final ServiceProcessor serviceProcessor){
+    public RestEventRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get REST event")
+    @Operation(summary = "Get REST event")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved REST event")})
     @RequestMapping(method = RequestMethod.GET, value = "/event/{eventId}")

@@ -19,10 +19,11 @@ package com.castlemock.model.core;
 /**
  * The Message class is parent class for {@link Input} and {@link Output} classes and represent all
  * communication with a {@link Service} class
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Input
  * @see Output
+ * @since 1.0
  */
 public interface Message {
 }

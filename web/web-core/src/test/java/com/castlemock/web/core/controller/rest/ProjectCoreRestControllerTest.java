@@ -41,7 +41,7 @@ class ProjectCoreRestControllerTest {
     private ProjectCoreRestController projectCoreRestController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         final ServiceProcessor serviceProcessor = mock(ServiceProcessor.class);
         this.projectServiceFacade = mock(ProjectServiceFacade.class);
         this.projectCoreRestController = new ProjectCoreRestController(serviceProcessor, projectServiceFacade);
@@ -49,7 +49,7 @@ class ProjectCoreRestControllerTest {
 
     @Test
     @DisplayName("Get projects")
-    void testGetProjects(){
+    void testGetProjects() {
         final OverviewProject project = OverviewProjectTestBuilder.builder().build();
         final List<OverviewProject> projects = List.of(project);
         when(this.projectServiceFacade.findAll()).thenReturn(projects);

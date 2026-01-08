@@ -30,7 +30,7 @@ public class CharsetUtilityTest {
 
 
     @Test
-    public void testParseHttpHeaders(){
+    public void testParseHttpHeaders() {
         final HttpHeader contentLength = HttpHeader.builder()
                 .name("Content-Length")
                 .value("100")
@@ -51,13 +51,13 @@ public class CharsetUtilityTest {
     }
 
     @Test
-    public void testParseHttpHeadersNull(){
+    public void testParseHttpHeadersNull() {
         final String charset = CharsetUtility.parseHttpHeaders(null);
         Assertions.assertEquals("UTF-8", charset);
     }
 
     @Test
-    public void testParseHttpHeadersMissingHeader(){
+    public void testParseHttpHeadersMissingHeader() {
         final HttpHeader contentLength = HttpHeader.builder()
                 .name("Content-Length")
                 .value("100")
@@ -73,33 +73,33 @@ public class CharsetUtilityTest {
     }
 
     @Test
-    public void testParseContentTypeUTF8(){
+    public void testParseContentTypeUTF8() {
         final String contentType = "text/xml;charset=utf-8";
         final String charset = CharsetUtility.parseContentType(contentType);
         Assertions.assertEquals("UTF-8", charset);
     }
 
     @Test
-    public void testParseContentTypeISO(){
+    public void testParseContentTypeISO() {
         final String contentType = "text/xml;charset=iso-8859-1";
         final String charset = CharsetUtility.parseContentType(contentType);
         Assertions.assertEquals("ISO-8859-1", charset);
     }
 
     @Test
-    public void testParseContentTypeNull(){
+    public void testParseContentTypeNull() {
         final String charset = CharsetUtility.parseContentType(null);
         Assertions.assertEquals("UTF-8", charset);
     }
 
     @Test
-    public void testParseContentTypeMissingCharset(){
+    public void testParseContentTypeMissingCharset() {
         final String charset = CharsetUtility.parseContentType("text/xml");
         Assertions.assertEquals("UTF-8", charset);
     }
 
     @Test
-    public void testParseContentTypeInvalidString(){
+    public void testParseContentTypeInvalidString() {
         final String charset = CharsetUtility.parseContentType("InvalidString");
         Assertions.assertEquals("UTF-8", charset);
     }

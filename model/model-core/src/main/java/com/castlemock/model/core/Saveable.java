@@ -21,15 +21,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * The Saveable class is used to indicate that a class can be identified with a ID.
  * All the model classes can be managed by repositories
+ *
+ * @param <I> The type of the identifier
  * @author Karl Dahlgren
  * @since 1.0
- * @param <I> The type of the identifier
  */
 @XmlRootElement
 public interface Saveable<I> {
 
     /**
      * Returns the identifier for the model
+     *
      * @return The identifier for the model
      */
     I getId();

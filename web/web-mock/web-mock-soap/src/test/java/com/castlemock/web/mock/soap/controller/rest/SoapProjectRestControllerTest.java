@@ -57,8 +57,8 @@ class SoapProjectRestControllerTest {
         final SoapProjectRestController controller = new SoapProjectRestController(serviceProcessor, fileManager);
         final String projectId = UUID.randomUUID().toString();
         final SoapProject project = SoapProjectTestBuilder.builder()
-                    .id(projectId)
-                    .build();
+                .id(projectId)
+                .build();
 
         Mockito.when(serviceProcessor.process(Mockito.any())).thenReturn(ReadSoapProjectOutput.builder()
                 .project(project)

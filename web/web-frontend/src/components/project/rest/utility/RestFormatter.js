@@ -15,9 +15,9 @@
  */
 
 const mockResponseStatusFormatter = (status) => {
-    if(status === "ENABLED"){
+    if (status === "ENABLED") {
         return "Enabled";
-    } else if(status === "DISABLED"){
+    } else if (status === "DISABLED") {
         return "Disabled"
     }
 
@@ -25,17 +25,17 @@ const mockResponseStatusFormatter = (status) => {
 };
 
 const methodResponseStrategyFormatter = (responseStrategy) => {
-    if(responseStrategy === "RANDOM"){
+    if (responseStrategy === "RANDOM") {
         return "Random";
-    } else if(responseStrategy === "SEQUENCE"){
+    } else if (responseStrategy === "SEQUENCE") {
         return "Sequence"
-    } else if(responseStrategy === "XPATH"){
+    } else if (responseStrategy === "XPATH") {
         return "XPath"
-    } else if(responseStrategy === "JSON_PATH"){
+    } else if (responseStrategy === "JSON_PATH") {
         return "JSON Path"
-    } else if(responseStrategy === "QUERY_MATCH"){
+    } else if (responseStrategy === "QUERY_MATCH") {
         return "Parameter query match"
-    } else if(responseStrategy === "HEADER_QUERY_MATCH"){
+    } else if (responseStrategy === "HEADER_QUERY_MATCH") {
         return "Header query match"
     }
 
@@ -43,17 +43,17 @@ const methodResponseStrategyFormatter = (responseStrategy) => {
 };
 
 const methodStatusFormatter = (status) => {
-    if(status === "MOCKED"){
+    if (status === "MOCKED") {
         return "Mocked";
-    } else if(status === "DISABLED"){
+    } else if (status === "DISABLED") {
         return "Disabled"
-    } else if(status === "FORWARDED"){
+    } else if (status === "FORWARDED") {
         return "Forwarded"
-    } else if(status === "RECORDING"){
+    } else if (status === "RECORDING") {
         return "Recording"
-    } else if(status === "RECORD_ONCE"){
+    } else if (status === "RECORD_ONCE") {
         return "Record once"
-    } else if(status === "ECHO"){
+    } else if (status === "ECHO") {
         return "Echo"
     }
 
@@ -61,11 +61,11 @@ const methodStatusFormatter = (status) => {
 };
 
 const definitionTypeFormatter = (status) => {
-    if(status === "SWAGGER"){
+    if (status === "SWAGGER") {
         return "Swagger";
-    } else if(status === "WADL"){
+    } else if (status === "WADL") {
         return "WADL"
-    } else if(status === "RAML"){
+    } else if (status === "RAML") {
         return "RAML"
     }
 

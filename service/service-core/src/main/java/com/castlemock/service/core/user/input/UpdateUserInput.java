@@ -26,9 +26,10 @@ import java.util.Optional;
 
 /**
  * Update a user with a specific user id
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see UpdateUserOutput
+ * @since 1.0
  */
 public final class UpdateUserInput implements Input {
 
@@ -48,6 +49,10 @@ public final class UpdateUserInput implements Input {
         this.fullName = builder.fullName;
         this.status = Objects.requireNonNull(builder.status, "status");
         this.role = Objects.requireNonNull(builder.role, "role");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -77,11 +82,6 @@ public final class UpdateUserInput implements Input {
     public Role getRole() {
         return role;
     }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
 
     public static final class Builder {
         private String id;

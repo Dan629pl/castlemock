@@ -24,7 +24,7 @@ public final class RestMockResponseTestBuilder {
 
     }
 
-    public static RestMockResponse.Builder builder(){
+    public static RestMockResponse.Builder builder() {
         return RestMockResponse
                 .builder()
                 .id("r1eXT3")
@@ -42,7 +42,7 @@ public final class RestMockResponseTestBuilder {
                 .headerQueries(List.of());
     }
 
-    public static RestMockResponse build(){
+    public static RestMockResponse build() {
         return builder().build();
     }
 

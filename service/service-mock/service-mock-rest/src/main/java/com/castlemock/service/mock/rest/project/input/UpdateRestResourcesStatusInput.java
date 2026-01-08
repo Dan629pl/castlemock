@@ -39,6 +39,10 @@ public final class UpdateRestResourcesStatusInput implements Input {
         this.methodStatus = Objects.requireNonNull(builder.methodStatus, "methodStatus");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -53,10 +57,6 @@ public final class UpdateRestResourcesStatusInput implements Input {
 
     public RestMethodStatus getMethodStatus() {
         return methodStatus;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -93,27 +93,27 @@ public final class UpdateRestResourcesStatusInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodStatus(final RestMethodStatus methodStatus){
+        public Builder methodStatus(final RestMethodStatus methodStatus) {
             this.methodStatus = methodStatus;
             return this;
         }
 
-        public UpdateRestResourcesStatusInput build(){
+        public UpdateRestResourcesStatusInput build() {
             return new UpdateRestResourcesStatusInput(this);
         }
 

@@ -15,8 +15,8 @@
  */
 
 import React, {Component} from 'react';
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import { createBrowserHistory } from 'history';
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import {createBrowserHistory} from 'history';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -83,14 +83,14 @@ class App extends Component {
             <ContextContext.Provider value={this.state.context}>
                 <VersionContext.Provider value={this.state.version}>
                     <AuthenticationContext.Provider value={this.state}>
-                        <div className = "site-wrapper">
+                        <div className="site-wrapper">
                             <Router>
                                 <Switch>
-                                    <Route path="/web/login"  component={LoginContainer} />
-                                    <Route path="/web/logout"  component={LogoutContainer} />
-                                    <Route path="/web/*"  component={MainContainer} />
-                                    <Route path="/*"  component={MainContainer} />
-                                    <Route path=""  component={MainContainer} />
+                                    <Route path="/web/login" component={LoginContainer}/>
+                                    <Route path="/web/logout" component={LogoutContainer}/>
+                                    <Route path="/web/*" component={MainContainer}/>
+                                    <Route path="/*" component={MainContainer}/>
+                                    <Route path="" component={MainContainer}/>
                                 </Switch>
                             </Router>
                         </div>

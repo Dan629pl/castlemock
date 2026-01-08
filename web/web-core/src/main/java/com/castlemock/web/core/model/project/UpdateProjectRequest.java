@@ -33,9 +33,13 @@ public class UpdateProjectRequest {
     private final String name;
     private final String description;
 
-    private UpdateProjectRequest(final Builder builder){
+    private UpdateProjectRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.description = builder.description;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -66,10 +70,6 @@ public class UpdateProjectRequest {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

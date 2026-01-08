@@ -51,7 +51,7 @@ public class UpdateSoapOperationsStatusServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapOperation soapOperation = SoapOperationTestBuilder.builder().build();
         final String projectId = "SOAP PROJECT";
         final String portId = "SOAP PORT";

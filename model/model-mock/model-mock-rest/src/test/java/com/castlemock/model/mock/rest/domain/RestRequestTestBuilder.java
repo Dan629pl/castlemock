@@ -26,7 +26,7 @@ public final class RestRequestTestBuilder {
 
     }
 
-    public static RestRequest.Builder builder(){
+    public static RestRequest.Builder builder() {
         return RestRequest.builder()
                 .uri("/test")
                 .body("Rest request body")

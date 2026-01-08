@@ -22,8 +22,8 @@ import com.castlemock.model.core.user.UserTestBuilder;
 import com.castlemock.service.core.user.input.ReadUserByUsernameInput;
 import com.castlemock.service.core.user.output.ReadUserByUsernameOutput;
 import com.castlemock.web.core.config.JWTEncoderDecoder;
-import com.castlemock.web.core.model.authentication.AuthenticationRequestTestBuilder;
 import com.castlemock.web.core.model.authentication.AuthenticationRequest;
+import com.castlemock.web.core.model.authentication.AuthenticationRequestTestBuilder;
 import com.castlemock.web.core.model.authentication.AuthenticationResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,7 +54,7 @@ class AuthenticationRestControllerTest {
     private AuthenticationRestController authenticationRestController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.serviceProcessor = mock(ServiceProcessor.class);
         this.authenticationManager = mock(AuthenticationManager.class);
         this.jwtEncoderDecoder = mock(JWTEncoderDecoder.class);
@@ -64,7 +64,7 @@ class AuthenticationRestControllerTest {
 
     @Test
     @DisplayName("Login")
-    void testLogin(){
+    void testLogin() {
         final AuthenticationRequest request = AuthenticationRequestTestBuilder.builder().build();
         final HttpServletResponse httpServletResponse = mock(HttpServletResponse.class);
         final Authentication authentication = mock(Authentication.class);
@@ -98,7 +98,7 @@ class AuthenticationRestControllerTest {
 
     @Test
     @DisplayName("Logout")
-    void testLogout(){
+    void testLogout() {
         final HttpServletResponse httpServletResponse = mock(HttpServletResponse.class);
         final ResponseEntity<Void> responseEntity = authenticationRestController.logout(httpServletResponse);
         assertNotNull(responseEntity);

@@ -41,11 +41,14 @@ public class SoapOperationIdentifier {
     private final String namespace;
 
 
-    private SoapOperationIdentifier(final Builder builder){
+    private SoapOperationIdentifier(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.namespace = builder.namespace;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getName() {
         return name;
@@ -53,10 +56,6 @@ public class SoapOperationIdentifier {
 
     public Optional<String> getNamespace() {
         return Optional.ofNullable(namespace);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class RandomDateTimeExpressionTest {
 
     @Test
-    public void testTransform(){
+    public void testTransform() {
         final RandomDateTimeExpression expression = new RandomDateTimeExpression();
         final ExpressionInput expressionInput = new ExpressionInput(RandomDateExpression.IDENTIFIER);
         final String result = expression.transform(expressionInput);

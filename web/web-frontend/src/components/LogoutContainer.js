@@ -42,7 +42,7 @@ class LogoutContainer extends PureComponent {
     }
 
     render() {
-        return <Redirect to = {{ pathname: "/web/login" }} />
+        return <Redirect to={{pathname: "/web/login"}}/>
     }
 }
 

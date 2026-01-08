@@ -30,8 +30,12 @@ public final class DeleteSoapPortOutput implements Output {
 
     private final SoapPort port;
 
-    private DeleteSoapPortOutput(final Builder builder){
+    private DeleteSoapPortOutput(final Builder builder) {
         this.port = builder.port;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<SoapPort> getPort() {
@@ -58,24 +62,20 @@ public final class DeleteSoapPortOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private SoapPort port;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder port(final SoapPort port){
+        public Builder port(final SoapPort port) {
             this.port = port;
             return this;
         }
 
-        public DeleteSoapPortOutput build(){
+        public DeleteSoapPortOutput build() {
             return new DeleteSoapPortOutput(this);
         }
     }

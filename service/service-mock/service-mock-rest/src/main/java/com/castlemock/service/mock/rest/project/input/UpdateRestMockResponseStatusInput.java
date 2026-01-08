@@ -24,6 +24,10 @@ public class UpdateRestMockResponseStatusInput implements Input {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -46,10 +50,6 @@ public class UpdateRestMockResponseStatusInput implements Input {
 
     public RestMockResponseStatus getStatus() {
         return status;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -89,37 +89,37 @@ public class UpdateRestMockResponseStatusInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public Builder mockResponseId(final String mockResponseId){
+        public Builder mockResponseId(final String mockResponseId) {
             this.mockResponseId = mockResponseId;
             return this;
         }
 
-        public Builder status(final RestMockResponseStatus status){
+        public Builder status(final RestMockResponseStatus status) {
             this.status = status;
             return this;
         }
 
-        public UpdateRestMockResponseStatusInput build(){
+        public UpdateRestMockResponseStatusInput build() {
             return new UpdateRestMockResponseStatusInput(this);
         }
     }

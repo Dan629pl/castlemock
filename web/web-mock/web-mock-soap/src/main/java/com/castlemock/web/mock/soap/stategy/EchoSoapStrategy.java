@@ -35,8 +35,8 @@ public final class EchoSoapStrategy implements SoapStrategy {
 
     @Override
     public SoapStrategyResult process(final SoapRequest request, final String projectId,
-                                final String portId, final SoapOperation operation,
-                                final HttpServletRequest httpServletRequest) {
+                                      final String portId, final SoapOperation operation,
+                                      final HttpServletRequest httpServletRequest) {
         final List<HttpHeader> headers = List.of(HttpHeader.builder()
                 .name(CONTENT_TYPE)
                 .value(request.getContentType())

@@ -37,14 +37,13 @@ public class SoapXPathExpressionFile {
         this.expression = Objects.requireNonNull(builder.expression, "expression");
     }
 
-    public String getExpression() {
-        return expression;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
+    public String getExpression() {
+        return expression;
+    }
 
     public static final class Builder {
         private String expression;

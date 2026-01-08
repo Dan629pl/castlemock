@@ -40,6 +40,10 @@ public class AuthenticationResponse {
         this.role = Objects.requireNonNull(builder.role, "role");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getToken() {
         return token;
     }
@@ -70,10 +74,6 @@ public class AuthenticationResponse {
         return "AuthenticationResponse{" +
                 "token='" + token + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

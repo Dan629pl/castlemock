@@ -23,9 +23,13 @@ public final class PortType {
     private final String name;
     private final Set<PortTypeOperation> operations;
 
-    private PortType(final Builder builder){
+    private PortType(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.operations = Objects.requireNonNull(builder.operations);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -36,34 +40,29 @@ public final class PortType {
         return operations;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Set<PortTypeOperation> operations;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder operations(final Set<PortTypeOperation> operations){
+        public Builder operations(final Set<PortTypeOperation> operations) {
             this.operations = operations;
             return this;
         }
 
-        public PortType build(){
+        public PortType build() {
             return new PortType(this);
         }
     }
-
 
 
 }

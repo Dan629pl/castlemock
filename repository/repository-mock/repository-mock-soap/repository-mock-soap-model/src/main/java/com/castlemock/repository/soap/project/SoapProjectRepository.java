@@ -25,15 +25,17 @@ import java.util.Optional;
  * The soap project file repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and soap project to the file system. Each
  * soap project is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Repository
+ * @since 1.0
  */
 public interface SoapProjectRepository extends Repository<SoapProject, String> {
 
 
     /**
      * Finds a project by a given name
+     *
      * @param name The name of the project that should be retrieved
      * @return Returns a project with the provided name
      */

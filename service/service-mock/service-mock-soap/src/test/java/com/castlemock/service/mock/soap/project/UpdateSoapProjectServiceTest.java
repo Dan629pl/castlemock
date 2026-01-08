@@ -52,7 +52,7 @@ public class UpdateSoapProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
         final UpdateSoapProjectInput input = UpdateSoapProjectInput.builder()
                 .projectId(soapProject.getId())
@@ -68,7 +68,7 @@ public class UpdateSoapProjectServiceTest {
         final ServiceResult<UpdateSoapProjectOutput> result = service.process(serviceTask);
         final UpdateSoapProjectOutput output = result.getOutput();
         final SoapProject returnedSoapProject = output.getProject()
-                        .orElse(null);
+                .orElse(null);
 
         Assertions.assertNotNull(returnedSoapProject);
         Assertions.assertEquals(soapProject.getId(), returnedSoapProject.getId());

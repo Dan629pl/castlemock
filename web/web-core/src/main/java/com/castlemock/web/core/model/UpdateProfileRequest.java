@@ -35,11 +35,15 @@ public class UpdateProfileRequest {
     private final String email;
     private final String fullName;
 
-    private UpdateProfileRequest(final Builder builder){
+    private UpdateProfileRequest(final Builder builder) {
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = builder.password;
         this.email = builder.email;
         this.fullName = builder.fullName;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getUsername() {
@@ -56,10 +60,6 @@ public class UpdateProfileRequest {
 
     public Optional<String> getFullName() {
         return Optional.ofNullable(fullName);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

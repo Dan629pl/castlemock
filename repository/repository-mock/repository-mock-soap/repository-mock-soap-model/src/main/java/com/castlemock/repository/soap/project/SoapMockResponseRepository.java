@@ -30,6 +30,7 @@ public interface SoapMockResponseRepository extends Repository<SoapMockResponse,
     /**
      * Retrieve the {@link com.castlemock.model.mock.soap.domain.SoapOperation} id
      * for the {@link SoapMockResponse} with the provided id.
+     *
      * @param mockResponseId The id of the {@link SoapMockResponse}.
      * @return The id of the operation.
      * @since 1.20

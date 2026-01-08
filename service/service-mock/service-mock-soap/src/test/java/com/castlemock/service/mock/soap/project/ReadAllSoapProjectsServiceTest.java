@@ -31,7 +31,7 @@ public class ReadAllSoapProjectsServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject project = SoapProjectTestBuilder.builder().build();
         final List<SoapProject> projects = List.of(project);
 

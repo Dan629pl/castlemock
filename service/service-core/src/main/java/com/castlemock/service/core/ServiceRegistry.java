@@ -30,31 +30,32 @@ import java.util.Map;
 /**
  * The service registry is a registry for all the services. The class provides the functionality to
  * map an input message to a service class that is responsible for processing the incoming message.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Input
  * @see Output
  * @see Service
+ * @since 1.0
  */
 @Component
 public class ServiceRegistry<I extends Input, O extends Output> {
 
+    /**
+     * The collection contains all the services and their identifiers (The input message class)
+     */
+    private final Map<Class<I>, Service<I, O>> services = new HashMap<>();
     @Autowired
     private ApplicationContext applicationContext;
 
     /**
-     * The collection contains all the services and their identifiers (The input message class)
-     */
-    private final Map<Class<I>, Service<I,O>> services = new HashMap<>();
-
-    /**
      * The method provides the functionality to retrieve a specific service that is identified
      * with the provided input parameter
+     *
      * @param input The input message. The message is used to identify the service class responsible
      *              for processing the incoming input message and generating an output message
      * @return The service class that is identified with the input message
      */
-    public Service<I,O> getService(final I input){
+    public Service<I, O> getService(final I input) {
         return services.get(input.getClass());
     }
 
@@ -64,13 +65,13 @@ public class ServiceRegistry<I extends Input, O extends Output> {
      * store all the classes that are an instance of the Service class.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public void initialize(){
+    public void initialize() {
         final Map<String, Object> components = applicationContext.getBeansWithAnnotation(org.springframework.stereotype.Service.class);
-        for(Map.Entry<String, Object> entry : components.entrySet()){
+        for (Map.Entry<String, Object> entry : components.entrySet()) {
             final Object value = entry.getValue();
-            if(value instanceof Service service){
+            if (value instanceof Service service) {
                 final Class<?>[] processorInputOutputClasses = GenericTypeResolver.resolveTypeArguments(service.getClass(), Service.class);
-                if(processorInputOutputClasses != null && processorInputOutputClasses.length > 0){
+                if (processorInputOutputClasses != null && processorInputOutputClasses.length > 0) {
                     final Class<I> processorInputClass = (Class<I>) processorInputOutputClasses[0];
                     services.put(processorInputClass, service);
                 }

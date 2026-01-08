@@ -25,12 +25,16 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ImportRestProjectOutput implements Output{
+public final class ImportRestProjectOutput implements Output {
 
     private final RestProject project;
 
     private ImportRestProjectOutput(RestProject project) {
         this.project = project;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public RestProject getProject() {
@@ -57,10 +61,6 @@ public final class ImportRestProjectOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestProject project;
@@ -68,12 +68,12 @@ public final class ImportRestProjectOutput implements Output{
         private Builder() {
         }
 
-        public Builder project(final RestProject project){
+        public Builder project(final RestProject project) {
             this.project = project;
             return this;
         }
 
-        public ImportRestProjectOutput build(){
+        public ImportRestProjectOutput build() {
             return new ImportRestProjectOutput(this.project);
         }
 

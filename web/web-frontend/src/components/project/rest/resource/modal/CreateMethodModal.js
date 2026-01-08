@@ -17,7 +17,7 @@
 import React, {PureComponent} from "react";
 import axios from "axios";
 import validateErrorResponse from "../../../../../utility/HttpResponseValidator";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import preventEnterEvent from "../../../../../utility/KeyboardUtility";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -83,13 +83,15 @@ class CreateMethodModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" value={this.state.newMethod.name} onChange={this.setName} onKeyDown={preventEnterEvent}/>
+                                    <input className="form-control" type="text" value={this.state.newMethod.name}
+                                           onChange={this.setName} onKeyDown={preventEnterEvent}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">HTTP method</label>
                                 <div className="col-sm-10">
-                                    <select id="inputStatus" className="form-control" defaultValue="GET" onChange={this.setHttpMethod}>
+                                    <select id="inputStatus" className="form-control" defaultValue="GET"
+                                            onChange={this.setHttpMethod}>
                                         <option>GET</option>
                                         <option>POST</option>
                                         <option>PUT</option>
@@ -103,7 +105,9 @@ class CreateMethodModal extends PureComponent {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateMethodClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create</button>
+                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateMethodClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create
+                            </button>
                         </div>
                     </div>
                 </div>

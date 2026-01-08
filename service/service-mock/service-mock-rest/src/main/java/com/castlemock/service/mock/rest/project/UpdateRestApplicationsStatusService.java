@@ -36,6 +36,7 @@ public class UpdateRestApplicationsStatusService extends AbstractRestProjectServ
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -45,9 +46,9 @@ public class UpdateRestApplicationsStatusService extends AbstractRestProjectServ
     public ServiceResult<UpdateRestApplicationsStatusOutput> process(final ServiceTask<UpdateRestApplicationsStatusInput> serviceTask) {
         final UpdateRestApplicationsStatusInput input = serviceTask.getInput();
         final List<RestResource> resources = this.resourceRepository.findWithApplicationId(input.getApplicationId());
-        for(RestResource restResource : resources){
+        for (RestResource restResource : resources) {
             final List<RestMethod> methods = this.methodRepository.findWithResourceId(restResource.getId());
-            for(RestMethod restMethod : methods){
+            for (RestMethod restMethod : methods) {
                 this.methodRepository.update(restMethod.getId(), restMethod.toBuilder()
                         .status(input.getMethodStatus())
                         .build());

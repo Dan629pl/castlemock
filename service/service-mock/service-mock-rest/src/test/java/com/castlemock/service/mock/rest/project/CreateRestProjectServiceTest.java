@@ -49,7 +49,7 @@ public class CreateRestProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestProject project = RestProjectTestBuilder.builder()
                 .build();
         Mockito.when(repository.save(Mockito.any(RestProject.class))).thenReturn(project);

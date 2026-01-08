@@ -22,10 +22,10 @@ import java.util.Date;
 
 public final class OverviewEventTestBuilder {
 
-    private OverviewEventTestBuilder(){
+    private OverviewEventTestBuilder() {
     }
 
-    public static OverviewEvent.Builder builder(){
+    public static OverviewEvent.Builder builder() {
         return OverviewEvent.builder()
                 .id(IdUtility.generateId())
                 .startDate(new Date())

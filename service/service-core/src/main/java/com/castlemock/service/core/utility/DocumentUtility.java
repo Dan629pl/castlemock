@@ -37,28 +37,29 @@ public class DocumentUtility {
     /**
      * Extracts an attribute from an element. The method will also remove namespace prefix
      * if it is present.
+     *
      * @param element The element which the attribute will be extracted from
-     * @param name The name of the attribute that will be extracted
+     * @param name    The name of the attribute that will be extracted
      * @return The attribute value
      */
     public static Optional<String> getAttribute(final Element element,
-                                      final String name){
+                                                final String name) {
         final String value = element.getAttribute(name);
-        if(value.isEmpty()){
+        if (value.isEmpty()) {
             return Optional.empty();
         }
         String[] splitValues = value.split(":");
-        if(splitValues.length == 1) {
+        if (splitValues.length == 1) {
             return Optional.of(splitValues[0]);
         }
         return Optional.of(splitValues[1]);
     }
 
     public static Optional<Element> getElement(final Document document,
-                                               final String type){
+                                               final String type) {
         final NodeList nodeList = document.getElementsByTagName(type);
 
-        if(nodeList.getLength() == 0){
+        if (nodeList.getLength() == 0) {
             return Optional.empty();
         }
 
@@ -66,10 +67,10 @@ public class DocumentUtility {
     }
 
     public static Optional<Element> getElement(final Element element,
-                                               final String type){
+                                               final String type) {
         final NodeList nodeList = element.getElementsByTagName(type);
 
-        if(nodeList.getLength() == 0){
+        if (nodeList.getLength() == 0) {
             return Optional.empty();
         }
 
@@ -78,10 +79,10 @@ public class DocumentUtility {
 
     public static Optional<Element> getElement(final Element element,
                                                final String namespace,
-                                               final String type){
+                                               final String type) {
         final NodeList nodeList = element.getElementsByTagNameNS(namespace, type);
 
-        if(nodeList.getLength() == 0){
+        if (nodeList.getLength() == 0) {
             return Optional.empty();
         }
 
@@ -90,10 +91,10 @@ public class DocumentUtility {
 
     public static Optional<Element> getElement(final Document document,
                                                final String namespace,
-                                               final String type){
+                                               final String type) {
         final NodeList nodeList = document.getElementsByTagNameNS(namespace, type);
 
-        if(nodeList.getLength() == 0){
+        if (nodeList.getLength() == 0) {
             return Optional.empty();
         }
 
@@ -101,32 +102,32 @@ public class DocumentUtility {
     }
 
     public static List<Element> getElements(final Document document,
-                                            final String type){
+                                            final String type) {
         final NodeList nodeList = document.getElementsByTagName(type);
         return getElements(nodeList);
     }
 
     public static List<Element> getElements(final Element element,
-                                            final String type){
+                                            final String type) {
         final NodeList nodeList = element.getElementsByTagName(type);
         return getElements(nodeList);
     }
 
     public static List<Element> getElements(final Document document,
                                             final String namespace,
-                                            final String type){
+                                            final String type) {
         final NodeList nodeList = document.getElementsByTagNameNS(namespace, type);
         return getElements(nodeList);
     }
 
     public static List<Element> getElements(final Element element,
                                             final String namespace,
-                                            final String type){
+                                            final String type) {
         final NodeList nodeList = element.getElementsByTagNameNS(namespace, type);
         return getElements(nodeList);
     }
 
-    public static List<Element> getElements(final NodeList nodeList){
+    public static List<Element> getElements(final NodeList nodeList) {
         return IntStream.range(0, nodeList.getLength())
                 .mapToObj(nodeList::item)
                 .filter(node -> node.getNodeType() == Node.ELEMENT_NODE)

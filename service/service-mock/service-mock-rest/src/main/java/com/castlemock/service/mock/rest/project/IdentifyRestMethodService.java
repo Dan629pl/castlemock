@@ -46,6 +46,7 @@ public class IdentifyRestMethodService extends AbstractRestProjectService implem
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -80,15 +81,15 @@ public class IdentifyRestMethodService extends AbstractRestProjectService implem
 
         final List<RestMockResponse> mockResponses = this.mockResponseRepository.findWithMethodId(method.getId());
         return createServiceResult(IdentifyRestMethodOutput.builder()
-                        .projectId(input.getProjectId())
-                        .applicationId(input.getApplicationId())
-                        .resourceId(resource.getId())
-                        .methodId(method.getId())
-                        .method(method.toBuilder()
-                                .mockResponses(mockResponses)
-                                .build())
-                        .pathParameters(pathParameters)
-                        .build());
+                .projectId(input.getProjectId())
+                .applicationId(input.getApplicationId())
+                .resourceId(resource.getId())
+                .methodId(method.getId())
+                .method(method.toBuilder()
+                        .mockResponses(mockResponses)
+                        .build())
+                .pathParameters(pathParameters)
+                .build());
     }
 
 }

@@ -32,6 +32,10 @@ public final class ReadRestProjectInput implements Input {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -56,10 +60,6 @@ public final class ReadRestProjectInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -67,12 +67,12 @@ public final class ReadRestProjectInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public ReadRestProjectInput build(){
+        public ReadRestProjectInput build() {
             return new ReadRestProjectInput(this);
         }
 

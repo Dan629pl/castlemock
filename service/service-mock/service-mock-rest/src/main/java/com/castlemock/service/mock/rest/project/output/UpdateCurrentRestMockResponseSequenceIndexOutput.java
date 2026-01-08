@@ -22,13 +22,13 @@ import com.castlemock.model.core.Output;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class UpdateCurrentRestMockResponseSequenceIndexOutput implements Output{
+public final class UpdateCurrentRestMockResponseSequenceIndexOutput implements Output {
 
-    private UpdateCurrentRestMockResponseSequenceIndexOutput(){
+    private UpdateCurrentRestMockResponseSequenceIndexOutput() {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -37,7 +37,7 @@ public final class UpdateCurrentRestMockResponseSequenceIndexOutput implements O
         private Builder() {
         }
 
-        public UpdateCurrentRestMockResponseSequenceIndexOutput build(){
+        public UpdateCurrentRestMockResponseSequenceIndexOutput build() {
             return new UpdateCurrentRestMockResponseSequenceIndexOutput();
         }
 

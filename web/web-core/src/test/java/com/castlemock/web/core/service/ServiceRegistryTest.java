@@ -52,13 +52,13 @@ public class ServiceRegistryTest {
         MockitoAnnotations.openMocks(this);
         final Map<String, Object> components = new HashMap<>();
         final ReadUserService readUserService = Mockito.mock(ReadUserService.class);
-        components.put("readUserService",readUserService);
+        components.put("readUserService", readUserService);
         Mockito.when(applicationContext.getBeansWithAnnotation(Mockito.any(Class.class))).thenReturn(components);
         serviceRegistry.initialize();
     }
 
     @Test
-    public void testGetService(){
+    public void testGetService() {
         final ReadUserInput readUserInput = ReadUserInput.builder().userId("Username").build();
 
         // Get registered service
@@ -67,7 +67,7 @@ public class ServiceRegistryTest {
     }
 
     @Test
-    public void testServiceInvalid(){
+    public void testServiceInvalid() {
         final DeleteUserInput deleteUserInput = DeleteUserInput.builder()
                 .userId("Username")
                 .build();
@@ -78,7 +78,7 @@ public class ServiceRegistryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         serviceRegistry.initialize();
     }
 

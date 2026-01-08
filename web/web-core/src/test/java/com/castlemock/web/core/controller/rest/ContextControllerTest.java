@@ -37,14 +37,14 @@ class ContextControllerTest {
     private ContextController contextController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.servletContext = mock(ServletContext.class);
         this.contextController = new ContextController(servletContext);
     }
 
     @Test
     @DisplayName("Get context")
-    void testGetContext(){
+    void testGetContext() {
         final String context = "castlemock";
         when(servletContext.getContextPath()).thenReturn(context);
         final ResponseEntity<ContextResponse> responseEntity = this.contextController.getContext();

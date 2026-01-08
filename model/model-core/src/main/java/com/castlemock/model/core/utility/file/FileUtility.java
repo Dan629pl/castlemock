@@ -28,8 +28,9 @@ import java.io.InputStreamReader;
 
 /**
  * The {@link FileUtility} provides utility methods related to files.
- * @since 1.10
+ *
  * @author Karl Dahlgren
+ * @since 1.10
  */
 public final class FileUtility {
 
@@ -41,10 +42,11 @@ public final class FileUtility {
 
     /**
      * Parse the incoming <code>file</code> into a String.
+     *
      * @param file The {@link File} that will be parsed into a String.
      * @return A {@link File} content.
      */
-    public static String getFileContent(final File file){
+    public static String getFileContent(final File file) {
         final StringBuilder stringBuilder = new StringBuilder();
         InputStream inputStream = null;
         try {
@@ -52,7 +54,7 @@ public final class FileUtility {
             final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = bufferedReader.readLine();
 
-            while(line != null){
+            while (line != null) {
                 stringBuilder.append(line).append("\n");
                 line = bufferedReader.readLine();
             }
@@ -61,7 +63,7 @@ public final class FileUtility {
             LOGGER.error("Unable to read the file", e);
             throw new IllegalArgumentException("Unable to parse the file", e);
         } finally {
-            if(inputStream != null){
+            if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {

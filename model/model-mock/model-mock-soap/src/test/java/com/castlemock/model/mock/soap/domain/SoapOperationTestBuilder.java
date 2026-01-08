@@ -26,7 +26,7 @@ public final class SoapOperationTestBuilder {
 
     }
 
-    public static SoapOperation.Builder builder(){
+    public static SoapOperation.Builder builder() {
         return SoapOperation.builder()
                 .currentResponseSequenceIndex(0)
                 .defaultBody("Default body")
@@ -41,7 +41,7 @@ public final class SoapOperationTestBuilder {
                 .mockResponses(List.of())
                 .name("Soap operation name")
                 .networkDelay(1000L)
-                .operationIdentifier( SoapOperationIdentifierTestBuilder.builder().build())
+                .operationIdentifier(SoapOperationIdentifierTestBuilder.builder().build())
                 .originalEndpoint("Original endpoint")
                 .portId("port id")
                 .responseStrategy(SoapResponseStrategy.SEQUENCE)

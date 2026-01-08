@@ -26,12 +26,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadRestMockResponseOutput implements Output{
+public final class ReadRestMockResponseOutput implements Output {
 
     private final RestMockResponse mockResponse;
 
     private ReadRestMockResponseOutput(final RestMockResponse mockResponse) {
         this.mockResponse = mockResponse;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestMockResponse> getMockResponse() {
@@ -58,10 +62,6 @@ public final class ReadRestMockResponseOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMockResponse mockResponse;
@@ -69,12 +69,12 @@ public final class ReadRestMockResponseOutput implements Output{
         private Builder() {
         }
 
-        public Builder mockResponse(final RestMockResponse mockResponse){
+        public Builder mockResponse(final RestMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public ReadRestMockResponseOutput build(){
+        public ReadRestMockResponseOutput build() {
             return new ReadRestMockResponseOutput(this.mockResponse);
         }
 

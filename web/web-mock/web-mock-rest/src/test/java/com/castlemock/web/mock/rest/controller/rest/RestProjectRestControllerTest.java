@@ -41,8 +41,8 @@ class RestProjectRestControllerTest {
         final RestProjectRestController controller = new RestProjectRestController(serviceProcessor, fileManager);
         final String projectId = UUID.randomUUID().toString();
         final RestProject project = RestProjectTestBuilder.builder()
-                    .id(projectId)
-                    .build();
+                .id(projectId)
+                .build();
 
         Mockito.when(serviceProcessor.process(Mockito.any())).thenReturn(ReadRestProjectOutput.builder()
                 .project(project)

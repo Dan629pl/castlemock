@@ -27,14 +27,12 @@ import java.util.Optional;
 @Component
 public class UrlManager {
 
-    public Optional<String> readFromUrl(final String location){
-        try (InputStream inputStream = new URI(location).toURL().openStream())
-        {
+    public Optional<String> readFromUrl(final String location) {
+        try (InputStream inputStream = new URI(location).toURL().openStream()) {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             final StringBuilder builder = new StringBuilder();
             String line;
-            while ((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 builder.append(line);
             }
 

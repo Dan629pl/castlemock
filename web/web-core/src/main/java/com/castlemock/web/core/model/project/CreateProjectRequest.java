@@ -35,10 +35,14 @@ public class CreateProjectRequest {
     private final String projectType;
 
 
-    private CreateProjectRequest(final Builder builder){
+    private CreateProjectRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.description = builder.description;
         this.projectType = Objects.requireNonNull(builder.projectType, "projectType");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -75,10 +79,6 @@ public class CreateProjectRequest {
                 ", description='" + description + '\'' +
                 ", projectType='" + projectType + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

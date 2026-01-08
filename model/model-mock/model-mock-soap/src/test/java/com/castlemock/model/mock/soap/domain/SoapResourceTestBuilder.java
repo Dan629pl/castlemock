@@ -21,7 +21,7 @@ public class SoapResourceTestBuilder {
     private SoapResourceTestBuilder() {
     }
 
-    public static SoapResource.Builder builder(){
+    public static SoapResource.Builder builder() {
         return SoapResource.builder()
                 .content("Content")
                 .id("SOAP RESOURCE")

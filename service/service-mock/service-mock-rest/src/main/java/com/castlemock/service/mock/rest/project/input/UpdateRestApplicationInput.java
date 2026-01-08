@@ -36,6 +36,10 @@ public final class UpdateRestApplicationInput implements Input {
         this.name = Objects.requireNonNull(builder.name, "name");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -46,10 +50,6 @@ public final class UpdateRestApplicationInput implements Input {
 
     public String getName() {
         return name;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -84,22 +84,22 @@ public final class UpdateRestApplicationInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public UpdateRestApplicationInput build(){
+        public UpdateRestApplicationInput build() {
             return new UpdateRestApplicationInput(this);
         }
 

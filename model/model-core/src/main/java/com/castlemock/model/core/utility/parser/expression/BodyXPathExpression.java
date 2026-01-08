@@ -54,7 +54,7 @@ public class BodyXPathExpression extends AbstractExpression {
         final ExpressionArgument<?> bodyArgument = input.getArgument(BODY_ARGUMENT);
         final ExpressionArgument<?> expressionArgument = input.getArgument(EXPRESSION_ARGUMENT);
 
-        if(bodyArgument == null || expressionArgument == null){
+        if (bodyArgument == null || expressionArgument == null) {
             return MISSING_BODY;
         }
 
@@ -66,14 +66,14 @@ public class BodyXPathExpression extends AbstractExpression {
                 .map(Object::toString)
                 .orElse(null);
 
-        if(body == null || expression == null){
+        if (body == null || expression == null) {
             return MISSING_BODY;
         }
 
         try {
             return XPathUtility.getXPathValue(body, expression)
                     .orElse(MISSING_BODY);
-        } catch (Exception exception){
+        } catch (Exception exception) {
             LOGGER.warn("Unable to parse body with the following expression: " + expression);
             return MISSING_BODY;
         }

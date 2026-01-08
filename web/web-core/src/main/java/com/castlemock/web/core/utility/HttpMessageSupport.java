@@ -48,6 +48,7 @@ import java.util.zip.InflaterInputStream;
 
 /**
  * The class provides functionality and support methods specifiably for SOAP messages.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -64,12 +65,13 @@ public final class HttpMessageSupport {
      * The default constructor for SoapMessageSupport. It is marked as private
      * to prohibit creation of instances of this class.
      */
-    private HttpMessageSupport(){
+    private HttpMessageSupport() {
         // The constructor should be empty
     }
 
     /**
      * The getBody method is used to extract the body from the incoming request
+     *
      * @param httpServletRequest The incoming request that contains the request body
      * @return The request body as a String
      */
@@ -88,11 +90,11 @@ public final class HttpMessageSupport {
             final StringBuilder builder = new StringBuilder();
             final Iterator<String> linesIterator = lines.iterator();
 
-            while (linesIterator.hasNext()){
-                line  = linesIterator.next();
+            while (linesIterator.hasNext()) {
+                line = linesIterator.next();
                 builder.append(line);
 
-                if(linesIterator.hasNext()){
+                if (linesIterator.hasNext()) {
                     // Add a new line. Mainly required to parse MTOM requests.
                     builder.append(System.lineSeparator());
                 }
@@ -103,7 +105,7 @@ public final class HttpMessageSupport {
             LOGGER.error("Unable to read the incoming file", e);
             throw new IllegalStateException("Unable to extract the request body");
         } finally {
-            if(reader != null){
+            if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
@@ -115,13 +117,14 @@ public final class HttpMessageSupport {
 
     /**
      * Extract HTTP headers from provided Http Servlet Request
+     *
      * @param httpServletRequest Incoming Http Servlet Request that contains the headers which will be extracted
      * @return A list of HTTP headers extracted from the provided httpServletRequest
      */
-    public static Set<HttpHeader> extractHttpHeaders(final HttpServletRequest httpServletRequest){
+    public static Set<HttpHeader> extractHttpHeaders(final HttpServletRequest httpServletRequest) {
         final Set<HttpHeader> httpHeaders = new HashSet<>();
         final Enumeration<String> headers = httpServletRequest.getHeaderNames();
-        while(headers.hasMoreElements()){
+        while (headers.hasMoreElements()) {
             final String headerName = headers.nextElement();
             final String headerValue = httpServletRequest.getHeader(headerName);
             final HttpHeader httpHeader = HttpHeader.builder()
@@ -135,21 +138,22 @@ public final class HttpMessageSupport {
 
     /**
      * Extract HTTP headers from provided Http URL connection
+     *
      * @param connection Incoming Http URL connection that contains the headers which will be extracted
      * @return A list of HTTP headers extracted from the provided connection
      */
-    public static List<HttpHeader> extractHttpHeaders(final HttpURLConnection connection){
+    public static List<HttpHeader> extractHttpHeaders(final HttpURLConnection connection) {
         final List<HttpHeader> httpHeaders = new ArrayList<>();
-        for(Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()){
-            for(String headerValue : header.getValue()){
+        for (Map.Entry<String, List<String>> header : connection.getHeaderFields().entrySet()) {
+            for (String headerValue : header.getValue()) {
                 String headerName = header.getKey();
-                if(headerName == null){
+                if (headerName == null) {
                     continue;
                 }
-                if(headerName.equalsIgnoreCase(TRANSFER_ENCODING)){
+                if (headerName.equalsIgnoreCase(TRANSFER_ENCODING)) {
                     continue;
                 }
-                if(headerName.equalsIgnoreCase(CONTENT_LENGTH)){
+                if (headerName.equalsIgnoreCase(CONTENT_LENGTH)) {
                     // Ignore the Content-Length, since it might
                     // effect the response when being forwarded or recorded.
                     continue;
@@ -169,17 +173,18 @@ public final class HttpMessageSupport {
     /**
      * Extract all the incoming parameters and stores them in a Map. The parameter name will
      * act as the key and the parameter value will be the Map value
+     *
      * @param httpServletRequest The incoming request which contains all the parameters
      * @return A map with the extracted parameters
      */
-    public static Set<HttpParameter> extractParameters(final HttpServletRequest httpServletRequest){
+    public static Set<HttpParameter> extractParameters(final HttpServletRequest httpServletRequest) {
         final Set<HttpParameter> httpParameters = new HashSet<>();
 
         final Enumeration<String> enumeration = httpServletRequest.getParameterNames();
-        while(enumeration.hasMoreElements()){
+        while (enumeration.hasMoreElements()) {
             final String parameterName = enumeration.nextElement();
             final String[] parameterValues = httpServletRequest.getParameterValues(parameterName);
-            for(final String parameterValue : parameterValues){
+            for (final String parameterValue : parameterValues) {
                 httpParameters.add(HttpParameter.builder()
                         .name(parameterName)
                         .value(parameterValue)
@@ -193,11 +198,12 @@ public final class HttpMessageSupport {
     /**
      * Builds a parameter URL string passed on the provided parameter map.
      * Example on the output: ?name1=value1{@literal &}name2=value2
+     *
      * @param httpParameters The Map of parameters that will be used to build the parameter URI
      * @return A URI that contains the parameters from the provided Map
      */
-    public static String buildParameterUri(final Set<HttpParameter> httpParameters){
-        if(httpParameters.isEmpty()){
+    public static String buildParameterUri(final Set<HttpParameter> httpParameters) {
+        if (httpParameters.isEmpty()) {
             return EMPTY;
         }
 
@@ -212,10 +218,11 @@ public final class HttpMessageSupport {
      * a request towards the endpoint.
      * The method will return a {@link HttpURLConnection}, which is the established connection
      * towards the endpoint. Please note that the returned connection has to be closed after being used.
-     * @param endpoint The connection endpoint.
+     *
+     * @param endpoint   The connection endpoint.
      * @param httpMethod The HTTP method that the request will be sent to.
-     * @param body The body that will be sent in the request. No body will be sent if the value <code>null</code> has been provided.
-     * @param headers The headers that will be added to the request.
+     * @param body       The body that will be sent in the request. No body will be sent if the value <code>null</code> has been provided.
+     * @param headers    The headers that will be added to the request.
      * @return An established connection towards the endpoint.
      * @since 1.18
      */
@@ -233,18 +240,18 @@ public final class HttpMessageSupport {
                 connection.addRequestProperty(httpHeader.getName(), httpHeader.getValue());
             }
 
-            if(body != null){
+            if (body != null) {
                 outputStream = connection.getOutputStream();
                 outputStream.write(body.getBytes());
                 outputStream.flush();
             }
 
             return connection;
-        }catch (Exception exception){
+        } catch (Exception exception) {
             LOGGER.error("Unable to establish connection towards " + endpoint, exception);
             throw new IllegalStateException(exception);
         } finally {
-            if(outputStream != null){
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                 } catch (IOException exception) {
@@ -256,8 +263,9 @@ public final class HttpMessageSupport {
 
     /**
      * The method extracts an HTTP body from an already established {@link HttpURLConnection}.
-     * @param connection The connection that the body will be extracted from.
-     * @param encodings The encoding that will be used to parse and decode the body.
+     *
+     * @param connection        The connection that the body will be extracted from.
+     * @param encodings         The encoding that will be used to parse and decode the body.
      * @param characterEncoding The character encoding
      * @return The decoded body in String format.
      * @throws IOException Due to being unable to close buffered reader
@@ -290,7 +298,7 @@ public final class HttpMessageSupport {
                 final InputStream gzipStream = new GZIPInputStream(inputStream);
                 final Reader decoder = new InputStreamReader(gzipStream);
                 bufferedReader = new BufferedReader(decoder);
-            } else if(encodings.contains(HttpContentEncoding.DEFLATE)){
+            } else if (encodings.contains(HttpContentEncoding.DEFLATE)) {
                 // The content is DEFLATE encoded.
                 // Create a decoder and parse the response.
                 final InflaterInputStream inflaterInputStream = new InflaterInputStream(inputStream);
@@ -309,7 +317,7 @@ public final class HttpMessageSupport {
                 stringBuilder.append(NEW_LINE);
             }
             return stringBuilder.toString();
-        } catch(Exception e) {
+        } catch (Exception e) {
             LOGGER.error("Error occurred when extracting HTTP response body", e);
             throw e;
         } finally {
@@ -327,20 +335,21 @@ public final class HttpMessageSupport {
     /**
      * The method will extract all the encodings (Content-Encoding) from an established
      * {@link HttpURLConnection}.
+     *
      * @param connection The connection that the encodings will be extracted from.
      * @return A list of {@link HttpContentEncoding} extracted from the provided {@link HttpURLConnection}.
      * @since 1.18
      */
-    public static List<HttpContentEncoding> extractContentEncoding(final HttpURLConnection connection){
+    public static List<HttpContentEncoding> extractContentEncoding(final HttpURLConnection connection) {
         final List<HttpContentEncoding> encodings = new ArrayList<>();
         // Extract the content encoding
         String connectionContentEncoding = connection.getContentEncoding();
 
-        if(connectionContentEncoding != null){
+        if (connectionContentEncoding != null) {
             connectionContentEncoding = connectionContentEncoding.toUpperCase();
-            for(HttpContentEncoding contentEncoding : HttpContentEncoding.values()){
+            for (HttpContentEncoding contentEncoding : HttpContentEncoding.values()) {
                 int index = connectionContentEncoding.indexOf(contentEncoding.name());
-                if(index != -1){
+                if (index != -1) {
                     encodings.add(contentEncoding);
                 }
             }

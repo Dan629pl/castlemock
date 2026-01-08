@@ -27,74 +27,74 @@ import java.util.Set;
 
 
 /**
- * @since 1.8
  * @author Karl Dahlgren
+ * @since 1.8
  */
 public class UrlUtilityTest {
 
     @Test
-    public void isPatternMatch1(){
+    public void isPatternMatch1() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user", "/user"));
     }
 
     @Test
-    public void isPatternMatch2(){
+    public void isPatternMatch2() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/id", "/user/id"));
     }
 
 
     @Test
-    public void isPatternMatch3(){
+    public void isPatternMatch3() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/id.json", "/user/id.json"));
     }
 
     @Test
-    public void isPatternMatch4(){
+    public void isPatternMatch4() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/{id}", "/user/1"));
     }
 
     @Test
-    public void isPatternMatch5(){
+    public void isPatternMatch5() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/{id}.json", "/user/1.json"));
     }
 
     @Test
-    public void isPatternMatch6(){
+    public void isPatternMatch6() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/1.{format}", "/user/1.json"));
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/1.{format}", "/user/1.xml"));
         Assertions.assertFalse(UrlUtility.isPatternMatch("/user/1.{format}", "/user/2.xml"));
     }
 
     @Test
-    public void isPatternMatch7(){
+    public void isPatternMatch7() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/{id}.{format}", "/user/1.json"));
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/{id}.{format}", "/user/2.xml"));
     }
 
     @Test
-    public void isPatternMatch8(){
+    public void isPatternMatch8() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/company/{company}/user/{id}.{format}", "/company/Castle Mock/user/1.json"));
     }
 
     @Test
-    public void isPatternMatch9(){
+    public void isPatternMatch9() {
         Assertions.assertFalse(UrlUtility.isPatternMatch("/user/{id", "/user/1"));
     }
 
     @Test
-    public void isPatternMatch10(){
+    public void isPatternMatch10() {
         Assertions.assertTrue(UrlUtility.isPatternMatch("/user/id?test={hej}", "/user/id"));
     }
 
     @Test
-    public void canGetPathParameters(){
+    public void canGetPathParameters() {
         final Set<String> parts = UrlUtility.getPathParameters("/rest/api/user/{userId}/");
         Assertions.assertEquals(1, parts.size());
         Assertions.assertTrue(parts.contains("userId"));
     }
 
     @Test
-    public void canGetQueryStringParameters(){
+    public void canGetQueryStringParameters() {
         final Set<HttpParameter> queryParams = Set.of(HttpParameter.builder()
                 .name("userId")
                 .value("1")
@@ -107,11 +107,12 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void canGetQueryStringParametersWithDifferentName(){
+    public void canGetQueryStringParametersWithDifferentName() {
         final Set<HttpParameter> queryParams = Set.of(HttpParameter.builder()
                 .name("userId")
                 .value("1")
-                .build());        final Map<String, Set<String>> map = UrlUtility.getQueryStringParameters("/rest/api/user/?userId={id}", queryParams);
+                .build());
+        final Map<String, Set<String>> map = UrlUtility.getQueryStringParameters("/rest/api/user/?userId={id}", queryParams);
 
         Assertions.assertTrue(map.containsKey("userId"));
         Assertions.assertEquals(1, map.get("userId").size());
@@ -119,7 +120,7 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void canGetQueryStringMultipleParameters(){
+    public void canGetQueryStringMultipleParameters() {
         final Set<HttpParameter> queryParams = Set.of(
                 HttpParameter.builder().name("userId").value("1").build(),
                 HttpParameter.builder().name("username").value("Karl").build());
@@ -135,7 +136,7 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void canGetQueryStringMultipleParameterValues(){
+    public void canGetQueryStringMultipleParameterValues() {
         final Set<HttpParameter> queryParams = Set.of(
                 HttpParameter.builder().name("userId").value("1").build(),
                 HttpParameter.builder().name("userId").value("2").build());
@@ -148,7 +149,7 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void getPathParametersShouldNotConsiderQueryParameters(){
+    public void getPathParametersShouldNotConsiderQueryParameters() {
         Map<String, Set<String>> pathParameters = UrlUtility.getPathParameters("/rest/api/{user}?param={param}", "/rest/api/johndoe");
         Assertions.assertEquals(1, pathParameters.size());
         Assertions.assertTrue(pathParameters.containsKey("user"));
@@ -157,7 +158,7 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void getQueryStringParameters(){
+    public void getQueryStringParameters() {
         final Set<String> parts = UrlUtility.getPathParameters("/rest/api/user/?userId={userId}&id={id}");
         Assertions.assertEquals(2, parts.size());
         Assertions.assertTrue(parts.contains("userId"));
@@ -165,7 +166,7 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void canGetPathParametersMultiple(){
+    public void canGetPathParametersMultiple() {
         final Set<String> parts = UrlUtility.getPathParameters("/rest/api/user/{userId}/{format}/{parameter}");
         Assertions.assertEquals(3, parts.size());
         Assertions.assertTrue(parts.contains("userId"));
@@ -174,12 +175,12 @@ public class UrlUtilityTest {
     }
 
     @Test
-    public void getPatternMatchScore1(){
+    public void getPatternMatchScore1() {
         Assertions.assertEquals(0, UrlUtility.getPatternMatchScore("/user", "/user"));
     }
 
     @Test
-    public void getPatternMatchScore2(){
+    public void getPatternMatchScore2() {
         Assertions.assertEquals(1, UrlUtility.getPatternMatchScore("/user/{id}.json", "/user/1.json"));
     }
 }

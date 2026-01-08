@@ -29,8 +29,8 @@ public final class DisabledSoapStrategy implements SoapStrategy {
 
     @Override
     public SoapStrategyResult process(final SoapRequest request, final String projectId,
-                                final String portId, final SoapOperation operation,
-                                final HttpServletRequest httpServletRequest) {
+                                      final String portId, final SoapOperation operation,
+                                      final HttpServletRequest httpServletRequest) {
         throw new SoapException("The requested soap operation, " + operation.getName() + ", is disabled");
     }
 

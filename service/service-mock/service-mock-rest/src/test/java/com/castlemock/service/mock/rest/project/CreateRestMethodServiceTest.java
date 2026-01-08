@@ -56,10 +56,10 @@ public class CreateRestMethodServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestProject restProject = RestProjectTestBuilder.builder().build();
         final RestApplication restApplication = RestApplicationTestBuilder.builder().build();
-        final  RestResource restResource = RestResourceTestBuilder.builder().build();
+        final RestResource restResource = RestResourceTestBuilder.builder().build();
         final RestMethod restMethod = RestMethodTestBuilder.builder().build();
         Mockito.when(methodRepository.save(Mockito.any(RestMethod.class))).thenReturn(restMethod);
 

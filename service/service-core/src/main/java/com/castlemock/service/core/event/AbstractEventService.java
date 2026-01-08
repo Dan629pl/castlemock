@@ -22,9 +22,10 @@ import com.castlemock.service.core.AbstractService;
 
 /**
  * The event service provides the functionality that affects all events
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
-public abstract class AbstractEventService<D extends Event, R extends Repository<D, String>> extends AbstractService<D,String, R> {
+public abstract class AbstractEventService<D extends Event, R extends Repository<D, String>> extends AbstractService<D, String, R> {
 
 }

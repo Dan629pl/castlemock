@@ -16,7 +16,7 @@
 
 import React, {PureComponent} from "react";
 import axios from "axios";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import validateErrorResponse from "../../../utility/HttpResponseValidator";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -56,7 +56,9 @@ class DeleteUserModal extends PureComponent {
                             <p>Do you want to delete {this.props.user.username}?</p>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-danger" data-dismiss="modal" onClick={this.onDeleteUserClick}><FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete</button>
+                            <button className="btn btn-danger" data-dismiss="modal" onClick={this.onDeleteUserClick}>
+                                <FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -20,15 +20,16 @@ import com.castlemock.model.mock.soap.domain.SoapOperationIdentifier;
 
 public final class SoapOperationIdentifierConverter {
 
-    private SoapOperationIdentifierConverter(){
+    private SoapOperationIdentifierConverter() {
 
     }
 
     /**
      * The method provides the functionality to generate a new mocked response
+     *
      * @return A string value of the response
      */
-    public static String toDefaultBody(final SoapOperationIdentifier operationResponseIdentifier){
+    public static String toDefaultBody(final SoapOperationIdentifier operationResponseIdentifier) {
         final String prefix = "web";
         return "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:" +
                 prefix + "=\"" + operationResponseIdentifier.getNamespace().orElse("") + "\">\n" +

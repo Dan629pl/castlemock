@@ -31,10 +31,10 @@ import {methodStatusFormatter} from "../utility/RestFormatter";
 import {isOnlyReader} from "../../../../utility/AuthorizeUtility";
 import AuthenticationContext from "../../../../context/AuthenticationContext";
 import ContextContext from "../../../../context/ContextContext";
-import {faEdit, faTrash, faFile, faCodeBranch} from "@fortawesome/free-solid-svg-icons";
+import {faCodeBranch, faEdit, faFile, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 const SELECT = true;
 const DESELECT = false;
 
@@ -103,9 +103,9 @@ class RestResource extends PureComponent {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             methods.push(method);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = methods.indexOf(method);
             methods.splice(index, 1);
         }
@@ -115,7 +115,7 @@ class RestResource extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let methods = [];
             this.state.resource.methods.forEach(value => {
                 let method = {
@@ -127,7 +127,7 @@ class RestResource extends PureComponent {
             this.setState({
                 selectedMethods: methods
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedMethods: []
             });
@@ -135,19 +135,20 @@ class RestResource extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
         return (
             <div className="table-link">
-                <Link to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId + "/method/" + row.id}>{cell}</Link>
+                <Link
+                    to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId + "/method/" + row.id}>{cell}</Link>
             </div>
         )
     }
 
     responseStrategyFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -175,8 +176,11 @@ class RestResource extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/project/" + this.state.projectId}>Project</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId}>Application</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId}>Application</Link>
+                                </li>
                                 <li className="breadcrumb-item">{this.state.resource.name}</li>
                             </ol>
                         </nav>
@@ -188,9 +192,18 @@ class RestResource extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu" align="right">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateResourceModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update resource</span></button>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#createMethodModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faFile} className="button-icon"/><span>Create method</span></button>
-                                    <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteResourceModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete resource</span></button>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updateResourceModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faEdit} className="button-icon"/><span>Update resource</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#createMethodModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faFile} className="button-icon"/><span>Create method</span></button>
+                                    <button className="btn btn-danger demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#deleteResourceModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faTrash} className="button-icon"/><span>Delete resource</span></button>
                                 </div>
                             )}
                         </AuthenticationContext.Consumer>
@@ -215,7 +228,7 @@ class RestResource extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.resource.methods}
                                              keyField="id"
                                              search>
@@ -229,22 +242,31 @@ class RestResource extends PureComponent {
                                                             data={this.state.resource.methods} columns={this.columns}
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             selectRow={this.selectRow}
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMethods.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMethods.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch} className="button-icon"/><span>Update endpoint</span></button>
-                                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch}
+                                                                                                    className="button-icon"/><span>Update endpoint</span>
+                                        </button>
+                                        <button className="btn btn-danger demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMethods.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#deleteMethodsModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete method</span></button>
+                                                data-target="#deleteMethodsModal"><FontAwesomeIcon icon={faTrash}
+                                                                                                   className="button-icon"/><span>Delete method</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
@@ -253,12 +275,22 @@ class RestResource extends PureComponent {
                     </div>
                 </section>
 
-                <CreateMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} />
-                <DeleteMethodsModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods} getResource={this.getResource}/>
-                <DeleteResourceModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId}/>
-                <UpdateEndpointModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods} getResource={this.getResource}/>
-                <UpdateResourceModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} resource={this.state.resource}  getResource={this.getResource}/>
-                <UpdateStatusModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods}  getResource={this.getResource}/>
+                <CreateMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                   resourceId={this.state.resourceId}/>
+                <DeleteMethodsModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                    resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods}
+                                    getResource={this.getResource}/>
+                <DeleteResourceModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                     resourceId={this.state.resourceId}/>
+                <UpdateEndpointModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                     resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods}
+                                     getResource={this.getResource}/>
+                <UpdateResourceModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                     resourceId={this.state.resourceId} resource={this.state.resource}
+                                     getResource={this.getResource}/>
+                <UpdateStatusModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                   resourceId={this.state.resourceId} selectedMethods={this.state.selectedMethods}
+                                   getResource={this.getResource}/>
             </div>
         )
     }

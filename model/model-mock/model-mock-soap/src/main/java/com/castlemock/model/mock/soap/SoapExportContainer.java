@@ -71,10 +71,13 @@ public class SoapExportContainer extends ExportContainer {
         this.mockResponses = Optional.ofNullable(builder.mockResponses).orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public SoapProject getProject() {
         return project;
     }
-
 
     public List<SoapPort> getPorts() {
         return Optional.ofNullable(ports)
@@ -82,20 +85,17 @@ public class SoapExportContainer extends ExportContainer {
                 .orElseGet(List::of);
     }
 
-
     public List<SoapResource> getResources() {
         return Optional.ofNullable(resources)
                 .map(List::copyOf)
                 .orElseGet(List::of);
     }
 
-
     public List<SoapOperation> getOperations() {
         return Optional.ofNullable(operations)
                 .map(List::copyOf)
                 .orElseGet(List::of);
     }
-
 
     public List<SoapMockResponse> getMockResponses() {
         return Optional.ofNullable(mockResponses)
@@ -128,10 +128,6 @@ public class SoapExportContainer extends ExportContainer {
                 ", operations=" + operations +
                 ", mockResponses=" + mockResponses +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

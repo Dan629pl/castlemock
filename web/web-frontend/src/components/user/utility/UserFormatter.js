@@ -15,11 +15,11 @@
  */
 
 const userStatusFormatter = (status) => {
-    if(status === "ACTIVE"){
+    if (status === "ACTIVE") {
         return "Active";
-    } else if(status === "INACTIVE"){
+    } else if (status === "INACTIVE") {
         return "Inactive"
-    } else if(status === "LOCKED"){
+    } else if (status === "LOCKED") {
         return "Locked"
     }
 
@@ -27,11 +27,11 @@ const userStatusFormatter = (status) => {
 };
 
 const userRoleFormatter = (role) => {
-    if(role === "READER"){
+    if (role === "READER") {
         return "Reader";
-    } else if(role === "MODIFIER"){
+    } else if (role === "MODIFIER") {
         return "Modifier"
-    } else if(role === "ADMIN"){
+    } else if (role === "ADMIN") {
         return "Admin"
     }
 

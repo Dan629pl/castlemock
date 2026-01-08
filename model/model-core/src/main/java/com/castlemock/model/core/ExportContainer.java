@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * The {@link ExportContainer} is a container class for entities that will be exported.
+ *
  * @author Karl Dahlgren
  * @since 12.0
  */

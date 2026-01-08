@@ -24,11 +24,12 @@ import com.castlemock.service.mock.soap.event.output.ReadSoapEventOutput;
 
 /**
  * The service provides the functionality to retrieve a specific SOAP event from the repository.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
 @org.springframework.stereotype.Service
-public class ReadSoapEventService  extends AbstractSoapEventService implements Service<ReadSoapEventInput, ReadSoapEventOutput> {
+public class ReadSoapEventService extends AbstractSoapEventService implements Service<ReadSoapEventInput, ReadSoapEventOutput> {
 
     @Override
     public ServiceResult<ReadSoapEventOutput> process(ServiceTask<ReadSoapEventInput> serviceTask) {

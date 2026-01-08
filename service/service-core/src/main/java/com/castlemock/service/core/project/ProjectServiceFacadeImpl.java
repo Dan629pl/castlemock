@@ -32,10 +32,11 @@ import java.util.stream.Collectors;
  * in order to retrieve a unified answer independent of the project type. The class is responsible for keeping
  * tracks of all the project services and providing the basic functionality shared among all the
  * project services, such as get, delete, update.
+ *
  * @author Karl Dahlgren
+ * @see Project
+ * @see Project
  * @since 1.0
- * @see Project
- * @see Project
  */
 @Service
 public class ProjectServiceFacadeImpl extends ServiceFacadeImpl<Project, String, ProjectServiceAdapter<Project>> implements ProjectServiceFacade {
@@ -43,10 +44,11 @@ public class ProjectServiceFacadeImpl extends ServiceFacadeImpl<Project, String,
     /**
      * The initialize method is responsible for for locating all the service instances for a specific module
      * and organizing them depending on the type.
+     *
      * @see com.castlemock.model.core.Service
      */
     @Override
-    public void initiate(){
+    public void initiate() {
         initiate(ProjectServiceAdapter.class);
     }
 

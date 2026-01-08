@@ -35,24 +35,24 @@ public final class ReadAllSoapEventOutput implements Output {
         this.soapEvents = Optional.ofNullable(soapEvents).orElseGet(List::of);
     }
 
-    public List<SoapEvent> getSoapEvents() {
-        return soapEvents;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public List<SoapEvent> getSoapEvents() {
+        return soapEvents;
     }
 
     public static final class Builder {
 
         private List<SoapEvent> soapEvents;
 
-        public Builder soapEvents(final List<SoapEvent> soapEvents){
+        public Builder soapEvents(final List<SoapEvent> soapEvents) {
             this.soapEvents = soapEvents;
             return this;
         }
 
-        public ReadAllSoapEventOutput build(){
+        public ReadAllSoapEventOutput build() {
             return new ReadAllSoapEventOutput(this.soapEvents);
         }
 

@@ -40,6 +40,10 @@ public class UpdateSoapPortStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getPortIds() {
         return Optional.of(portIds)
                 .map(Set::copyOf)
@@ -70,10 +74,6 @@ public class UpdateSoapPortStatusesRequest {
                 "portIds=" + portIds +
                 ", status=" + status +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

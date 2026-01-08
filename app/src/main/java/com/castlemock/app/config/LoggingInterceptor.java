@@ -29,10 +29,11 @@ import org.springframework.web.servlet.AsyncHandlerInterceptor;
  * The Logging Interceptor is responsible for logging all the incoming requests and outgoing responses. The logs
  * should provide detailed information on which resources has been requested and when the requested process has been
  * finished.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see MvcConfig
  * @see AbstractController
+ * @since 1.0
  */
 public class LoggingInterceptor implements AsyncHandlerInterceptor {
 
@@ -41,26 +42,27 @@ public class LoggingInterceptor implements AsyncHandlerInterceptor {
     /**
      * The method handles incoming requests and logs them if debug mode is enabled. The method will log the following
      * things:
-     *  1. The request URI
-     *  2. The request method
-     *  3. The controller responsible for handling the request
-     * @param request The incoming request. The request will be parsed and logged
+     * 1. The request URI
+     * 2. The request method
+     * 3. The controller responsible for handling the request
+     *
+     * @param request  The incoming request. The request will be parsed and logged
      * @param response The outgoing response
-     * @param handler The handler contains information about the method and controller that will process the incoming request
+     * @param handler  The handler contains information about the method and controller that will process the incoming request
      * @return Always returns true
      * @see AbstractController
      */
     @Override
     public boolean preHandle(@NonNull final HttpServletRequest request, @NonNull final HttpServletResponse response,
                              @NonNull final Object handler) {
-        if(LOGGER.isDebugEnabled()){
+        if (LOGGER.isDebugEnabled()) {
             final StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Start processing the following request: ")
                     .append(request.getRequestURI())
                     .append(" (")
                     .append(request.getMethod())
                     .append(").");
-            if(handler instanceof HandlerMethod handlerMethod){
+            if (handler instanceof HandlerMethod handlerMethod) {
                 stringBuilder.append("This request is going to be processed by the following controller: ")
                         .append(handlerMethod.getBeanType().getSimpleName());
             }
@@ -72,25 +74,26 @@ public class LoggingInterceptor implements AsyncHandlerInterceptor {
     /**
      * The method handles incoming requests and logs them if debug mode is enabled. The method will log the following
      * things:
-     *  1. The request URI
-     *  2. The request method
-     *  3. The controller responsible for handling the request
-     * @param request The incoming request. The request will be parsed and logged
-     * @param response The outgoing response
-     * @param handler The handler contains information about the method and controller that has processed the incoming request
+     * 1. The request URI
+     * 2. The request method
+     * 3. The controller responsible for handling the request
+     *
+     * @param request   The incoming request. The request will be parsed and logged
+     * @param response  The outgoing response
+     * @param handler   The handler contains information about the method and controller that has processed the incoming request
      * @param exception Outgoing exception
      * @see AbstractController
      */
     @Override
     public void afterCompletion(@NonNull final HttpServletRequest request, @NonNull final HttpServletResponse response,
                                 @NonNull final Object handler, final Exception exception) {
-        if(LOGGER.isDebugEnabled()){
+        if (LOGGER.isDebugEnabled()) {
             final StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Finished processing the following request: ")
                     .append(request.getRequestURI()).append(" (")
                     .append(request.getMethod())
                     .append(").");
-            if(handler instanceof HandlerMethod handlerMethod){
+            if (handler instanceof HandlerMethod handlerMethod) {
                 stringBuilder.append("This request was processed by the following controller: ")
                         .append(handlerMethod.getBeanType().getSimpleName());
             }

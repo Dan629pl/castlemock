@@ -32,6 +32,10 @@ public final class ImportSoapProjectInput implements Input {
         this.projectRaw = Objects.requireNonNull(builder.projectRaw, "projectRaw");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectRaw() {
         return projectRaw;
     }
@@ -56,23 +60,19 @@ public final class ImportSoapProjectInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectRaw;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectRaw(final String projectRaw){
+        public Builder projectRaw(final String projectRaw) {
             this.projectRaw = projectRaw;
             return this;
         }
 
-        public ImportSoapProjectInput build(){
+        public ImportSoapProjectInput build() {
             return new ImportSoapProjectInput(this);
         }
     }

@@ -32,7 +32,7 @@ public class MtomUtilityTest {
                 Content-Type: text/xml; charset=UTF-8
                 Content-Transfer-Encoding: 8bit
                 Content-ID: <test@castlemock.org>
-
+                
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cas="http://castlemock.com/">
                    <soapenv:Header/>
                    <soapenv:Body>
@@ -50,7 +50,7 @@ public class MtomUtilityTest {
                 Content-Type: text/plain; charset=us-ascii; name="example"
                 Content-ID: <example>
                 Content-Disposition: attachment; name="example.txt"; filename="example.txt"
-
+                
                 This is an example
                 ------=_Part_24_1742827313.1517654770545--""";
         String contextType = "multipart/related; type=\"text/xml\"; start=\"<test@castlemock.org>\"; boundary=\"----=_Part_64_1526053806.1517665317492\"";
@@ -74,7 +74,6 @@ public class MtomUtilityTest {
                 </soapenv:Envelope>
                 """, mainBody);
     }
-
 
 
 }

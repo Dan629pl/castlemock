@@ -42,12 +42,12 @@ public final class XPathUtility {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(XPathUtility.class);
 
-    private XPathUtility(){
+    private XPathUtility() {
 
     }
 
     public static Optional<String> getXPathValue(final String body,
-                                                final String xpathExpr) {
+                                                 final String xpathExpr) {
         try {
             final Document document = createDocument(body);
             final XPath xPath = createXPath();
@@ -74,31 +74,36 @@ public final class XPathUtility {
             try {
                 final NodeList evaluate = (NodeList) xPath.compile(xpathExpr).evaluate(document, XPathConstants.NODESET);
                 return evaluate != null && evaluate.getLength() > 0;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
             // NUMBER
             try {
                 final Number evaluate = (Number) xPath.compile(xpathExpr).evaluate(document, XPathConstants.NUMBER);
                 return evaluate != null;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
             // STRING
             try {
                 final String evaluate = (String) xPath.compile(xpathExpr).evaluate(document, XPathConstants.STRING);
                 return evaluate != null;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
             // NODE
             try {
                 final Node evaluate = (Node) xPath.compile(xpathExpr).evaluate(document, XPathConstants.NODE);
                 return evaluate != null;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
             // BOOLEAN
             try {
                 final Boolean evaluate = (Boolean) xPath.compile(xpathExpr).evaluate(document, XPathConstants.BOOLEAN);
                 return evaluate != null;
-            } catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
         } catch (Exception exception) {
             LOGGER.error("Unable to evaluate xpath expression", exception);

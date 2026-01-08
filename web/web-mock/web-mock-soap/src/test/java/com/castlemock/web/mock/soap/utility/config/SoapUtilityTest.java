@@ -21,16 +21,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SoapUtilityTest {
-	
-	private static final String WSDL_WITHOU_ADDRESS_LOCATION = """
+
+    private static final String WSDL_WITHOU_ADDRESS_LOCATION = """
             <wsdl:definitions>
               <wsdl:service name="Service">
                 <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
                 </wsdl:port>
               </wsdl:service>
             </wsdl:definitions>""";
-	
-	private static final String ORIGINAL_WSDL_WITH_ADDRESS_LOCATION = """
+
+    private static final String ORIGINAL_WSDL_WITH_ADDRESS_LOCATION = """
             <wsdl:definitions>
               <wsdl:service name="Service">
                 <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
@@ -38,8 +38,8 @@ public class SoapUtilityTest {
                 </wsdl:port>
               </wsdl:service>
             </wsdl:definitions>""";
-	
-	private static final String MODIFIED_WSDL_WITH_ADDRESS_LOCATION = """
+
+    private static final String MODIFIED_WSDL_WITH_ADDRESS_LOCATION = """
             <wsdl:definitions>
               <wsdl:service name="Service">
                 <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
@@ -48,16 +48,16 @@ public class SoapUtilityTest {
               </wsdl:service>
             </wsdl:definitions>""";
 
-	@Test
-	public void testWsdlWithAddressLocation() {
-		String wsdlModified = SoapUtility.getWsdlAddress(ORIGINAL_WSDL_WITH_ADDRESS_LOCATION, "http://localhost:8080/other-path");
-		Assertions.assertEquals(MODIFIED_WSDL_WITH_ADDRESS_LOCATION, wsdlModified);
-	}
-	
-	@Test
-	public void testWsdlWithoutAddressLocation() {
-		String wsdlResult = SoapUtility.getWsdlAddress(WSDL_WITHOU_ADDRESS_LOCATION, "http://localhost:8080/other-path");
-		Assertions.assertEquals(WSDL_WITHOU_ADDRESS_LOCATION, wsdlResult);
-	}
+    @Test
+    public void testWsdlWithAddressLocation() {
+        String wsdlModified = SoapUtility.getWsdlAddress(ORIGINAL_WSDL_WITH_ADDRESS_LOCATION, "http://localhost:8080/other-path");
+        Assertions.assertEquals(MODIFIED_WSDL_WITH_ADDRESS_LOCATION, wsdlModified);
+    }
+
+    @Test
+    public void testWsdlWithoutAddressLocation() {
+        String wsdlResult = SoapUtility.getWsdlAddress(WSDL_WITHOU_ADDRESS_LOCATION, "http://localhost:8080/other-path");
+        Assertions.assertEquals(WSDL_WITHOU_ADDRESS_LOCATION, wsdlResult);
+    }
 
 }

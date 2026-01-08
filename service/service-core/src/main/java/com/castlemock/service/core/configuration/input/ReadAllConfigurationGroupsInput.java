@@ -21,8 +21,8 @@ import com.castlemock.service.core.configuration.output.ReadAllConfigurationGrou
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadAllConfigurationGroupsOutput
+ * @since 1.0
  */
 public final class ReadAllConfigurationGroupsInput implements Input {
 }

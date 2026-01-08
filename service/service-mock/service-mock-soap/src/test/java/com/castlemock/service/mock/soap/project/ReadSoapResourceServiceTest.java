@@ -31,7 +31,7 @@ public class ReadSoapResourceServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapResource resource = SoapResourceTestBuilder.builder().build();
         final String projectId = "SOAP PROJECT";
 

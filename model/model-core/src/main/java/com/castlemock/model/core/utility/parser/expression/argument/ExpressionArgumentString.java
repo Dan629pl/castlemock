@@ -19,6 +19,7 @@ package com.castlemock.model.core.utility.parser.expression.argument;
 /**
  * The {@link ExpressionArgumentString} is an String argument for an
  * {@link com.castlemock.model.core.utility.parser.expression.Expression}.
+ *
  * @author Karl Dahlgren
  * @since 1.14
  */
@@ -26,6 +27,7 @@ public class ExpressionArgumentString extends ExpressionArgument<String> {
 
     /**
      * Constructor for {@link ExpressionArgumentString}.
+     *
      * @param value The String value.
      */
     public ExpressionArgumentString(final String value) {

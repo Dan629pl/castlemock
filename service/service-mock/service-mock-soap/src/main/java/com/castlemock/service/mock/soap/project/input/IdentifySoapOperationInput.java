@@ -43,6 +43,10 @@ public final class IdentifySoapOperationInput implements Input {
         this.type = Objects.requireNonNull(builder.type);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -88,10 +92,6 @@ public final class IdentifySoapOperationInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private String projectId;
@@ -100,36 +100,36 @@ public final class IdentifySoapOperationInput implements Input {
         private HttpMethod httpMethod;
         private SoapVersion type;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder operationIdentifier(final SoapOperationIdentifier operationIdentifier){
+        public Builder operationIdentifier(final SoapOperationIdentifier operationIdentifier) {
             this.operationIdentifier = operationIdentifier;
             return this;
         }
 
-        public Builder uri(final String uri){
+        public Builder uri(final String uri) {
             this.uri = uri;
             return this;
         }
 
-        public Builder httpMethod(final HttpMethod httpMethod){
+        public Builder httpMethod(final HttpMethod httpMethod) {
             this.httpMethod = httpMethod;
             return this;
         }
 
-        public Builder type(final SoapVersion type){
+        public Builder type(final SoapVersion type) {
             this.type = type;
             return this;
         }
 
-        public IdentifySoapOperationInput build(){
+        public IdentifySoapOperationInput build() {
             return new IdentifySoapOperationInput(this);
         }
     }

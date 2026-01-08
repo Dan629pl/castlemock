@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration class specifically for the REST component.
+ *
  * @author Karl Dahlgren
  * @since 1.19
  */

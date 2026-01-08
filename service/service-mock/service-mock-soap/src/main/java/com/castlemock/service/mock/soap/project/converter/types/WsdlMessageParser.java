@@ -33,14 +33,14 @@ public final class WsdlMessageParser extends WsdlParser {
     private static final String PART_NAMESPACE = "part";
     private static final String MESSAGE_NAMESPACE = "message";
 
-    public Set<Message> parseMessages(final Document document){
+    public Set<Message> parseMessages(final Document document) {
         final List<Element> portTypesElement = DocumentUtility.getElements(document, WSDL_NAMESPACE, MESSAGE_NAMESPACE);
         return portTypesElement.stream()
                 .map(this::parseMessage)
                 .collect(Collectors.toSet());
     }
 
-    private Message parseMessage(final Element messageElement){
+    private Message parseMessage(final Element messageElement) {
         final String name = DocumentUtility.getAttribute(messageElement, NAME_NAMESPACE)
                 .orElseThrow(() -> new IllegalArgumentException("Unable to find message name"));
         final List<Element> partElements = DocumentUtility.getElements(messageElement, WSDL_NAMESPACE, PART_NAMESPACE);
@@ -56,11 +56,11 @@ public final class WsdlMessageParser extends WsdlParser {
                 .build();
     }
 
-    private Optional<MessagePart> parseMessagePart(final Element messageElement){
+    private Optional<MessagePart> parseMessagePart(final Element messageElement) {
         final String name = DocumentUtility.getAttribute(messageElement, NAME_NAMESPACE).orElse(null);
         final Attribute element = this.getAttribute(messageElement, ELEMENT_NAMESPACE).orElse(null);
 
-        if(name == null){
+        if (name == null) {
             return Optional.empty();
         }
 

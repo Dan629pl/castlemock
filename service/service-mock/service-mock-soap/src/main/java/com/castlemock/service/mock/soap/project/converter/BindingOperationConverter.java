@@ -31,13 +31,13 @@ import java.util.Set;
 
 public final class BindingOperationConverter {
 
-    private BindingOperationConverter(){
+    private BindingOperationConverter() {
 
     }
 
     public static SoapOperationIdentifier toSoapOperationIdentifierInput(final BindingOperation bindingOperation,
                                                                          final Message inputMessage,
-                                                                         final Set<Namespace> namespaces){
+                                                                         final Set<Namespace> namespaces) {
         return bindingOperation.getInput()
                 .flatMap(BindingOperationInput::getBody)
                 .map(body -> findInputMessage(body, inputMessage))
@@ -48,8 +48,8 @@ public final class BindingOperationConverter {
     }
 
     public static SoapOperationIdentifier toSoapOperationIdentifierOutput(final BindingOperation bindingOperation,
-                                                                         final Message outputMessage,
-                                                                         final Set<Namespace> namespaces){
+                                                                          final Message outputMessage,
+                                                                          final Set<Namespace> namespaces) {
         return bindingOperation.getOutput()
                 .flatMap(BindingOperationOutput::getBody)
                 .map(body -> findOutputMessage(body, outputMessage))
@@ -59,12 +59,12 @@ public final class BindingOperationConverter {
                 .orElseGet(() -> toSoapOperationIdentifier(bindingOperation));
     }
 
-    private static Optional<MessagePart> findInputMessage(final BindingOperationInputBody body, final Message message){
+    private static Optional<MessagePart> findInputMessage(final BindingOperationInputBody body, final Message message) {
         return body.getParts()
                 .map(parts -> findMessage(message, parts))
                 .orElseGet(() -> Optional.ofNullable(message)
                         .flatMap(parts -> {
-                            if(parts.getParts().size() != 1){
+                            if (parts.getParts().size() != 1) {
                                 return Optional.empty();
                             }
                             return parts.getParts()
@@ -73,12 +73,12 @@ public final class BindingOperationConverter {
                         }));
     }
 
-    private static Optional<MessagePart> findOutputMessage(final BindingOperationOutputBody body, final Message message){
+    private static Optional<MessagePart> findOutputMessage(final BindingOperationOutputBody body, final Message message) {
         return body.getParts()
                 .map(parts -> findMessage(message, parts))
                 .orElseGet(() -> Optional.ofNullable(message)
                         .flatMap(parts -> {
-                            if(parts.getParts().size() != 1){
+                            if (parts.getParts().size() != 1) {
                                 return Optional.empty();
                             }
                             return parts.getParts()
@@ -87,7 +87,7 @@ public final class BindingOperationConverter {
                         }));
     }
 
-    private static Optional<MessagePart> findMessage(final Message message, final String parts){
+    private static Optional<MessagePart> findMessage(final Message message, final String parts) {
         return Optional.ofNullable(message)
                 .flatMap(value -> value.getParts()
                         .stream()
@@ -95,7 +95,7 @@ public final class BindingOperationConverter {
                         .findFirst());
     }
 
-    private static SoapOperationIdentifier toSoapOperationIdentifier(final BindingOperation bindingOperation){
+    private static SoapOperationIdentifier toSoapOperationIdentifier(final BindingOperation bindingOperation) {
         return SoapOperationIdentifier.builder()
                 .name(bindingOperation.getName())
                 .namespace(null)

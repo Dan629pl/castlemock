@@ -38,6 +38,10 @@ public final class CreateRestResourceInput implements Input {
         this.uri = Objects.requireNonNull(builder.uri, "uri");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -52,10 +56,6 @@ public final class CreateRestResourceInput implements Input {
 
     public String getUri() {
         return uri;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -91,27 +91,27 @@ public final class CreateRestResourceInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder uri(final String uri){
+        public Builder uri(final String uri) {
             this.uri = uri;
             return this;
         }
 
-        public CreateRestResourceInput build(){
+        public CreateRestResourceInput build() {
             return new CreateRestResourceInput(this);
         }
 

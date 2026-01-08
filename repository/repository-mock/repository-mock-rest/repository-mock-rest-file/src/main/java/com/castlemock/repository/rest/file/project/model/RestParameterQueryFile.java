@@ -52,6 +52,10 @@ public class RestParameterQueryFile {
         this.urlEncoded = Objects.requireNonNull(builder.urlEncoded, "urlEncoded");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getParameter() {
         return parameter;
     }
@@ -74,10 +78,6 @@ public class RestParameterQueryFile {
 
     public boolean getUrlEncoded() {
         return urlEncoded;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

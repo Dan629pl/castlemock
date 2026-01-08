@@ -33,9 +33,18 @@ public enum SoapVersion {
     private final String name;
     private final String contextType;
 
-    SoapVersion(final String name, final String contextType){
+    SoapVersion(final String name, final String contextType) {
         this.name = Objects.requireNonNull(name, "name");
         this.contextType = Objects.requireNonNull(contextType, "contextType");
+    }
+
+    public static SoapVersion convert(final String contextType) {
+        if (contextType.contains(SOAP12.getContextType())) {
+            return SOAP12;
+        }
+
+        // Return SOAP 1.1 as default
+        return SOAP11;
     }
 
     public String getName() {
@@ -44,14 +53,5 @@ public enum SoapVersion {
 
     public String getContextType() {
         return contextType;
-    }
-
-    public static SoapVersion convert(final String contextType) {
-        if(contextType.contains(SOAP12.getContextType())){
-            return SOAP12;
-        }
-
-        // Return SOAP 1.1 as default
-        return SOAP11;
     }
 }

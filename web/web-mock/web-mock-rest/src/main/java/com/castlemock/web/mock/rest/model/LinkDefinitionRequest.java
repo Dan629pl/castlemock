@@ -37,6 +37,10 @@ public class LinkDefinitionRequest {
         this.definitionType = Objects.requireNonNull(builder.definitionType, "definitionType");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getUrl() {
         return url;
     }
@@ -71,10 +75,6 @@ public class LinkDefinitionRequest {
                 ", generateResponse=" + generateResponse +
                 ", definitionType=" + definitionType +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

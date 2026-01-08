@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class IdentifyRestMethodOutput implements Output{
+public final class IdentifyRestMethodOutput implements Output {
 
     private final String projectId;
 
@@ -49,6 +49,10 @@ public final class IdentifyRestMethodOutput implements Output{
         this.methodId = Objects.requireNonNull(builder.methodId, "methodId");
         this.method = Objects.requireNonNull(builder.method, "method");
         this.pathParameters = Optional.ofNullable(builder.pathParameters).orElseGet(Map::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public RestMethod getMethod() {
@@ -77,11 +81,6 @@ public final class IdentifyRestMethodOutput implements Output{
                 .orElseGet(Map::of);
     }
 
-
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -94,37 +93,37 @@ public final class IdentifyRestMethodOutput implements Output{
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public Builder method(final RestMethod method){
+        public Builder method(final RestMethod method) {
             this.method = method;
             return this;
         }
 
-        public Builder pathParameters(final Map<String, Set<String>> pathParameters){
+        public Builder pathParameters(final Map<String, Set<String>> pathParameters) {
             this.pathParameters = pathParameters;
             return this;
         }
 
-        public IdentifyRestMethodOutput build(){
+        public IdentifyRestMethodOutput build() {
             return new IdentifyRestMethodOutput(this);
         }
 

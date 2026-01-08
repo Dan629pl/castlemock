@@ -32,10 +32,11 @@ import java.util.Optional;
  * The configuration group DTO is a DTO (Data transfer object) class for the configuration group class. The
  * class contains both an identifier (See {@link #name}) and all the configurations (See {@link #configurations}) that
  * are being grouped by the configuration group.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see ConfigurationGroup
  * @see Configuration
+ * @since 1.0
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -52,14 +53,19 @@ public class ConfigurationGroup {
     @XmlElement(name = "configuration")
     private final List<Configuration> configurations;
 
-    private ConfigurationGroup(final Builder builder){
+    private ConfigurationGroup(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.configurations = Optional.ofNullable(builder.configurations).orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Returns the configuration group id
+     *
      * @return The configuration group id
      */
     public String getId() {
@@ -68,26 +74,22 @@ public class ConfigurationGroup {
 
     /**
      * Returns the name of the configuration group
+     *
      * @return The new of the configuration group
      */
     public String getName() {
         return name;
     }
 
-
     /**
      * Returns a list of configurations the belongs to the group
+     *
      * @return Configurations that belongs to the configuration group
      */
     public List<Configuration> getConfigurations() {
         return Optional.ofNullable(configurations)
                 .map(List::copyOf)
                 .orElseGet(List::of);
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -31,7 +31,7 @@ public class ReadAllRestProjectsServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestProject project = RestProjectTestBuilder.builder().build();
         final List<RestProject> projects = List.of(project);
 

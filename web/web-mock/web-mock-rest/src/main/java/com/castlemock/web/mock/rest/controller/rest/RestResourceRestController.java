@@ -54,15 +54,15 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("api/rest/rest")
-@Tag(name="REST - Resource", description="REST Operations for Castle Mock REST Resource")
+@Tag(name = "REST - Resource", description = "REST Operations for Castle Mock REST Resource")
 public class RestResourceRestController extends AbstractRestController {
 
     @Autowired
-    public RestResourceRestController(final ServiceProcessor serviceProcessor){
+    public RestResourceRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get Resource")
+    @Operation(summary = "Get Resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved REST resource")})
     @RequestMapping(method = RequestMethod.GET,
@@ -86,7 +86,7 @@ public class RestResourceRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Get Resource Parameters")
+    @Operation(summary = "Get Resource Parameters")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved resource parameters")})
     @RequestMapping(method = RequestMethod.GET,
@@ -109,7 +109,7 @@ public class RestResourceRestController extends AbstractRestController {
         return ResponseEntity.ok(output.getQueries());
     }
 
-    @Operation(summary =  "Delete Resource")
+    @Operation(summary = "Delete Resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted REST resource")})
     @RequestMapping(method = RequestMethod.DELETE,
@@ -132,7 +132,7 @@ public class RestResourceRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Update Resource")
+    @Operation(summary = "Update Resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved REST resource")})
     @RequestMapping(method = RequestMethod.PUT,
@@ -158,7 +158,7 @@ public class RestResourceRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Create Resource")
+    @Operation(summary = "Create Resource")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved REST resource")})
     @RequestMapping(method = RequestMethod.POST,
@@ -179,7 +179,7 @@ public class RestResourceRestController extends AbstractRestController {
         return ResponseEntity.ok(output.getResource());
     }
 
-    @Operation(summary =  "Update resource statuses")
+    @Operation(summary = "Update resource statuses")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated REST resource statuses")})
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/application/{applicationId}/resource/{resourceId}/method/status")
@@ -192,7 +192,7 @@ public class RestResourceRestController extends AbstractRestController {
             @PathVariable(value = "applicationId") final String applicationId,
             @Parameter(name = "resourceId", description = "The id of the resource")
             @PathVariable(value = "resourceId") final String resourceId,
-            @org.springframework.web.bind.annotation.RequestBody UpdateRestMethodStatusesRequest request){
+            @org.springframework.web.bind.annotation.RequestBody UpdateRestMethodStatusesRequest request) {
         request.getMethodIds()
                 .forEach(methodId -> super.serviceProcessor.process(UpdateRestMethodsStatusInput.builder()
                         .projectId(projectId)
@@ -204,7 +204,7 @@ public class RestResourceRestController extends AbstractRestController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary =  "Update Resource forwarded endpoints")
+    @Operation(summary = "Update Resource forwarded endpoints")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated REST Resource forwarded endpoints")})
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/application/{applicationId}/resource/{resourceId}/method/endpoint/forwarded")
@@ -217,7 +217,7 @@ public class RestResourceRestController extends AbstractRestController {
             @PathVariable(value = "applicationId") final String applicationId,
             @Parameter(name = "resourceId", description = "The id of the resource")
             @PathVariable(value = "resourceId") final String resourceId,
-            @RequestBody final UpdateRestMethodForwardedEndpointsRequest request){
+            @RequestBody final UpdateRestMethodForwardedEndpointsRequest request) {
         super.serviceProcessor.process(UpdateRestMethodsForwardedEndpointInput.builder()
                 .projectId(projectId)
                 .applicationId(applicationId)

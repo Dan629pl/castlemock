@@ -24,7 +24,7 @@ public final class SoapMockResponseTestBuilder {
 
     }
 
-    public static SoapMockResponse.Builder builder(){
+    public static SoapMockResponse.Builder builder() {
         return SoapMockResponse.builder()
                 .body("Soap mock response body")
                 .contentEncodings(List.of())

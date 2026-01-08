@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class XPathUtilityTest {
 
     @Test
-    public void testIsValidXPathExprWithNameSpaces(){
+    public void testIsValidXPathExprWithNameSpaces() {
 
         String body = """
                 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -46,7 +46,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprNumber(){
+    public void testIsValidXPathExprNumber() {
         final String body = """
                 <entries>
                      <entry>
@@ -66,7 +66,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprWithAttribute(){
+    public void testIsValidXPathExprWithAttribute() {
 
         String body = """
                 <soapenv:Envelope xmlns:cm="http://castlemock.com" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://schemas.xmlsoap.org/wsdl/">
@@ -91,7 +91,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprWithAttributeMultipleExpression(){
+    public void testIsValidXPathExprWithAttributeMultipleExpression() {
 
         String body = """
                 <soapenv:Envelope xmlns:cm="http://castlemock.com" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://schemas.xmlsoap.org/wsdl/">
@@ -115,7 +115,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprAttr(){
+    public void testIsValidXPathExprAttr() {
 
         String body = """
                 <entries>
@@ -134,7 +134,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprNumbers(){
+    public void testIsValidXPathExprNumbers() {
 
         String body = """
                 <entries>
@@ -151,7 +151,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testIsValidXPathExprTestActualWSInput(){
+    public void testIsValidXPathExprTestActualWSInput() {
 
         String body = """
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webservicex.net">
@@ -171,7 +171,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testGetXPathValue(){
+    public void testGetXPathValue() {
         final String body = """
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webservicex.net">
                    <soapenv:Header/>
@@ -188,7 +188,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testGetXPathValueSubstring(){
+    public void testGetXPathValueSubstring() {
         final String body = """
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webservicex.net">
                    <soapenv:Header/>
@@ -205,7 +205,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testGetXPathValueAttr(){
+    public void testGetXPathValueAttr() {
         final String body = """
                 <entries>
                     <entry key="mykey1" attr="attr1"/>
@@ -219,7 +219,7 @@ public class XPathUtilityTest {
     }
 
     @Test
-    public void testXPathWithQuotation(){
+    public void testXPathWithQuotation() {
         final String body = """
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://www.webservicex.net">
                    <soapenv:Header/>

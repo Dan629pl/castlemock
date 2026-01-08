@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 /**
  * The {@link CharsetUtility} is a utility class that provides
  * functionality related to charset.
+ *
  * @author Karl Dahlgren
  * @since 1.18
  */
@@ -44,18 +45,19 @@ public final class CharsetUtility {
     /**
      * Extract the charset from a list of provided {@link HttpHeader}.
      * The method will only take the Content-Type header into consideration.
+     *
      * @param headers The list of headers that the charset will be extracted from.
      * @return The extracted charset. The default charset ({@link CharsetUtility#DEFAULT_CHARSET})
      * will be returned if a charset couldn't be extracted.
      * @see CharsetUtility#parseContentType(String)
      */
-    public static String parseHttpHeaders(final List<HttpHeader> headers){
-        if(headers == null){
+    public static String parseHttpHeaders(final List<HttpHeader> headers) {
+        if (headers == null) {
             return DEFAULT_CHARSET;
         }
 
-        for(HttpHeader header : headers){
-            if(CONTENT_TYPE.equalsIgnoreCase(header.getName())){
+        for (HttpHeader header : headers) {
+            if (CONTENT_TYPE.equalsIgnoreCase(header.getName())) {
                 return parseContentType(header.getValue());
             }
         }
@@ -65,11 +67,12 @@ public final class CharsetUtility {
 
     /**
      * Extract the charset from a Content-Type string.
+     *
      * @param contentType The Content-Type value that might contain a charset.
      * @return The extracted charset. The default charset ({@link CharsetUtility#DEFAULT_CHARSET})
      * will be returned if a charset couldn't be extracted.
      */
-    public static String parseContentType(final String contentType){
+    public static String parseContentType(final String contentType) {
         try {
             if (contentType == null)
                 return DEFAULT_CHARSET;
@@ -78,7 +81,7 @@ public final class CharsetUtility {
             if (matcher.find()) {
                 return matcher.group(1).trim().toUpperCase();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.info("Unable to extract the charset from the following Content-Type: " + contentType, e);
         }
         return DEFAULT_CHARSET;

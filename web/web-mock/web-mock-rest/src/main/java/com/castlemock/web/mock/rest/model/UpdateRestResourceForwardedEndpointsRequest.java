@@ -30,9 +30,14 @@ public class UpdateRestResourceForwardedEndpointsRequest {
 
     private final Set<String> resourceIds;
     private final String forwardedEndpoint;
-        private UpdateRestResourceForwardedEndpointsRequest(final Builder builder) {
+
+    private UpdateRestResourceForwardedEndpointsRequest(final Builder builder) {
         this.resourceIds = Objects.requireNonNull(builder.resourceIds, "resourceIds");
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Set<String> getResourceIds() {
@@ -65,10 +70,6 @@ public class UpdateRestResourceForwardedEndpointsRequest {
                 "resourceIds=" + resourceIds +
                 ", forwardedEndpoint=" + forwardedEndpoint +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

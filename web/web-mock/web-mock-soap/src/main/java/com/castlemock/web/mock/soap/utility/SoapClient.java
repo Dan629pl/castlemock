@@ -42,11 +42,11 @@ public class SoapClient {
         HttpURLConnection connection = null;
         try {
             connection = HttpMessageSupport.establishConnection(
-                soapOperation.getForwardedEndpoint()
-                        .orElseThrow(() -> new IllegalStateException("Unable to extract forwarded endpoint")),
-                request.getHttpMethod(),
-                request.getBody(),
-                request.getHttpHeaders());
+                    soapOperation.getForwardedEndpoint()
+                            .orElseThrow(() -> new IllegalStateException("Unable to extract forwarded endpoint")),
+                    request.getHttpMethod(),
+                    request.getBody(),
+                    request.getHttpHeaders());
 
             final Integer responseCode = connection.getResponseCode();
             final List<HttpContentEncoding> encodings = HttpMessageSupport.extractContentEncoding(connection);
@@ -54,18 +54,18 @@ public class SoapClient {
             final String characterEncoding = CharsetUtility.parseHttpHeaders(responseHttpHeaders);
             final String responseBody = HttpMessageSupport.extractHttpBody(connection, encodings, characterEncoding);
             final SoapResponse response = SoapResponse.builder()
-                .mockResponseName(FORWARDED_RESPONSE_NAME)
-                .body(responseBody)
-                .httpHeaders(responseHttpHeaders)
-                .httpStatusCode(responseCode)
-                .contentEncodings(encodings)
-                .build();
+                    .mockResponseName(FORWARDED_RESPONSE_NAME)
+                    .body(responseBody)
+                    .httpHeaders(responseHttpHeaders)
+                    .httpStatusCode(responseCode)
+                    .contentEncodings(encodings)
+                    .build();
             return Optional.of(response);
-        } catch (IOException exception){
+        } catch (IOException exception) {
             LOGGER.error("Unable to forward request", exception);
             return Optional.empty();
         } finally {
-            if(connection != null){
+            if (connection != null) {
                 connection.disconnect();
             }
         }

@@ -22,11 +22,11 @@ import java.util.Map;
 public final class RestResourceTestBuilder {
 
 
-    private RestResourceTestBuilder(){
+    private RestResourceTestBuilder() {
 
     }
 
-    public static RestResource.Builder builder(){
+    public static RestResource.Builder builder() {
         return RestResource
                 .builder()
                 .id("9gsIpq")

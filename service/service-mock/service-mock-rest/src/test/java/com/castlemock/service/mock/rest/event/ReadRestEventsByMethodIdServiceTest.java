@@ -30,7 +30,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,6 @@ import java.util.List;
  * @since 1.4
  */
 public class ReadRestEventsByMethodIdServiceTest {
-
 
 
     @Mock
@@ -55,9 +53,9 @@ public class ReadRestEventsByMethodIdServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<RestEvent> restEvents = new ArrayList<>();
-        for(int index = 0; index < 2; index++){
+        for (int index = 0; index < 2; index++) {
             final RestEvent restEvent = RestEventTestBuilder.builder()
                     .methodId("OperationId")
                     .build();
@@ -76,7 +74,7 @@ public class ReadRestEventsByMethodIdServiceTest {
 
         Assertions.assertEquals(2, output.getRestEvents().size());
 
-        for(int index = 0; index < 2; index++){
+        for (int index = 0; index < 2; index++) {
             final RestEvent restEvent = restEvents.get(index);
             final RestEvent returnedRestEvent = output.getRestEvents().get(index);
 

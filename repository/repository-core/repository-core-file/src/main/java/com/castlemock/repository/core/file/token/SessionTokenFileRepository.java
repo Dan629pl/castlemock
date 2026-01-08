@@ -52,38 +52,40 @@ import java.util.Map;
  * The session token repository is responsible for managing all the ongoing sessions and their corresponding
  * tokens. The repository is also responsible for providing the functionality to both save and load all the
  * tokens to and from the local file system.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see SessionToken
  * @see SessionTokenList
+ * @since 1.0
  */
 @Profile(Profiles.FILE)
 @Component("tokenRepository")
 public class SessionTokenFileRepository implements SessionTokenRepository {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SessionTokenFileRepository.class);
+    private final Map<String, PersistentRememberMeToken> seriesTokens = new HashMap<>();
     @Value(value = "${token.file.directory}")
     private String tokenDirectory;
     @Value(value = "${token.file.name}")
     private String tokenFileName;
-    private static final Logger LOGGER = LoggerFactory.getLogger(SessionTokenFileRepository.class);
-    private final Map<String, PersistentRememberMeToken> seriesTokens = new HashMap<>();
 
     /**
      * The initialize method is responsible for initiating the token repository and load
      * all the stored tokens
      */
-    public void initialize(){
+    public void initialize() {
         loadTokens();
     }
 
     /**
      * The method provides the functionality to store a new token in the token repository
+     *
      * @param token The token that will be stored in the token repository
      */
     @Override
     public synchronized void createNewToken(PersistentRememberMeToken token) {
         PersistentRememberMeToken current = this.seriesTokens.get(token.getSeries());
-        if(current != null) {
+        if (current != null) {
             throw new IllegalArgumentException("Series Id '" + token.getSeries() + "' already exists!");
         } else {
             this.seriesTokens.put(token.getSeries(), token);
@@ -93,9 +95,10 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
 
     /**
      * Updates a specific token with a new values to a specific token
-     * @param series The token that will be updated
+     *
+     * @param series     The token that will be updated
      * @param tokenValue The new token value
-     * @param lastUsed Date for when it was last used
+     * @param lastUsed   Date for when it was last used
      */
     @Override
     public synchronized void updateToken(String series, String tokenValue, Date lastUsed) {
@@ -109,25 +112,27 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
      * The method provides the functionality to update the token with a new username. The token
      * will be identified with the old username and upon found, the username will be updated to the
      * new provided username value
+     *
      * @param oldUsername The old username. It is used to identify the token
      * @param newUsername The new username. It will replace the old username
      */
     public synchronized void updateToken(String oldUsername, String newUsername) {
         final List<PersistentRememberMeToken> tokens = new LinkedList<>();
-        for(PersistentRememberMeToken token : seriesTokens.values()){
-            if(token.getUsername().equalsIgnoreCase(oldUsername)){
+        for (PersistentRememberMeToken token : seriesTokens.values()) {
+            if (token.getUsername().equalsIgnoreCase(oldUsername)) {
                 PersistentRememberMeToken newToken = new PersistentRememberMeToken(newUsername, token.getSeries(), token.getTokenValue(), token.getDate());
                 tokens.add(newToken);
             }
         }
-        for(PersistentRememberMeToken token : tokens){
-           seriesTokens.put(token.getSeries(), token);
+        for (PersistentRememberMeToken token : tokens) {
+            seriesTokens.put(token.getSeries(), token);
         }
         saveTokens();
     }
 
     /**
      * Get a specific token for a series
+     *
      * @param seriesId The id of the series that the token belongs to
      * @return Token that matches the provided series id. Null will be returned if no token matches
      * the provided series id
@@ -139,16 +144,17 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
 
     /**
      * Remove a user token from the repository
+     *
      * @param username The token that matches this user name will be removed
      */
     @Override
     public synchronized void removeUserTokens(final String username) {
         final Iterator<String> series = this.seriesTokens.keySet().iterator();
 
-        while(series.hasNext()) {
+        while (series.hasNext()) {
             final String seriesId = series.next();
             final PersistentRememberMeToken token = this.seriesTokens.get(seriesId);
-            if(username.equals(token.getUsername())) {
+            if (username.equals(token.getUsername())) {
                 series.remove();
             }
         }
@@ -158,9 +164,9 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
     /**
      * Saves all the tokens into the file system
      */
-    private synchronized void saveTokens(){
+    private synchronized void saveTokens() {
         final SessionTokenList tokens = getTokens();
-        final String filename = tokenDirectory + File.separator +  tokenFileName;
+        final String filename = tokenDirectory + File.separator + tokenFileName;
         Writer writer = null;
         try {
             JAXBContext context = JAXBContext.newInstance(SessionTokenList.class);
@@ -188,9 +194,9 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
     /**
      * Load all tokens stored on the local file system
      */
-    private void loadTokens(){
+    private void loadTokens() {
         final Path path = FileSystems.getDefault().getPath(tokenDirectory);
-        if(!Files.exists(path)){
+        if (!Files.exists(path)) {
             try {
                 LOGGER.debug("Creating the following directory: " + path);
                 Files.createDirectories(path);
@@ -199,17 +205,17 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
                 throw new IllegalStateException("Unable to create the following folder: " + tokenDirectory);
             }
         }
-        if(!Files.isDirectory(path)){
+        if (!Files.isDirectory(path)) {
             throw new IllegalStateException("The provided path is not a directory: " + path);
         }
 
-        final File file = new File(tokenDirectory + File.separator +  tokenFileName);
+        final File file = new File(tokenDirectory + File.separator + tokenFileName);
         try {
             if (file.isFile()) {
                 JAXBContext jaxbContext = JAXBContext.newInstance(SessionTokenList.class);
                 Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                 SessionTokenList tokens = (SessionTokenList) jaxbUnmarshaller.unmarshal(file);
-                for(SessionToken token : tokens){
+                for (SessionToken token : tokens) {
                     PersistentRememberMeToken persistentRememberMeToken = new PersistentRememberMeToken(token.getUsername(), token.getSeries(), token.getTokenValue(), token.getDate());
                     seriesTokens.put(persistentRememberMeToken.getSeries(), persistentRememberMeToken);
                 }
@@ -222,11 +228,12 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
 
     /**
      * Get all tokens in a token list
+     *
      * @return A list of tokens
      */
-    private SessionTokenList getTokens(){
+    private SessionTokenList getTokens() {
         final SessionTokenList tokens = new SessionTokenList();
-        for(PersistentRememberMeToken persistentRememberMeToken : seriesTokens.values()){
+        for (PersistentRememberMeToken persistentRememberMeToken : seriesTokens.values()) {
             final SessionToken token = new SessionToken(persistentRememberMeToken);
             tokens.add(token);
         }
@@ -249,11 +256,11 @@ public class SessionTokenFileRepository implements SessionTokenRepository {
          * Default constructor for the Token.
          * It is required in order to marshal and unmarshal the token
          */
-        public SessionToken(){
+        public SessionToken() {
 
         }
 
-        public SessionToken(PersistentRememberMeToken persistentRememberMeToken){
+        public SessionToken(PersistentRememberMeToken persistentRememberMeToken) {
             this.username = persistentRememberMeToken.getUsername();
             this.series = persistentRememberMeToken.getSeries();
             this.tokenValue = persistentRememberMeToken.getTokenValue();

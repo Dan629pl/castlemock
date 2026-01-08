@@ -24,17 +24,17 @@ import com.castlemock.model.core.Output;
  */
 public final class ClearAllRestEventOutput implements Output {
 
-    private ClearAllRestEventOutput(){
+    private ClearAllRestEventOutput() {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
-        public ClearAllRestEventOutput build(){
+        public ClearAllRestEventOutput build() {
             return new ClearAllRestEventOutput();
         }
 

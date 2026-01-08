@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * The service provides the functionality to retrieve all stored SOAP events in the SOAP event repository.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */

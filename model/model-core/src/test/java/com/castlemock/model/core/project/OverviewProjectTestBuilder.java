@@ -20,10 +20,10 @@ import java.util.Date;
 
 public final class OverviewProjectTestBuilder {
 
-    private OverviewProjectTestBuilder(){
+    private OverviewProjectTestBuilder() {
     }
 
-    public static OverviewProject.Builder builder(){
+    public static OverviewProject.Builder builder() {
         return OverviewProject.builder()
                 .id("SoapProject")
                 .name("Project name")

@@ -30,8 +30,12 @@ public final class DeleteSoapMockResponseOutput implements Output {
 
     private final SoapMockResponse mockResponse;
 
-    private DeleteSoapMockResponseOutput(final Builder builder){
+    private DeleteSoapMockResponseOutput(final Builder builder) {
         this.mockResponse = builder.mockResponse;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<SoapMockResponse> getMockResponse() {
@@ -58,24 +62,20 @@ public final class DeleteSoapMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private SoapMockResponse mockResponse;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder mockResponse(final SoapMockResponse mockResponse){
+        public Builder mockResponse(final SoapMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public DeleteSoapMockResponseOutput build(){
+        public DeleteSoapMockResponseOutput build() {
             return new DeleteSoapMockResponseOutput(this);
         }
     }

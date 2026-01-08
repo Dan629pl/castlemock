@@ -46,16 +46,13 @@ import java.util.Optional;
  */
 public class UpdateCurrentUserServiceTest {
 
+    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
     @Mock
     private UserRepository repository;
-
     @Mock
     private SessionTokenRepository sessionTokenRepository;
-
     @InjectMocks
     private UpdateCurrentUserService service;
-
-    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     @BeforeEach
     public void setup() {
@@ -63,7 +60,7 @@ public class UpdateCurrentUserServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<User> users = new ArrayList<>();
         final User user = UserTestBuilder.builder()
                 .id("123")

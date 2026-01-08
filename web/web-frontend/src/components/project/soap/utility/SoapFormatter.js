@@ -15,9 +15,9 @@
  */
 
 const mockResponseStatusFormatter = (status) => {
-    if(status === "ENABLED"){
+    if (status === "ENABLED") {
         return "Enabled";
-    } else if(status === "DISABLED"){
+    } else if (status === "DISABLED") {
         return "Disabled"
     }
 
@@ -25,9 +25,9 @@ const mockResponseStatusFormatter = (status) => {
 };
 
 const operationIdentifyStrategy = (identifyStrategy) => {
-    if(identifyStrategy === "ELEMENT"){
+    if (identifyStrategy === "ELEMENT") {
         return "Element";
-    } else if(identifyStrategy === "ELEMENT_NAMESPACE"){
+    } else if (identifyStrategy === "ELEMENT_NAMESPACE") {
         return "Element and namespace"
     }
 
@@ -35,20 +35,20 @@ const operationIdentifyStrategy = (identifyStrategy) => {
 };
 
 const operationResponseStrategy = (responseStrategy) => {
-    if(responseStrategy === "RANDOM"){
+    if (responseStrategy === "RANDOM") {
         return "Random";
-    } else if(responseStrategy === "SEQUENCE"){
+    } else if (responseStrategy === "SEQUENCE") {
         return "Sequence"
-    } else if(responseStrategy === "XPATH_INPUT"){
+    } else if (responseStrategy === "XPATH_INPUT") {
         return "XPath"
     }
     return responseStrategy;
 };
 
 const operationSoapVersionFormatter = (soapVersion) => {
-    if(soapVersion === "SOAP11"){
+    if (soapVersion === "SOAP11") {
         return "SOAP 1.1";
-    } else if(soapVersion === "SOAP12"){
+    } else if (soapVersion === "SOAP12") {
         return "SOAP 1.2"
     }
 
@@ -56,17 +56,17 @@ const operationSoapVersionFormatter = (soapVersion) => {
 };
 
 const operationStatusFormatter = (status) => {
-    if(status === "MOCKED"){
+    if (status === "MOCKED") {
         return "Mocked";
-    } else if(status === "DISABLED"){
+    } else if (status === "DISABLED") {
         return "Disabled"
-    } else if(status === "FORWARDED"){
+    } else if (status === "FORWARDED") {
         return "Forwarded"
-    } else if(status === "RECORDING"){
+    } else if (status === "RECORDING") {
         return "Recording"
-    } else if(status === "RECORD_ONCE"){
+    } else if (status === "RECORD_ONCE") {
         return "Record once"
-    } else if(status === "ECHO"){
+    } else if (status === "ECHO") {
         return "Echo"
     }
 

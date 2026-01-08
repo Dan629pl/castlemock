@@ -22,11 +22,12 @@ import java.io.Serializable;
  * The facade class is responsible for gather all services for a specific type and collaborate with all services
  * in order to provide unified functionality. This enables the using classes to operate all service of a specific type
  * from one single point.
- * @author Karl Dahlgren
- * @since 1.0
+ *
  * @param <D> The DTO (Data transfer object) version of the type (TYPE)
  * @param <I> The ID type that is used to identify the type (TYPE)
+ * @author Karl Dahlgren
  * @see Service
+ * @since 1.0
  */
 public interface ServiceFacade<D, I extends Serializable> {
 
@@ -34,6 +35,7 @@ public interface ServiceFacade<D, I extends Serializable> {
     /**
      * The initialize method is responsible for for locating all the service instances for a specific module
      * and organizing them depending on the type.
+     *
      * @see Service
      */
     void initiate();

@@ -26,6 +26,7 @@ import java.util.List;
  * The {@link ExpressionArgumentArray} is an array argument for an
  * {@link com.castlemock.model.core.utility.parser.expression.Expression} and
  * can either be empty or contain multiple values.
+ *
  * @author Karl Dahlgren
  * @since 1.14
  */
@@ -40,20 +41,22 @@ public class ExpressionArgumentArray extends ExpressionArgument<List<ExpressionA
 
     /**
      * Add a new {@link ExpressionArgument} to the array.
+     *
      * @param argument The {@link ExpressionArgument} that will be added to the array.
      */
-    public void addArgument(final ExpressionArgument<?> argument){
+    public void addArgument(final ExpressionArgument<?> argument) {
         super.value.add(argument);
     }
 
     /**
      * Returns an {@link ExpressionArgument} on the provided <code>index</code>.
+     *
      * @param index The index of the {@link ExpressionArgument}.
      * @return The {@link ExpressionArgument} on the provided <code>index</code>.
      * @throws IndexOutOfBoundsException: If index is either equal or bigger than the array size.
      */
-    public ExpressionArgument<?> getArgument(final int index){
-        if(index >= this.value.size()){
+    public ExpressionArgument<?> getArgument(final int index) {
+        if (index >= this.value.size()) {
             throw new IndexOutOfBoundsException(
                     String.format("Invalid index for argument array (Index: %s}, Size: %s)",
                             index, this.value.size()));
@@ -63,9 +66,10 @@ public class ExpressionArgumentArray extends ExpressionArgument<List<ExpressionA
 
     /**
      * Get the size of the argument array.
+     *
      * @return The size of the argument array.
      */
-    public int getArgumentSize(){
+    public int getArgumentSize() {
         return this.value.size();
     }
 

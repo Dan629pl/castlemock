@@ -53,7 +53,7 @@ public class JWTEncoderDecoder {
             final KeyPair keyPair = kpg.generateKeyPair();
 
             final RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-            final RSAPrivateKey privateKey =(RSAPrivateKey) keyPair.getPrivate();
+            final RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 
             return Algorithm.RSA256(publicKey, privateKey);
         } catch (NoSuchAlgorithmException e) {

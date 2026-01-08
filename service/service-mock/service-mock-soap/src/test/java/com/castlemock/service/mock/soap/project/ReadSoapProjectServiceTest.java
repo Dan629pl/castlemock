@@ -51,7 +51,7 @@ public class ReadSoapProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject project = SoapProjectTestBuilder.builder().build();
         final SoapPort port = SoapPortTestBuilder.builder().build();
         final SoapResource resource = SoapResourceTestBuilder.builder().build();

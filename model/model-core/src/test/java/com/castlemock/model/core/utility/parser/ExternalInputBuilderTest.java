@@ -33,76 +33,76 @@ import java.util.Map;
 import java.util.Set;
 
 class ExternalInputBuilderTest {
-	private static Map<String, Set<String>> pathParameters;
-	private static Set<HttpParameter> queryStringParameters;
-	
-	@BeforeAll
-	static void initAll() {
-		pathParameters = new HashMap<>();
-    	pathParameters.put("param1", Set.of("X"));
-    	pathParameters.put("param2", Set.of("Y"));
-    	pathParameters.put("param3", Set.of("Z"));
+    private static Map<String, Set<String>> pathParameters;
+    private static Set<HttpParameter> queryStringParameters;
 
-    	queryStringParameters = new HashSet<>();
-    	queryStringParameters.add(HttpParameter.builder()
-				.name("queryParam1")
-				.value("Apple")
-				.build());
-		queryStringParameters.add(HttpParameter.builder()
-				.name("queryParam2")
-				.value("Orange")
-				.build());
-		queryStringParameters.add(HttpParameter.builder()
-				.name("queryParam3")
-				.value("Banana")
-				.build());
-		queryStringParameters.add(HttpParameter.builder()
-				.name("queryParam4")
-				.value("Papaya")
-				.build());
-	}
-	
-	@Test
-	void testPathParameters() {
-    	final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder()
-				.pathParameters(pathParameters)
-				.build();
-    	
-    	Assertions.assertTrue(externalInput.containsKey(PathParameterExpression.PATH_PARAMETERS));
-    	@SuppressWarnings("unchecked")
+    @BeforeAll
+    static void initAll() {
+        pathParameters = new HashMap<>();
+        pathParameters.put("param1", Set.of("X"));
+        pathParameters.put("param2", Set.of("Y"));
+        pathParameters.put("param3", Set.of("Z"));
+
+        queryStringParameters = new HashSet<>();
+        queryStringParameters.add(HttpParameter.builder()
+                .name("queryParam1")
+                .value("Apple")
+                .build());
+        queryStringParameters.add(HttpParameter.builder()
+                .name("queryParam2")
+                .value("Orange")
+                .build());
+        queryStringParameters.add(HttpParameter.builder()
+                .name("queryParam3")
+                .value("Banana")
+                .build());
+        queryStringParameters.add(HttpParameter.builder()
+                .name("queryParam4")
+                .value("Papaya")
+                .build());
+    }
+
+    @Test
+    void testPathParameters() {
+        final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder()
+                .pathParameters(pathParameters)
+                .build();
+
+        Assertions.assertTrue(externalInput.containsKey(PathParameterExpression.PATH_PARAMETERS));
+        @SuppressWarnings("unchecked")
         Map<String, ExpressionArgumentArray> returnedPathParameter = (Map<String, ExpressionArgumentArray>) externalInput.get(PathParameterExpression.PATH_PARAMETERS).getValue();
-    	Assertions.assertEquals("X", returnedPathParameter.get("param1").getValue().getFirst().getValue());
-    	Assertions.assertEquals("Y", returnedPathParameter.get("param2").getValue().getFirst().getValue());
-    	Assertions.assertEquals("Z", returnedPathParameter.get("param3").getValue().getFirst().getValue());
-	}
-	
-	@Test
-	void testQueryStringParameters() {
-    	final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().queryStringParameters(queryStringParameters).build();
-    	
-    	Assertions.assertTrue(externalInput.containsKey(QueryStringExpression.QUERY_STRINGS));
-    	@SuppressWarnings("unchecked")
-    	Map<String, ExpressionArgumentString> returnedQueryString = (Map<String, ExpressionArgumentString>) externalInput.get(QueryStringExpression.QUERY_STRINGS).getValue();
-    	Assertions.assertEquals("Apple", returnedQueryString.get("queryParam1").getValue());
-    	Assertions.assertEquals("Orange", returnedQueryString.get("queryParam2").getValue());
-    	Assertions.assertEquals("Banana", returnedQueryString.get("queryParam3").getValue());
-    	Assertions.assertEquals("Papaya", returnedQueryString.get("queryParam4").getValue());
-	}
-	
-	@Test
-	void testRequestUrl() {
-		final String requestUrl = "http://localhost:8080/castlemock";
-		final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().requestUrl(requestUrl).build();
-		String returnedRequestUrl = (String) externalInput.get(UrlHostExpression.URL_ARGUMENT).getValue();
-		Assertions.assertEquals("http://localhost:8080/castlemock", returnedRequestUrl);
-	}
-	
-	@Test
-	void testRequestBody() {
-		final String requestBody = "Body content";
-		final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().requestBody(requestBody).build();
-		String returnedRequestBody = (String) externalInput.get(BodyXPathExpression.BODY_ARGUMENT).getValue();
-		Assertions.assertEquals("Body content", returnedRequestBody);
-	}
+        Assertions.assertEquals("X", returnedPathParameter.get("param1").getValue().getFirst().getValue());
+        Assertions.assertEquals("Y", returnedPathParameter.get("param2").getValue().getFirst().getValue());
+        Assertions.assertEquals("Z", returnedPathParameter.get("param3").getValue().getFirst().getValue());
+    }
+
+    @Test
+    void testQueryStringParameters() {
+        final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().queryStringParameters(queryStringParameters).build();
+
+        Assertions.assertTrue(externalInput.containsKey(QueryStringExpression.QUERY_STRINGS));
+        @SuppressWarnings("unchecked")
+        Map<String, ExpressionArgumentString> returnedQueryString = (Map<String, ExpressionArgumentString>) externalInput.get(QueryStringExpression.QUERY_STRINGS).getValue();
+        Assertions.assertEquals("Apple", returnedQueryString.get("queryParam1").getValue());
+        Assertions.assertEquals("Orange", returnedQueryString.get("queryParam2").getValue());
+        Assertions.assertEquals("Banana", returnedQueryString.get("queryParam3").getValue());
+        Assertions.assertEquals("Papaya", returnedQueryString.get("queryParam4").getValue());
+    }
+
+    @Test
+    void testRequestUrl() {
+        final String requestUrl = "http://localhost:8080/castlemock";
+        final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().requestUrl(requestUrl).build();
+        String returnedRequestUrl = (String) externalInput.get(UrlHostExpression.URL_ARGUMENT).getValue();
+        Assertions.assertEquals("http://localhost:8080/castlemock", returnedRequestUrl);
+    }
+
+    @Test
+    void testRequestBody() {
+        final String requestBody = "Body content";
+        final Map<String, ExpressionArgument<?>> externalInput = new ExternalInputBuilder().requestBody(requestBody).build();
+        String returnedRequestBody = (String) externalInput.get(BodyXPathExpression.BODY_ARGUMENT).getValue();
+        Assertions.assertEquals("Body content", returnedRequestBody);
+    }
 
 }

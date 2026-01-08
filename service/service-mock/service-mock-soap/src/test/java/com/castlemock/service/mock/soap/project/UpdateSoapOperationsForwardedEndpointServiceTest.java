@@ -51,7 +51,7 @@ public class UpdateSoapOperationsForwardedEndpointServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapOperation operation = SoapOperationTestBuilder.builder().build();
 
         final String projectId = "SOAP PROJECT";

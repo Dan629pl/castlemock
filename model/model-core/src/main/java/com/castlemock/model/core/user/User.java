@@ -30,6 +30,7 @@ import java.util.Optional;
 
 /**
  * The User DTO class is a DTO (Data transfer object) for the user class
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -67,7 +68,7 @@ public class User {
     @XmlElement
     private final Role role;
 
-    private User(final Builder builder){
+    private User(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = Objects.requireNonNull(builder.password, "password");
@@ -79,8 +80,13 @@ public class User {
         this.role = Objects.requireNonNull(builder.role, "role");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Get the user id
+     *
      * @return User id
      */
     public String getId() {
@@ -89,6 +95,7 @@ public class User {
 
     /**
      * Get the user username
+     *
      * @return User username
      */
     public String getUsername() {
@@ -97,6 +104,7 @@ public class User {
 
     /**
      * Get the user password
+     *
      * @return Returns the user password
      */
     public String getPassword() {
@@ -105,6 +113,7 @@ public class User {
 
     /**
      * Get user email
+     *
      * @return Returns user email
      */
     public Optional<String> getEmail() {
@@ -113,6 +122,7 @@ public class User {
 
     /**
      * Return the timestamp for when the user was updated
+     *
      * @return Updated timestamp
      */
     public Date getUpdated() {
@@ -125,6 +135,7 @@ public class User {
 
     /**
      * Returns the timestamp of when the user was created
+     *
      * @return Created timestamp
      */
     public Date getCreated() {
@@ -133,6 +144,7 @@ public class User {
 
     /**
      * Get the current status of user
+     *
      * @return User status
      */
     public Status getStatus() {
@@ -141,6 +153,7 @@ public class User {
 
     /**
      * Returns the users current role
+     *
      * @return User role
      */
     public Role getRole() {
@@ -161,10 +174,6 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password, email, fullName, updated, created, status, role);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

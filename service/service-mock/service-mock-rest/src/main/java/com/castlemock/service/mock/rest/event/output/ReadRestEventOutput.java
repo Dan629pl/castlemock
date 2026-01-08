@@ -33,24 +33,24 @@ public final class ReadRestEventOutput implements Output {
         this.event = event;
     }
 
-    public Optional<RestEvent> getEvent() {
-        return Optional.ofNullable(event);
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public Optional<RestEvent> getEvent() {
+        return Optional.ofNullable(event);
     }
 
     public static final class Builder {
 
         private RestEvent event;
 
-        public Builder event(final RestEvent event){
+        public Builder event(final RestEvent event) {
             this.event = event;
             return this;
         }
 
-        public ReadRestEventOutput build(){
+        public ReadRestEventOutput build() {
             return new ReadRestEventOutput(this.event);
         }
 

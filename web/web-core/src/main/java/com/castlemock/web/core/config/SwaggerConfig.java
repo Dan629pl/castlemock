@@ -29,6 +29,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * The {@link SwaggerConfig} is responsible for configure Swagger.
+ *
  * @author Karl Dahlgren
  * @since 1.19
  */

@@ -48,27 +48,29 @@ import java.util.Optional;
 
 /**
  * The {@link WADLRestDefinitionConverter} class provides functionality related to WADL.
+ *
  * @author Karl Dahlgren
  * @since 1.10
  */
 public class WADLRestDefinitionConverter extends AbstractRestDefinitionConverter {
 
-    private final FileManager fileManager;
     private static final Logger LOGGER = LoggerFactory.getLogger(WADLRestDefinitionConverter.class);
+    private final FileManager fileManager;
 
 
-    public WADLRestDefinitionConverter(final FileManager fileManager){
+    public WADLRestDefinitionConverter(final FileManager fileManager) {
         this.fileManager = fileManager;
     }
 
     /**
      * The method is responsible for parsing a {@link File} and converting into a list of {@link RestApplication}.
-     * @param file The {@link File} be parsed and converted into a list of {@link RestApplication}.
+     *
+     * @param file             The {@link File} be parsed and converted into a list of {@link RestApplication}.
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
     @Override
-    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse){
+    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse) {
         final List<RestApplication> applications = new LinkedList<>();
         try {
             final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -78,24 +80,24 @@ public class WADLRestDefinitionConverter extends AbstractRestDefinitionConverter
 
             final String applicationId = IdUtility.generateId();
             final List<Element> applicationElements = getApplications(document);
-            for(Element applicationElement : applicationElements){
+            for (Element applicationElement : applicationElements) {
                 final String applicationName = file.getName().replace(".wadl", "");
                 final Optional<String> baseUri = getResourceBase(applicationElement);
 
                 final List<Element> resourceElements = getResources(applicationElement);
                 final List<RestResource> resources = new ArrayList<>();
-                for(Element resourceElement : resourceElements){
+                for (Element resourceElement : resourceElements) {
                     final String resourceId = IdUtility.generateId();
                     final String resourceName = resourceElement.getAttribute("path");
                     final List<Element> methodElements = getMethods(resourceElement);
                     final List<RestMethod> methods = new ArrayList<>();
-                    for(Element methodElement : methodElements){
+                    for (Element methodElement : methodElements) {
                         final String methodName = methodElement.getAttribute("id");
                         final String methodType = methodElement.getAttribute("name");
 
                         final List<RestMockResponse> mockResponses = new ArrayList<>();
                         final String methodId = IdUtility.generateId();
-                        if(generateResponse){
+                        if (generateResponse) {
                             mockResponses.add(generateResponse(methodId));
                         }
 
@@ -152,17 +154,17 @@ public class WADLRestDefinitionConverter extends AbstractRestDefinitionConverter
         try {
             files = fileManager.uploadFiles(location);
 
-            for(File file : files){
+            for (File file : files) {
                 List<RestApplication> convertedRestApplications = convert(file, projectId, generateResponse);
                 restApplications.addAll(convertedRestApplications);
             }
         } catch (IOException | URISyntaxException e) {
             LOGGER.error("Unable to download file file: " + location, e);
         } finally {
-            if(files != null){
-                for(File uploadedFile : files){
+            if (files != null) {
+                for (File uploadedFile : files) {
                     boolean deletionResult = fileManager.deleteFile(uploadedFile);
-                    if(deletionResult){
+                    if (deletionResult) {
                         LOGGER.debug("Deleted the following WADL file: " + uploadedFile.getName());
                     } else {
                         LOGGER.warn("Unable to delete the following WADL file: " + uploadedFile.getName());
@@ -176,33 +178,37 @@ public class WADLRestDefinitionConverter extends AbstractRestDefinitionConverter
 
     /**
      * The method extracts all the application elements from the provided document
+     *
      * @param document The document which contains all the application that will be extracted
      * @return A list of application elements
      */
-    private List<Element> getApplications(Document document){
+    private List<Element> getApplications(Document document) {
         return DocumentUtility.getElements(document, "application");
     }
 
     /**
      * The method extracts all the resource elements from the provided application element
+     *
      * @param applicationElement The application element which contains all the resources that will be extracted
      * @return A list of resource elements
      */
-    private List<Element> getResources(final Element applicationElement){
+    private List<Element> getResources(final Element applicationElement) {
         return DocumentUtility.getElements(applicationElement, "resource");
     }
 
     /**
      * The method extracts all the method elements from the provided resource element
+     *
      * @param resourceElement The resource element which contains all the methods that will be extracted
      * @return A list of method elements
      */
-    private List<Element> getMethods(final Element resourceElement){
+    private List<Element> getMethods(final Element resourceElement) {
         return DocumentUtility.getElements(resourceElement, "method");
     }
 
     /**
      * The method provides the functionality to extract the resource base from a provided application element
+     *
      * @param applicationElement The application element that contains the resource base
      * @return The resource base from the application element
      */
@@ -220,7 +226,6 @@ public class WADLRestDefinitionConverter extends AbstractRestDefinitionConverter
                     }
                 });
     }
-
 
 
 }

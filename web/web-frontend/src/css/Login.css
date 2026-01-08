@@ -110,6 +110,7 @@
     font-size: 11px;
     color: #FFFFFF;
 }
+
 #login-footer a:visited,
 #login-footer a:hover,
 #login-footer a:active {
@@ -119,14 +120,14 @@
 #login-footer-info {
     float: right;
     text-align: right;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
 #login-footer-info-api {
     float: right;
     width: 100px;
     text-align: right;
-    padding-right:20px;
+    padding-right: 20px;
 }
 
 .login .btn {
@@ -148,7 +149,7 @@
     border-radius: 2rem;
 }
 
-.form-label-group>input,
-.form-label-group>label {
+.form-label-group > input,
+.form-label-group > label {
     padding: var(--input-padding-y) var(--input-padding-x);
 }

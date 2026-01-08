@@ -37,6 +37,10 @@ public class DuplicateSoapMockResponsesRequest {
         this.mockResponseIds = Objects.requireNonNull(builder.mockResponseIds, "mockResponseIds");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getMockResponseIds() {
         return Optional.of(mockResponseIds)
                 .map(Set::copyOf)
@@ -61,10 +65,6 @@ public class DuplicateSoapMockResponsesRequest {
         return "DuplicateSoapMockOperationsRequest{" +
                 "mockResponseIds=" + mockResponseIds +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -25,7 +25,7 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class IdentifySoapOperationOutput implements Output{
+public final class IdentifySoapOperationOutput implements Output {
 
     private final String projectId;
 
@@ -41,6 +41,10 @@ public final class IdentifySoapOperationOutput implements Output{
         this.operationId = Objects.requireNonNull(builder.operationId, "operationId");
         this.operation = Objects.requireNonNull(builder.operation, "operation");
 
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public SoapOperation getOperation() {
@@ -83,41 +87,37 @@ public final class IdentifySoapOperationOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String operationId;
         private SoapOperation operation;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder operation(final SoapOperation operation){
+        public Builder operation(final SoapOperation operation) {
             this.operation = operation;
             return this;
         }
 
-        public IdentifySoapOperationOutput build(){
+        public IdentifySoapOperationOutput build() {
             return new IdentifySoapOperationOutput(this);
         }
     }

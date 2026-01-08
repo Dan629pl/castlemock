@@ -85,7 +85,8 @@ class SoapEvent extends PureComponent {
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
                                 <li className="breadcrumb-item"><Link to={"/web/event"}>Log</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/event/" + this.state.eventId}>{this.state.eventId}</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/event/" + this.state.eventId}>{this.state.eventId}</Link></li>
                             </ol>
                         </nav>
                     </div>
@@ -101,15 +102,21 @@ class SoapEvent extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Project id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/soap/project/" + this.state.event.projectId}>{this.state.event.projectId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/soap/project/" + this.state.event.projectId}>{this.state.event.projectId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Port id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/soap/project/" + this.state.event.projectId + "/port/" + this.state.event.portId}>{this.state.event.portId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/soap/project/" + this.state.event.projectId + "/port/" + this.state.event.portId}>{this.state.event.portId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Operation id</dt>
-                            <dd className="col-sm-9"><Link to={"/web/soap/project/" + this.state.event.projectId + "/port/" + this.state.event.portId + "/operation/" + this.state.event.operationId}>{this.state.event.operationId}</Link></dd>
+                            <dd className="col-sm-9"><Link
+                                to={"/web/soap/project/" + this.state.event.projectId + "/port/" + this.state.event.portId + "/operation/" + this.state.event.operationId}>{this.state.event.operationId}</Link>
+                            </dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Start date</dt>
@@ -132,16 +139,16 @@ class SoapEvent extends PureComponent {
                         <Tabs defaultActiveKey="request">
                             <Tab eventKey="request" title="Request">
                                 {this.state.event.request.body !== null && this.state.event.request.body !== "" &&
-                                <div>
-                                    <h2>Body</h2>
-                                    <textarea className="form-control" id="body" rows="10"
-                                              value={this.state.event.request.body} disabled={true}/>
-                                </div>
+                                    <div>
+                                        <h2>Body</h2>
+                                        <textarea className="form-control" id="body" rows="10"
+                                                  value={this.state.event.request.body} disabled={true}/>
+                                    </div>
                                 }
                                 <h2>Headers</h2>
                                 <div className="table-result">
                                     <ToolkitProvider bootstrap4
-                                                     columns={ this.columns}
+                                                     columns={this.columns}
                                                      data={this.state.event.request.httpHeaders}
                                                      keyField="name"
                                                      search>
@@ -149,48 +156,52 @@ class SoapEvent extends PureComponent {
                                             (props) => (
                                                 <div>
                                                     <BootstrapTable {...props.baseProps} bootstrap4
-                                                                    data={this.state.event.request.httpHeaders} columns={this.columns}
-                                                                    defaultSorted={this.defaultSort} keyField='name' hover
+                                                                    data={this.state.event.request.httpHeaders}
+                                                                    columns={this.columns}
+                                                                    defaultSorted={this.defaultSort} keyField='name'
+                                                                    hover
                                                                     striped
                                                                     noDataIndication="No headers"
-                                                                    pagination={ PaginationFactory() }/>
+                                                                    pagination={PaginationFactory()}/>
                                                 </div>
                                             )}
                                     </ToolkitProvider>
                                 </div>
                             </Tab>
                             {this.state.event.response !== null &&
-                            <Tab eventKey="response" title="Response">
-                                {this.state.event.response.body !== null && this.state.event.response.body !== "" &&
-                                <div>
-                                    <h2>Body</h2>
-                                    <textarea className="form-control" id="body" rows="10"
-                                              value={this.state.event.response.body} disabled={true}/>
-                                </div>
-                                }
-                                <div>
-                                    <h2>Headers</h2>
-                                    <div className="table-result">
-                                        <ToolkitProvider bootstrap4
-                                                         columns={ this.columns}
-                                                         data={this.state.event.response.httpHeaders}
-                                                         keyField="name"
-                                                         search>
-                                            {
-                                                (props) => (
-                                                    <div>
-                                                        <BootstrapTable {...props.baseProps} bootstrap4
-                                                                        data={this.state.event.response.httpHeaders} columns={this.columns}
-                                                                        defaultSorted={this.defaultSort} keyField='name' hover
-                                                                        striped
-                                                                        noDataIndication="No headers"
-                                                                        pagination={ PaginationFactory() }/>
-                                                    </div>
-                                                )}
-                                        </ToolkitProvider>
+                                <Tab eventKey="response" title="Response">
+                                    {this.state.event.response.body !== null && this.state.event.response.body !== "" &&
+                                        <div>
+                                            <h2>Body</h2>
+                                            <textarea className="form-control" id="body" rows="10"
+                                                      value={this.state.event.response.body} disabled={true}/>
+                                        </div>
+                                    }
+                                    <div>
+                                        <h2>Headers</h2>
+                                        <div className="table-result">
+                                            <ToolkitProvider bootstrap4
+                                                             columns={this.columns}
+                                                             data={this.state.event.response.httpHeaders}
+                                                             keyField="name"
+                                                             search>
+                                                {
+                                                    (props) => (
+                                                        <div>
+                                                            <BootstrapTable {...props.baseProps} bootstrap4
+                                                                            data={this.state.event.response.httpHeaders}
+                                                                            columns={this.columns}
+                                                                            defaultSorted={this.defaultSort}
+                                                                            keyField='name' hover
+                                                                            striped
+                                                                            noDataIndication="No headers"
+                                                                            pagination={PaginationFactory()}/>
+                                                        </div>
+                                                    )}
+                                            </ToolkitProvider>
+                                        </div>
                                     </div>
-                                </div>
-                            </Tab>
+                                </Tab>
                             }
                         </Tabs>
                     </div>

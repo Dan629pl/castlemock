@@ -49,18 +49,18 @@ class JsonPathComponent extends PureComponent {
     }
 
 
-    onAddJsonPathClick(){
+    onAddJsonPathClick() {
         this.props.onJsonPathAdded({
             expression: this.state.expression
         });
     }
 
-    onRemoveJsonPathClick(row){
+    onRemoveJsonPathClick(row) {
         this.props.onJsonPathRemoved(row);
     }
 
     deleteHeaderFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -72,7 +72,7 @@ class JsonPathComponent extends PureComponent {
     }
 
     deleteHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '50px' };
+        return {'whiteSpace': 'nowrap', width: '50px'};
     }
 
     setNewExpression(source) {
@@ -89,16 +89,19 @@ class JsonPathComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Expression</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={this.setNewExpression} />
+                            <input className="form-control" type="text" onChange={this.setNewExpression}/>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <button className="btn btn-success demo-button-disabled menu-button" onClick={this.onAddJsonPathClick}><FontAwesomeIcon icon={faPlus} className="button-icon"/><span>Add JSON Path</span></button>
+                        <button className="btn btn-success demo-button-disabled menu-button"
+                                onClick={this.onAddJsonPathClick}><FontAwesomeIcon icon={faPlus}
+                                                                                   className="button-icon"/><span>Add JSON Path</span>
+                        </button>
                     </div>
                 </div>
                 <div className="table-result">
                     <ToolkitProvider bootstrap4
-                                     columns={ this.jsonPathColumns}
+                                     columns={this.jsonPathColumns}
                                      data={this.props.jsonPathExpressions}
                                      keyField="name"
                                      search>

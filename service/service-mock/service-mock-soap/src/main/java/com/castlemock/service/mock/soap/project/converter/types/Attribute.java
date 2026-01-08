@@ -25,10 +25,14 @@ public final class Attribute {
     private final String value;
     private final String localName;
 
-    private Attribute(final Builder builder){
+    private Attribute(final Builder builder) {
         this.namespace = builder.namespace;
         this.value = Objects.requireNonNull(builder.value);
         this.localName = Objects.requireNonNull(builder.localName);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getNamespace() {
@@ -43,36 +47,32 @@ public final class Attribute {
         return localName;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String namespace;
         private String value;
         private String localName;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder namespace(final String namespace){
+        public Builder namespace(final String namespace) {
             this.namespace = namespace;
             return this;
         }
 
-        public Builder value(final String value){
+        public Builder value(final String value) {
             this.value = value;
             return this;
         }
 
-        public Builder localName(final String localName){
+        public Builder localName(final String localName) {
             this.localName = localName;
             return this;
         }
 
-        public Attribute build(){
+        public Attribute build() {
             return new Attribute(this);
         }
     }

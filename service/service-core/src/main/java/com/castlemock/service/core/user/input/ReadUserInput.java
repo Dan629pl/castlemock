@@ -23,9 +23,10 @@ import java.util.Objects;
 
 /**
  * Read a user with a specific user id
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadUserOutput
+ * @since 1.0
  */
 public final class ReadUserInput implements Input {
 

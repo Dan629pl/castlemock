@@ -39,11 +39,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Profile", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Profile", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class ProfileCoreRestController extends AbstractRestController {
 
-    public ProfileCoreRestController(final ServiceProcessor serviceProcessor){
+    public ProfileCoreRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
@@ -70,7 +70,7 @@ public class ProfileCoreRestController extends AbstractRestController {
     }
 
 
-    @Operation(summary =  "Update profile",
+    @Operation(summary = "Update profile",
             description = "Get current profile. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.PUT, value = "/profile")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")

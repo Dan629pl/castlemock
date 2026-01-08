@@ -40,12 +40,12 @@ import java.util.List;
  */
 public class SoapProjectRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private SoapProjectFileRepository repository;
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -55,7 +55,7 @@ public class SoapProjectRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         final List<SoapProject> soapProjects = new ArrayList<>();
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
         soapProjects.add(soapProject);
@@ -65,7 +65,7 @@ public class SoapProjectRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final SoapProject soapProject = save();
         final SoapProject returnedSoapEvent = repository.findOne(soapProject.getId()).orElse(null);
         Assertions.assertNotNull(returnedSoapEvent);
@@ -75,7 +75,7 @@ public class SoapProjectRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final SoapProject soapProject = save();
         final List<SoapProject> soapProjects = repository.findAll();
         Assertions.assertEquals(soapProjects.size(), 1);
@@ -85,26 +85,26 @@ public class SoapProjectRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(SoapProjectFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final SoapProject soapProject = save();
         repository.delete(soapProject.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + soapProject.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private SoapProject save(){
+    private SoapProject save() {
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
         repository.save(soapProject);
         return soapProject;

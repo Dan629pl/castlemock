@@ -1,6 +1,6 @@
-<wsdl:definitions targetNamespace="http://CastleMock/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-                  xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://CastleMock/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://CastleMock/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://CastleMock/">
     <wsdl:types>
         <s:schema elementFormDefault="qualified" targetNamespace="http://CastleMock/">
             <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
@@ -35,10 +35,12 @@
         <wsdl:operation name="GetPrice">
             <soap:operation soapAction="http://CastleMock/GetPrice" style="rpc"/>
             <wsdl:input>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CastleMock/" use="encoded"/>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CastleMock/"
+                           use="encoded"/>
             </wsdl:input>
             <wsdl:output>
-                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CastleMock/" use="encoded"/>
+                <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://CastleMock/"
+                           use="encoded"/>
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>

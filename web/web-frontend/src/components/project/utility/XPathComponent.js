@@ -49,18 +49,18 @@ class XPathComponent extends PureComponent {
     }
 
 
-    onAddXPathClick(){
+    onAddXPathClick() {
         this.props.onXPathAdded({
             expression: this.state.expression
         });
     }
 
-    onRemoveXPathClick(row){
+    onRemoveXPathClick(row) {
         this.props.onXPathRemoved(row);
     }
 
     deleteHeaderFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -72,7 +72,7 @@ class XPathComponent extends PureComponent {
     }
 
     deleteHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '50px' };
+        return {'whiteSpace': 'nowrap', width: '50px'};
     }
 
     setNewExpression(source) {
@@ -89,16 +89,19 @@ class XPathComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Expression</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={this.setNewExpression} />
+                            <input className="form-control" type="text" onChange={this.setNewExpression}/>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <button className="btn btn-success demo-button-disabled menu-button" onClick={this.onAddXPathClick}><FontAwesomeIcon icon={faPlus} className="button-icon"/><span>Add XPath</span></button>
+                        <button className="btn btn-success demo-button-disabled menu-button"
+                                onClick={this.onAddXPathClick}><FontAwesomeIcon icon={faPlus}
+                                                                                className="button-icon"/><span>Add XPath</span>
+                        </button>
                     </div>
                 </div>
                 <div className="table-result">
                     <ToolkitProvider bootstrap4
-                                     columns={ this.xpathColumns}
+                                     columns={this.xpathColumns}
                                      data={this.props.xpathExpressions}
                                      keyField="name"
                                      search>

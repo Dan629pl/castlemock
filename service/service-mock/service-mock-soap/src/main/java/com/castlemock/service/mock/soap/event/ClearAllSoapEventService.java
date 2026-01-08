@@ -24,6 +24,7 @@ import com.castlemock.service.mock.soap.event.output.ClearAllSoapEventOutput;
 
 /**
  * The service provides the functionality to retrieve all stored SOAP events in the SOAP event repository.
+ *
  * @author Karl Dahlgren
  * @since 1.7
  */
@@ -34,6 +35,7 @@ public class ClearAllSoapEventService extends AbstractSoapEventService implement
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

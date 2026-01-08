@@ -59,10 +59,10 @@ class EchoSoapStrategyTest {
         Assertions.assertEquals(request.getContentType(), response.getContentType().orElse(null));
         Assertions.assertTrue(response.getContentEncodings().isEmpty());
         Assertions.assertEquals(List.of(
-                HttpHeader.builder()
-                        .name("Content-Type")
-                        .value(request.getContentType())
-                        .build()),
+                        HttpHeader.builder()
+                                .name("Content-Type")
+                                .value(request.getContentType())
+                                .build()),
                 response.getHttpHeaders());
     }
 }

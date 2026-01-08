@@ -51,7 +51,7 @@ public class UserDetailSecurityServiceTest {
     }
 
     @Test
-    public void testLoadUserByUsername(){
+    public void testLoadUserByUsername() {
         final User user = UserTestBuilder.builder().build();
         final ReadUserByUsernameOutput output = ReadUserByUsernameOutput.builder()
                 .user(user)
@@ -63,7 +63,7 @@ public class UserDetailSecurityServiceTest {
         Assertions.assertEquals(user.getPassword(), userDetails.getPassword());
         final Collection<? extends GrantedAuthority> grantedAuthorityList = userDetails.getAuthorities();
         Assertions.assertEquals(1, grantedAuthorityList.size());
-        for(GrantedAuthority grantedAuthority : grantedAuthorityList){
+        for (GrantedAuthority grantedAuthority : grantedAuthorityList) {
             Assertions.assertEquals(user.getRole().name(), grantedAuthority.getAuthority());
         }
     }

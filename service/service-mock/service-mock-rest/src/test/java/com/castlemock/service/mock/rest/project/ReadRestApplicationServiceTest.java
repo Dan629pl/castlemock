@@ -48,7 +48,7 @@ public class ReadRestApplicationServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String projectId = "ProjectId";
         final RestApplication application = RestApplicationTestBuilder.builder().build();
         final RestResource resource = RestResourceTestBuilder.builder().build();

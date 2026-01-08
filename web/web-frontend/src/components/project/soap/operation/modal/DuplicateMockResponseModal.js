@@ -47,7 +47,7 @@ class DuplicateMockResponseModal extends PureComponent {
 
     }
 
-    onDuplicateClick(){
+    onDuplicateClick() {
         let mockResponseIds = this.props.selectedMockResponses.map(mockResponse => mockResponse.id);
         axios
             .post(process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.props.projectId + "/port/" +
@@ -78,23 +78,27 @@ class DuplicateMockResponseModal extends PureComponent {
                             <p>Do you want to duplicate the following mock responses?</p>
                             <div className="table-result">
                                 <ToolkitProvider bootstrap4
-                                                 columns={ this.columns}
-                                                 data={ this.props.selectedMockResponses }
+                                                 columns={this.columns}
+                                                 data={this.props.selectedMockResponses}
                                                  keyField="id">
                                     {
                                         (props) => (
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.props.selectedMockResponses} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.props.selectedMockResponses}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
                                                                 striped
-                                                                pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                pagination={PaginationFactory({hideSizePerPage: true})}/>
                                             </div>
                                         )}
                                 </ToolkitProvider>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onDuplicateClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Duplicate</button>
+                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onDuplicateClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Duplicate
+                            </button>
                         </div>
                     </div>
                 </div>

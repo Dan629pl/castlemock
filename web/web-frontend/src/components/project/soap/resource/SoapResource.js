@@ -69,7 +69,8 @@ class SoapResource extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
                                 <li className="breadcrumb-item">{this.state.resource.name}</li>
                             </ol>
                         </nav>

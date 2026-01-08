@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * The {@link MtomUtility} is a utility class which provides support
  * and utility methods regarding and related to MTOM.
+ *
  * @author Karl Dahlgren
  * @since 1.18
  */
@@ -48,13 +49,14 @@ public final class MtomUtility {
     /**
      * The method provides support to extract the main body from an incoming MTOM SOAP request.
      * The method will separate the attachments from the actual body and return only the body.
+     *
      * @param requestBody The MTOM request body.
      * @param contentType The content type of the request.
      * @return The extracted main request body
-     * @since 1.18
      * @throws IllegalArgumentException In case the extraction of the main request body fails.
+     * @since 1.18
      */
-    public static String extractMtomBody(final String requestBody, final String contentType){
+    public static String extractMtomBody(final String requestBody, final String contentType) {
         InputStream stream = null;
         InputStream bodyInputStream = null;
         ByteArrayOutputStream output = null;
@@ -82,25 +84,25 @@ public final class MtomUtility {
 
 
             return output.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error("Unable to extract the request body in the MTOM request", e);
             throw new IllegalArgumentException("Unable to extract the request body in the MTOM request", e);
         } finally {
-            if(stream != null){
+            if (stream != null) {
                 try {
                     stream.close();
                 } catch (IOException e) {
                     LOGGER.error("Unable to close the input stream", e);
                 }
             }
-            if(bodyInputStream != null){
+            if (bodyInputStream != null) {
                 try {
                     bodyInputStream.close();
                 } catch (IOException e) {
                     LOGGER.error("Unable to close the body input stream", e);
                 }
             }
-            if(output != null){
+            if (output != null) {
                 try {
                     output.close();
                 } catch (IOException e) {

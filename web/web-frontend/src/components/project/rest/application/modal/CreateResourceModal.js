@@ -17,7 +17,7 @@
 import React, {PureComponent} from "react";
 import axios from "axios";
 import validateErrorResponse from "../../../../../utility/HttpResponseValidator";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -82,18 +82,23 @@ class CreateResourceModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" value={this.state.newResource.name} onChange={this.setName}/>
+                                    <input className="form-control" type="text" value={this.state.newResource.name}
+                                           onChange={this.setName}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Uri</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" value={this.state.newResource.uri} onChange={this.setUri}/>
+                                    <input className="form-control" type="text" value={this.state.newResource.uri}
+                                           onChange={this.setUri}/>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateResourceClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create</button>
+                            <button className="btn btn-success" data-dismiss="modal"
+                                    onClick={this.onCreateResourceClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                          className="button-icon"/>Create
+                            </button>
                         </div>
                     </div>
                 </div>

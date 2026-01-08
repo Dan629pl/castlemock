@@ -54,12 +54,13 @@ import java.util.Optional;
  * If the text contains expressions that matches one or more criteria of an {@link Expression},
  * then these expressions will be replaced be new values. The new values are determined by the
  * actual {@link Expression}.
+ *
  * @author Karl Dahlgren
  * @since 1.6
  */
 public class TextParser {
 
-    private static final Map<String,Expression> EXPRESSIONS = new HashMap<>();
+    private static final Map<String, Expression> EXPRESSIONS = new HashMap<>();
     private static final Logger LOGGER = LoggerFactory.getLogger(TextParser.class);
 
 
@@ -83,27 +84,28 @@ public class TextParser {
         EXPRESSIONS.put(BodyXPathExpression.IDENTIFIER, new BodyXPathExpression());
         EXPRESSIONS.put(FakerExpression.IDENTIFIER, new FakerExpression());
     }
-    
-    private final Map<String,Expression> expressions;
-    
+
+    private final Map<String, Expression> expressions;
+
     public TextParser() {
         this.expressions = EXPRESSIONS;
     }
-    
-    public TextParser(final Map<String,Expression> expressions) {
+
+    public TextParser(final Map<String, Expression> expressions) {
         this.expressions = Objects.requireNonNull(expressions, "expressions");
     }
-    
+
     /**
      * The parse method is responsible for parsing a provided text and transform the text
      * with the help of {@link Expression}. {@link Expression} in the texts will be transformed
      * and replaced with new values. The transformed text will be returned.
+     *
      * @param text The provided text that will be transformed.
      * @return A transformed text. All expressions will be replaced by new values.
-     *          Please note that the same text will be returned if no expressions
-     *          were found in the provided text.
+     * Please note that the same text will be returned if no expressions
+     * were found in the provided text.
      */
-    public Optional<String> parse(final String text){
+    public Optional<String> parse(final String text) {
         return parse(text, null);
     }
 
@@ -111,14 +113,15 @@ public class TextParser {
      * The parse method is responsible for parsing a provided text and transform the text
      * with the help of {@link Expression}. {@link Expression} in the texts will be transformed
      * and replaced with new values. The transformed text will be returned.
+     *
      * @param text The provided text that will be transformed.
      * @return A transformed text. All expressions will be replaced by new values.
-     *          Please note that the same text will be returned if no expressions
-     *          were found in the provided text.
+     * Please note that the same text will be returned if no expressions
+     * were found in the provided text.
      */
     public Optional<String> parse(final String text,
-                                 final Map<String, ExpressionArgument<?>> arguments) {
-        if(text == null){
+                                  final Map<String, ExpressionArgument<?>> arguments) {
+        if (text == null) {
             return Optional.empty();
         }
         final StringBuilder outputBuilder = new StringBuilder().append(text);
@@ -130,33 +133,33 @@ public class TextParser {
             if (indexOfStartExpression >= 0) {
                 int indexOfEndExpression = outputBuilder.indexOf(expressionEnd, indexOfStartExpression + 1);
                 if (indexOfEndExpression >= 0) {
-                    replaceExpressionByResult(outputBuilder, indexOfStartExpression, indexOfEndExpression, arguments);                  
+                    replaceExpressionByResult(outputBuilder, indexOfStartExpression, indexOfEndExpression, arguments);
                 }
             }
         } while (indexOfStartExpression >= 0);
-        
+
         return Optional.of(outputBuilder.toString());
     }
-    
+
     private void replaceExpressionByResult(final StringBuilder outputBuilder, final int indexOfStartExpression,
                                            final int indexOfEndExpression, final Map<String, ExpressionArgument<?>> arguments) {
         final String expressionString = outputBuilder.substring(indexOfStartExpression, indexOfEndExpression + 1);
         final ExpressionInput expressionInput = parseExpressionInput(expressionString, arguments);
         final Expression expression = this.expressions.get(expressionInput.getName());
-        
-        if (expression != null){
+
+        if (expression != null) {
             String expressionResult = expression.transform(expressionInput);
             outputBuilder.replace(indexOfStartExpression, indexOfEndExpression + 1, expressionResult);
         } else {
             LOGGER.error("Unable to parse the following expression: " + expressionInput.getName());
         }
     }
-    
+
     private ExpressionInput parseExpressionInput(final String expressionString, final Map<String, ExpressionArgument<?>> arguments) {
         final ExpressionInput expressionInput = ExpressionInputParser.parse(expressionString);
-        
-        if(arguments != null){
-            for(Map.Entry<String, ExpressionArgument<?>> argumentEntry : arguments.entrySet()){
+
+        if (arguments != null) {
+            for (Map.Entry<String, ExpressionArgument<?>> argumentEntry : arguments.entrySet()) {
                 expressionInput.addArgument(argumentEntry.getKey(), argumentEntry.getValue());
             }
         }

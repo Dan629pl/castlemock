@@ -55,6 +55,10 @@ public class RestEventFile extends EventFile {
         this.response = builder.response;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public RestRequestFile getRequest() {
         return request;
     }
@@ -77,10 +81,6 @@ public class RestEventFile extends EventFile {
 
     public String getMethodId() {
         return methodId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static class Builder extends EventFile.Builder<Builder> {

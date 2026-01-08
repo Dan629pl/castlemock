@@ -63,13 +63,17 @@ public class RestRequest {
     @XmlElement(name = "httpParameter")
     private final Set<HttpParameter> httpParameters;
 
-    private RestRequest(final Builder builder){
+    private RestRequest(final Builder builder) {
         this.uri = Objects.requireNonNull(builder.uri, "uri");
         this.httpMethod = Objects.requireNonNull(builder.httpMethod, "httpMethod");
         this.body = builder.body;
         this.contentType = builder.contentType;
         this.httpHeaders = builder.httpHeaders;
         this.httpParameters = builder.httpParameters;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getBody() {
@@ -127,10 +131,6 @@ public class RestRequest {
                 ", httpHeaders=" + httpHeaders +
                 ", httpParameters=" + httpParameters +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -35,28 +35,30 @@ import java.util.Objects;
 /**
  * The {@link EventCoreRestController} is the REST controller that provides
  * the interface for the core operations.
+ *
  * @author Karl Dahlgren
  * @since 1.19
  */
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Event", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Event", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class EventCoreRestController extends AbstractRestController {
 
     private final EventServiceFacade eventServiceFacade;
 
     public EventCoreRestController(final ServiceProcessor serviceProcessor,
-                                   final EventServiceFacade eventServiceFacade){
+                                   final EventServiceFacade eventServiceFacade) {
         super(serviceProcessor);
         this.eventServiceFacade = Objects.requireNonNull(eventServiceFacade, "eventServiceFacade");
     }
 
     /**
      * The method retrieves all events
+     *
      * @return The retrieved event.
      */
-    @Operation(summary =  "Get events", description = "Get events. Required authorization: Reader, Modifier or Admin.")
+    @Operation(summary = "Get events", description = "Get events. Required authorization: Reader, Modifier or Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/event")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -65,7 +67,7 @@ public class EventCoreRestController extends AbstractRestController {
     }
 
 
-    @Operation(summary =  "Delete all event", description = "Delete all event. Required authorization: Modifier or Admin.")
+    @Operation(summary = "Delete all event", description = "Delete all event. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.DELETE, value = "/event")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody

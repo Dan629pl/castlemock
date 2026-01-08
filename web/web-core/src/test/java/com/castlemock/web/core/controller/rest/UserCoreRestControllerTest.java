@@ -54,14 +54,14 @@ class UserCoreRestControllerTest {
     private UserCoreRestController userCoreRestController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.serviceProcessor = mock(ServiceProcessor.class);
         this.userCoreRestController = new UserCoreRestController(serviceProcessor);
     }
 
     @Test
     @DisplayName("Create user")
-    void testCreateUser(){
+    void testCreateUser() {
         final CreateUserRequest request = CreateUserRequestTestBuilder.build();
         final User createdUser = UserTestBuilder.build();
 
@@ -82,7 +82,7 @@ class UserCoreRestControllerTest {
 
     @Test
     @DisplayName("Update user")
-    void testUpdateUser(){
+    void testUpdateUser() {
         final String userId = IdUtility.generateId();
         final UpdateUserRequest request = UpdateUserRequestTestBuilder.build();
         final User updatedUser = UserTestBuilder.build();
@@ -105,7 +105,7 @@ class UserCoreRestControllerTest {
 
     @Test
     @DisplayName("Get users")
-    void testGetUsers(){
+    void testGetUsers() {
         final User user = UserTestBuilder.builder().build();
 
         when(serviceProcessor.process(any())).thenReturn(ReadAllUsersOutput.builder()
@@ -126,7 +126,7 @@ class UserCoreRestControllerTest {
 
     @Test
     @DisplayName("Get user")
-    void testGetUser(){
+    void testGetUser() {
         final User user = UserTestBuilder.builder().build();
 
         when(serviceProcessor.process(any())).thenReturn(ReadUserOutput.builder()
@@ -147,7 +147,7 @@ class UserCoreRestControllerTest {
 
     @Test
     @DisplayName("Delete user")
-    void testUser(){
+    void testUser() {
         when(serviceProcessor.process(any())).thenReturn(new DeleteUserOutput());
 
         this.userCoreRestController.deleteUser("userid");

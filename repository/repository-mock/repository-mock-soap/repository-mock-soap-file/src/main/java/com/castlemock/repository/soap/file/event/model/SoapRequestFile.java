@@ -68,6 +68,10 @@ public class SoapRequestFile {
         this.operationIdentifier = Objects.requireNonNull(builder.operationIdentifier, "operationIdentifier");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getBody() {
         return body;
     }
@@ -102,10 +106,6 @@ public class SoapRequestFile {
 
     public List<HttpHeaderFile> getHttpHeaders() {
         return httpHeaders;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

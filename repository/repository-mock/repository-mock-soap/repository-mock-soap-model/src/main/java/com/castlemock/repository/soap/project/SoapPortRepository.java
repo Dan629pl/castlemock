@@ -30,6 +30,7 @@ public interface SoapPortRepository extends Repository<SoapPort, String> {
 
     /**
      * The method finds a {@link SoapPort} with the provided name
+     *
      * @param soapPortName The name of the {@link SoapPort}
      * @return A {@link SoapPort} that matches the provided search criteria.
      */
@@ -37,6 +38,7 @@ public interface SoapPortRepository extends Repository<SoapPort, String> {
 
     /**
      * The method finds a {@link SoapPort} with the provided uri
+     *
      * @param uri The uri used by the {@link SoapPort}
      * @return A {@link SoapPort} that matches the provided search criteria.
      */
@@ -45,6 +47,7 @@ public interface SoapPortRepository extends Repository<SoapPort, String> {
     /**
      * Retrieve the {@link com.castlemock.model.mock.soap.domain.SoapProject} id
      * for the {@link SoapPort} with the provided id.
+     *
      * @param portId The id of the {@link SoapPort}.
      * @return The id of the project.
      * @since 1.20

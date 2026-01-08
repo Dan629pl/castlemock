@@ -26,6 +26,7 @@ public interface RestApplicationRepository extends Repository<RestApplication, S
     /**
      * Delete all {@link RestApplication} that matches the provided
      * <code>projectId</code>.
+     *
      * @param projectId The id of the project.
      */
     void deleteWithProjectId(String projectId);
@@ -33,6 +34,7 @@ public interface RestApplicationRepository extends Repository<RestApplication, S
     /**
      * Find all {@link RestApplication} that matches the provided
      * <code>projectId</code>.
+     *
      * @param projectId The id of the project.
      * @return A list of {@link RestApplication}.
      */
@@ -41,6 +43,7 @@ public interface RestApplicationRepository extends Repository<RestApplication, S
     /**
      * Retrieve the {@link com.castlemock.model.mock.rest.domain.RestProject} id
      * for the {@link RestApplication} with the provided id.
+     *
      * @param applicationId The id of the {@link RestApplication}.
      * @return The id of the project.
      * @since 1.20

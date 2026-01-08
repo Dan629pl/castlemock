@@ -36,6 +36,10 @@ public final class UpdateSoapPortInput implements Input {
         this.uri = Objects.requireNonNull(builder.uri, "uri");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -71,35 +75,31 @@ public final class UpdateSoapPortInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String uri;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder uri(final String uri){
+        public Builder uri(final String uri) {
             this.uri = uri;
             return this;
         }
 
-        public UpdateSoapPortInput build(){
+        public UpdateSoapPortInput build() {
             return new UpdateSoapPortInput(this);
         }
     }

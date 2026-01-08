@@ -22,16 +22,16 @@ public final class BindingOperationOutput {
 
     private final BindingOperationOutputBody body;
 
-    private BindingOperationOutput(final Builder builder){
+    private BindingOperationOutput(final Builder builder) {
         this.body = builder.body;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<BindingOperationOutputBody> getBody() {
         return Optional.ofNullable(body);
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     public static class Builder {

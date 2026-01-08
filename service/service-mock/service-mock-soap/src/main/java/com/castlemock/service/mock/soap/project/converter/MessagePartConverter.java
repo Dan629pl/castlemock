@@ -24,12 +24,12 @@ import java.util.Set;
 
 public final class MessagePartConverter {
 
-    private MessagePartConverter(){
+    private MessagePartConverter() {
 
     }
 
     public static SoapOperationIdentifier toSoapOperationIdentifier(final MessagePart messagePart,
-                                                                    final Set<Namespace> namespaces){
+                                                                    final Set<Namespace> namespaces) {
         return messagePart.getElement()
                 .map(attribute -> AttributeConverter.toSoapOperationIdentifier(attribute, namespaces))
                 .orElseGet(() -> SoapOperationIdentifier.builder()

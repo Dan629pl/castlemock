@@ -40,7 +40,7 @@ public final class WsdlBindingParser extends WsdlParser {
     private static final String BODY_NAMESPACE = "body";
     private static final String TYPE_NAMESPACE = "type";
 
-    public Set<Binding> parseBindings(final Document document){
+    public Set<Binding> parseBindings(final Document document) {
         final List<Element> bindingElements =
                 DocumentUtility.getElements(document, WSDL_NAMESPACE, BINDING_NAMESPACE);
         return bindingElements.stream()
@@ -48,7 +48,7 @@ public final class WsdlBindingParser extends WsdlParser {
                 .collect(Collectors.toSet());
     }
 
-    private Binding parseBinding(final Element bindingElement){
+    private Binding parseBinding(final Element bindingElement) {
         final String name = DocumentUtility.getAttribute(bindingElement, NAME_NAMESPACE)
                 .orElseThrow(() -> new IllegalArgumentException("Unable to find binding name"));
         final Attribute type = this.getAttribute(bindingElement, TYPE_NAMESPACE)
@@ -66,7 +66,7 @@ public final class WsdlBindingParser extends WsdlParser {
                 .build();
     }
 
-    private BindingOperation parseOperation(final Element operationElement){
+    private BindingOperation parseOperation(final Element operationElement) {
         final String name = DocumentUtility.getAttribute(operationElement, NAME_NAMESPACE)
                 .orElseThrow(() -> new IllegalArgumentException("Unable to find operation name"));
         return BindingOperation.builder()
@@ -76,34 +76,34 @@ public final class WsdlBindingParser extends WsdlParser {
                 .build();
     }
 
-    private Optional<BindingOperationInput> parseInput(final Element operationElement){
+    private Optional<BindingOperationInput> parseInput(final Element operationElement) {
         return DocumentUtility.getElement(operationElement, WSDL_NAMESPACE, INPUT_NAMESPACE)
                 .map(element -> BindingOperationInput.builder()
                         .body(parseInputBody(element).orElse(null))
                         .build());
     }
 
-    private Optional<BindingOperationOutput> parseOutput(final Element operationElement){
+    private Optional<BindingOperationOutput> parseOutput(final Element operationElement) {
         return DocumentUtility.getElement(operationElement, WSDL_NAMESPACE, OUTPUT_NAMESPACE)
-                        .map(element -> BindingOperationOutput.builder()
+                .map(element -> BindingOperationOutput.builder()
                         .body(parseOutputBody(element)
                                 .orElse(null))
                         .build());
     }
 
-    private Optional<BindingOperationInputBody> parseInputBody(final Element inputElement){
+    private Optional<BindingOperationInputBody> parseInputBody(final Element inputElement) {
         return DocumentUtility.getElement(inputElement, SOAP_11_NAMESPACE, BODY_NAMESPACE)
                 .map(this::parseSoap11InputBody)
                 .orElseGet(() -> this.parseSoap12InputBody(inputElement));
     }
 
-    private Optional<BindingOperationOutputBody> parseOutputBody(final Element outputElement){
+    private Optional<BindingOperationOutputBody> parseOutputBody(final Element outputElement) {
         return DocumentUtility.getElement(outputElement, SOAP_11_NAMESPACE, BODY_NAMESPACE)
                 .map(this::parseSoap11OutputBody)
                 .orElseGet(() -> this.parseSoap12OutputBody(outputElement));
     }
 
-    private Optional<BindingOperationInputBody> parseSoap11InputBody(final Element element){
+    private Optional<BindingOperationInputBody> parseSoap11InputBody(final Element element) {
         final String parts = DocumentUtility.getAttribute(element, PARTS_NAMESPACE)
                 .orElse(null);
         return Optional.of(BindingOperationInputBody.builder()
@@ -111,7 +111,7 @@ public final class WsdlBindingParser extends WsdlParser {
                 .build());
     }
 
-    private Optional<BindingOperationInputBody> parseSoap12InputBody(final Element inputElement){
+    private Optional<BindingOperationInputBody> parseSoap12InputBody(final Element inputElement) {
         return DocumentUtility.getElement(inputElement, SOAP_12_NAMESPACE, BODY_NAMESPACE)
                 .map(element -> {
                     final String parts = DocumentUtility.getAttribute(element, PARTS_NAMESPACE)
@@ -123,7 +123,7 @@ public final class WsdlBindingParser extends WsdlParser {
                 .orElse(Optional.empty());
     }
 
-    private Optional<BindingOperationOutputBody> parseSoap11OutputBody(final Element element){
+    private Optional<BindingOperationOutputBody> parseSoap11OutputBody(final Element element) {
         final String parts = DocumentUtility.getAttribute(element, PARTS_NAMESPACE)
                 .orElse(null);
         return Optional.of(BindingOperationOutputBody.builder()
@@ -131,7 +131,7 @@ public final class WsdlBindingParser extends WsdlParser {
                 .build());
     }
 
-    private Optional<BindingOperationOutputBody> parseSoap12OutputBody(final Element outputElement){
+    private Optional<BindingOperationOutputBody> parseSoap12OutputBody(final Element outputElement) {
         return DocumentUtility.getElement(outputElement, SOAP_12_NAMESPACE, BODY_NAMESPACE)
                 .map(element -> {
                     final String parts = DocumentUtility.getAttribute(element, PARTS_NAMESPACE)

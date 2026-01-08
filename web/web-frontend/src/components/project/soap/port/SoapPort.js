@@ -27,12 +27,12 @@ import {isOnlyReader} from "../../../../utility/AuthorizeUtility";
 import DeletePortModal from "./modal/DeletePortModal"
 import UpdateEndpointModal from "./modal/UpdateEndpointModal";
 import UpdateStatusModal from "./modal/UpdateStatusModal";
-import {operationStatusFormatter, operationResponseStrategy} from "../utility/SoapFormatter"
+import {operationResponseStrategy, operationStatusFormatter} from "../utility/SoapFormatter"
 import ContextContext from "../../../../context/ContextContext";
-import {faTrash, faEdit, faCodeBranch} from "@fortawesome/free-solid-svg-icons";
+import {faCodeBranch, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 const SELECT = true;
 const DESELECT = false;
 
@@ -105,26 +105,26 @@ class SoapPort extends PureComponent {
     }
 
     methodHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '150px' };
+        return {'whiteSpace': 'nowrap', width: '150px'};
     }
 
     responseStrategyHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '200px' };
+        return {'whiteSpace': 'nowrap', width: '200px'};
     }
 
     statusHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '150px' };
+        return {'whiteSpace': 'nowrap', width: '150px'};
     }
-    
+
     onRowSelect(value, mode) {
         let operations = this.state.selectedOperations.slice();
         let operation = {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             operations.push(operation);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = operations.indexOf(operation);
             operations.splice(index, 1);
         }
@@ -134,7 +134,7 @@ class SoapPort extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let operations = [];
             this.state.port.operations.forEach(value => {
                 let operation = {
@@ -146,7 +146,7 @@ class SoapPort extends PureComponent {
             this.setState({
                 selectedOperations: operations
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedOperations: []
             });
@@ -154,19 +154,20 @@ class SoapPort extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
         return (
             <div className="table-link">
-                <Link to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + row.id}>{cell}</Link>
+                <Link
+                    to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + row.id}>{cell}</Link>
             </div>
         )
     }
 
     responseStrategyFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -174,7 +175,7 @@ class SoapPort extends PureComponent {
     }
 
     statusFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -202,7 +203,8 @@ class SoapPort extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
                                 <li className="breadcrumb-item">{this.state.port.name}</li>
                             </ol>
                         </nav>
@@ -214,13 +216,18 @@ class SoapPort extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu" align="right">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updatePortModal" disabled={isOnlyReader(context.authentication.role)}>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updatePortModal"
+                                            disabled={isOnlyReader(context.authentication.role)}>
                                         <i className="fas fa-plus-circle"/>
                                         <FontAwesomeIcon icon={faEdit} className="button-icon"/>
                                         <span>Update port</span>
                                     </button>
-                                    <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deletePortModal" disabled={isOnlyReader(context.authentication.role)}>
-                                        <FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete port</span>
+                                    <button className="btn btn-danger demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#deletePortModal"
+                                            disabled={isOnlyReader(context.authentication.role)}>
+                                        <FontAwesomeIcon icon={faTrash}
+                                                         className="button-icon"/><span>Delete port</span>
                                     </button>
                                 </div>
                             )}
@@ -243,7 +250,7 @@ class SoapPort extends PureComponent {
                                         <dd className="col-sm-9">{window.location.origin + context + "/mock/soap/project/" + this.state.projectId + "/" + this.state.port.uri + "?wsdl"}</dd>
                                     </dl>
                                 </div>
-                                )}
+                            )}
                         </ContextContext.Consumer>
                     </div>
                     <div className="panel panel-primary table-panel">
@@ -252,7 +259,7 @@ class SoapPort extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.port.operations}
                                              keyField="id"
                                              search>
@@ -268,29 +275,38 @@ class SoapPort extends PureComponent {
                                                             selectRow={this.selectRow}
                                                             striped
                                                             noDataIndication="Table is Empty"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedOperations.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedOperations.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch} className="button-icon"/><span>Update endpoint</span></button>
+                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch}
+                                                                                                    className="button-icon"/><span>Update endpoint</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
                         </div>
                     </div>
                 </section>
-                <UpdatePortModal projectId={this.state.projectId} portId={this.state.portId} getPort={this.getPort} />
-                <DeletePortModal projectId={this.state.projectId} portId={this.state.portId} selectedOperations={this.state.selectedOperations} />
-                <UpdateEndpointModal projectId={this.state.projectId} portId={this.state.portId} selectedOperations={this.state.selectedOperations} getPort={this.getPort} />
-                <UpdateStatusModal projectId={this.state.projectId} portId={this.state.portId} selectedOperations={this.state.selectedOperations} getPort={this.getPort} />
+                <UpdatePortModal projectId={this.state.projectId} portId={this.state.portId} getPort={this.getPort}/>
+                <DeletePortModal projectId={this.state.projectId} portId={this.state.portId}
+                                 selectedOperations={this.state.selectedOperations}/>
+                <UpdateEndpointModal projectId={this.state.projectId} portId={this.state.portId}
+                                     selectedOperations={this.state.selectedOperations} getPort={this.getPort}/>
+                <UpdateStatusModal projectId={this.state.projectId} portId={this.state.portId}
+                                   selectedOperations={this.state.selectedOperations} getPort={this.getPort}/>
 
             </div>
         )

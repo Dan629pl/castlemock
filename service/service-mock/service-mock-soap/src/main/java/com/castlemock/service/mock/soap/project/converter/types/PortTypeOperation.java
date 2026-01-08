@@ -24,10 +24,14 @@ public final class PortTypeOperation {
     private final PortTypeOperationInput input;
     private final PortTypeOperationOutput output;
 
-    private PortTypeOperation(final Builder builder){
+    private PortTypeOperation(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.input = builder.input;
         this.output = builder.output;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -42,36 +46,32 @@ public final class PortTypeOperation {
         return Optional.ofNullable(output);
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private PortTypeOperationInput input;
         private PortTypeOperationOutput output;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder input(final PortTypeOperationInput input){
+        public Builder input(final PortTypeOperationInput input) {
             this.input = input;
             return this;
         }
 
-        public Builder output(final PortTypeOperationOutput output){
+        public Builder output(final PortTypeOperationOutput output) {
             this.output = output;
             return this;
         }
 
-        public PortTypeOperation build(){
+        public PortTypeOperation build() {
             return new PortTypeOperation(this);
         }
     }

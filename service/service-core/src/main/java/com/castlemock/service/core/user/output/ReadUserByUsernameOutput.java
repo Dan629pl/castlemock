@@ -24,8 +24,8 @@ import java.util.Optional;
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadUserByUsernameInput
+ * @since 1.0
  */
 public final class ReadUserByUsernameOutput implements Output {
 
@@ -35,12 +35,12 @@ public final class ReadUserByUsernameOutput implements Output {
         this.user = builder.user;
     }
 
-    public Optional<User> getUser() {
-        return Optional.ofNullable(user);
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public Optional<User> getUser() {
+        return Optional.ofNullable(user);
     }
 
     public static final class Builder {

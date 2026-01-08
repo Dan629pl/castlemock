@@ -24,7 +24,7 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteSoapMockResponseInput implements Input{
+public final class DeleteSoapMockResponseInput implements Input {
 
     private final String projectId;
     private final String portId;
@@ -36,6 +36,10 @@ public final class DeleteSoapMockResponseInput implements Input{
         this.portId = Objects.requireNonNull(builder.portId, "portId");
         this.operationId = Objects.requireNonNull(builder.operationId, "operationId");
         this.mockResponseId = Objects.requireNonNull(builder.mockResponseId, "mockResponseId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -78,41 +82,37 @@ public final class DeleteSoapMockResponseInput implements Input{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String operationId;
         private String mockResponseId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder mockResponseId(final String mockResponseId){
+        public Builder mockResponseId(final String mockResponseId) {
             this.mockResponseId = mockResponseId;
             return this;
         }
 
-        public DeleteSoapMockResponseInput build(){
+        public DeleteSoapMockResponseInput build() {
             return new DeleteSoapMockResponseInput(this);
         }
     }

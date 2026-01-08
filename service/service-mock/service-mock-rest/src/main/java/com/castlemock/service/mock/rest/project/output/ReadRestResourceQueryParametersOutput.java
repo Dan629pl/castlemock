@@ -26,8 +26,12 @@ public final class ReadRestResourceQueryParametersOutput implements Output {
 
     private final Set<String> queries;
 
-    private ReadRestResourceQueryParametersOutput(final Builder builder){
+    private ReadRestResourceQueryParametersOutput(final Builder builder) {
         this.queries = Optional.ofNullable(builder.queries).orElseGet(Set::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Set<String> getQueries() {
@@ -56,10 +60,6 @@ public final class ReadRestResourceQueryParametersOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private Set<String> queries;
@@ -67,12 +67,12 @@ public final class ReadRestResourceQueryParametersOutput implements Output {
         private Builder() {
         }
 
-        public Builder queries(final Set<String> queries){
+        public Builder queries(final Set<String> queries) {
             this.queries = queries;
             return this;
         }
 
-        public ReadRestResourceQueryParametersOutput build(){
+        public ReadRestResourceQueryParametersOutput build() {
             return new ReadRestResourceQueryParametersOutput(this);
         }
 

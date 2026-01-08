@@ -14,9 +14,10 @@
     background: transparent !important;
     margin-top: 11px;
 }
+
 .main-header :hover {
-     background: transparent !important;
- }
+    background: transparent !important;
+}
 
 .header-logo {
     float: left;
@@ -30,6 +31,7 @@
     font-size: 26px;
     color: #ffffff;
 }
+
 .header-logo a:hover {
     text-decoration: none;
     color: #ffffff;

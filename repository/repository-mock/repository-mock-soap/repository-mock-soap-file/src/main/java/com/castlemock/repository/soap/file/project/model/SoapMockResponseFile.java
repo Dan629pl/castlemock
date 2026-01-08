@@ -80,6 +80,10 @@ public class SoapMockResponseFile implements Saveable<String> {
                 .orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -134,10 +138,6 @@ public class SoapMockResponseFile implements Saveable<String> {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

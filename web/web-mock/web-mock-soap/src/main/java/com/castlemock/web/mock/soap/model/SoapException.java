@@ -24,9 +24,10 @@ import java.io.Serial;
 /**
  * The SoapException is the main exception for the all SOAP related issues. All SOAP related exceptions
  * should inherit from the class.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see SoapServiceController
+ * @since 1.0
  */
 
 public class SoapException extends RuntimeException {
@@ -36,6 +37,7 @@ public class SoapException extends RuntimeException {
 
     /**
      * The default constructor for the SoapException class
+     *
      * @param exception The exception name
      */
     public SoapException(final String exception) {
@@ -44,6 +46,7 @@ public class SoapException extends RuntimeException {
 
     /**
      * The default constructor for the SoapException class
+     *
      * @param exception The exception
      */
     public SoapException(final Exception exception) {

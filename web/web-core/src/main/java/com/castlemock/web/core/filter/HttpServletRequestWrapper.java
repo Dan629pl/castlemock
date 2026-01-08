@@ -35,6 +35,7 @@ import java.io.InputStreamReader;
  * For example, Spring will read the input stream when creating a multipart request.
  * In this case, without the wrapper, we wouldn't be able to read the
  * input stream again. This would prohibit us from extracting the SOAP body later on.
+ *
  * @author Karl Dahlgren
  * @since 1.18
  */

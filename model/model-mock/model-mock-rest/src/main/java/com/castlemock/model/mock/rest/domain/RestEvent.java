@@ -54,7 +54,7 @@ public class RestEvent extends Event {
     @XmlElement
     private final String methodId;
 
-    private RestEvent(final Builder builder){
+    private RestEvent(final Builder builder) {
         super(builder);
         this.request = Objects.requireNonNull(builder.request, "request");
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
@@ -62,6 +62,10 @@ public class RestEvent extends Event {
         this.resourceId = Objects.requireNonNull(builder.resourceId, "resourceId");
         this.methodId = Objects.requireNonNull(builder.methodId, "methodId");
         this.response = builder.response;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public RestRequest getRequest() {
@@ -115,10 +119,6 @@ public class RestEvent extends Event {
                 ", resourceId='" + resourceId + '\'' +
                 ", methodId='" + methodId + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

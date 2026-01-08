@@ -74,7 +74,7 @@ public class SoapMockResponse {
     @XmlElement(name = "xpathExpression")
     private final List<SoapXPathExpression> xpathExpressions;
 
-    private SoapMockResponse(final Builder builder){
+    private SoapMockResponse(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.body = Objects.requireNonNull(builder.body, "body");
@@ -85,6 +85,10 @@ public class SoapMockResponse {
         this.httpHeaders = Optional.ofNullable(builder.httpHeaders).orElseGet(List::of);
         this.contentEncodings = Optional.ofNullable(builder.contentEncodings).orElseGet(List::of);
         this.xpathExpressions = Optional.ofNullable(builder.xpathExpressions).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -111,11 +115,9 @@ public class SoapMockResponse {
         return httpStatusCode;
     }
 
-
     public Optional<Boolean> getUsingExpressions() {
         return Optional.ofNullable(usingExpressions);
     }
-
 
     public List<HttpHeader> getHttpHeaders() {
         return Optional.ofNullable(httpHeaders)
@@ -123,13 +125,11 @@ public class SoapMockResponse {
                 .orElseGet(List::of);
     }
 
-
     public List<HttpContentEncoding> getContentEncodings() {
         return Optional.ofNullable(contentEncodings)
                 .map(List::copyOf)
                 .orElseGet(List::of);
     }
-
 
     public List<SoapXPathExpression> getXpathExpressions() {
         return Optional.ofNullable(xpathExpressions)
@@ -163,10 +163,6 @@ public class SoapMockResponse {
                                 .map(SoapXPathExpression.Builder::build)
                                 .collect(Collectors.toList()))
                         .orElse(null));
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

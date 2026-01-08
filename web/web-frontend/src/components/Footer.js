@@ -30,7 +30,8 @@ class Footer extends PureComponent {
                 <VersionContext.Consumer>
                     {context => (
                         <div className="login-footer-info">
-                            <a href="https://www.castlemock.com" target="_blank" rel="noopener noreferrer">Castle Mock version. {context}</a>
+                            <a href="https://www.castlemock.com" target="_blank" rel="noopener noreferrer">Castle Mock
+                                version. {context}</a>
                         </div>
                     )}
                 </VersionContext.Consumer>
@@ -47,7 +48,7 @@ class Footer extends PureComponent {
                     Page created: {new Date().toISOString()}
                 </div>
             </div>
-    );
+        );
     }
 }
 

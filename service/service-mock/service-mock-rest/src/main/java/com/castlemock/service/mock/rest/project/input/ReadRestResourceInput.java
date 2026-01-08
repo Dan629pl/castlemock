@@ -36,6 +36,10 @@ public final class ReadRestResourceInput implements Input {
         this.resourceId = Objects.requireNonNull(builder.resourceId, "resourceId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -71,10 +75,6 @@ public final class ReadRestResourceInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -84,22 +84,22 @@ public final class ReadRestResourceInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public ReadRestResourceInput build(){
+        public ReadRestResourceInput build() {
             return new ReadRestResourceInput(this);
         }
 

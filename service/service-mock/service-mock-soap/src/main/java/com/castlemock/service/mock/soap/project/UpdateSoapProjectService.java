@@ -36,6 +36,7 @@ public class UpdateSoapProjectService extends AbstractSoapProjectService impleme
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -47,10 +48,10 @@ public class UpdateSoapProjectService extends AbstractSoapProjectService impleme
         final String soapProjectId = input.getProjectId();
         final Optional<SoapProject> updatedSoapProject = find(soapProjectId)
                 .flatMap(soapProject -> update(soapProjectId, soapProject.toBuilder()
-                    .name(input.getName())
-                    .description(input.getDescription().orElse(null))
-                    .updated(new Date())
-                    .build()));
+                        .name(input.getName())
+                        .description(input.getDescription().orElse(null))
+                        .updated(new Date())
+                        .build()));
         return createServiceResult(UpdateSoapProjectOutput.builder()
                 .project(updatedSoapProject.orElse(null))
                 .build());

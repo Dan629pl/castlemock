@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface SoapStrategy {
 
     SoapStrategyResult process(SoapRequest request, String projectId,
-                                  String portId, SoapOperation operation,
-                                  HttpServletRequest httpServletRequest);
+                               String portId, SoapOperation operation,
+                               HttpServletRequest httpServletRequest);
 
 }

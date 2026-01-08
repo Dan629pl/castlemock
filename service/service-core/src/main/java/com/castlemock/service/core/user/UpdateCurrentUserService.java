@@ -36,6 +36,7 @@ public class UpdateCurrentUserService extends AbstractUserService implements Ser
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -46,7 +47,7 @@ public class UpdateCurrentUserService extends AbstractUserService implements Ser
         final UpdateCurrentUserInput input = serviceTask.getInput();
         final String loggedInUsername = serviceTask.getServiceConsumer();
 
-        if(!input.getUsername().equalsIgnoreCase(loggedInUsername)){
+        if (!input.getUsername().equalsIgnoreCase(loggedInUsername)) {
             final User existingUser = findByUsername(input.getUsername()).orElse(null);
             Preconditions.checkArgument(existingUser == null, "Invalid username. Username is already used");
         }

@@ -34,6 +34,10 @@ public final class UpdateSoapOperationOutput implements Output {
         this.operation = builder.operation;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<SoapOperation> getOperation() {
         return Optional.ofNullable(operation);
     }
@@ -58,23 +62,19 @@ public final class UpdateSoapOperationOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapOperation operation;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder operation(final SoapOperation operation){
+        public Builder operation(final SoapOperation operation) {
             this.operation = operation;
             return this;
         }
 
-        public UpdateSoapOperationOutput build(){
+        public UpdateSoapOperationOutput build() {
             return new UpdateSoapOperationOutput(this);
         }
     }

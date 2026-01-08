@@ -40,6 +40,10 @@ public final class UpdateCurrentRestMockResponseSequenceIndexInput implements In
         this.currentRestMockResponseSequenceIndex = Objects.requireNonNull(builder.currentRestMockResponseSequenceIndex, "currentRestMockResponseSequenceIndex");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -86,10 +90,6 @@ public final class UpdateCurrentRestMockResponseSequenceIndexInput implements In
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -101,32 +101,32 @@ public final class UpdateCurrentRestMockResponseSequenceIndexInput implements In
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public Builder currentRestMockResponseSequenceIndex(final Integer currentRestMockResponseSequenceIndex){
+        public Builder currentRestMockResponseSequenceIndex(final Integer currentRestMockResponseSequenceIndex) {
             this.currentRestMockResponseSequenceIndex = currentRestMockResponseSequenceIndex;
             return this;
         }
 
-        public UpdateCurrentRestMockResponseSequenceIndexInput build(){
+        public UpdateCurrentRestMockResponseSequenceIndexInput build() {
             return new UpdateCurrentRestMockResponseSequenceIndexInput(this);
         }
 

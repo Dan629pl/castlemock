@@ -51,7 +51,7 @@ public class ServiceProcessorImplTest {
 
     @Test
     @SuppressWarnings({"unchecked", "rawtypes"})
-    public void testProcess(){
+    public void testProcess() {
         Service service = Mockito.mock(Service.class);
         Input input = Mockito.mock(Input.class);
         Output output = Mockito.mock(Output.class);

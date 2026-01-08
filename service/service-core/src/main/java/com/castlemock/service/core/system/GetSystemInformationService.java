@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Value;
 /**
  * The {@link GetSystemInformationService} is used to retrieve information about the system which
  * the application is deployed on.
+ *
  * @author Karl Dahlgren
  * @author Mohammad Hewedy
  * @since 1.7

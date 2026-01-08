@@ -18,10 +18,7 @@ import React, {PureComponent} from "react";
 import axios from "axios";
 import validateErrorResponse from "../../../../../utility/HttpResponseValidator";
 import preventEnterEvent from "../../../../../utility/KeyboardUtility";
-import {
-    methodResponseStrategyFormatter,
-    methodStatusFormatter
-} from "../../utility/RestFormatter";
+import {methodResponseStrategyFormatter, methodStatusFormatter} from "../../utility/RestFormatter";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -50,40 +47,45 @@ class UpdateMethodModal extends PureComponent {
         this.getMethod();
     }
 
-    onNameChange(name){
-        this.setState({ updateMethod: {
+    onNameChange(name) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 name: name
             }
         });
     }
 
-    onTypeChange(httpMethod){
-        this.setState({ updateMethod: {
+    onTypeChange(httpMethod) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 httpMethod: httpMethod
             }
         });
     }
 
-    onStatusChange(status){
-        this.setState({ updateMethod: {
+    onStatusChange(status) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 status: status
             }
         });
     }
 
-    onResponseStrategyChange(responseStrategy){
-        this.setState({ updateMethod: {
+    onResponseStrategyChange(responseStrategy) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 responseStrategy: responseStrategy
             }
         });
     }
 
-    onForwardedEndpointChange(forwardedEndpoint){
-        this.setState({ updateMethod: {
+    onForwardedEndpointChange(forwardedEndpoint) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 forwardedEndpoint: forwardedEndpoint,
                 automaticForward: forwardedEndpoint ? this.state.updateMethod.automaticForward : false
@@ -91,24 +93,27 @@ class UpdateMethodModal extends PureComponent {
         });
     }
 
-    onSimulateNetworkDelayChange(simulateNetworkDelay){
-        this.setState({ updateMethod: {
+    onSimulateNetworkDelayChange(simulateNetworkDelay) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 simulateNetworkDelay: simulateNetworkDelay
             }
         });
     }
 
-    onAutomaticForward(automaticForward){
-        this.setState({ updateMethod: {
+    onAutomaticForward(automaticForward) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 automaticForward: automaticForward
             }
         });
     }
 
-    onNetworkDelayChange(networkDelay){
-        this.setState({ updateMethod: {
+    onNetworkDelayChange(networkDelay) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 networkDelay: networkDelay
             }
@@ -139,8 +144,9 @@ class UpdateMethodModal extends PureComponent {
             });
     }
 
-    onDefaultMockResponseIdChange(defaultMockResponseId){
-        this.setState({ updateMethod: {
+    onDefaultMockResponseIdChange(defaultMockResponseId) {
+        this.setState({
+            updateMethod: {
                 ...this.state.updateMethod,
                 defaultMockResponseId: defaultMockResponseId,
                 automaticForward: defaultMockResponseId == "-- select an option --" ? this.state.updateMethod.automaticForward : false
@@ -148,7 +154,7 @@ class UpdateMethodModal extends PureComponent {
         });
     }
 
-    onUpdateMethodClick(){
+    onUpdateMethodClick() {
         axios
             .put(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId + "/application/" +
                 this.props.applicationId + "/resource/" + this.props.resourceId + "/method/" + this.props.methodId, this.state.updateMethod)
@@ -183,13 +189,15 @@ class UpdateMethodModal extends PureComponent {
                                 <label className="col-sm-3 col-form-label">Name</label>
                                 <div className="col-sm-9">
                                     <input className="form-control" type="text" value={this.state.updateMethod.name}
-                                           onChange={event => this.onNameChange(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                           onChange={event => this.onNameChange(event.target.value)}
+                                           onKeyDown={preventEnterEvent}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Type</label>
                                 <div className="col-sm-9">
-                                    <select id="inputStatus" className="form-control" value={this.state.updateMethod.httpMethod}
+                                    <select id="inputStatus" className="form-control"
+                                            value={this.state.updateMethod.httpMethod}
                                             onChange={event => this.onTypeChange(event.target.value)}>
                                         <option value={"GET"}>GET</option>
                                         <option value={"POST"}>POST</option>
@@ -206,7 +214,8 @@ class UpdateMethodModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Status</label>
                                 <div className="col-sm-9">
-                                    <select id="inputStatus" className="form-control" value={this.state.updateMethod.status}
+                                    <select id="inputStatus" className="form-control"
+                                            value={this.state.updateMethod.status}
                                             onChange={event => this.onStatusChange(event.target.value)}>
                                         <option value={"MOCKED"}>{methodStatusFormatter("MOCKED")}</option>
                                         <option value={"DISABLED"}>{methodStatusFormatter("DISABLED")}</option>
@@ -224,11 +233,15 @@ class UpdateMethodModal extends PureComponent {
                                             value={this.state.updateMethod.responseStrategy}
                                             onChange={event => this.onResponseStrategyChange(event.target.value)}>
                                         <option value={"RANDOM"}>{methodResponseStrategyFormatter("RANDOM")}</option>
-                                        <option value={"SEQUENCE"}>{methodResponseStrategyFormatter("SEQUENCE")}</option>
+                                        <option
+                                            value={"SEQUENCE"}>{methodResponseStrategyFormatter("SEQUENCE")}</option>
                                         <option value={"XPATH"}>{methodResponseStrategyFormatter("XPATH")}</option>
-                                        <option value={"JSON_PATH"}>{methodResponseStrategyFormatter("JSON_PATH")}</option>
-                                        <option value={"QUERY_MATCH"}>{methodResponseStrategyFormatter("QUERY_MATCH")}</option>
-                                        <option value={"HEADER_QUERY_MATCH"}>{methodResponseStrategyFormatter("HEADER_QUERY_MATCH")}</option>
+                                        <option
+                                            value={"JSON_PATH"}>{methodResponseStrategyFormatter("JSON_PATH")}</option>
+                                        <option
+                                            value={"QUERY_MATCH"}>{methodResponseStrategyFormatter("QUERY_MATCH")}</option>
+                                        <option
+                                            value={"HEADER_QUERY_MATCH"}>{methodResponseStrategyFormatter("HEADER_QUERY_MATCH")}</option>
                                     </select>
                                 </div>
                             </div>
@@ -237,16 +250,17 @@ class UpdateMethodModal extends PureComponent {
                                 <div className="col-sm-9">
                                     <input className="form-control" type="text"
                                            value={this.state.updateMethod.forwardedEndpoint}
-                                           onChange={event => this.onForwardedEndpointChange(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                           onChange={event => this.onForwardedEndpointChange(event.target.value)}
+                                           onKeyDown={preventEnterEvent}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Automatic forward with no match</label>
                                 <div className="col-sm-9">
                                     <input type="checkbox"
-                                            checked={this.canEnableAutomaticForward() && this.state.updateMethod.automaticForward}
-                                            disabled={!this.canEnableAutomaticForward()}
-                                            onChange={event => this.onAutomaticForward(event.target.checked)}/>
+                                           checked={this.canEnableAutomaticForward() && this.state.updateMethod.automaticForward}
+                                           disabled={!this.canEnableAutomaticForward()}
+                                           onChange={event => this.onAutomaticForward(event.target.checked)}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -259,8 +273,10 @@ class UpdateMethodModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-3 col-form-label">Network delay</label>
                                 <div className="col-sm-9">
-                                    <input className="form-control" type="text" value={this.state.updateMethod.networkDelay}
-                                           onChange={event => this.onNetworkDelayChange(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                    <input className="form-control" type="text"
+                                           value={this.state.updateMethod.networkDelay}
+                                           onChange={event => this.onNetworkDelayChange(event.target.value)}
+                                           onKeyDown={preventEnterEvent}/>
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -268,16 +284,19 @@ class UpdateMethodModal extends PureComponent {
                                 <div className="col-sm-9">
                                     <select id="inputStatus" className="form-control"
                                             onChange={event => this.onDefaultMockResponseIdChange(event.target.value)}>
-                                        <option value={null}> -- select an option -- </option>
+                                        <option value={null}> -- select an option --</option>
                                         {this.state.mockResponses.map(mockResponse =>
-                                            <option key={mockResponse.id} value={mockResponse.id} selected={mockResponse.id === this.state.updateMethod.defaultMockResponseId}>{mockResponse.name}</option>
+                                            <option key={mockResponse.id} value={mockResponse.id}
+                                                    selected={mockResponse.id === this.state.updateMethod.defaultMockResponseId}>{mockResponse.name}</option>
                                         )};
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateMethodClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateMethodClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -36,6 +36,10 @@ public final class ReadAllRestProjectsOutput implements Output {
                 .orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public List<RestProject> getProjects() {
         return projects;
     }
@@ -60,10 +64,6 @@ public final class ReadAllRestProjectsOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private List<RestProject> projects;
@@ -71,12 +71,12 @@ public final class ReadAllRestProjectsOutput implements Output {
         private Builder() {
         }
 
-        public Builder projects(final List<RestProject> projects){
+        public Builder projects(final List<RestProject> projects) {
             this.projects = projects;
             return this;
         }
 
-        public ReadAllRestProjectsOutput build(){
+        public ReadAllRestProjectsOutput build() {
             return new ReadAllRestProjectsOutput(this);
         }
 

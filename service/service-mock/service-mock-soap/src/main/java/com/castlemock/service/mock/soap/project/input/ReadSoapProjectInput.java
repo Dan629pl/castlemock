@@ -32,6 +32,10 @@ public final class ReadSoapProjectInput implements Input {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -56,23 +60,19 @@ public final class ReadSoapProjectInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public ReadSoapProjectInput build(){
+        public ReadSoapProjectInput build() {
             return new ReadSoapProjectInput(this);
         }
     }

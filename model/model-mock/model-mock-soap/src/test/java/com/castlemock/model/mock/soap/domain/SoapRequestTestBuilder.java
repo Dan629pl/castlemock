@@ -22,7 +22,7 @@ import java.util.Set;
 
 public final class SoapRequestTestBuilder {
 
-    public static SoapRequest.Builder builder(){
+    public static SoapRequest.Builder builder() {
         final String body = """
                 <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:web="http://www.castlemock.com/">
                    <soap:Header/>

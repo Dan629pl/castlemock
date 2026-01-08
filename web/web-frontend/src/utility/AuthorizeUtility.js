@@ -14,15 +14,15 @@
  limitations under the License.
  */
 
-function isAdministrator(role){
+function isAdministrator(role) {
     return role === "ADMIN";
 }
 
-function canModify(role){
+function canModify(role) {
     return role === 'MODIFIER' || role === "ADMIN";
 }
 
-function isOnlyReader(role){
+function isOnlyReader(role) {
     return role === 'READER';
 }
 

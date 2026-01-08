@@ -34,6 +34,10 @@ public class DuplicateRestMockResponsesRequest {
         this.mockResponseIds = Objects.requireNonNull(builder.mockResponseIds, "mockResponseIds");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getMockResponseIds() {
         return Optional.of(mockResponseIds)
                 .map(Set::copyOf)
@@ -58,10 +62,6 @@ public class DuplicateRestMockResponsesRequest {
         return "DuplicateRestMockOperationsRequest{" +
                 "mockResponseIds=" + mockResponseIds +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

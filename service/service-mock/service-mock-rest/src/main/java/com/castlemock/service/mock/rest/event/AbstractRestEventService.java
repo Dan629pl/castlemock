@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * The REST event service is responsible for all the functionality related to the REST events.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */

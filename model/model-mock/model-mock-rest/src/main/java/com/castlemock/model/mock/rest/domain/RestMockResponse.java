@@ -89,7 +89,7 @@ public class RestMockResponse {
     private final List<RestHeaderQuery> headerQueries;
 
 
-    private RestMockResponse(final Builder builder){
+    private RestMockResponse(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.status = Objects.requireNonNull(builder.status, "status");
         this.name = Objects.requireNonNull(builder.name, "name");
@@ -103,6 +103,10 @@ public class RestMockResponse {
         this.xpathExpressions = Optional.ofNullable(builder.xpathExpressions).orElseGet(List::of);
         this.jsonPathExpressions = Optional.ofNullable(builder.jsonPathExpressions).orElseGet(List::of);
         this.headerQueries = Optional.ofNullable(builder.headerQueries).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -213,8 +217,6 @@ public class RestMockResponse {
                 '}';
     }
 
-
-
     public Builder toBuilder() {
         return builder()
                 .id(id)
@@ -226,9 +228,9 @@ public class RestMockResponse {
                 .usingExpressions(usingExpressions)
                 .httpHeaders(Optional.ofNullable(httpHeaders)
                         .map(headers -> headers.stream()
-                        .map(HttpHeader::toBuilder)
-                        .map(HttpHeader.Builder::build)
-                        .collect(Collectors.toList()))
+                                .map(HttpHeader::toBuilder)
+                                .map(HttpHeader.Builder::build)
+                                .collect(Collectors.toList()))
                         .orElse(null))
                 .contentEncodings(Optional.ofNullable(contentEncodings)
                         .map(ArrayList::new)
@@ -260,11 +262,6 @@ public class RestMockResponse {
                                 .map(RestHeaderQuery.Builder::build)
                                 .collect(Collectors.toList()))
                         .orElse(null));
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

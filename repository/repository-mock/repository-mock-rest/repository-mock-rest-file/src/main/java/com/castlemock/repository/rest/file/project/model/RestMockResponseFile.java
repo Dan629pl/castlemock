@@ -95,6 +95,10 @@ public class RestMockResponseFile implements Saveable<String> {
                 .orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -162,11 +166,6 @@ public class RestMockResponseFile implements Saveable<String> {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
-
-    public static Builder builder() {
-        return new Builder();
-    }
-
 
     public static final class Builder {
         private String id;

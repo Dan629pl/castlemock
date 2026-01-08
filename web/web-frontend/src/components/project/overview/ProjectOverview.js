@@ -21,14 +21,14 @@ import PaginationFactory from "react-bootstrap-table2-paginator";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import Badge from 'react-bootstrap/Badge'
-import {faTrash, faFile, faCloudUploadAlt, faCheckCircle} from '@fortawesome/free-solid-svg-icons'
+import {faCheckCircle, faCloudUploadAlt, faFile, faTrash} from '@fortawesome/free-solid-svg-icons'
 import validateErrorResponse from "../../../utility/HttpResponseValidator"
 import AuthenticationContext from "../../../context/AuthenticationContext";
 import {isOnlyReader} from "../../../utility/AuthorizeUtility";
 import preventEnterEvent from "../../../utility/KeyboardUtility";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 
 const SELECT = true;
 const DESELECT = false;
@@ -126,7 +126,8 @@ class ProjectOverview extends PureComponent {
     }
 
     setNewProjectName(name) {
-        this.setState({ newProject: {
+        this.setState({
+            newProject: {
                 ...this.state.newProject,
                 name: name,
             }
@@ -134,7 +135,8 @@ class ProjectOverview extends PureComponent {
     }
 
     setNewProjectDescription(description) {
-        this.setState({ newProject: {
+        this.setState({
+            newProject: {
                 ...this.state.newProject,
                 description: description
             }
@@ -142,7 +144,8 @@ class ProjectOverview extends PureComponent {
     }
 
     setNewProjectType(projectType) {
-        this.setState({ newProject: {
+        this.setState({
+            newProject: {
                 ...this.state.newProject,
                 projectType: projectType.toLowerCase()
             }
@@ -150,7 +153,7 @@ class ProjectOverview extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -162,17 +165,17 @@ class ProjectOverview extends PureComponent {
     }
 
     typeFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
-        if(cell === "soap") {
+        if (cell === "soap") {
             return (
                 <div>
                     <Badge bg="primary" text="light">{"SOAP"}</Badge>
                 </div>
             )
-        } else if(cell === "rest") {
+        } else if (cell === "rest") {
             return (
                 <div>
                     <Badge bg="success" text="light">{"REST"}</Badge>
@@ -182,7 +185,7 @@ class ProjectOverview extends PureComponent {
     }
 
     typeHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '150px' };
+        return {'whiteSpace': 'nowrap', width: '150px'};
     }
 
     onRowSelect(value, mode) {
@@ -193,9 +196,9 @@ class ProjectOverview extends PureComponent {
             description: value.description,
             type: value.type
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             projects.push(project);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = projects.indexOf(project);
             projects.splice(index, 1);
         }
@@ -205,7 +208,7 @@ class ProjectOverview extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let projects = [];
             this.state.projects.forEach(value => {
                 let project = {
@@ -219,7 +222,7 @@ class ProjectOverview extends PureComponent {
             this.setState({
                 selectedProjects: projects
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedProjects: []
             });
@@ -258,7 +261,7 @@ class ProjectOverview extends PureComponent {
         data.append('file', this.state.importProjectSelectedFile);
 
         axios
-            .post(process.env.PUBLIC_URL + "/api/rest/"  + this.state.importProjectProjectType + "/project/import", data, {})
+            .post(process.env.PUBLIC_URL + "/api/rest/" + this.state.importProjectProjectType + "/project/import", data, {})
             .then(response => {
                 this.getProjects();
             })
@@ -306,8 +309,15 @@ class ProjectOverview extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#newProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faFile} className="button-icon"/><span>New project</span></button>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#importProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/><span>Import project</span></button>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#newProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faFile} className="button-icon"/><span>New project</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#importProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faCloudUploadAlt} className="button-icon"/><span>Import project</span>
+                                    </button>
                                 </div>
                             )}
                         </AuthenticationContext.Consumer>
@@ -315,25 +325,26 @@ class ProjectOverview extends PureComponent {
                     <div className="panel panel-primary table-panel">
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
-                                             data={ this.state.projects }
+                                             columns={this.columns}
+                                             data={this.state.projects}
                                              keyField="id"
                                              search>
                                 {
                                     (props) => (
                                         <div>
                                             <div>
-                                                <SearchBar { ...props.searchProps } className={"table-filter-field"} />
+                                                <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.state.projects} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
-                                                                selectRow={ this.selectRow }
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.state.projects} columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
+                                                                selectRow={this.selectRow}
                                                                 striped
                                                                 noDataIndication="Click on 'New project' button to create a new project"
-                                                                pagination={ PaginationFactory() }/>
+                                                                pagination={PaginationFactory()}/>
                                             </div>
-                                            </div>
+                                        </div>
                                     )}
                             </ToolkitProvider>
                         </div>
@@ -341,16 +352,20 @@ class ProjectOverview extends PureComponent {
                             <div className="panel-buttons">
                                 <AuthenticationContext.Consumer>
                                     {context => (
-                                        <button className="btn btn-danger demo-button-disabled panel-button" disabled={this.state.selectedProjects.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-toggle="modal" data-target="#deleteProjectsModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete projects</span></button>
-                                            )}
+                                        <button className="btn btn-danger demo-button-disabled panel-button"
+                                                disabled={this.state.selectedProjects.length === 0 || isOnlyReader(context.authentication.role)}
+                                                data-toggle="modal" data-target="#deleteProjectsModal"><FontAwesomeIcon
+                                            icon={faTrash} className="button-icon"/><span>Delete projects</span>
+                                        </button>
+                                    )}
                                 </AuthenticationContext.Consumer>
                             </div>
                         </div>
                     </div>
-                 </section>
+                </section>
 
-                <div className="modal fade" id="newProjectModal" tabIndex="-1" role="dialog" aria-labelledby="newProjectModalLabel" aria-hidden="true">
+                <div className="modal fade" id="newProjectModal" tabIndex="-1" role="dialog"
+                     aria-labelledby="newProjectModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -364,19 +379,27 @@ class ProjectOverview extends PureComponent {
                                     <div className="form-group row">
                                         <label htmlFor="newProjectName" className="col-sm-2 col-form-label">Name</label>
                                         <div className="col-sm-10">
-                                            <input className="form-control validate" type="text" name="newProjectName" id="newProjectName" onChange={event => this.setNewProjectName(event.target.value)} onKeyDown={preventEnterEvent} required/>
+                                            <input className="form-control validate" type="text" name="newProjectName"
+                                                   id="newProjectName"
+                                                   onChange={event => this.setNewProjectName(event.target.value)}
+                                                   onKeyDown={preventEnterEvent} required/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlFor="newProjectDescription" className="col-sm-2 col-form-label">Description</label>
+                                        <label htmlFor="newProjectDescription"
+                                               className="col-sm-2 col-form-label">Description</label>
                                         <div className="col-sm-10">
-                                            <textarea className="form-control" name="newProjectDescription" id="newProjectDescription" onChange={event => this.setNewProjectDescription(event.target.value)}/>
+                                            <textarea className="form-control" name="newProjectDescription"
+                                                      id="newProjectDescription"
+                                                      onChange={event => this.setNewProjectDescription(event.target.value)}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
                                         <label htmlFor="inputState" className="col-sm-2 col-form-label">Type</label>
                                         <div className="col-sm-10">
-                                            <select id="inputState" className="form-control" onChange={event => this.setNewProjectType(event.target.value)} defaultValue={"REST"}>
+                                            <select id="inputState" className="form-control"
+                                                    onChange={event => this.setNewProjectType(event.target.value)}
+                                                    defaultValue={"REST"}>
                                                 <option>REST</option>
                                                 <option>SOAP</option>
                                             </select>
@@ -384,7 +407,10 @@ class ProjectOverview extends PureComponent {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateProjectClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create</button>
+                                    <button className="btn btn-success" data-dismiss="modal"
+                                            onClick={this.onCreateProjectClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                                 className="button-icon"/>Create
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -406,15 +432,19 @@ class ProjectOverview extends PureComponent {
                                     <label className="col-sm-2 col-form-label">File</label>
                                     <div className="col-sm-10">
                                         <div className="custom-file">
-                                            <input type="file" className="custom-file-input" onChange={this.setImportProjectFile}/>
-                                            <label className="custom-file-label" >{this.state.importProjectSelectedFileName}</label>
+                                            <input type="file" className="custom-file-input"
+                                                   onChange={this.setImportProjectFile}/>
+                                            <label
+                                                className="custom-file-label">{this.state.importProjectSelectedFileName}</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label className="col-sm-2 col-form-label">Type</label>
                                     <div className="col-sm-10">
-                                        <select id="inputState" className="form-control" onChange={event => this.setImportProjectType(event.target.value)} defaultValue={"REST"}>
+                                        <select id="inputState" className="form-control"
+                                                onChange={event => this.setImportProjectType(event.target.value)}
+                                                defaultValue={"REST"}>
                                             <option>REST</option>
                                             <option>SOAP</option>
                                         </select>
@@ -422,7 +452,10 @@ class ProjectOverview extends PureComponent {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button className="btn btn-success" data-dismiss="modal" onClick={this.onImportProjectClick}><FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/>Import</button>
+                                <button className="btn btn-success" data-dismiss="modal"
+                                        onClick={this.onImportProjectClick}><FontAwesomeIcon icon={faCloudUploadAlt}
+                                                                                             className="button-icon"/>Import
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -442,23 +475,28 @@ class ProjectOverview extends PureComponent {
                                 <p>Do you want delete the following projects?</p>
                                 <div className="table-result">
                                     <ToolkitProvider bootstrap4
-                                                     columns={ this.deleteColumns}
-                                                     data={ this.state.selectedProjects }
+                                                     columns={this.deleteColumns}
+                                                     data={this.state.selectedProjects}
                                                      keyField="id">
                                         {
                                             (props) => (
                                                 <div>
-                                                    <BootstrapTable { ...props.baseProps } bootstrap4 data={this.state.selectedProjects} columns={this.deleteColumns}
-                                                                    defaultSorted={ this.defaultSort } keyField='id' hover
+                                                    <BootstrapTable {...props.baseProps} bootstrap4
+                                                                    data={this.state.selectedProjects}
+                                                                    columns={this.deleteColumns}
+                                                                    defaultSorted={this.defaultSort} keyField='id' hover
                                                                     striped
-                                                                    pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                    pagination={PaginationFactory({hideSizePerPage: true})}/>
                                                 </div>
                                             )}
                                     </ToolkitProvider>
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button className="btn btn-danger"data-dismiss="modal" onClick={this.onDeleteProjectsClick}><FontAwesomeIcon icon={faTrash} className="button-icon"/>Delete</button>
+                                <button className="btn btn-danger" data-dismiss="modal"
+                                        onClick={this.onDeleteProjectsClick}><FontAwesomeIcon icon={faTrash}
+                                                                                              className="button-icon"/>Delete
+                                </button>
                             </div>
                         </div>
                     </div>

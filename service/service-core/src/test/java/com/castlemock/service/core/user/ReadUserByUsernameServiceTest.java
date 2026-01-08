@@ -53,7 +53,7 @@ public class ReadUserByUsernameServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final User user = UserTestBuilder.builder()
                 .id("123")
                 .username("Username")

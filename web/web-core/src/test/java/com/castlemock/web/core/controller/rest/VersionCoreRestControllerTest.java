@@ -33,14 +33,14 @@ class VersionCoreRestControllerTest {
     private VersionCoreRestController versionController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         final ServiceProcessor serviceProcessor = mock(ServiceProcessor.class);
         this.versionController = new VersionCoreRestController(serviceProcessor);
     }
 
     @Test
     @DisplayName("Get version")
-    void testGetVersion(){
+    void testGetVersion() {
         final ResponseEntity<VersionResponse> responseEntity = this.versionController.getVersion();
 
         assertNotNull(responseEntity);

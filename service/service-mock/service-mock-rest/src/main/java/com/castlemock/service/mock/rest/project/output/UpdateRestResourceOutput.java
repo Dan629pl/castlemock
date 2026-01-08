@@ -34,6 +34,10 @@ public final class UpdateRestResourceOutput implements Output {
         this.resource = builder.resource;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<RestResource> getResource() {
         return Optional.ofNullable(resource);
     }
@@ -58,10 +62,6 @@ public final class UpdateRestResourceOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestResource resource;
@@ -69,12 +69,12 @@ public final class UpdateRestResourceOutput implements Output {
         private Builder() {
         }
 
-        public Builder resource(final RestResource resource){
+        public Builder resource(final RestResource resource) {
             this.resource = resource;
             return this;
         }
 
-        public UpdateRestResourceOutput build(){
+        public UpdateRestResourceOutput build() {
             return new UpdateRestResourceOutput(this);
         }
 

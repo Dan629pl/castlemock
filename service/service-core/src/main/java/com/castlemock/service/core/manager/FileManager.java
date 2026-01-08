@@ -41,21 +41,22 @@ import java.util.List;
 
 /**
  * The FileManager provides functionality to upload a file to the server.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
 @Component
 public class FileManager {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileManager.class);
     @Value(value = "${temp.file.directory}")
     private String tempFilesFolder;
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileManager.class);
 
     public File uploadFile(final MultipartFile file) throws IOException {
         final File fileDirectory = new File(tempFilesFolder);
 
         if (!fileDirectory.exists()) {
-            if(fileDirectory.mkdirs()) {
+            if (fileDirectory.mkdirs()) {
                 LOGGER.debug("Created temp file directory");
             } else {
                 throw new IllegalStateException("Unable to create file directory");
@@ -79,7 +80,7 @@ public class FileManager {
         final File fileDirectory = new File(tempFilesFolder);
 
         if (!fileDirectory.exists()) {
-            if(fileDirectory.mkdirs()) {
+            if (fileDirectory.mkdirs()) {
                 LOGGER.debug("Created temp file directory");
             } else {
                 throw new IllegalStateException("Unable to create file directory");
@@ -90,8 +91,8 @@ public class FileManager {
         final String fileName = generateNewFileName();
         final File file = new File(fileDirectory.getAbsolutePath() + File.separator + fileName);
 
-        if(!file.exists()){
-            if(file.createNewFile()) {
+        if (!file.exists()) {
+            if (file.createNewFile()) {
                 LOGGER.debug("Created file");
             } else {
                 throw new IllegalStateException("Unable to create file directory");
@@ -107,31 +108,31 @@ public class FileManager {
 
     /**
      * The method takes a file that has been uploaded to the server and deletes it
+     *
      * @param file The file of the file that will be deleted
      */
-    public void deleteUploadedFile(final File file){
+    public void deleteUploadedFile(final File file) {
         Preconditions.checkNotNull(file, "Uploaded file cannot be null");
         LOGGER.debug("Deleting: " + file.getName());
         final boolean deleted = file.delete();
-        if(!deleted) {
+        if (!deleted) {
             LOGGER.warn("Unable to delete the following file: " + file.getName());
         }
     }
 
     /**
      * The method provides the functionality to delete a file from the file system.
+     *
      * @param file The file that will be deleted.
      * @return The result of the deletion.
      */
-    public boolean deleteFile(final File file){
+    public boolean deleteFile(final File file) {
         return file.delete();
     }
 
-    private String generateNewFileName(){
+    private String generateNewFileName() {
         return "UploadedFile-" + RandomStringUtils.insecure().next(6, true, true);
     }
-
-
 
 
 }

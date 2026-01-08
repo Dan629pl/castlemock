@@ -17,7 +17,7 @@
 import React, {PureComponent} from "react";
 import axios from "axios";
 import validateErrorResponse from "../../../utility/HttpResponseValidator";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import preventEnterEvent from "../../../utility/KeyboardUtility";
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -51,7 +51,8 @@ class NewUserModal extends PureComponent {
             newUser: {
                 ...this.state.newUser,
                 username: username
-            } });
+            }
+        });
     }
 
     setNewFullName(fullName) {
@@ -59,7 +60,8 @@ class NewUserModal extends PureComponent {
             newUser: {
                 ...this.state.newUser,
                 fullName: fullName
-            } });
+            }
+        });
     }
 
     setNewEmail(email) {
@@ -125,33 +127,48 @@ class NewUserModal extends PureComponent {
                         <div className="modal-body">
                             <form>
                                 <div className="form-group row">
-                                    <label htmlFor="newUserUserName" className="col-sm-2 col-form-label">Username</label>
+                                    <label htmlFor="newUserUserName"
+                                           className="col-sm-2 col-form-label">Username</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" name="newUserUserName" id="newUserUserName" onChange={event => this.setNewUserName(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                        <input className="form-control" type="text" name="newUserUserName"
+                                               id="newUserUserName"
+                                               onChange={event => this.setNewUserName(event.target.value)}
+                                               onKeyDown={preventEnterEvent}/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor="newUserName" className="col-sm-2 col-form-label">Name</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" name="newUserName" id="newUserName" onChange={event => this.setNewFullName(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                        <input className="form-control" type="text" name="newUserName" id="newUserName"
+                                               onChange={event => this.setNewFullName(event.target.value)}
+                                               onKeyDown={preventEnterEvent}/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor="newUserEmail" className="col-sm-2 col-form-label">Email</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" name="newUserEmail" id="newUserEmail" onChange={event => this.setNewEmail(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                        <input className="form-control" type="text" name="newUserEmail"
+                                               id="newUserEmail"
+                                               onChange={event => this.setNewEmail(event.target.value)}
+                                               onKeyDown={preventEnterEvent}/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label htmlFor="newUserPassword" className="col-sm-2 col-form-label">Password</label>
+                                    <label htmlFor="newUserPassword"
+                                           className="col-sm-2 col-form-label">Password</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" name="newUserPassword" id="newUserPassword" onChange={event => this.setNewPassword(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                        <input className="form-control" type="text" name="newUserPassword"
+                                               id="newUserPassword"
+                                               onChange={event => this.setNewPassword(event.target.value)}
+                                               onKeyDown={preventEnterEvent}/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
                                     <label htmlFor="inputState" className="col-sm-2 col-form-label">Role</label>
                                     <div className="col-sm-10">
-                                        <select id="inputState" className="form-control" onChange={event => this.setNewRole(event.target.value)} defaultValue={"READER"}>
+                                        <select id="inputState" className="form-control"
+                                                onChange={event => this.setNewRole(event.target.value)}
+                                                defaultValue={"READER"}>
                                             <option>READER</option>
                                             <option>MODIFIER</option>
                                             <option>ADMIN</option>
@@ -161,7 +178,9 @@ class NewUserModal extends PureComponent {
                                 <div className="form-group row">
                                     <label htmlFor="inputState" className="col-sm-2 col-form-label">Status</label>
                                     <div className="col-sm-10">
-                                        <select id="inputState" className="form-control" onChange={event => this.setNewStatus(event.target.value)} defaultValue={"ACTIVE"}>
+                                        <select id="inputState" className="form-control"
+                                                onChange={event => this.setNewStatus(event.target.value)}
+                                                defaultValue={"ACTIVE"}>
                                             <option>ACTIVE</option>
                                             <option>INACTIVE</option>
                                         </select>
@@ -170,7 +189,9 @@ class NewUserModal extends PureComponent {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateUserClick}><FontAwesomeIcon icon={faUser} className="button-icon"/>Create</button>
+                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateUserClick}>
+                                <FontAwesomeIcon icon={faUser} className="button-icon"/>Create
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -44,6 +44,10 @@ public final class IdentifyRestMethodInput implements Input {
         this.httpParameters = Optional.ofNullable(builder.httpParameters).orElseGet(Set::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -60,9 +64,11 @@ public final class IdentifyRestMethodInput implements Input {
         return httpMethod;
     }
 
-    public Set<HttpParameter> getHttpParameters(){ return Optional.ofNullable(httpParameters)
-            .map(Set::copyOf)
-            .orElseGet(Set::of); }
+    public Set<HttpParameter> getHttpParameters() {
+        return Optional.ofNullable(httpParameters)
+                .map(Set::copyOf)
+                .orElseGet(Set::of);
+    }
 
     @Override
     public boolean equals(final Object o) {
@@ -90,10 +96,6 @@ public final class IdentifyRestMethodInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -105,32 +107,32 @@ public final class IdentifyRestMethodInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceUri(final String resourceUri){
+        public Builder resourceUri(final String resourceUri) {
             this.resourceUri = resourceUri;
             return this;
         }
 
-        public Builder httpMethod(final HttpMethod httpMethod){
+        public Builder httpMethod(final HttpMethod httpMethod) {
             this.httpMethod = httpMethod;
             return this;
         }
 
-        public Builder httpParameters(final Set<HttpParameter> httpParameters){
+        public Builder httpParameters(final Set<HttpParameter> httpParameters) {
             this.httpParameters = httpParameters;
             return this;
         }
 
-        public IdentifyRestMethodInput build(){
+        public IdentifyRestMethodInput build() {
             return new IdentifyRestMethodInput(this);
         }
 

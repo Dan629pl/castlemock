@@ -22,22 +22,22 @@ import com.castlemock.model.core.Output;
  * @author Karl Dahlgren
  * @since 1.52
  */
-public final class DuplicateSoapMockResponsesOutput implements Output{
+public final class DuplicateSoapMockResponsesOutput implements Output {
 
     private DuplicateSoapMockResponsesOutput(final Builder builder) {
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public DuplicateSoapMockResponsesOutput build(){
+        public DuplicateSoapMockResponsesOutput build() {
             return new DuplicateSoapMockResponsesOutput(this);
         }
     }

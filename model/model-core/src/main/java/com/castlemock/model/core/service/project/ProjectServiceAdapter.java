@@ -22,10 +22,11 @@ import com.castlemock.model.core.project.Project;
 /**
  * The project service is responsible for providing the basic functionality for all the
  * project services.
- * @author Karl Dahlgren
- * @since 1.0
+ *
  * @param <D> The dto project type
+ * @author Karl Dahlgren
  * @see Project
+ * @since 1.0
  */
 public interface ProjectServiceAdapter<D extends Project> extends ServiceAdapter<Project, D, String> {
 

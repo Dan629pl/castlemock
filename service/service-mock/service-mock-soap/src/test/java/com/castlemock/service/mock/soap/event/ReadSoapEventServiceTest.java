@@ -51,7 +51,7 @@ public class ReadSoapEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
         Mockito.when(repository.findOne(soapEvent.getId())).thenReturn(Optional.of(soapEvent));
 
@@ -62,7 +62,7 @@ public class ReadSoapEventServiceTest {
         final ServiceResult<ReadSoapEventOutput> serviceResult = service.process(serviceTask);
         final ReadSoapEventOutput output = serviceResult.getOutput();
         final SoapEvent returnedSoapEvent = output.getEvent()
-                        .orElse(null);
+                .orElse(null);
 
         Assertions.assertNotNull(returnedSoapEvent);
         Assertions.assertEquals(soapEvent.getId(), returnedSoapEvent.getId());

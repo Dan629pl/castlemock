@@ -32,24 +32,24 @@ public final class ReadRestEventInput implements Input {
         this.restEventId = Objects.requireNonNull(builder.restEventId, "restEventId");
     }
 
-    public String getRestEventId() {
-        return restEventId;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public String getRestEventId() {
+        return restEventId;
     }
 
     public static final class Builder {
 
         private String restEventId;
 
-        public Builder restEventId(final String restEventId){
+        public Builder restEventId(final String restEventId) {
             this.restEventId = restEventId;
             return this;
         }
 
-        public ReadRestEventInput build(){
+        public ReadRestEventInput build() {
             return new ReadRestEventInput(this);
         }
 

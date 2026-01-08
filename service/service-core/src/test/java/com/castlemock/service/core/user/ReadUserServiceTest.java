@@ -51,7 +51,7 @@ public class ReadUserServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final User user = UserTestBuilder.builder().build();
         Mockito.when(repository.findOne(Mockito.anyString())).thenReturn(Optional.of(user));
         final ReadUserInput input = ReadUserInput.builder().userId(user.getId()).build();

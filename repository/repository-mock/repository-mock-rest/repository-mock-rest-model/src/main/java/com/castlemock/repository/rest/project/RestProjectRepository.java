@@ -26,9 +26,10 @@ import java.util.Optional;
  * The REST project file repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and REST project to the file system. Each
  * REST project is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Repository
+ * @since 1.0
  */
 public interface RestProjectRepository extends Repository<RestProject, String> {
 
@@ -38,6 +39,7 @@ public interface RestProjectRepository extends Repository<RestProject, String> {
 
     /**
      * Finds a {@link RestProject} with a provided REST project name.
+     *
      * @param restProjectName The name of the REST project that will be retrieved.
      * @return A {@link RestProject} that matches the provided name.
      * @see RestProject

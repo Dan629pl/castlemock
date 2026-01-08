@@ -34,6 +34,10 @@ public final class ReadSoapPortInput implements Input {
         this.portId = Objects.requireNonNull(builder.portId, "portId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -63,29 +67,25 @@ public final class ReadSoapPortInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public ReadSoapPortInput build(){
+        public ReadSoapPortInput build() {
             return new ReadSoapPortInput(this);
         }
     }

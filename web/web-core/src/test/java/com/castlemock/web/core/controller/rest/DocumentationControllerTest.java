@@ -35,20 +35,20 @@ class DocumentationControllerTest {
     private DocumentationController documentationController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.servletContext = mock(ServletContext.class);
         this.documentationController = new DocumentationController(servletContext);
     }
 
     @Test
     @DisplayName("Get context")
-    void testGetContext(){
+    void testGetContext() {
         final String context = "castlemock";
         when(servletContext.getContextPath()).thenReturn(context);
         final RedirectView redirectView = this.documentationController.forward();
 
         assertNotNull(redirectView);
-        assertEquals(context +  "/swagger-ui/", redirectView.getUrl());
+        assertEquals(context + "/swagger-ui/", redirectView.getUrl());
         verify(servletContext, times(1)).getContextPath();
     }
 

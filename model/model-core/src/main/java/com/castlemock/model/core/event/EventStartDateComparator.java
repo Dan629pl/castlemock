@@ -20,6 +20,7 @@ import java.util.Comparator;
 
 /**
  * The comparator provides the functionality to sort events based on their start date
+ *
  * @author Karl Dahlgren
  * @since 1.3
  */

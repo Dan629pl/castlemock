@@ -23,10 +23,14 @@ public final class Namespace {
     private final String value;
     private final String localName;
 
-    private Namespace(final Builder builder){
+    private Namespace(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.value = Objects.requireNonNull(builder.value);
         this.localName = Objects.requireNonNull(builder.localName);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -41,36 +45,32 @@ public final class Namespace {
         return localName;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private String value;
         private String localName;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder value(final String value){
+        public Builder value(final String value) {
             this.value = value;
             return this;
         }
 
-        public Builder localName(final String localName){
+        public Builder localName(final String localName) {
             this.localName = localName;
             return this;
         }
 
-        public Namespace build(){
+        public Namespace build() {
             return new Namespace(this);
         }
     }

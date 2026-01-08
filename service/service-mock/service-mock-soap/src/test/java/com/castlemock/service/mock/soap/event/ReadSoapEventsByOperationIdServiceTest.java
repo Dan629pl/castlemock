@@ -30,7 +30,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,6 @@ import java.util.List;
  * @since 1.4
  */
 public class ReadSoapEventsByOperationIdServiceTest {
-
 
 
     @Mock
@@ -55,9 +53,9 @@ public class ReadSoapEventsByOperationIdServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<SoapEvent> soapEvents = new ArrayList<>();
-        for(int index = 0; index < 2; index++){
+        for (int index = 0; index < 2; index++) {
             final SoapEvent soapEvent = SoapEventTestBuilder.builder()
                     .operationId("OperationId")
                     .build();
@@ -76,7 +74,7 @@ public class ReadSoapEventsByOperationIdServiceTest {
 
         Assertions.assertEquals(2, output.getSoapEvents().size());
 
-        for(int index = 0; index < 2; index++){
+        for (int index = 0; index < 2; index++) {
             final SoapEvent soapEvent = soapEvents.get(index);
             final SoapEvent returnedSoapEvent = output.getSoapEvents().get(index);
 

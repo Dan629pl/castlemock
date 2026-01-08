@@ -78,6 +78,10 @@ public class RestMethodFile implements Saveable<String> {
         this.automaticForward = builder.automaticForward;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -129,10 +133,6 @@ public class RestMethodFile implements Saveable<String> {
 
     public Boolean getAutomaticForward() {
         return automaticForward;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

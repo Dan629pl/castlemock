@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 /**
  * The service provides the functionality to create new SOAP event and save it to the repository.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -38,6 +39,7 @@ public class CreateSoapEventService extends AbstractSoapEventService implements 
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -47,7 +49,7 @@ public class CreateSoapEventService extends AbstractSoapEventService implements 
     public ServiceResult<CreateSoapEventOutput> process(ServiceTask<CreateSoapEventInput> serviceTask) {
         final CreateSoapEventInput input = serviceTask.getInput();
         final SoapEvent soapEvent = input.getSoapEvent();
-        if(count() >= soapMaxEventCount){
+        if (count() >= soapMaxEventCount) {
             repository.deleteOldestEvent();
         }
         final SoapEvent createdSoapEvent = save(soapEvent);

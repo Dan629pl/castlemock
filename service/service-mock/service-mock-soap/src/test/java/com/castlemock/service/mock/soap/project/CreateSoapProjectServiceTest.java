@@ -30,7 +30,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 /**
  * @author Karl Dahlgren
@@ -51,7 +50,7 @@ public class CreateSoapProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
 
         Mockito.when(repository.save(Mockito.any(SoapProject.class))).thenReturn(soapProject);

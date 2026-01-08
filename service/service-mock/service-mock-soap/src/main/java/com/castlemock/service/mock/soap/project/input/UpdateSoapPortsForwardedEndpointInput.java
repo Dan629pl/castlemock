@@ -37,6 +37,10 @@ public final class UpdateSoapPortsForwardedEndpointInput implements Input {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -72,35 +76,31 @@ public final class UpdateSoapPortsForwardedEndpointInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private Set<String> portIds;
         private String forwardedEndpoint;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portIds(final Set<String> ports){
+        public Builder portIds(final Set<String> ports) {
             this.portIds = ports;
             return this;
         }
 
-        public Builder forwardedEndpoint(final String forwardedEndpoint){
+        public Builder forwardedEndpoint(final String forwardedEndpoint) {
             this.forwardedEndpoint = forwardedEndpoint;
             return this;
         }
 
-        public UpdateSoapPortsForwardedEndpointInput build(){
+        public UpdateSoapPortsForwardedEndpointInput build() {
             return new UpdateSoapPortsForwardedEndpointInput(this);
         }
     }

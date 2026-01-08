@@ -28,9 +28,10 @@ import java.util.Objects;
 
 /**
  * The Event DTO is a DTO (Data transfer object) class for the event class
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Event
+ * @since 1.0
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -49,7 +50,7 @@ public abstract class Event {
     @XmlElement
     protected final Date endDate;
 
-    protected Event(final Builder<?> builder){
+    protected Event(final Builder<?> builder) {
         this.resourceName = Objects.requireNonNull(builder.resourceName, "resourceName");
         this.id = Objects.requireNonNull(builder.id, "id");
         this.startDate = Objects.requireNonNull(builder.startDate, "startDate");

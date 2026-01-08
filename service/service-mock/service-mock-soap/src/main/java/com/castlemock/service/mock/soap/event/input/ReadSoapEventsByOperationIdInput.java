@@ -30,24 +30,24 @@ public final class ReadSoapEventsByOperationIdInput implements Input {
         this.operationId = operationId;
     }
 
-    public String getOperationId() {
-        return operationId;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public String getOperationId() {
+        return operationId;
     }
 
     public static final class Builder {
 
         private String operationId;
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public ReadSoapEventsByOperationIdInput build(){
+        public ReadSoapEventsByOperationIdInput build() {
             return new ReadSoapEventsByOperationIdInput(this.operationId);
         }
 

@@ -35,9 +35,13 @@ public class CreateRestMethodRequest {
     private final String name;
     private final HttpMethod httpMethod;
 
-    private CreateRestMethodRequest(final Builder builder){
+    private CreateRestMethodRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.httpMethod = Objects.requireNonNull(builder.httpMethod, "httpMethod");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -69,10 +73,6 @@ public class CreateRestMethodRequest {
                 "name='" + name + '\'' +
                 ", httpMethod=" + httpMethod +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -141,7 +141,7 @@ class SoapMockStrategyResultFactoryTest {
         final SoapOperation operation = SoapOperationTestBuilder.builder()
                 .currentResponseSequenceIndex(0)
                 .responseStrategy(SoapResponseStrategy.SEQUENCE)
-                .mockResponses(List.of(mockResponse1,mockResponse2))
+                .mockResponses(List.of(mockResponse1, mockResponse2))
                 .build();
 
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);

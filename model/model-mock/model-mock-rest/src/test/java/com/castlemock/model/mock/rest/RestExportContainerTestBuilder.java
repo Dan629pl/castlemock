@@ -25,9 +25,9 @@ import com.castlemock.model.mock.rest.domain.RestResourceTestBuilder;
 import java.util.List;
 
 public final class RestExportContainerTestBuilder {
-    
+
     private RestExportContainerTestBuilder() {
-        
+
     }
 
     public static RestExportContainer.Builder builder() {
@@ -42,5 +42,5 @@ public final class RestExportContainerTestBuilder {
     public static RestExportContainer build() {
         return builder().build();
     }
-    
+
 }

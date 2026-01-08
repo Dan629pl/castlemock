@@ -32,6 +32,7 @@ public class UpdateRestMethodsForwardedEndpointService extends AbstractRestProje
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -40,7 +41,7 @@ public class UpdateRestMethodsForwardedEndpointService extends AbstractRestProje
     @Override
     public ServiceResult<UpdateRestMethodsForwardedEndpointOutput> process(final ServiceTask<UpdateRestMethodsForwardedEndpointInput> serviceTask) {
         final UpdateRestMethodsForwardedEndpointInput input = serviceTask.getInput();
-        for(String methodId : input.getMethodIds()){
+        for (String methodId : input.getMethodIds()) {
             this.methodRepository.findOne(methodId)
                     .ifPresent(method -> this.methodRepository.update(method.getId(), method.toBuilder()
                             .forwardedEndpoint(input.getForwardedEndpoint())

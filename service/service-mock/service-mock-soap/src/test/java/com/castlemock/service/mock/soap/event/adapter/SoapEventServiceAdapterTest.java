@@ -51,9 +51,9 @@ public class SoapEventServiceAdapterTest {
     }
 
     @Test
-    public void testReadAll(){
+    public void testReadAll() {
         final List<SoapEvent> soapEvents = new ArrayList<>();
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
             soapEvents.add(soapEvent);
 
@@ -64,7 +64,7 @@ public class SoapEventServiceAdapterTest {
 
         final List<SoapEvent> returnedSoapEvents = serviceAdapter.readAll();
 
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final SoapEvent soapEvent = soapEvents.get(index);
             final SoapEvent returnedSoapEvent = returnedSoapEvents.get(index);
 
@@ -76,7 +76,7 @@ public class SoapEventServiceAdapterTest {
     }
 
     @Test
-    public void testClearAll(){
+    public void testClearAll() {
         serviceAdapter.clearAll();
         Mockito.verify(serviceProcessor, Mockito.times(1)).process(Mockito.any(ClearAllSoapEventInput.class));
     }

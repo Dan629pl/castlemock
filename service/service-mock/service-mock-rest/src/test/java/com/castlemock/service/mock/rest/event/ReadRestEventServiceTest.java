@@ -51,7 +51,7 @@ public class ReadRestEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestEvent restEvent = RestEventTestBuilder.builder().build();
         Mockito.when(repository.findOne(restEvent.getId())).thenReturn(Optional.of(restEvent));
 

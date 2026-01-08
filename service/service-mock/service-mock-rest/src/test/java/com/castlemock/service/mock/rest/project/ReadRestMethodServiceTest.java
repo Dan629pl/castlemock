@@ -44,7 +44,7 @@ public class ReadRestMethodServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String defaultMockResponseId = "MockResponseId";
         final RestResource resource = RestResourceTestBuilder.builder().build();
         final RestMethod method = RestMethodTestBuilder.builder()
@@ -79,7 +79,7 @@ public class ReadRestMethodServiceTest {
     }
 
     @Test
-    public void testProcessMissingMockResponse(){
+    public void testProcessMissingMockResponse() {
         final RestResource resource = RestResourceTestBuilder.builder().build();
         final RestMethod method = RestMethodTestBuilder.builder().build();
         final ReadRestMethodInput input =

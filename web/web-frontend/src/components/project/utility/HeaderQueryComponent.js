@@ -76,16 +76,16 @@ class HeaderQueryComponent extends PureComponent {
         };
     }
 
-    onAddHeaderQueryClick(){
+    onAddHeaderQueryClick() {
         this.props.onHeaderQueryAdded(this.state.newHeaderQuery);
     }
 
-    onRemoveHeaderQueryClick(row){
+    onRemoveHeaderQueryClick(row) {
         this.props.onHeaderQueryRemoved(row);
     }
 
     deleteHeaderFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -97,11 +97,12 @@ class HeaderQueryComponent extends PureComponent {
     }
 
     deleteHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '50px' };
+        return {'whiteSpace': 'nowrap', width: '50px'};
     }
 
     setNewHeaderHeader(header) {
-        this.setState({ newHeaderQuery: {
+        this.setState({
+            newHeaderQuery: {
                 ...this.state.newHeaderQuery,
                 header: header
             }
@@ -109,7 +110,8 @@ class HeaderQueryComponent extends PureComponent {
     }
 
     setNewHeaderQuery(query) {
-        this.setState({ newHeaderQuery: {
+        this.setState({
+            newHeaderQuery: {
                 ...this.state.newHeaderQuery,
                 query: query
             }
@@ -117,7 +119,8 @@ class HeaderQueryComponent extends PureComponent {
     }
 
     setNewHeaderMatchAny(matchAny) {
-        this.setState({ newHeaderQuery: {
+        this.setState({
+            newHeaderQuery: {
                 ...this.state.newHeaderQuery,
                 matchAny: matchAny
             }
@@ -125,7 +128,8 @@ class HeaderQueryComponent extends PureComponent {
     }
 
     setNewHeaderMatchCase(matchCase) {
-        this.setState({ newHeaderQuery: {
+        this.setState({
+            newHeaderQuery: {
                 ...this.state.newHeaderQuery,
                 matchCase: matchCase
             }
@@ -133,7 +137,8 @@ class HeaderQueryComponent extends PureComponent {
     }
 
     setNewHeaderMatchRegex(matchRegex) {
-        this.setState({ newHeaderQuery: {
+        this.setState({
+            newHeaderQuery: {
                 ...this.state.newHeaderQuery,
                 matchRegex: matchRegex
             }
@@ -148,13 +153,15 @@ class HeaderQueryComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Header</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={event => this.setNewHeaderHeader(event.target.value)} />
+                            <input className="form-control" type="text"
+                                   onChange={event => this.setNewHeaderHeader(event.target.value)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Query</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={event => this.setNewHeaderQuery(event.target.value)} />
+                            <input className="form-control" type="text"
+                                   onChange={event => this.setNewHeaderQuery(event.target.value)}/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -166,22 +173,27 @@ class HeaderQueryComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Match Case</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewHeaderMatchCase(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewHeaderMatchCase(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Match Regex</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewHeaderMatchRegex(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewHeaderMatchRegex(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <button className="btn btn-success demo-button-disabled menu-button" onClick={this.onAddHeaderQueryClick}><FontAwesomeIcon icon={faPlus} className="button-icon"/><span>Add Header Query</span></button>
+                        <button className="btn btn-success demo-button-disabled menu-button"
+                                onClick={this.onAddHeaderQueryClick}><FontAwesomeIcon icon={faPlus}
+                                                                                      className="button-icon"/><span>Add Header Query</span>
+                        </button>
                     </div>
                 </div>
                 <div className="table-result">
                     <ToolkitProvider bootstrap4
-                                     columns={ this.headerQueryColumns}
+                                     columns={this.headerQueryColumns}
                                      data={this.props.headerQueries}
                                      keyField="header"
                                      search>

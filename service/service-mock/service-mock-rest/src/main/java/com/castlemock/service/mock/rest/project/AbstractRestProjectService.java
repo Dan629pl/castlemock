@@ -55,7 +55,7 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
     protected RestMockResponseRepository mockResponseRepository;
 
 
-    protected Optional<RestProject> deleteProject(final String projectId){
+    protected Optional<RestProject> deleteProject(final String projectId) {
         final List<RestApplication> applications = this.applicationRepository.findWithProjectId(projectId);
 
         applications.stream()
@@ -65,7 +65,7 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
         return this.repository.delete(projectId);
     }
 
-    protected Optional<RestApplication> deleteApplication(final String applicationId){
+    protected Optional<RestApplication> deleteApplication(final String applicationId) {
         final List<RestResource> resources = this.resourceRepository.findWithApplicationId(applicationId);
 
         resources.stream()
@@ -75,7 +75,7 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
         return this.applicationRepository.delete(applicationId);
     }
 
-    protected Optional<RestResource> deleteResource(final String resourceId){
+    protected Optional<RestResource> deleteResource(final String resourceId) {
         final List<RestMethod> methods = this.methodRepository.findWithResourceId(resourceId);
 
         methods.stream()
@@ -84,7 +84,7 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
         return this.resourceRepository.delete(resourceId);
     }
 
-    protected Optional<RestMethod> deleteMethod(final String methodId){
+    protected Optional<RestMethod> deleteMethod(final String methodId) {
         final List<RestMockResponse> responses = this.mockResponseRepository.findWithMethodId(methodId);
 
         responses.stream()
@@ -94,24 +94,25 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
         return this.methodRepository.delete(methodId);
     }
 
-    protected Optional<RestMockResponse> deleteMockResponse(final String mockReponseId){
+    protected Optional<RestMockResponse> deleteMockResponse(final String mockReponseId) {
         return this.mockResponseRepository.delete(mockReponseId);
     }
 
 
     /**
      * Updates a project with new information
-     * @param restProjectId The id of the project that will be updated
+     *
+     * @param restProjectId  The id of the project that will be updated
      * @param updatedProject The updated version of the project
      * @return The updated version project
      */
     @Override
-    protected Optional<RestProject> update(final String restProjectId, final RestProject updatedProject){
+    protected Optional<RestProject> update(final String restProjectId, final RestProject updatedProject) {
         Preconditions.checkNotNull(restProjectId, "Project id be null");
         Preconditions.checkNotNull(updatedProject, "Project cannot be null");
         Preconditions.checkArgument(!updatedProject.getName().isEmpty(), "Invalid project name. Project name cannot be empty");
         final RestProject projectWithName = repository.findRestProjectWithName(updatedProject.getName())
-                        .orElse(null);
+                .orElse(null);
         Preconditions.checkArgument(projectWithName == null || projectWithName.getId().equals(restProjectId), "Project name is already taken");
         return find(restProjectId)
                 .map(project -> super.save(project.toBuilder()
@@ -123,24 +124,25 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
 
     /**
      * Count the method statuses for {@link RestApplication}
+     *
      * @param restApplication The application which statuses will be counted
      * @return The result of the status count
      */
-    protected Map<RestMethodStatus, Integer> getRestMethodStatusCount(final RestApplication restApplication){
+    protected Map<RestMethodStatus, Integer> getRestMethodStatusCount(final RestApplication restApplication) {
         Preconditions.checkNotNull(restApplication, "The REST application cannot be null");
         final Map<RestMethodStatus, Integer> statuses = new HashMap<>();
 
-        for(RestMethodStatus restMethodStatus : RestMethodStatus.values()){
+        for (RestMethodStatus restMethodStatus : RestMethodStatus.values()) {
             statuses.put(restMethodStatus, 0);
         }
 
         final List<String> resourceIds = this.resourceRepository.findIdsWithApplicationId(restApplication.getId());
 
-        for(String resourceId : resourceIds){
+        for (String resourceId : resourceIds) {
             final List<RestMethod> methods = this.methodRepository.findWithResourceId(resourceId);
-            for(RestMethod restMethod : methods){
+            for (RestMethod restMethod : methods) {
                 final RestMethodStatus restMethodStatus = restMethod.getStatus();
-                statuses.put(restMethodStatus, statuses.get(restMethodStatus)+1);
+                statuses.put(restMethodStatus, statuses.get(restMethodStatus) + 1);
             }
 
         }
@@ -149,17 +151,18 @@ public abstract class AbstractRestProjectService extends AbstractService<RestPro
 
     /**
      * Count the method statuses for a {@link RestResource}
+     *
      * @param restResource The resource which statuses will be counted
      * @return The result of the status count
      */
-    protected Map<RestMethodStatus, Integer> getRestMethodStatusCount(final RestResource restResource){
+    protected Map<RestMethodStatus, Integer> getRestMethodStatusCount(final RestResource restResource) {
         Preconditions.checkNotNull(restResource, "The REST resource cannot be null");
         final Map<RestMethodStatus, Integer> statuses = Arrays.stream(RestMethodStatus.values())
                 .collect(toMap(status -> status, status -> 0));
         final List<RestMethod> methods = this.methodRepository.findWithResourceId(restResource.getId());
         methods.stream()
                 .map(RestMethod::getStatus)
-                .forEach(status -> statuses.put(status, statuses.get(status)+1));
+                .forEach(status -> statuses.put(status, statuses.get(status) + 1));
 
         return statuses;
     }

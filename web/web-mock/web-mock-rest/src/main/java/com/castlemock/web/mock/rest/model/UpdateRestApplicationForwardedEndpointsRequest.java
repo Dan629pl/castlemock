@@ -37,6 +37,10 @@ public class UpdateRestApplicationForwardedEndpointsRequest {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getApplicationIds() {
         return Optional.of(applicationIds)
                 .map(Set::copyOf)
@@ -67,10 +71,6 @@ public class UpdateRestApplicationForwardedEndpointsRequest {
                 "applicationIds=" + applicationIds +
                 ", forwardedEndpoint=" + forwardedEndpoint +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

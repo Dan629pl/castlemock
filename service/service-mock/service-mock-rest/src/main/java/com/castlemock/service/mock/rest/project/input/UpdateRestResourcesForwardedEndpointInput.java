@@ -39,6 +39,10 @@ public final class UpdateRestResourcesForwardedEndpointInput implements Input {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -53,10 +57,6 @@ public final class UpdateRestResourcesForwardedEndpointInput implements Input {
 
     public String getForwardedEndpoint() {
         return forwardedEndpoint;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -93,27 +93,27 @@ public final class UpdateRestResourcesForwardedEndpointInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceIds(final Set<String> resourceIds){
+        public Builder resourceIds(final Set<String> resourceIds) {
             this.resourceIds = resourceIds;
             return this;
         }
 
-        public Builder forwardedEndpoint(final String forwardedEndpoint){
+        public Builder forwardedEndpoint(final String forwardedEndpoint) {
             this.forwardedEndpoint = forwardedEndpoint;
             return this;
         }
 
-        public UpdateRestResourcesForwardedEndpointInput build(){
+        public UpdateRestResourcesForwardedEndpointInput build() {
             return new UpdateRestResourcesForwardedEndpointInput(this);
         }
 

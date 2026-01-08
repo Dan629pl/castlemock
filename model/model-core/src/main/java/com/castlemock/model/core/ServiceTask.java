@@ -20,9 +20,10 @@ import java.util.Objects;
 
 /**
  * The ServiceTask represent a service task that can be processed by a service class.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Input
+ * @since 1.0
  */
 public class ServiceTask<I extends Input> {
 
@@ -31,6 +32,7 @@ public class ServiceTask<I extends Input> {
 
     /**
      * Constructor for ServiceTask
+     *
      * @param input The input that will be processed by the task
      */
     private ServiceTask(final I input, final String serviceConsumer) {
@@ -45,6 +47,7 @@ public class ServiceTask<I extends Input> {
     /**
      * The input message for the service layer. The input is used to identify which service
      * class is responsible for processing the task.
+     *
      * @return The input value
      */
     public I getInput() {
@@ -53,6 +56,7 @@ public class ServiceTask<I extends Input> {
 
     /**
      * The serviceConsumer is used to identify the user that is executing the task
+     *
      * @return The service consumer value
      */
     public String getServiceConsumer() {

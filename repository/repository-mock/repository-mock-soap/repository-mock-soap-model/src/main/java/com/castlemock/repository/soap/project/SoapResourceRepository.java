@@ -32,6 +32,7 @@ public interface SoapResourceRepository extends Repository<SoapResource, String>
 
     /**
      * The method loads a resource that matching the search criteria and returns the result
+     *
      * @param soapResourceId The id of the resource that will be loaded
      * @return Returns the loaded resource and returns it as a String.
      * @throws IllegalArgumentException IllegalArgumentException will be thrown jf no matching SOAP operation was found
@@ -43,8 +44,9 @@ public interface SoapResourceRepository extends Repository<SoapResource, String>
 
     /**
      * The method adds a new {@link SoapResource}.
+     *
      * @param soapResource The  instance of {@link SoapResource} that will be saved.
-     * @param resource The raw resource
+     * @param resource     The raw resource
      * @return The saved {@link SoapResource}
      * @see SoapResource
      */
@@ -53,8 +55,9 @@ public interface SoapResourceRepository extends Repository<SoapResource, String>
     /**
      * The method returns a list of {@link SoapResource} that matches the
      * search criteria.
+     *
      * @param soapProjectId The id of the project.
-     * @param types The types of {@link SoapResource} that should be returned.
+     * @param types         The types of {@link SoapResource} that should be returned.
      * @return A list of {@link SoapResource} of the specific provided type.
      * All resources will be returned if the type is null.
      * @since 1.16
@@ -65,6 +68,7 @@ public interface SoapResourceRepository extends Repository<SoapResource, String>
     /**
      * Retrieve the {@link com.castlemock.model.mock.soap.domain.SoapProject} id
      * for the {@link SoapResource} with the provided id.
+     *
      * @param portId The id of the {@link SoapResource}.
      * @return The id of the project.
      * @since 1.20

@@ -34,9 +34,10 @@ import java.util.Optional;
  * The class is an implementation of the file repository and provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving soap project from the file system. Each soap project is stored as
  * a separate file. The class also contains the directory and the filename extension for the soap project.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see SoapProjectRepository
+ * @since 1.0
  */
 @Repository
 @Profile(Profiles.FILE)
@@ -58,6 +59,7 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -67,6 +69,7 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -76,6 +79,7 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
 
     /**
      * Finds a project by a given name
+     *
      * @param name The name of the project that should be retrieved
      * @return Returns a project with the provided name
      */
@@ -96,8 +100,9 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param soapProject The instance of the type that will be checked and controlled before it is allowed to be saved on
-     *             the file system.
+     *                    the file system.
      * @see #save
      */
     @Override
@@ -107,6 +112,7 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
 
     /**
      * Delete an instance that match the provided id
+     *
      * @param soapProjectId The instance that matches the provided id will be deleted in the database
      */
     @Override
@@ -114,7 +120,7 @@ public class SoapProjectFileRepository extends AbstractProjectFileRepository<Soa
         Preconditions.checkNotNull(soapProjectId, "Project id cannot be null");
         final SoapProjectFile soapProject = collection.get(soapProjectId);
 
-        if(soapProject == null){
+        if (soapProject == null) {
             throw new IllegalArgumentException("Unable to find a SOAP project with id " + soapProjectId);
         }
 

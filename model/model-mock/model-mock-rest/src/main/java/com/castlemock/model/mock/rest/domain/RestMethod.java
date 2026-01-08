@@ -93,7 +93,7 @@ public class RestMethod {
     @XmlElement
     private final Boolean automaticForward;
 
-    private RestMethod(final Builder builder){
+    private RestMethod(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.status = Objects.requireNonNull(builder.status, "status");
@@ -112,6 +112,9 @@ public class RestMethod {
         this.mockResponses = Optional.ofNullable(builder.mockResponses).orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getId() {
         return id;
@@ -212,10 +215,6 @@ public class RestMethod {
                 ", defaultResponseName='" + defaultResponseName + '\'' +
                 ", automaticForward='" + automaticForward + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

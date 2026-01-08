@@ -37,6 +37,10 @@ public final class UpdateRestApplicationsForwardedEndpointInput implements Input
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -72,10 +76,6 @@ public final class UpdateRestApplicationsForwardedEndpointInput implements Input
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -85,22 +85,22 @@ public final class UpdateRestApplicationsForwardedEndpointInput implements Input
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder forwardedEndpoint(final String forwardedEndpoint){
+        public Builder forwardedEndpoint(final String forwardedEndpoint) {
             this.forwardedEndpoint = forwardedEndpoint;
             return this;
         }
 
-        public Builder applicationIds(final Set<String> applicationIds){
+        public Builder applicationIds(final Set<String> applicationIds) {
             this.applicationIds = applicationIds;
             return this;
         }
 
-        public UpdateRestApplicationsForwardedEndpointInput build(){
+        public UpdateRestApplicationsForwardedEndpointInput build() {
             return new UpdateRestApplicationsForwardedEndpointInput(this);
         }
 

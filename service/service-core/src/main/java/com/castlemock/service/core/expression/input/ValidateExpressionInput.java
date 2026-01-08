@@ -34,16 +34,16 @@ public final class ValidateExpressionInput implements Input {
         this.requestBody = Objects.requireNonNull(builder.requestBody);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getRequestBody() {
         return requestBody;
     }
 
     public String getResponseBody() {
         return responseBody;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

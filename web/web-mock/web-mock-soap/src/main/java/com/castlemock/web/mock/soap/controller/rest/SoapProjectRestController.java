@@ -66,7 +66,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping("api/rest")
-@Tag(name="SOAP - Project", description="REST Operations for Castle Mock SOAP Project")
+@Tag(name = "SOAP - Project", description = "REST Operations for Castle Mock SOAP Project")
 public class SoapProjectRestController extends AbstractRestController {
 
     private final Logger LOGGER = LoggerFactory.getLogger(SoapProjectRestController.class);
@@ -75,18 +75,18 @@ public class SoapProjectRestController extends AbstractRestController {
 
     @Autowired
     public SoapProjectRestController(final ServiceProcessor serviceProcessor,
-                                     final FileManager fileManager){
+                                     final FileManager fileManager) {
         super(serviceProcessor);
         this.fileManager = Objects.requireNonNull(fileManager, "fileManager");
     }
 
-    @Operation(summary =  "Get Project")
+    @Operation(summary = "Get Project")
     @RequestMapping(method = RequestMethod.GET, value = "/soap/project/{projectId}")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
     ResponseEntity<SoapProject> getProject(
             @Parameter(name = "projectId", description = "The id of the project")
-            @PathVariable(value = "projectId") final String projectId){
+            @PathVariable(value = "projectId") final String projectId) {
         final ReadSoapProjectOutput output = super.serviceProcessor.process(ReadSoapProjectInput.builder()
                 .projectId(projectId)
                 .build());
@@ -97,9 +97,10 @@ public class SoapProjectRestController extends AbstractRestController {
 
     /**
      * The method creates a new project
+     *
      * @return The retrieved project.
      */
-    @Operation(summary =  "Create SOAP project", description = "Create SOAP project. Required authorization: Modifier or Admin.")
+    @Operation(summary = "Create SOAP project", description = "Create SOAP project. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/soap/project")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody ResponseEntity<SoapProject> createSoapProject(@RequestBody final CreateProjectRequest request) {
@@ -113,15 +114,16 @@ public class SoapProjectRestController extends AbstractRestController {
 
     /**
      * The method updates an existing project
+     *
      * @return The updated project.
      */
-    @Operation(summary =  "Update SOAP project",
+    @Operation(summary = "Update SOAP project",
             description = "Update SOAP project. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.PUT, value = "/soap/project/{projectId}")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody ResponseEntity<SoapProject> updateProject(@Parameter(name = "projectId", description = "The id of the project")
-                                                                @PathVariable("projectId") final String projectId,
-                                                                @RequestBody final UpdateProjectRequest request) {
+                                                                   @PathVariable("projectId") final String projectId,
+                                                                   @RequestBody final UpdateProjectRequest request) {
         final UpdateSoapProjectOutput output = super.serviceProcessor.process(UpdateSoapProjectInput.builder()
                 .projectId(projectId)
                 .name(request.getName())
@@ -129,16 +131,17 @@ public class SoapProjectRestController extends AbstractRestController {
                 .build());
         return output.getProject()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-    @Operation(summary =  "Update Port statuses")
+    @Operation(summary = "Update Port statuses")
     @RequestMapping(method = RequestMethod.PUT, value = "/soap/project/{projectId}/port/status")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
     ResponseEntity<Void> updatePortStatuses(
             @Parameter(name = "projectId", description = "The id of the project")
             @PathVariable(value = "projectId") final String projectId,
-            @RequestBody UpdateSoapPortStatusesRequest request){
+            @RequestBody UpdateSoapPortStatusesRequest request) {
         request.getPortIds()
                 .forEach(portId -> super.serviceProcessor.process(UpdateSoapPortsStatusInput.builder()
                         .projectId(projectId)
@@ -148,14 +151,14 @@ public class SoapProjectRestController extends AbstractRestController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary =  "Update Port forwarded endpoints")
+    @Operation(summary = "Update Port forwarded endpoints")
     @RequestMapping(method = RequestMethod.PUT, value = "/soap/project/{projectId}/port/endpoint/forwarded")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
     ResponseEntity<Void> updatePortForwardedEndpoints(
             @Parameter(name = "projectId", description = "The id of the project")
             @PathVariable(value = "projectId") final String projectId,
-            @RequestBody UpdateSoapPortForwardedEndpointsRequest request){
+            @RequestBody UpdateSoapPortForwardedEndpointsRequest request) {
         super.serviceProcessor.process(UpdateSoapPortsForwardedEndpointInput.builder()
                 .projectId(projectId)
                 .portIds(request.getPortIds())
@@ -164,7 +167,7 @@ public class SoapProjectRestController extends AbstractRestController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary =  "Upload WSDL")
+    @Operation(summary = "Upload WSDL")
     @RequestMapping(method = RequestMethod.POST, value = "/soap/project/{projectId}/wsdl/file")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -172,7 +175,7 @@ public class SoapProjectRestController extends AbstractRestController {
             @Parameter(name = "projectId", description = "The id of the project")
             @PathVariable(value = "projectId") final String projectId,
             @RequestParam("file") final MultipartFile multipartFile,
-            @RequestParam("generateResponse") final boolean generateResponse){
+            @RequestParam("generateResponse") final boolean generateResponse) {
 
         try {
             final File file = fileManager.uploadFile(multipartFile);
@@ -188,14 +191,14 @@ public class SoapProjectRestController extends AbstractRestController {
         }
     }
 
-    @Operation(summary =  "Link WSDL")
+    @Operation(summary = "Link WSDL")
     @RequestMapping(method = RequestMethod.POST, value = "/soap/project/{projectId}/wsdl/link")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
     ResponseEntity<Void> linkWSDL(
             @Parameter(name = "projectId", description = "The id of the project")
             @PathVariable(value = "projectId") final String projectId,
-            @RequestBody final LinkWsdlRequest request){
+            @RequestBody final LinkWsdlRequest request) {
         super.serviceProcessor.process(CreateSoapPortsInput.builder()
                 .projectId(projectId)
                 .files(null)
@@ -208,10 +211,11 @@ public class SoapProjectRestController extends AbstractRestController {
 
     /**
      * The SOAP operation deletes a project with a particular ID.
+     *
      * @param projectId The project id.
      * @return The deleted project
      */
-    @Operation(summary =  "Delete project",
+    @Operation(summary = "Delete project",
             description = "Delete project. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.DELETE, value = "/soap/project/{projectId}")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -224,14 +228,16 @@ public class SoapProjectRestController extends AbstractRestController {
                 .build());
         return output.getProject()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     /**
      * The SOAP operations imports a project.
+     *
      * @param multipartFile The project file which will be imported.
      * @return A HTTP response.
      */
-    @Operation(summary =  "Import project",
+    @Operation(summary = "Import project",
             description = "Import project. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/soap/project/import")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -242,7 +248,7 @@ public class SoapProjectRestController extends AbstractRestController {
         return this.importProjectInternally(multipartFile);
     }
 
-    @Operation(summary =  "Import project (Deprecated)",
+    @Operation(summary = "Import project (Deprecated)",
             description = "Deprecated import project endpoint. Required authorization: Modifier or Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/core/project/soap/import")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -256,10 +262,11 @@ public class SoapProjectRestController extends AbstractRestController {
 
     /**
      * The SOAP operations exports a project.
+     *
      * @param projectId The id of the project that will be exported.
      * @return A HTTP response.
      */
-    @Operation(summary =  "Export project",
+    @Operation(summary = "Export project",
             description = "Export project. Required authorization: Reader, Modifier or Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/soap/project/{projectId}/export")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -283,8 +290,7 @@ public class SoapProjectRestController extends AbstractRestController {
             final StringBuilder stringBuilder = new StringBuilder();
 
             String line;
-            while ((line = bufferedReader.readLine()) != null)
-            {
+            while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line).append("\n");
             }
 

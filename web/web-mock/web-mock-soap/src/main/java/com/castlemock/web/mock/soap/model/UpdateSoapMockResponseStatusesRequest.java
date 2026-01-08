@@ -40,6 +40,10 @@ public class UpdateSoapMockResponseStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getMockResponseIds() {
         return Optional.of(mockResponseIds)
                 .map(Set::copyOf)
@@ -72,10 +76,6 @@ public class UpdateSoapMockResponseStatusesRequest {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
 
@@ -99,5 +99,5 @@ public class UpdateSoapMockResponseStatusesRequest {
             return new UpdateSoapMockResponseStatusesRequest(this);
         }
     }
-    
+
 }

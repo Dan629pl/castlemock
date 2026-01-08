@@ -26,12 +26,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadSoapProjectOutput implements Output{
+public final class ReadSoapProjectOutput implements Output {
 
     private final SoapProject project;
 
     private ReadSoapProjectOutput(final Builder builder) {
         this.project = builder.project;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<SoapProject> getProject() {
@@ -58,23 +62,19 @@ public final class ReadSoapProjectOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapProject project;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder project(final SoapProject project){
+        public Builder project(final SoapProject project) {
             this.project = project;
             return this;
         }
 
-        public ReadSoapProjectOutput build(){
+        public ReadSoapProjectOutput build() {
             return new ReadSoapProjectOutput(this);
         }
     }

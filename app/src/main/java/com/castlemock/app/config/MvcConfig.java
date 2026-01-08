@@ -27,11 +27,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * The MvcConfig class is responsible for configuring the MVC related configurations
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
 @Configuration
-@ComponentScan(basePackages = { "com.castlemock" })
+@ComponentScan(basePackages = {"com.castlemock"})
 public class MvcConfig implements WebMvcConfigurer {
 
     @Override
@@ -47,8 +48,8 @@ public class MvcConfig implements WebMvcConfigurer {
     }
 
     @Override
-    public void addViewControllers(final ViewControllerRegistry registry ) {
-        registry.addViewController( "/" ).setViewName("forward:/index.html");
+    public void addViewControllers(final ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("forward:/index.html");
         registry.addViewController("/swagger-ui/").setViewName("forward:/swagger-ui/index.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
@@ -56,10 +57,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
     /**
      * Creates a new {@link LoggingInterceptor}
+     *
      * @return A new {@link LoggingInterceptor} instance
      */
     @Bean
-    public LoggingInterceptor loggingInterceptor(){
+    public LoggingInterceptor loggingInterceptor() {
         return new LoggingInterceptor();
     }
 
@@ -67,6 +69,7 @@ public class MvcConfig implements WebMvcConfigurer {
      * Configure the content negotiation. This method will set the
      * {@link ContentNegotiationConfigurer#favorPathExtension(boolean)} to true
      * which will allow REST request mappings to include dots.
+     *
      * @param configurer The content negotiation configurer
      * @since 1.12
      */

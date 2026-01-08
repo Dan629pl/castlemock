@@ -39,6 +39,7 @@ public class ImportSoapProjectService extends AbstractSoapProjectService impleme
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -52,30 +53,30 @@ public class ImportSoapProjectService extends AbstractSoapProjectService impleme
         final SoapExportContainer exportContainer = ExportContainerSerializer.deserialize(input.getProjectRaw(), SoapExportContainer.class);
         final SoapProject project = exportContainer.getProject();
 
-        if(this.repository.exists(project.getId())){
+        if (this.repository.exists(project.getId())) {
             throw new IllegalArgumentException("A project with the following key already exists: " + project.getId());
         }
 
         this.repository.save(project);
 
-        for(SoapPort port : exportContainer.getPorts()){
-            if(this.portRepository.exists(port.getId())){
+        for (SoapPort port : exportContainer.getPorts()) {
+            if (this.portRepository.exists(port.getId())) {
                 throw new IllegalArgumentException("A port with the following key already exists: " + port.getId());
             }
 
             this.portRepository.save(port);
         }
 
-        for(SoapResource resource : exportContainer.getResources()){
-            if(this.resourceRepository.exists(resource.getId())){
+        for (SoapResource resource : exportContainer.getResources()) {
+            if (this.resourceRepository.exists(resource.getId())) {
                 throw new IllegalArgumentException("A resource with the following key already exists: " + resource.getId());
             }
 
             this.resourceRepository.saveSoapResource(resource, resource.getContent().orElse(null));
         }
 
-        for(SoapOperation operation : exportContainer.getOperations()){
-            if(this.operationRepository.exists(operation.getId())){
+        for (SoapOperation operation : exportContainer.getOperations()) {
+            if (this.operationRepository.exists(operation.getId())) {
                 throw new IllegalArgumentException("An operation with the following key already exists: " + operation.getId());
             }
 
@@ -84,8 +85,8 @@ public class ImportSoapProjectService extends AbstractSoapProjectService impleme
                     .build());
         }
 
-        for(SoapMockResponse mockResponse : exportContainer.getMockResponses()){
-            if(this.mockResponseRepository.exists(mockResponse.getId())){
+        for (SoapMockResponse mockResponse : exportContainer.getMockResponses()) {
+            if (this.mockResponseRepository.exists(mockResponse.getId())) {
                 throw new IllegalArgumentException("A mocked response with the following key already exists: " + mockResponse.getId());
             }
 

@@ -32,12 +32,12 @@ public final class ImportRestProjectInput implements Input {
         this.projectRaw = Objects.requireNonNull(builder.projectRaw, "projectRaw");
     }
 
-    public String getProjectRaw() {
-        return projectRaw;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public String getProjectRaw() {
+        return projectRaw;
     }
 
     @Override
@@ -67,12 +67,12 @@ public final class ImportRestProjectInput implements Input {
         private Builder() {
         }
 
-        public Builder projectRaw(final String projectRaw){
+        public Builder projectRaw(final String projectRaw) {
             this.projectRaw = projectRaw;
             return this;
         }
 
-        public ImportRestProjectInput build(){
+        public ImportRestProjectInput build() {
             return new ImportRestProjectInput(this);
         }
 

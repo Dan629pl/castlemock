@@ -37,10 +37,11 @@ import java.util.stream.Collectors;
  * The class is an implementation of the file repository and provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving soap events from the file system. Each soap event is stored as
  * a separate file. The class also contains the directory and the filename extension for the soap event.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see SoapEventFileRepository
  * @see FileRepository
+ * @since 1.0
  */
 @Repository
 @Profile(Profiles.FILE)
@@ -58,6 +59,7 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -67,6 +69,7 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -80,8 +83,9 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param soapEvent The instance of the type that will be checked and controlled before it is allowed to be saved on
-     *             the file system.
+     *                  the file system.
      * @see #save
      */
     @Override
@@ -94,6 +98,7 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
 
     /**
      * The events for a specific operation id
+     *
      * @param operationId The id of the operation that the event belongs to
      * @return Returns a list of events
      */
@@ -108,15 +113,16 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
 
     /**
      * The service finds the oldest event
+     *
      * @return The oldest event
      */
     @Override
     public SoapEvent getOldestEvent() {
         SoapEventFile oldestEvent = null;
-        for(SoapEventFile event : collection.values()){
-            if(oldestEvent == null){
+        for (SoapEventFile event : collection.values()) {
+            if (oldestEvent == null) {
                 oldestEvent = event;
-            } else if(event.getStartDate().before(oldestEvent.getStartDate())){
+            } else if (event.getStartDate().before(oldestEvent.getStartDate())) {
                 oldestEvent = event;
             }
         }
@@ -128,11 +134,12 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
 
     /**
      * The method finds and deletes the oldest event.
+     *
      * @return The event that was deleted.
      * @since 1.5
      */
     @Override
-    public synchronized SoapEvent deleteOldestEvent(){
+    public synchronized SoapEvent deleteOldestEvent() {
         SoapEvent event = getOldestEvent();
         delete(event.getId());
         return event;
@@ -140,6 +147,7 @@ public class SoapEventFileRepository extends AbstractEventFileRepository<SoapEve
 
     /**
      * The method clears and deletes all logs.
+     *
      * @since 1.7
      */
     @Override

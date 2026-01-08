@@ -27,6 +27,7 @@ import java.util.Optional;
 
 /**
  * The service provides the functionality to update an already existing REST mock response.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -36,6 +37,7 @@ public class UpdateRestMockResponseService extends AbstractRestProjectService im
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

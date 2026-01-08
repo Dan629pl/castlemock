@@ -33,6 +33,10 @@ public final class SoapStrategyResult {
         this.postServiceRequests = builder.postServiceRequests;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<SoapResponse> getResponse() {
         return Optional.ofNullable(response);
     }
@@ -62,10 +66,6 @@ public final class SoapStrategyResult {
                 "response=" + response +
                 ", postServiceRequests=" + postServiceRequests +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

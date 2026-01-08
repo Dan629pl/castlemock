@@ -88,16 +88,16 @@ class ParameterQueryComponent extends PureComponent {
         this.getResourceParameters();
     }
 
-    onAddParameterQueryClick(){
+    onAddParameterQueryClick() {
         this.props.onParameterQueryAdded(this.state.newParameterQuery);
     }
 
-    onRemoveParameterQueryClick(row){
+    onRemoveParameterQueryClick(row) {
         this.props.onParameterQueryRemoved(row);
     }
 
     deleteParameterFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -109,11 +109,12 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     deleteParameterStyle() {
-        return { 'whiteSpace': 'nowrap', width: '50px' };
+        return {'whiteSpace': 'nowrap', width: '50px'};
     }
 
     setNewParameterParameter(parameter) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 parameter: parameter
             }
@@ -121,7 +122,8 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     setNewParameterQuery(query) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 query: query
             }
@@ -129,7 +131,8 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     setNewParameterMatchAny(matchAny) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 matchAny: matchAny
             }
@@ -137,7 +140,8 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     setNewParameterMatchCase(matchCase) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 matchCase: matchCase
             }
@@ -145,7 +149,8 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     setNewParameterMatchRegex(matchRegex) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 matchRegex: matchRegex
             }
@@ -153,7 +158,8 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     setNewParameterUrlEncoded(urlEncoded) {
-        this.setState({ newParameterQuery: {
+        this.setState({
+            newParameterQuery: {
                 ...this.state.newParameterQuery,
                 urlEncoded: urlEncoded
             }
@@ -161,17 +167,17 @@ class ParameterQueryComponent extends PureComponent {
     }
 
     getResourceParameters() {
-            axios
-                .get(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId + "/application/" + this.props.applicationId + "/resource/" + this.props.resourceId + "/parameter")
-                .then(response => {
-                    this.setState({
-                        resourceParameters: response.data
-                    });
-                })
-                .catch(error => {
-                    validateErrorResponse(error)
+        axios
+            .get(process.env.PUBLIC_URL + "/api/rest/rest/project/" + this.props.projectId + "/application/" + this.props.applicationId + "/resource/" + this.props.resourceId + "/parameter")
+            .then(response => {
+                this.setState({
+                    resourceParameters: response.data
                 });
-        }
+            })
+            .catch(error => {
+                validateErrorResponse(error)
+            });
+    }
 
     render() {
         return (
@@ -181,10 +187,12 @@ class ParameterQueryComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Parameter</label>
                         <div className="col-sm-10">
-                            <select id="inputStatus" className="form-control" onChange={event => this.setNewParameterParameter(event.target.value)} >
-                                <option value={""}> -- select a parameter -- </option>
+                            <select id="inputStatus" className="form-control"
+                                    onChange={event => this.setNewParameterParameter(event.target.value)}>
+                                <option value={""}> -- select a parameter --</option>
                                 {this.state.resourceParameters.map(resourceParameter =>
-                                    <option key={resourceParameter} value={resourceParameter}>{resourceParameter}</option>
+                                    <option key={resourceParameter}
+                                            value={resourceParameter}>{resourceParameter}</option>
                                 )};
                             </select>
                         </div>
@@ -192,44 +200,50 @@ class ParameterQueryComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Query</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={event => this.setNewParameterQuery(event.target.value)} />
+                            <input className="form-control" type="text"
+                                   onChange={event => this.setNewParameterQuery(event.target.value)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Match Any</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewParameterMatchAny(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewParameterMatchAny(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Match Case</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewParameterMatchCase(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewParameterMatchCase(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Match Regex</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewParameterMatchRegex(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewParameterMatchRegex(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">URL Encoded</label>
                         <div className="col-sm-10">
-                            <input type="checkbox" onChange={event => this.setNewParameterUrlEncoded(event.target.checked)}/>
+                            <input type="checkbox"
+                                   onChange={event => this.setNewParameterUrlEncoded(event.target.checked)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <button className="btn btn-success demo-button-disabled menu-button"
-                            onClick={this.onAddParameterQueryClick} disabled={this.state.newParameterQuery.parameter === ""}>
-                                <FontAwesomeIcon icon={faPlus} className="button-icon"/>
-                                <span>Add Parameter Query</span>
+                                onClick={this.onAddParameterQueryClick}
+                                disabled={this.state.newParameterQuery.parameter === ""}>
+                            <FontAwesomeIcon icon={faPlus} className="button-icon"/>
+                            <span>Add Parameter Query</span>
                         </button>
                     </div>
                 </div>
                 <div className="table-result">
                     <ToolkitProvider bootstrap4
-                                     columns={ this.parameterQueryColumns}
+                                     columns={this.parameterQueryColumns}
                                      data={this.props.parameterQueries}
                                      keyField="parameter"
                                      search>
@@ -237,7 +251,8 @@ class ParameterQueryComponent extends PureComponent {
                             (props) => (
                                 <div>
                                     <BootstrapTable {...props.baseProps} bootstrap4
-                                                    data={this.props.parameterQueries} columns={this.parameterQueryColumns}
+                                                    data={this.props.parameterQueries}
+                                                    columns={this.parameterQueryColumns}
                                                     keyField='parameter' hover
                                                     noDataIndication="No parameter queries"/>
                                 </div>

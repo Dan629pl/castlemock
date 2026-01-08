@@ -23,9 +23,10 @@ import java.util.Objects;
 
 /**
  * Read a user with a specific username
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadUserByUsernameOutput
+ * @since 1.0
  */
 public final class ReadUserByUsernameInput implements Input {
 
@@ -35,12 +36,12 @@ public final class ReadUserByUsernameInput implements Input {
         this.username = Objects.requireNonNull(builder.username, "username");
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public static final class Builder {

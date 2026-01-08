@@ -46,12 +46,16 @@ public class RestHeaderQuery {
     private final boolean matchRegex;
 
 
-    private RestHeaderQuery(final Builder builder){
+    private RestHeaderQuery(final Builder builder) {
         this.header = Objects.requireNonNull(builder.header, "header");
         this.query = Objects.requireNonNull(builder.query, "query");
         this.matchCase = Objects.requireNonNull(builder.matchCase, "matchCase");
         this.matchAny = Objects.requireNonNull(builder.matchAny, "matchAny");
         this.matchRegex = Objects.requireNonNull(builder.matchRegex, "matchRegex");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getHeader() {
@@ -109,10 +113,6 @@ public class RestHeaderQuery {
                 .matchCase(matchCase)
                 .matchAny(matchAny)
                 .matchRegex(matchRegex);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

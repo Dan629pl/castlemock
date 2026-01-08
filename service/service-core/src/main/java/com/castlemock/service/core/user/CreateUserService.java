@@ -36,6 +36,7 @@ public class CreateUserService extends AbstractUserService implements Service<Cr
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -47,7 +48,7 @@ public class CreateUserService extends AbstractUserService implements Service<Cr
 
         final User existingUser = findByUsername(input.getUsername()).orElse(null);
 
-        if(existingUser != null) {
+        if (existingUser != null) {
             throw new IllegalArgumentException("User with the username '" + input.getUsername() + "' already exists.");
         }
 

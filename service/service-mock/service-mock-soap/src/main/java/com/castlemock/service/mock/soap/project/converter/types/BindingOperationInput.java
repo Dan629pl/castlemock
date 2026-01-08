@@ -22,16 +22,16 @@ public final class BindingOperationInput {
 
     private final BindingOperationInputBody body;
 
-    private BindingOperationInput(final Builder builder){
+    private BindingOperationInput(final Builder builder) {
         this.body = builder.body;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<BindingOperationInputBody> getBody() {
         return Optional.ofNullable(body);
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     public static class Builder {

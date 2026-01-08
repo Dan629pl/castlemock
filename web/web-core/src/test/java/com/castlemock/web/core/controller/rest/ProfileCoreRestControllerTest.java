@@ -34,14 +34,14 @@ class ProfileCoreRestControllerTest {
     private ProfileCoreRestController profileCoreRestController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         final ServiceProcessor serviceProcessor = mock(ServiceProcessor.class);
         this.profileCoreRestController = new ProfileCoreRestController(serviceProcessor);
     }
 
     @Test
     @DisplayName("Get profile - Unauthorized")
-    void testGetProfile(){
+    void testGetProfile() {
         final ResponseEntity<User> responseEntity = profileCoreRestController.getProfile();
         assertNotNull(responseEntity);
         assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
@@ -49,7 +49,7 @@ class ProfileCoreRestControllerTest {
 
     @Test
     @DisplayName("Update profile - Unauthorized")
-    void testUpdateProfile(){
+    void testUpdateProfile() {
         final ResponseEntity<User> responseEntity = profileCoreRestController.updateProfile(UpdateProfileRequestTestBuilder.builder()
                 .build());
         assertNotNull(responseEntity);

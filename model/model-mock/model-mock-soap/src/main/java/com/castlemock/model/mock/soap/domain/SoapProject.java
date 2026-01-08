@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 
 /**
  * The DTO class for the Project class
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -53,15 +54,20 @@ public class SoapProject extends Project {
     @XmlTransient
     private final Map<SoapOperationStatus, Integer> statusCount;
 
-    private SoapProject(final Builder builder){
+    private SoapProject(final Builder builder) {
         super(builder);
         this.ports = Optional.ofNullable(builder.ports).orElseGet(List::of);
         this.resources = Optional.ofNullable(builder.resources).orElseGet(List::of);
         this.statusCount = Optional.ofNullable(builder.statusCount).orElseGet(Map::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Returns all the SOAP ports
+     *
      * @return The SOAP ports for the SOAP project
      */
     public List<SoapPort> getPorts() {
@@ -72,6 +78,7 @@ public class SoapProject extends Project {
 
     /**
      * Returns all the SOAP resources
+     *
      * @return The SOAP resources for the SOAP resources
      */
     public List<SoapResource> getResources() {
@@ -82,6 +89,7 @@ public class SoapProject extends Project {
 
     /**
      * The status count is used in the GUI to information the user on the SOAP operation status distribution.
+     *
      * @return The status counts.
      */
 
@@ -89,10 +97,6 @@ public class SoapProject extends Project {
         return Optional.ofNullable(statusCount)
                 .map(Map::copyOf)
                 .orElseGet(Map::of);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

@@ -48,7 +48,7 @@ public class UpdateSoapOperationRequest {
     private final SoapOperationIdentifyStrategy identifyStrategy;
     private final Boolean automaticForward;
 
-    private UpdateSoapOperationRequest(final Builder builder){
+    private UpdateSoapOperationRequest(final Builder builder) {
         this.responseStrategy = Objects.requireNonNull(builder.responseStrategy, "responseStrategy");
         this.status = Objects.requireNonNull(builder.status, "status");
         this.identifyStrategy = Objects.requireNonNull(builder.identifyStrategy, "identifyStrategy");
@@ -58,6 +58,10 @@ public class UpdateSoapOperationRequest {
         this.defaultMockResponseId = builder.defaultMockResponseId;
         this.mockOnFailure = builder.mockOnFailure;
         this.automaticForward = builder.automaticForward;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public SoapResponseStrategy getResponseStrategy() {
@@ -94,10 +98,6 @@ public class UpdateSoapOperationRequest {
 
     public Optional<Boolean> getAutomaticForward() {
         return Optional.ofNullable(automaticForward);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -36,16 +36,16 @@ public class UpdateSoapPortRequest {
 
     private final String uri;
 
-    private UpdateSoapPortRequest(final Builder builder){
+    private UpdateSoapPortRequest(final Builder builder) {
         this.uri = Objects.requireNonNull(builder.uri, "uri");
-    }
-
-    public String getUri() {
-        return uri;
     }
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    public String getUri() {
+        return uri;
     }
 
     @JsonPOJOBuilder(withPrefix = "")

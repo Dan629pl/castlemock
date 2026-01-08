@@ -19,6 +19,7 @@ package com.castlemock.model.core;
 /**
  * The service class represent the service layer (Business layer) of Castle Mock
  * and is responsible for processing a specific functionality.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -27,6 +28,7 @@ public interface Service<I extends Input, O extends Output> {
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

@@ -23,9 +23,13 @@ public final class Message {
     private final String name;
     private final Set<MessagePart> parts;
 
-    private Message(final Builder builder){
+    private Message(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.parts = Objects.requireNonNull(builder.parts);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -36,30 +40,26 @@ public final class Message {
         return parts;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Set<MessagePart> parts;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder parts(final Set<MessagePart> parts){
+        public Builder parts(final Set<MessagePart> parts) {
             this.parts = parts;
             return this;
         }
 
-        public Message build(){
+        public Message build() {
             return new Message(this);
         }
     }

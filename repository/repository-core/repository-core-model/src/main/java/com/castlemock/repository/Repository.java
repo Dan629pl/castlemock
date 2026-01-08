@@ -26,11 +26,12 @@ import java.util.Optional;
  * The abstract repository provides functionality to interact with the file system in order to manage a specific type.
  * The abstract repository is responsible for retrieving and managing instances for a specific type. All the communication
  * that involves interacting with the file system, such as saving and loading instances, are done through the file repository.
- * @author Karl Dahlgren
- * @since 1.0
+ *
  * @param <D> The date transfer class of the type class
  * @param <I> The id is used as an identifier for the type.
+ * @author Karl Dahlgren
  * @see Saveable
+ * @since 1.0
  */
 public interface Repository<D, I extends Serializable> {
 
@@ -43,6 +44,7 @@ public interface Repository<D, I extends Serializable> {
 
     /**
      * The method provides the functionality to find a specific instance that matches the provided id
+     *
      * @param id The id that an instance has to match in order to be retrieved
      * @return Returns an instance that matches the provided id
      * @see I
@@ -51,6 +53,7 @@ public interface Repository<D, I extends Serializable> {
 
     /**
      * Retrieves a list of all the instances of the specific type
+     *
      * @return A list that contains all the instances of the type that is managed by the operation
      * @see I
      */
@@ -58,22 +61,25 @@ public interface Repository<D, I extends Serializable> {
 
     /**
      * The save method provides the functionality to save an instance to the file system.
+     *
      * @param type The type that will be saved to the file system.
      * @return The type that was saved to the file system. The main reason for it is being returned is because
-     *         there could be modifications of the object during the save process. For example, if the type does not
-     *         have an identifier, then the method will generate a new identifier for the type.
+     * there could be modifications of the object during the save process. For example, if the type does not
+     * have an identifier, then the method will generate a new identifier for the type.
      */
     D save(D type);
 
     /**
      * Delete an instance that match the provided id
+     *
      * @param id The instance that matches the provided id will be deleted in the database
      */
     Optional<D> delete(I id);
 
     /**
      * Updates an instance that matches the provided id.
-     * @param id The id of the instance that will be updated.
+     *
+     * @param id   The id of the instance that will be updated.
      * @param type The updated version that will replace the old one.
      * @return A copy of the replaced value.
      * @since 1.20
@@ -82,12 +88,14 @@ public interface Repository<D, I extends Serializable> {
 
     /**
      * Count all the stored entities for the repository
+     *
      * @return The count of entities
      */
     Integer count();
 
     /**
      * Checks if the provided <code>id</code> already exists.
+     *
      * @param id The id that will be checked if it is already being used.
      * @return <code>true</code> if the id exists. <code>false</code> otherwise.
      * @since 1.20

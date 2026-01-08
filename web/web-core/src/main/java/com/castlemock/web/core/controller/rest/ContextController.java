@@ -35,17 +35,17 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Context")
+@Tag(name = "Core - Context")
 public class ContextController {
 
     private final ServletContext servletContext;
 
     @Autowired
-    public ContextController(final ServletContext servletContext){
+    public ContextController(final ServletContext servletContext) {
         this.servletContext = Objects.requireNonNull(servletContext, "servletContext");
     }
 
-    @Operation(summary =  "Get context")
+    @Operation(summary = "Get context")
     @RequestMapping(method = RequestMethod.GET, value = "/context")
     public @ResponseBody
     ResponseEntity<ContextResponse> getContext() {

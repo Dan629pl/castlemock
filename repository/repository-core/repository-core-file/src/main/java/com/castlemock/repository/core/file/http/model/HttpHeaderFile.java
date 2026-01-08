@@ -40,16 +40,16 @@ public class HttpHeaderFile {
         this.value = Objects.requireNonNull(builder.value, "value");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
 
     public String getValue() {
         return value;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

@@ -18,8 +18,8 @@ package com.castlemock.web.mock.rest.utility;
 
 import com.castlemock.model.mock.rest.domain.RestParameterQuery;
 import com.castlemock.model.mock.rest.domain.RestParameterQueryTestBuilder;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RestParameterQueryValidatorTest {
 
     @Test
-    public void canValidateMatch(){
+    public void canValidateMatch() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("userId")
                 .query("123")
@@ -52,7 +52,7 @@ public class RestParameterQueryValidatorTest {
 
     @Test
     @DisplayName("Validate match with URL encoded parameter: Encoding enabled")
-    public void canValidateMatchUrlEncodedEnabled(){
+    public void canValidateMatchUrlEncodedEnabled() {
         final RestParameterQuery parameterQuery = RestParameterQueryTestBuilder.builder()
                 .parameter("input")
                 .query("%3Cxml%3Etest%3C%2Fxml%3E")
@@ -69,7 +69,7 @@ public class RestParameterQueryValidatorTest {
 
     @Test
     @DisplayName("Validate match with URL encoded parameter: Encoding disabled")
-    public void canValidateMatchUrlEncodedDisabled(){
+    public void canValidateMatchUrlEncodedDisabled() {
         final RestParameterQuery parameterQuery = RestParameterQueryTestBuilder.builder()
                 .parameter("input")
                 .query("%3Cxml%3Etest%3C%2Fxml%3E")
@@ -85,7 +85,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMatchMultipleValues(){
+    public void canValidateMatchMultipleValues() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("userId")
                 .query("123")
@@ -98,7 +98,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateNoMatch(){
+    public void canValidateNoMatch() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("userId2")
                 .query("345")
@@ -119,7 +119,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMissing(){
+    public void canValidateMissing() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("userId")
                 .query("123")
@@ -133,7 +133,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMultiple(){
+    public void canValidateMultiple() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("userId")
                 .query("123")
@@ -156,7 +156,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateNotMatchCase(){
+    public void canValidateNotMatchCase() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("username")
                 .query("karl")
@@ -173,7 +173,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMatchCase(){
+    public void canValidateMatchCase() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("username")
                 .query("karl")
@@ -190,7 +190,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMatchAny(){
+    public void canValidateMatchAny() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("username")
                 .matchAny(true)
@@ -206,7 +206,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMatchReqexCaseSensetive(){
+    public void canValidateMatchReqexCaseSensetive() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("username")
                 .query("a*b")
@@ -221,7 +221,7 @@ public class RestParameterQueryValidatorTest {
     }
 
     @Test
-    public void canValidateMatchReqexIgnoreCase(){
+    public void canValidateMatchReqexIgnoreCase() {
         final RestParameterQuery parameterQuery1 = RestParameterQueryTestBuilder.builder()
                 .parameter("username")
                 .query("a*b")

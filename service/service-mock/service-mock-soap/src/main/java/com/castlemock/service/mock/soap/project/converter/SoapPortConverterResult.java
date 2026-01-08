@@ -20,6 +20,10 @@ public final class SoapPortConverterResult {
         this.resourceType = builder.resourceType;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
@@ -36,37 +40,33 @@ public final class SoapPortConverterResult {
         return resourceType;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
         private String name;
         private String definition;
         private Set<SoapPort> ports;
         private SoapResourceType resourceType;
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder definition(final String definition){
+        public Builder definition(final String definition) {
             this.definition = definition;
             return this;
         }
 
-        public Builder ports(final Set<SoapPort> ports){
+        public Builder ports(final Set<SoapPort> ports) {
             this.ports = ports;
             return this;
         }
 
-        public Builder resourceType(final SoapResourceType resourceType){
+        public Builder resourceType(final SoapResourceType resourceType) {
             this.resourceType = resourceType;
             return this;
         }
 
-        public SoapPortConverterResult build(){
+        public SoapPortConverterResult build() {
             return new SoapPortConverterResult(this);
         }
 

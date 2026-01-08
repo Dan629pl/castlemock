@@ -38,6 +38,10 @@ public final class ReadSoapMockResponseInput implements Input {
         this.mockResponseId = Objects.requireNonNull(builder.mockResponseId, "mockResponseId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getSoapProjectId() {
         return projectId;
     }
@@ -78,41 +82,37 @@ public final class ReadSoapMockResponseInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String operationId;
         private String mockResponseId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder mockResponseId(final String mockResponseId){
+        public Builder mockResponseId(final String mockResponseId) {
             this.mockResponseId = mockResponseId;
             return this;
         }
 
-        public ReadSoapMockResponseInput build(){
+        public ReadSoapMockResponseInput build() {
             return new ReadSoapMockResponseInput(this);
         }
     }

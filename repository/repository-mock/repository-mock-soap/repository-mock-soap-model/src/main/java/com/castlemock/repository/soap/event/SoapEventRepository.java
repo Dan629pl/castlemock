@@ -26,14 +26,16 @@ import java.util.List;
  * The soap event file repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and soap events to the file system. Each
  * soap event is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Repository
+ * @since 1.0
  */
 public interface SoapEventRepository extends Repository<SoapEvent, String> {
 
     /**
      * The events for a specific operation id
+     *
      * @param operationId The id of the operation that the event belongs to
      * @return Returns a list of events
      */
@@ -41,12 +43,14 @@ public interface SoapEventRepository extends Repository<SoapEvent, String> {
 
     /**
      * The service finds the oldest event
+     *
      * @return The oldest event
      */
     SoapEvent getOldestEvent();
 
     /**
      * The method finds and deletes the oldest event.
+     *
      * @return The event that was deleted.
      * @since 1.5
      */
@@ -54,6 +58,7 @@ public interface SoapEventRepository extends Repository<SoapEvent, String> {
 
     /**
      * The method clears and deletes all logs.
+     *
      * @since 1.7
      */
     void clearAll();

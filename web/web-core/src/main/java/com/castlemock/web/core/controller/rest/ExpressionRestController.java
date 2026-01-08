@@ -38,15 +38,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Expression", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Expression", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class ExpressionRestController extends AbstractRestController {
 
-    public ExpressionRestController(final ServiceProcessor serviceProcessor){
+    public ExpressionRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Validate expression",
+    @Operation(summary = "Validate expression",
             description = "Validate expression. Required authorization: Reader, Modification, Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/expression/validate")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")

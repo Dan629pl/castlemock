@@ -24,8 +24,8 @@ import java.util.Objects;
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see CreateUserInput
+ * @since 1.0
  */
 public final class CreateUserOutput implements Output {
 
@@ -35,12 +35,12 @@ public final class CreateUserOutput implements Output {
         this.savedUser = Objects.requireNonNull(builder.savedUser, "savedUser");
     }
 
-    public User getSavedUser() {
-        return savedUser;
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public User getSavedUser() {
+        return savedUser;
     }
 
     public static final class Builder {

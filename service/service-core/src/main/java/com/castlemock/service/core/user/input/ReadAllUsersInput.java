@@ -21,9 +21,10 @@ import com.castlemock.service.core.user.output.ReadAllUsersOutput;
 
 /**
  * Read all users
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see ReadAllUsersOutput
+ * @since 1.0
  */
 public final class ReadAllUsersInput implements Input {
 }

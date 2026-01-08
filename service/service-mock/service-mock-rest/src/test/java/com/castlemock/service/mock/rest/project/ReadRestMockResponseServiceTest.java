@@ -31,7 +31,7 @@ public class ReadRestMockResponseServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String projectId = "ProjectId";
         final String applicationId = "ApplicationId";
         final String resourceId = "ResourceId";

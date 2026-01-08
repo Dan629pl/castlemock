@@ -70,7 +70,7 @@ public class IdentifyRestMethodServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestMockResponse restMockResponse1 = RestMockResponseTestBuilder.builder()
                 .build();
 
@@ -132,7 +132,7 @@ public class IdentifyRestMethodServiceTest {
         Assertions.assertEquals(restMethod2, output1.getMethod());
 
 
-        final IdentifyRestMethodInput input2 =  IdentifyRestMethodInput.builder()
+        final IdentifyRestMethodInput input2 = IdentifyRestMethodInput.builder()
                 .projectId("RestProjectId")
                 .applicationId("RestApplicationId")
                 .resourceUri("/user")
@@ -156,7 +156,7 @@ public class IdentifyRestMethodServiceTest {
         Assertions.assertEquals(restMethod4, output3.getMethod());
     }
 
-    public void testProcessMethodNotFound(){
+    public void testProcessMethodNotFound() {
         final RestMethod restMethod1 = RestMethodTestBuilder.builder()
                 .resourceId("Resource1")
                 .httpMethod(HttpMethod.POST)
@@ -210,7 +210,7 @@ public class IdentifyRestMethodServiceTest {
     }
 
     @Test
-    public void testProcessResourceNotFound(){
+    public void testProcessResourceNotFound() {
         final RestMethod restMethod1 = RestMethodTestBuilder.builder()
                 .resourceId("Resource1")
                 .httpMethod(HttpMethod.POST)
@@ -246,7 +246,7 @@ public class IdentifyRestMethodServiceTest {
     }
 
     @Test
-    public void testVariableProcess1(){
+    public void testVariableProcess1() {
         final RestMockResponse restMockResponse1 = RestMockResponseTestBuilder.builder()
                 .build();
 
@@ -300,7 +300,7 @@ public class IdentifyRestMethodServiceTest {
     }
 
     @Test
-    public void testVariableProcess2(){
+    public void testVariableProcess2() {
         final RestMockResponse restMockResponse1 = RestMockResponseTestBuilder.builder()
                 .build();
 
@@ -376,7 +376,7 @@ public class IdentifyRestMethodServiceTest {
     }
 
     @Test
-    public void testProcessSamePath(){
+    public void testProcessSamePath() {
         final RestMockResponse restMockResponse1 = RestMockResponseTestBuilder.builder()
                 .build();
 

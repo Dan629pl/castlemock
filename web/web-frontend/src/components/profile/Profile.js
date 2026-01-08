@@ -17,7 +17,7 @@
 import React, {PureComponent} from 'react';
 import axios from "axios";
 import validateErrorResponse from "../../utility/HttpResponseValidator";
-import {userStatusFormatter, userRoleFormatter} from "../user/utility/UserFormatter";
+import {userRoleFormatter, userStatusFormatter} from "../user/utility/UserFormatter";
 import preventEnterEvent from "../../utility/KeyboardUtility";
 import {faUserEdit} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -121,7 +121,10 @@ class Profile extends PureComponent {
                             <h1>User</h1>
                         </div>
                         <div className="menu">
-                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateUserModal"><FontAwesomeIcon icon={faUserEdit} className="button-icon"/><span>Update profile</span></button>
+                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal"
+                                    data-target="#updateUserModal"><FontAwesomeIcon icon={faUserEdit}
+                                                                                    className="button-icon"/><span>Update profile</span>
+                            </button>
                         </div>
                     </div>
                     <div className="content-summary">
@@ -169,33 +172,52 @@ class Profile extends PureComponent {
                             <div className="modal-body">
                                 <form>
                                     <div className="form-group row">
-                                        <label htmlFor="updateUserUserName" className="col-sm-2 col-form-label">Username</label>
+                                        <label htmlFor="updateUserUserName"
+                                               className="col-sm-2 col-form-label">Username</label>
                                         <div className="col-sm-10">
-                                            <input className="form-control" type="text" defaultValue={this.state.user.username} onChange={event => this.setUpdateUserUserName(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                            <input className="form-control" type="text"
+                                                   defaultValue={this.state.user.username}
+                                                   onChange={event => this.setUpdateUserUserName(event.target.value)}
+                                                   onKeyDown={preventEnterEvent}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlFor="updateUserEmail" className="col-sm-2 col-form-label">Name</label>
+                                        <label htmlFor="updateUserEmail"
+                                               className="col-sm-2 col-form-label">Name</label>
                                         <div className="col-sm-10">
-                                            <input className="form-control" type="text" defaultValue={this.state.user.fullName} onChange={event => this.setUpdateUserFullName(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                            <input className="form-control" type="text"
+                                                   defaultValue={this.state.user.fullName}
+                                                   onChange={event => this.setUpdateUserFullName(event.target.value)}
+                                                   onKeyDown={preventEnterEvent}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlFor="updateUserEmail" className="col-sm-2 col-form-label">Email</label>
+                                        <label htmlFor="updateUserEmail"
+                                               className="col-sm-2 col-form-label">Email</label>
                                         <div className="col-sm-10">
-                                            <input className="form-control" type="text" defaultValue={this.state.user.email} onChange={event => this.setUpdateUserEmail(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                            <input className="form-control" type="text"
+                                                   defaultValue={this.state.user.email}
+                                                   onChange={event => this.setUpdateUserEmail(event.target.value)}
+                                                   onKeyDown={preventEnterEvent}/>
                                         </div>
                                     </div>
                                     <div className="form-group row">
-                                        <label htmlFor="newUserPassword" className="col-sm-2 col-form-label">Password</label>
+                                        <label htmlFor="newUserPassword"
+                                               className="col-sm-2 col-form-label">Password</label>
                                         <div className="col-sm-10">
-                                            <input className="form-control" type="password" defaultValue={this.state.user.password} onChange={event => this.setUpdateUserPassword(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                            <input className="form-control" type="password"
+                                                   defaultValue={this.state.user.password}
+                                                   onChange={event => this.setUpdateUserPassword(event.target.value)}
+                                                   onKeyDown={preventEnterEvent}/>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateUserClick}><FontAwesomeIcon icon={faUserEdit} className="button-icon"/>Update</button>
+                                <button className="btn btn-success" data-dismiss="modal"
+                                        onClick={this.onUpdateUserClick}><FontAwesomeIcon icon={faUserEdit}
+                                                                                          className="button-icon"/>Update
+                                </button>
                             </div>
                         </div>
                     </div>

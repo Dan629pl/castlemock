@@ -34,6 +34,10 @@ public final class UpdateSoapPortOutput implements Output {
         this.port = builder.port;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<SoapPort> getPort() {
         return Optional.ofNullable(port);
     }
@@ -58,23 +62,19 @@ public final class UpdateSoapPortOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapPort port;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder port(final SoapPort port){
+        public Builder port(final SoapPort port) {
             this.port = port;
             return this;
         }
 
-        public UpdateSoapPortOutput build(){
+        public UpdateSoapPortOutput build() {
             return new UpdateSoapPortOutput(this);
         }
     }

@@ -22,9 +22,9 @@ import com.castlemock.model.mock.soap.domain.SoapOperationStatus;
 import com.castlemock.model.mock.soap.domain.SoapRequest;
 import com.castlemock.model.mock.soap.domain.SoapResponse;
 import com.castlemock.service.mock.soap.project.input.UpdateSoapOperationsStatusInput;
-import com.castlemock.web.mock.soap.utility.SoapClient;
 import com.castlemock.web.mock.soap.converter.SoapResponseConverter;
 import com.castlemock.web.mock.soap.factory.SoapMockStrategyResultFactory;
+import com.castlemock.web.mock.soap.utility.SoapClient;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public final class RecordOnceSoapStrategy implements SoapStrategy {
 
     @Override
     public SoapStrategyResult process(final SoapRequest request, final String projectId, final String portId,
-                                         final SoapOperation operation, final HttpServletRequest httpServletRequest) {
+                                      final SoapOperation operation, final HttpServletRequest httpServletRequest) {
         final Optional<SoapResponse> optionalResponse = soapHttpClient.getResponse(request, operation);
         final List<Input> postServiceRequests = new ArrayList<>();
 

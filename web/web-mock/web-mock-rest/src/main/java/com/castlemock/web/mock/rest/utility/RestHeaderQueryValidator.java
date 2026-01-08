@@ -26,12 +26,12 @@ import java.util.regex.Pattern;
 
 public final class RestHeaderQueryValidator {
 
-    private RestHeaderQueryValidator(){
+    private RestHeaderQueryValidator() {
 
     }
 
     public static boolean validate(final List<RestHeaderQuery> headerQueries,
-                                   final Set<HttpHeader> headers){
+                                   final Set<HttpHeader> headers) {
         return headers.stream()
                 .anyMatch(header -> headerQueries.stream()
                         .filter(headerQuery -> headerQuery.getHeader().equalsIgnoreCase(header.getName()))
@@ -39,17 +39,17 @@ public final class RestHeaderQueryValidator {
     }
 
     private static boolean validate(final String inputQuery,
-                                    final RestHeaderQuery headerQuery){
-        if(headerQuery.getMatchAny()){
+                                    final RestHeaderQuery headerQuery) {
+        if (headerQuery.getMatchAny()) {
             return true;
-        } else if(headerQuery.getMatchRegex()){
+        } else if (headerQuery.getMatchRegex()) {
             final Pattern pattern = headerQuery.getMatchCase() ?
                     Pattern.compile(headerQuery.getQuery()) :
                     Pattern.compile(headerQuery.getQuery(), Pattern.CASE_INSENSITIVE);
 
             final Matcher matcher = pattern.matcher(inputQuery);
             return matcher.matches();
-        } else if(headerQuery.getMatchCase()){
+        } else if (headerQuery.getMatchCase()) {
             return inputQuery.equals(headerQuery.getQuery());
         }
 

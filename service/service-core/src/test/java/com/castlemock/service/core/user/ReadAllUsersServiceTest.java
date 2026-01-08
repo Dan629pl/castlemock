@@ -51,7 +51,7 @@ public class ReadAllUsersServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final User user = UserTestBuilder.builder().build();
         final List<User> users = List.of(user);
 

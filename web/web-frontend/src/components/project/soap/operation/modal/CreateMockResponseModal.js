@@ -16,7 +16,7 @@
 
 import React, {PureComponent} from "react";
 import axios from "axios";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import validateErrorResponse from "../../../../../utility/HttpResponseValidator";
 import {mockResponseStatusFormatter} from "../../utility/SoapFormatter";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
@@ -42,7 +42,8 @@ class CreateMockResponseModal extends PureComponent {
 
 
     setNewMockResponseName(name) {
-        this.setState({ newMockResponse: {
+        this.setState({
+            newMockResponse: {
                 ...this.state.newMockResponse,
                 name: name
             }
@@ -50,9 +51,9 @@ class CreateMockResponseModal extends PureComponent {
     }
 
 
-
     setNewMockResponseStatus(status) {
-        this.setState({ newMockResponse: {
+        this.setState({
+            newMockResponse: {
                 ...this.state.newMockResponse,
                 status: status
             }
@@ -75,7 +76,6 @@ class CreateMockResponseModal extends PureComponent {
     }
 
 
-
     render() {
         return (
             <div className="modal fade" id="createMockResponseModal" tabIndex="-1" role="dialog"
@@ -92,13 +92,15 @@ class CreateMockResponseModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" onChange={event => this.setNewMockResponseName(event.target.value)} />
+                                    <input className="form-control" type="text"
+                                           onChange={event => this.setNewMockResponseName(event.target.value)}/>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Status</label>
                                 <div className="col-sm-10">
-                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED" onChange={event => this.setNewMockResponseStatus(event.target.value)}>
+                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED"
+                                            onChange={event => this.setNewMockResponseStatus(event.target.value)}>
                                         <option value={"ENABLED"}>{mockResponseStatusFormatter("ENABLED")}</option>
                                         <option value={"DISABLED"}>{mockResponseStatusFormatter("DISABLED")}</option>
                                     </select>
@@ -106,7 +108,10 @@ class CreateMockResponseModal extends PureComponent {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onCreateMockResponseClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create</button>
+                            <button className="btn btn-primary" data-dismiss="modal"
+                                    onClick={this.onCreateMockResponseClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                              className="button-icon"/>Create
+                            </button>
                         </div>
                     </div>
                 </div>

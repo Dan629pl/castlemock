@@ -40,9 +40,13 @@ public class HttpHeader {
     @XmlElement
     private final String value;
 
-    private HttpHeader(final Builder builder){
+    private HttpHeader(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.value = Objects.requireNonNull(builder.value, "value");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -78,10 +82,6 @@ public class HttpHeader {
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

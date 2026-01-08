@@ -39,6 +39,7 @@ public class ImportRestProjectService extends AbstractRestProjectService impleme
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -51,30 +52,30 @@ public class ImportRestProjectService extends AbstractRestProjectService impleme
         final RestExportContainer exportContainer = ExportContainerSerializer.deserialize(input.getProjectRaw(), RestExportContainer.class);
         final RestProject project = exportContainer.getProject();
 
-        if(this.repository.exists(project.getId())){
+        if (this.repository.exists(project.getId())) {
             throw new IllegalArgumentException("A project with the following key already exists: " + project.getId());
         }
 
         this.repository.save(project);
 
-        for(RestApplication application : exportContainer.getApplications()){
-            if(this.applicationRepository.exists(application.getId())){
+        for (RestApplication application : exportContainer.getApplications()) {
+            if (this.applicationRepository.exists(application.getId())) {
                 throw new IllegalArgumentException("An application with the following key already exists: " + application.getId());
             }
 
             this.applicationRepository.save(application);
         }
 
-        for(RestResource resource : exportContainer.getResources()){
-            if(this.resourceRepository.exists(resource.getId())){
+        for (RestResource resource : exportContainer.getResources()) {
+            if (this.resourceRepository.exists(resource.getId())) {
                 throw new IllegalArgumentException("A resource with the following key already exists: " + resource.getId());
             }
 
             this.resourceRepository.save(resource);
         }
 
-        for(RestMethod method : exportContainer.getMethods()){
-            if(this.methodRepository.exists(method.getId())){
+        for (RestMethod method : exportContainer.getMethods()) {
+            if (this.methodRepository.exists(method.getId())) {
                 throw new IllegalArgumentException("A method with the following key already exists: " + method.getId());
             }
 
@@ -83,8 +84,8 @@ public class ImportRestProjectService extends AbstractRestProjectService impleme
                     .build());
         }
 
-        for(RestMockResponse mockResponse : exportContainer.getMockResponses()){
-            if(this.mockResponseRepository.exists(mockResponse.getId())){
+        for (RestMockResponse mockResponse : exportContainer.getMockResponses()) {
+            if (this.mockResponseRepository.exists(mockResponse.getId())) {
                 throw new IllegalArgumentException("A mocked response with the following key already exists: " + mockResponse.getId());
             }
 

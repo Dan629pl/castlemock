@@ -65,7 +65,7 @@ public class SoapPort {
     @XmlTransient
     private final Map<SoapOperationStatus, Integer> statusCount;
 
-    private SoapPort(final Builder builder){
+    private SoapPort(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id);
         this.name = Objects.requireNonNull(builder.name);
         this.uri = Objects.requireNonNull(builder.uri);
@@ -75,11 +75,13 @@ public class SoapPort {
         this.statusCount = Optional.ofNullable(builder.statusCount).orElseGet(Map::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getId() {
         return id;
     }
-
 
     public List<SoapOperation> getOperations() {
         return Optional.ofNullable(operations)
@@ -87,13 +89,11 @@ public class SoapPort {
                 .orElseGet(List::of);
     }
 
-
     public Map<SoapOperationStatus, Integer> getStatusCount() {
         return Optional.ofNullable(statusCount)
                 .map(Map::copyOf)
                 .orElseGet(Map::of);
     }
-
 
     public String getName() {
         return name;
@@ -109,10 +109,6 @@ public class SoapPort {
 
     public Optional<String> getInvokeAddress() {
         return Optional.ofNullable(invokeAddress);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

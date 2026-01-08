@@ -63,11 +63,11 @@ public class RestResponse {
     @XmlElement(name = "contentEncoding")
     private List<HttpContentEncoding> contentEncodings;
 
-    public RestResponse(){
+    public RestResponse() {
 
     }
 
-    private RestResponse(final Builder builder){
+    private RestResponse(final Builder builder) {
         this.httpStatusCode = Objects.requireNonNull(builder.httpStatusCode, "httpStatusCode");
         this.body = builder.body;
         this.contentType = builder.contentType;
@@ -75,6 +75,10 @@ public class RestResponse {
         this.contentEncodings = Optional.ofNullable(builder.contentEncodings).orElseGet(List::of);
         this.httpHeaders = Optional.ofNullable(builder.httpHeaders).orElseGet(List::of);
 
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getBody() {
@@ -132,10 +136,6 @@ public class RestResponse {
                 ", httpHeaders=" + httpHeaders +
                 ", contentEncodings=" + contentEncodings +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -48,15 +48,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/rest")
-@Tag(name="REST - Method", description="REST Operations for Castle Mock REST Operation")
+@Tag(name = "REST - Method", description = "REST Operations for Castle Mock REST Operation")
 public class RestMethodRestController extends AbstractRestController {
 
     @Autowired
-    public RestMethodRestController(final ServiceProcessor serviceProcessor){
+    public RestMethodRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get Method")
+    @Operation(summary = "Get Method")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved method")})
     @RequestMapping(method = RequestMethod.GET,
@@ -83,7 +83,7 @@ public class RestMethodRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Delete Method")
+    @Operation(summary = "Delete Method")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully deleted method")})
     @RequestMapping(method = RequestMethod.DELETE,
@@ -106,9 +106,10 @@ public class RestMethodRestController extends AbstractRestController {
                 .build());
         return output.getMethod()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-    @Operation(summary =  "Update Method")
+    @Operation(summary = "Update Method")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated method")})
     @RequestMapping(method = RequestMethod.PUT,
@@ -146,10 +147,11 @@ public class RestMethodRestController extends AbstractRestController {
                 .build());
         return output.getMethod()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
 
-    @Operation(summary =  "Create Method")
+    @Operation(summary = "Create Method")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully created method")})
     @RequestMapping(method = RequestMethod.POST,
@@ -163,17 +165,17 @@ public class RestMethodRestController extends AbstractRestController {
             @Parameter(name = "resourceId", description = "The id of the resource")
             @PathVariable(value = "resourceId") final String resourceId,
             @RequestBody CreateRestMethodRequest request) {
-       final CreateRestMethodOutput output = super.serviceProcessor.process(CreateRestMethodInput.builder()
+        final CreateRestMethodOutput output = super.serviceProcessor.process(CreateRestMethodInput.builder()
                 .projectId(projectId)
                 .applicationId(applicationId)
                 .resourceId(resourceId)
                 .name(request.getName())
                 .httpMethod(request.getHttpMethod())
                 .build());
-       return ResponseEntity.ok(output.getMethod());
+        return ResponseEntity.ok(output.getMethod());
     }
 
-    @Operation(summary =  "Update mock response statuses")
+    @Operation(summary = "Update mock response statuses")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully updated SOAP operation statuses")})
     @RequestMapping(method = RequestMethod.PUT,
@@ -189,7 +191,7 @@ public class RestMethodRestController extends AbstractRestController {
             @PathVariable(value = "resourceId") final String resourceId,
             @Parameter(name = "methodId", description = "The id of the method")
             @PathVariable(value = "methodId") final String methodId,
-            @RequestBody UpdateRestMockResponseStatusesRequest request){
+            @RequestBody UpdateRestMockResponseStatusesRequest request) {
         request.getMockResponseIds()
                 .forEach(mockResponseId -> super.serviceProcessor.process(UpdateRestMockResponseStatusInput.builder()
                         .projectId(projectId)

@@ -28,9 +28,10 @@ import java.util.Objects;
 /**
  * The configuration DTO is a DTO (Data transfer object) class for the configuration class. The configuration class
  * represent an individual configuration and contains both the identifier (key) and the value
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Configuration
+ * @since 1.0
  */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
@@ -46,7 +47,7 @@ public class Configuration {
     @XmlElement
     private final ConfigurationType type;
 
-    private Configuration(final Builder builder){
+    private Configuration(final Builder builder) {
         this.key = Objects.requireNonNull(builder.key, "key");
         this.value = Objects.requireNonNull(builder.value, "value");
         this.type = Objects.requireNonNull(builder.type, "type");
@@ -58,6 +59,7 @@ public class Configuration {
 
     /**
      * Returns the identifier for the configuration
+     *
      * @return The configuration key
      */
     public String getKey() {
@@ -67,6 +69,7 @@ public class Configuration {
 
     /**
      * Returns the value for the configuration
+     *
      * @return Configuration value
      */
     public String getValue() {
@@ -76,6 +79,7 @@ public class Configuration {
 
     /**
      * Returns the configuration type
+     *
      * @return The configuration type
      */
     public ConfigurationType getType() {

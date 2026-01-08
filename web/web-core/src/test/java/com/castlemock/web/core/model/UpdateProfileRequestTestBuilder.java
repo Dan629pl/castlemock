@@ -18,11 +18,11 @@ package com.castlemock.web.core.model;
 
 public final class UpdateProfileRequestTestBuilder {
 
-    private UpdateProfileRequestTestBuilder(){
+    private UpdateProfileRequestTestBuilder() {
 
     }
 
-    public static UpdateProfileRequest.Builder builder(){
+    public static UpdateProfileRequest.Builder builder() {
         return UpdateProfileRequest.builder()
                 .email("email@email.email")
                 .fullName("Full name")

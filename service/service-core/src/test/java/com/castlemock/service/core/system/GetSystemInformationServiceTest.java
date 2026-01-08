@@ -42,7 +42,7 @@ public class GetSystemInformationServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final GetSystemInformationInput input = new GetSystemInformationInput();
         final ServiceTask<GetSystemInformationInput> serviceTask = ServiceTask.of(input, "user");
         final ServiceResult<GetSystemInformationOutput> output = service.process(serviceTask);

@@ -17,7 +17,7 @@
 import React, {PureComponent} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import validateErrorResponse from "../../../../utility/HttpResponseValidator";
@@ -26,7 +26,7 @@ import ValidateExpressionModal from "../../utility/modal/ValidateExpressionModal
 import HeaderComponent from "../../utility/HeaderComponent";
 import XPathComponent from "../../utility/XPathComponent";
 import {mockResponseStatusFormatter} from "../utility/SoapFormatter";
-import {faTrash, faEdit, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {faCheckCircle, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class SoapMockResponse extends PureComponent {
@@ -64,7 +64,7 @@ class SoapMockResponse extends PureComponent {
         this.getMockResponse();
     }
 
-    onHeaderAdded(header){
+    onHeaderAdded(header) {
         let httpHeaders = this.state.updateMockResponse.httpHeaders.slice();
         httpHeaders.push(header)
         this.setState({
@@ -75,7 +75,7 @@ class SoapMockResponse extends PureComponent {
         })
     }
 
-    onHeaderRemoved(header){
+    onHeaderRemoved(header) {
         let httpHeaders = this.state.updateMockResponse.httpHeaders.slice();
         let index = httpHeaders.indexOf(header);
         httpHeaders.splice(index, 1);
@@ -87,7 +87,7 @@ class SoapMockResponse extends PureComponent {
         })
     }
 
-    onXPathAdded(xpath){
+    onXPathAdded(xpath) {
         let xpathExpressions = this.state.updateMockResponse.xpathExpressions.slice();
         xpathExpressions.push(xpath)
         this.setState({
@@ -98,7 +98,7 @@ class SoapMockResponse extends PureComponent {
         })
     }
 
-    onXPathRemoved(xpath){
+    onXPathRemoved(xpath) {
         let xpathExpressions = this.state.updateMockResponse.xpathExpressions.slice();
         let index = xpathExpressions.indexOf(xpath);
         xpathExpressions.splice(index, 1);
@@ -155,7 +155,7 @@ class SoapMockResponse extends PureComponent {
         });
     }
 
-    onDiscardChangesClick(){
+    onDiscardChangesClick() {
         this.props.history.push("/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId +
             "/operation/" + this.state.operationId);
     }
@@ -193,9 +193,14 @@ class SoapMockResponse extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId}>Port</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + this.state.operationId}>Operation</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId}>Port</Link>
+                                </li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/soap/project/" + this.state.projectId + "/port/" + this.state.portId + "/operation/" + this.state.operationId}>Operation</Link>
+                                </li>
                                 <li className="breadcrumb-item">{this.state.mockResponse.name}</li>
                             </ol>
                         </nav>
@@ -205,23 +210,33 @@ class SoapMockResponse extends PureComponent {
                             <h1>Mock Response: {this.state.mockResponse.name}</h1>
                         </div>
                         <div className="menu" align="right">
-                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#validateExpressionModal"><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/><span>Validate expression</span></button>
-                            <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteMockResponseModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete mock response</span></button>
+                            <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal"
+                                    data-target="#validateExpressionModal"><FontAwesomeIcon icon={faCheckCircle}
+                                                                                            className="button-icon"/><span>Validate expression</span>
+                            </button>
+                            <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                    data-target="#deleteMockResponseModal"><FontAwesomeIcon icon={faTrash}
+                                                                                            className="button-icon"/><span>Delete mock response</span>
+                            </button>
                         </div>
                     </div>
                     <div className="content-summary">
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Name</dt>
-                            <dd className="col-sm-9"><input value={this.state.updateMockResponse.name} onChange={this.setName}/></dd>
+                            <dd className="col-sm-9"><input value={this.state.updateMockResponse.name}
+                                                            onChange={this.setName}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">HTTP Status code</dt>
-                            <dd className="col-sm-9"><input type="number" value={this.state.updateMockResponse.httpStatusCode} onChange={this.setHttpStatusCode}/></dd>
+                            <dd className="col-sm-9"><input type="number"
+                                                            value={this.state.updateMockResponse.httpStatusCode}
+                                                            onChange={this.setHttpStatusCode}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Status</dt>
                             <dd className="col-sm-2">
-                                <select id="inputState" className="form-control" value={this.state.updateMockResponse.status} onChange={this.setStatus}>
+                                <select id="inputState" className="form-control"
+                                        value={this.state.updateMockResponse.status} onChange={this.setStatus}>
                                     <option value={"ENABLED"}>{mockResponseStatusFormatter("ENABLED")}</option>
                                     <option value={"DISABLED"}>{mockResponseStatusFormatter("DISABLED")}</option>
                                 </select>
@@ -229,36 +244,50 @@ class SoapMockResponse extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Use Expression</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.updateMockResponse.usingExpressions} onChange={this.setUsingExpression}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox"
+                                                            checked={this.state.updateMockResponse.usingExpressions}
+                                                            onChange={this.setUsingExpression}/></dd>
                         </dl>
                     </div>
                     <div>
                         <Tabs defaultActiveKey="body">
                             <Tab eventKey="body" title="Body">
                                 <div className="response-section">
-                                    <textarea className="form-control" id="body" rows="20"  value={this.state.updateMockResponse.body} onChange={this.setBody}/>
+                                    <textarea className="form-control" id="body" rows="20"
+                                              value={this.state.updateMockResponse.body} onChange={this.setBody}/>
                                 </div>
                             </Tab>
                             <Tab eventKey="headers" title="Headers">
                                 <div className="response-section">
-                                    <HeaderComponent onHeaderAdded={this.onHeaderAdded} onHeaderRemoved={this.onHeaderRemoved} httpHeaders={this.state.updateMockResponse.httpHeaders}/>
+                                    <HeaderComponent onHeaderAdded={this.onHeaderAdded}
+                                                     onHeaderRemoved={this.onHeaderRemoved}
+                                                     httpHeaders={this.state.updateMockResponse.httpHeaders}/>
                                 </div>
                             </Tab>
                             <Tab eventKey="xpath" title="XPath">
                                 <div className="response-section">
-                                    <XPathComponent onXPathAdded={this.onXPathAdded} onXPathRemoved={this.onXPathRemoved} xpathExpressions={this.state.updateMockResponse.xpathExpressions}/>
+                                    <XPathComponent onXPathAdded={this.onXPathAdded}
+                                                    onXPathRemoved={this.onXPathRemoved}
+                                                    xpathExpressions={this.state.updateMockResponse.xpathExpressions}/>
                                 </div>
                             </Tab>
                         </Tabs>
                     </div>
                     <div className="panel-buttons">
-                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#updateProjectModal" onClick={this.onUpdateMockResponseClick}><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update response</span></button>
-                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#updateProjectModal" onClick={this.onDiscardChangesClick}><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Discard changes</span></button>
+                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                data-target="#updateProjectModal" onClick={this.onUpdateMockResponseClick}>
+                            <FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update response</span>
+                        </button>
+                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                data-target="#updateProjectModal" onClick={this.onDiscardChangesClick}><FontAwesomeIcon
+                            icon={faTrash} className="button-icon"/><span>Discard changes</span></button>
                     </div>
                 </section>
 
-                <DeleteMockResponseModal projectId={this.state.projectId} portId={this.state.portId} operationId={this.state.operationId} mockResponseId={this.state.mockResponseId}/>
-                <ValidateExpressionModal />
+                <DeleteMockResponseModal projectId={this.state.projectId} portId={this.state.portId}
+                                         operationId={this.state.operationId}
+                                         mockResponseId={this.state.mockResponseId}/>
+                <ValidateExpressionModal/>
             </div>
         )
     }

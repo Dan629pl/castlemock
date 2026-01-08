@@ -27,14 +27,18 @@ import UpdateMethodModal from "./modal/UpdateMethodModal";
 import CreateMockResponseModal from "./modal/CreateMockResponseModal";
 import DuplicateMockResponsesModal from "./modal/DuplicateMockResponsesModal";
 import UpdateStatusModal from "./modal/UpdateStatusModal"
-import {mockResponseStatusFormatter, methodResponseStrategyFormatter, methodStatusFormatter} from "../utility/RestFormatter";
+import {
+    methodResponseStrategyFormatter,
+    methodStatusFormatter,
+    mockResponseStatusFormatter
+} from "../utility/RestFormatter";
 import {isOnlyReader} from "../../../../utility/AuthorizeUtility";
 import AuthenticationContext from "../../../../context/AuthenticationContext";
 import ContextContext from "../../../../context/ContextContext";
-import {faEdit, faFile, faTrash, faCopy} from "@fortawesome/free-solid-svg-icons";
+import {faCopy, faEdit, faFile, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 const SELECT = true;
 const DESELECT = false;
 
@@ -93,16 +97,16 @@ class RestMethod extends PureComponent {
 
         this.getMethod();
     }
-    
+
     onRowSelect(value, mode) {
         let mockResponses = this.state.selectedMockResponses.slice();
         let mockResponse = {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             mockResponses.push(mockResponse);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = mockResponses.indexOf(mockResponse);
             mockResponses.splice(index, 1);
         }
@@ -112,7 +116,7 @@ class RestMethod extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let mockResponses = [];
             this.state.method.mockResponses.forEach(value => {
                 let mockResponse = {
@@ -124,7 +128,7 @@ class RestMethod extends PureComponent {
             this.setState({
                 selectedMockResponses: mockResponses
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedMockResponses: []
             });
@@ -132,19 +136,20 @@ class RestMethod extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
         return (
             <div className="table-link">
-                <Link to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId + "/method/" + this.state.methodId + "/mockresponse/" + row.id}>{cell}</Link>
+                <Link
+                    to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId + "/method/" + this.state.methodId + "/mockresponse/" + row.id}>{cell}</Link>
             </div>
         )
     }
 
     statusFormat(cell) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -172,9 +177,14 @@ class RestMethod extends PureComponent {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb breadcrumb-custom">
                                 <li className="breadcrumb-item"><Link to={"/web"}>Home</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/project/" + this.state.projectId}>Project</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId}>Application</Link></li>
-                                <li className="breadcrumb-item"><Link to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId}>Resource</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/project/" + this.state.projectId}>Project</Link></li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId}>Application</Link>
+                                </li>
+                                <li className="breadcrumb-item"><Link
+                                    to={"/web/rest/project/" + this.state.projectId + "/application/" + this.state.applicationId + "/resource/" + this.state.resourceId}>Resource</Link>
+                                </li>
                                 <li className="breadcrumb-item">{this.state.method.name}</li>
                             </ol>
                         </nav>
@@ -186,9 +196,18 @@ class RestMethod extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu" align="right">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateMethodModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update method</span></button>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal" data-target="#createMockResponseModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faFile} className="button-icon"/><span>Create response</span></button>
-                                    <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteMethodModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete method</span></button>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updateMethodModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faEdit} className="button-icon"/><span>Update method</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#createMockResponseModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faFile} className="button-icon"/><span>Create response</span></button>
+                                    <button className="btn btn-danger demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#deleteMethodModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faTrash} className="button-icon"/><span>Delete method</span></button>
                                 </div>
                             )}
                         </AuthenticationContext.Consumer>
@@ -220,11 +239,14 @@ class RestMethod extends PureComponent {
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Automatic forward with no match</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.method.automaticForward} disabled={true}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.method.automaticForward}
+                                                            disabled={true}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Simulate network delay</dt>
-                            <dd className="col-sm-9"><input type="checkbox" checked={this.state.method.simulateNetworkDelay} disabled={true}/></dd>
+                            <dd className="col-sm-9"><input type="checkbox"
+                                                            checked={this.state.method.simulateNetworkDelay}
+                                                            disabled={true}/></dd>
                         </dl>
                         <dl className="row">
                             <dt className="col-sm-3 content-title">Network delay</dt>
@@ -241,7 +263,7 @@ class RestMethod extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.method.mockResponses}
                                              keyField="id"
                                              search>
@@ -252,26 +274,35 @@ class RestMethod extends PureComponent {
                                                 <SearchBar {...props.searchProps} className={"table-filter-field"}/>
                                             </div>
                                             <BootstrapTable {...props.baseProps} bootstrap4
-                                                            data={this.state.method.mockResponses} columns={this.columns}
+                                                            data={this.state.method.mockResponses}
+                                                            columns={this.columns}
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             selectRow={this.selectRow}
                                                             noDataIndication="No mocked responses"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#duplicateMockResponsesModal"><FontAwesomeIcon icon={faCopy} className="button-icon"/><span>Duplicate</span></button>
-                                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#duplicateMockResponsesModal"><FontAwesomeIcon
+                                            icon={faCopy} className="button-icon"/><span>Duplicate</span></button>
+                                        <button className="btn btn-danger demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedMockResponses.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#deleteMockResponsesModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete mock response</span></button>
+                                                data-target="#deleteMockResponsesModal"><FontAwesomeIcon icon={faTrash}
+                                                                                                         className="button-icon"/><span>Delete mock response</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
@@ -279,12 +310,24 @@ class RestMethod extends PureComponent {
                     </div>
                 </section>
 
-                <CreateMockResponseModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId}/>
-                <DeleteMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId}/>
-                <DeleteMockResponsesModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId} getMethod={this.getMethod} selectedMockResponses={this.state.selectedMockResponses}/>
-                <UpdateMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId} method={this.state.method} getMethod={this.getMethod}/>
-                <DuplicateMockResponsesModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId} getMethod={this.getMethod} selectedMockResponses={this.state.selectedMockResponses} />
-                <UpdateStatusModal projectId={this.state.projectId} applicationId={this.state.applicationId} resourceId={this.state.resourceId} methodId={this.state.methodId} selectedMockResponses={this.state.selectedMockResponses} getMethod={this.getMethod}/>
+                <CreateMockResponseModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                         resourceId={this.state.resourceId} methodId={this.state.methodId}/>
+                <DeleteMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                   resourceId={this.state.resourceId} methodId={this.state.methodId}/>
+                <DeleteMockResponsesModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                          resourceId={this.state.resourceId} methodId={this.state.methodId}
+                                          getMethod={this.getMethod}
+                                          selectedMockResponses={this.state.selectedMockResponses}/>
+                <UpdateMethodModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                   resourceId={this.state.resourceId} methodId={this.state.methodId}
+                                   method={this.state.method} getMethod={this.getMethod}/>
+                <DuplicateMockResponsesModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                             resourceId={this.state.resourceId} methodId={this.state.methodId}
+                                             getMethod={this.getMethod}
+                                             selectedMockResponses={this.state.selectedMockResponses}/>
+                <UpdateStatusModal projectId={this.state.projectId} applicationId={this.state.applicationId}
+                                   resourceId={this.state.resourceId} methodId={this.state.methodId}
+                                   selectedMockResponses={this.state.selectedMockResponses} getMethod={this.getMethod}/>
             </div>
         )
     }

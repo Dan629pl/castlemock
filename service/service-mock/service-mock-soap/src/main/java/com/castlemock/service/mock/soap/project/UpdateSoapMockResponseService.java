@@ -27,10 +27,11 @@ import java.util.Optional;
 
 /**
  * The service provides functionality to update a specific SOAP mock response.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see UpdateSoapMockResponseInput
  * @see UpdateSoapMockResponseOutput
+ * @since 1.0
  */
 @org.springframework.stereotype.Service
 public class UpdateSoapMockResponseService extends AbstractSoapProjectService implements Service<UpdateSoapMockResponseInput, UpdateSoapMockResponseOutput> {
@@ -38,6 +39,7 @@ public class UpdateSoapMockResponseService extends AbstractSoapProjectService im
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask

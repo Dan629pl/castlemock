@@ -52,9 +52,9 @@ public class ReadAllSoapEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<SoapEvent> soapEvents = new ArrayList<>();
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
             soapEvents.add(soapEvent);
         }
@@ -68,7 +68,7 @@ public class ReadAllSoapEventServiceTest {
 
         Assertions.assertEquals(soapEvents.size(), output.getSoapEvents().size());
 
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final SoapEvent soapEvent = soapEvents.get(index);
             final SoapEvent returnedSoapEvent = output.getSoapEvents().get(index);
 

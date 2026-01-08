@@ -45,11 +45,11 @@ class LoginContainer extends PureComponent {
     }
 
     setUsername(username) {
-        this.setState({ username: username });
+        this.setState({username: username});
     }
 
     setPassword(password) {
-        this.setState({ password: password });
+        this.setState({password: password});
     }
 
     onButtonLoginClick(context) {
@@ -70,7 +70,7 @@ class LoginContainer extends PureComponent {
                 })
             })
             .catch(error => {
-               this.setState({
+                this.setState({
                     loginFailed: true
                 })
             });
@@ -82,13 +82,13 @@ class LoginContainer extends PureComponent {
         }
     }
 
-    isAuthenticated(){
+    isAuthenticated() {
         return this.state.authenticated;
     }
 
     render() {
-        if(this.isAuthenticated()){
-            return <Redirect to = {{ pathname: "/web" }} />
+        if (this.isAuthenticated()) {
+            return <Redirect to={{pathname: "/web"}}/>
         }
 
         return (
@@ -104,44 +104,56 @@ class LoginContainer extends PureComponent {
                                     <div className="login-title">Castle Mock</div>
                                     <div className="login-sub-title">Login with your Castle Mock ID</div>
 
-                                    <div className="alert alert-danger" role="alert" hidden={this.state.loginFailed ? '' : 'hidden'}>
+                                    <div className="alert alert-danger" role="alert"
+                                         hidden={this.state.loginFailed ? '' : 'hidden'}>
                                         Invalid credentials. Please try again.
                                     </div>
 
                                     <div className="form-label-group">
-                                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" onChange={event => this.setUsername(event.target.value)} onKeyDown={event => this.onEnterClick(event, context)} required autoFocus/>
+                                        <input type="text" id="inputUsername" className="form-control"
+                                               placeholder="Username"
+                                               onChange={event => this.setUsername(event.target.value)}
+                                               onKeyDown={event => this.onEnterClick(event, context)} required
+                                               autoFocus/>
                                     </div>
                                     <div className="form-label-group">
-                                        <input type="password" id="inputPassword" className="form-control" placeholder="Password" onChange={event => this.setPassword(event.target.value)} onKeyDown={event => this.onEnterClick(event, context)} required />
+                                        <input type="password" id="inputPassword" className="form-control"
+                                               placeholder="Password"
+                                               onChange={event => this.setPassword(event.target.value)}
+                                               onKeyDown={event => this.onEnterClick(event, context)} required/>
                                     </div>
-                                    <button className="btn btn-lg btn-success btn-block text-uppercase" onClick={event => this.onButtonLoginClick(context)}>Sign in <FontAwesomeIcon icon={faSignInAlt} className="button-icon"/></button>
+                                    <button className="btn btn-lg btn-success btn-block text-uppercase"
+                                            onClick={event => this.onButtonLoginClick(context)}>Sign in <FontAwesomeIcon
+                                        icon={faSignInAlt} className="button-icon"/></button>
                                 </div>
                             </div>
                         </div>
 
 
-                                <div id="login-footer">
-                                    <VersionContext.Consumer>
-                                        {version => (
-                                            <div id="login-footer-info">
-                                                <a href="https://www.castlemock.com" target="_blank" rel="noopener noreferrer">Castle Mock version. {version}</a>
-                                            </div>
-                                        )}
-                                    </VersionContext.Consumer>
+                        <div id="login-footer">
+                            <VersionContext.Consumer>
+                                {version => (
+                                    <div id="login-footer-info">
+                                        <a href="https://www.castlemock.com" target="_blank" rel="noopener noreferrer">Castle
+                                            Mock version. {version}</a>
+                                    </div>
+                                )}
+                            </VersionContext.Consumer>
 
-                                    <ContextContext.Consumer>
-                                        {context => (
-                                            <div id="login-footer-info-api">
-                                                <a href={context + "/doc/api/rest"} target="_blank" rel="noopener noreferrer">REST API</a>
-                                            </div>
-                                        )}
-                                    </ContextContext.Consumer>
-                                </div>
+                            <ContextContext.Consumer>
+                                {context => (
+                                    <div id="login-footer-info-api">
+                                        <a href={context + "/doc/api/rest"} target="_blank" rel="noopener noreferrer">REST
+                                            API</a>
+                                    </div>
+                                )}
+                            </ContextContext.Consumer>
+                        </div>
 
                     </div>
                 )}
             </AuthenticationContext.Consumer>
-    );
+        );
     }
 }
 

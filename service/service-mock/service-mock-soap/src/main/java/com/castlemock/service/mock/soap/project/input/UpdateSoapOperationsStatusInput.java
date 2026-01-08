@@ -39,6 +39,10 @@ public final class UpdateSoapOperationsStatusInput implements Input {
         this.operationStatus = Objects.requireNonNull(builder.operationStatus, "operationStatus");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -79,41 +83,37 @@ public final class UpdateSoapOperationsStatusInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String operationId;
         private SoapOperationStatus operationStatus;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder operationStatus(final SoapOperationStatus operationStatus){
+        public Builder operationStatus(final SoapOperationStatus operationStatus) {
             this.operationStatus = operationStatus;
             return this;
         }
 
-        public UpdateSoapOperationsStatusInput build(){
+        public UpdateSoapOperationsStatusInput build() {
             return new UpdateSoapOperationsStatusInput(this);
         }
     }

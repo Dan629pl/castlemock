@@ -40,6 +40,10 @@ public class ValidateExpressionResponse {
         this.output = Objects.requireNonNull(builder.output, "output");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getOutput() {
         return output;
     }
@@ -62,10 +66,6 @@ public class ValidateExpressionResponse {
         return "ValidateExpressionResponse{" +
                 "output='" + output + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

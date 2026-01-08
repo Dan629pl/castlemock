@@ -46,15 +46,15 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - User", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - User", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class UserCoreRestController extends AbstractRestController {
 
-    public UserCoreRestController(final ServiceProcessor serviceProcessor){
+    public UserCoreRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Create user",
+    @Operation(summary = "Create user",
             description = "Create user. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.POST, value = "/user")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -69,19 +69,19 @@ public class UserCoreRestController extends AbstractRestController {
                 .password(request.getPassword())
                 .build());
         final User createdUser = output.getSavedUser()
-                        .toBuilder()
-                        .password(EMPTY)
-                        .build();
+                .toBuilder()
+                .password(EMPTY)
+                .build();
         return ResponseEntity.ok(createdUser);
     }
 
-    @Operation(summary =  "Update user",
+    @Operation(summary = "Update user",
             description = "Update user. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.PUT, value = "/user/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public @ResponseBody
     ResponseEntity<User> updateUser(@PathVariable("userId") final String userId,
-                    @RequestBody final UpdateUserRequest request) {
+                                    @RequestBody final UpdateUserRequest request) {
         final UpdateUserOutput output = serviceProcessor.process(UpdateUserInput.builder()
                 .id(userId)
                 .email(request.getEmail().orElse(null))
@@ -99,7 +99,7 @@ public class UserCoreRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Get all users",
+    @Operation(summary = "Get all users",
             description = "Get all users. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/user")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -109,13 +109,13 @@ public class UserCoreRestController extends AbstractRestController {
         final List<User> users = output.getUsers()
                 .stream()
                 .map(user -> user.toBuilder()
-                    .password(EMPTY)
-                    .build())
+                        .password(EMPTY)
+                        .build())
                 .collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
 
-    @Operation(summary =  "Get user",
+    @Operation(summary = "Get user",
             description = "Get user. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/user/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -132,7 +132,7 @@ public class UserCoreRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Delete user", description = "Delete user. Required authorization: Admin.")
+    @Operation(summary = "Delete user", description = "Delete user. Required authorization: Admin.")
     @RequestMapping(method = RequestMethod.DELETE, value = "/user/{userId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public @ResponseBody

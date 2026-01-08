@@ -32,9 +32,10 @@ import java.util.List;
 /**
  * The SOAP event service adapter is an adapter class that provides functionality to
  * translate incoming requests and transform them to the correct service input messages
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see EventServiceFacade
+ * @since 1.0
  */
 @Service
 public class SoapEventServiceAdapter implements EventServiceAdapter<SoapEvent> {
@@ -52,6 +53,7 @@ public class SoapEventServiceAdapter implements EventServiceAdapter<SoapEvent> {
 
     /**
      * The method is responsible for retrieving all instances from all the various service types.
+     *
      * @return A list containing all the instance independent from type
      */
     @Override
@@ -67,6 +69,7 @@ public class SoapEventServiceAdapter implements EventServiceAdapter<SoapEvent> {
 
     /**
      * The method will clear and remove all previous events.
+     *
      * @since 1.7
      */
     @Override

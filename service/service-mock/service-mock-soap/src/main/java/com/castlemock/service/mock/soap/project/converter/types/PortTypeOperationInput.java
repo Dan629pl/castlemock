@@ -21,32 +21,32 @@ public final class PortTypeOperationInput {
 
     private final Attribute message;
 
-    private PortTypeOperationInput(final Builder builder){
+    private PortTypeOperationInput(final Builder builder) {
         this.message = Objects.requireNonNull(builder.message);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Attribute getMessage() {
         return message;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private Attribute message;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder message(final Attribute message){
+        public Builder message(final Attribute message) {
             this.message = message;
             return this;
         }
 
-        public PortTypeOperationInput build(){
+        public PortTypeOperationInput build() {
             return new PortTypeOperationInput(this);
         }
     }

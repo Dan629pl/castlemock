@@ -24,7 +24,7 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteRestMockResponseInput implements Input{
+public final class DeleteRestMockResponseInput implements Input {
 
     private final String projectId;
     private final String applicationId;
@@ -38,6 +38,10 @@ public final class DeleteRestMockResponseInput implements Input{
         this.resourceId = Objects.requireNonNull(builder.resourceId, "resourceId");
         this.methodId = Objects.requireNonNull(builder.methodId, "methodId");
         this.mockResponseId = Objects.requireNonNull(builder.mockResponseId, "mockResponseId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -84,10 +88,6 @@ public final class DeleteRestMockResponseInput implements Input{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -99,32 +99,32 @@ public final class DeleteRestMockResponseInput implements Input{
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public Builder mockResponseId(final String mockResponseId){
+        public Builder mockResponseId(final String mockResponseId) {
             this.mockResponseId = mockResponseId;
             return this;
         }
 
-        public DeleteRestMockResponseInput build(){
+        public DeleteRestMockResponseInput build() {
             return new DeleteRestMockResponseInput(this);
         }
 

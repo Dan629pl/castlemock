@@ -40,12 +40,12 @@ import java.util.List;
  */
 public class RestEventRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private RestEventFileRepository repository;
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -55,7 +55,7 @@ public class RestEventRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         List<RestEvent> restEvents = new ArrayList<>();
         RestEvent restEvent = RestEventTestBuilder.builder().build();
         restEvents.add(restEvent);
@@ -65,7 +65,7 @@ public class RestEventRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final RestEvent restEvent = save();
         final RestEvent returnedRestEvent = repository.findOne(restEvent.getId()).orElse(null);
         Assertions.assertNotNull(returnedRestEvent);
@@ -77,7 +77,7 @@ public class RestEventRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final RestEvent restEvent = save();
         final List<RestEvent> restEvents = repository.findAll();
         Assertions.assertEquals(restEvents.size(), 1);
@@ -89,26 +89,26 @@ public class RestEventRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         final RestEvent restEvent = save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(RestEventFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final RestEvent restEvent = save();
         repository.delete(restEvent.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + restEvent.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         final RestEvent restEvent = save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private RestEvent save(){
+    private RestEvent save() {
         final RestEvent restEvent = RestEventTestBuilder.builder().build();
         repository.save(restEvent);
         return restEvent;

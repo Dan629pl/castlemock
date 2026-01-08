@@ -35,7 +35,7 @@ public final class WsdlPortTypeParser extends WsdlParser {
     private static final String MESSAGE_NAMESPACE = "message";
     private static final String OPERATION_NAMESPACE = "operation";
 
-    public Set<PortType> parsePortTypes(final Document document){
+    public Set<PortType> parsePortTypes(final Document document) {
         final List<Element> portTypesElement =
                 DocumentUtility.getElements(document, WSDL_NAMESPACE, PORT_TYPE_NAMESPACE);
         return portTypesElement.stream()
@@ -43,7 +43,7 @@ public final class WsdlPortTypeParser extends WsdlParser {
                 .collect(Collectors.toSet());
     }
 
-    private PortType parsePortType(final Element portTypeElement){
+    private PortType parsePortType(final Element portTypeElement) {
         final List<Element> operationElements =
                 DocumentUtility.getElements(portTypeElement, WSDL_NAMESPACE, OPERATION_NAMESPACE);
         final String name = DocumentUtility.getAttribute(portTypeElement, NAME_NAMESPACE)
@@ -57,7 +57,7 @@ public final class WsdlPortTypeParser extends WsdlParser {
                 .build();
     }
 
-    private PortTypeOperation parseOperation(final Element operationElement){
+    private PortTypeOperation parseOperation(final Element operationElement) {
         final String name = DocumentUtility.getAttribute(operationElement, NAME_NAMESPACE)
                 .orElseThrow(() -> new IllegalArgumentException("Unable to find operation name"));
         return PortTypeOperation.builder()
@@ -67,7 +67,7 @@ public final class WsdlPortTypeParser extends WsdlParser {
                 .build();
     }
 
-    private Optional<PortTypeOperationInput> parseInput(final Element operationElement){
+    private Optional<PortTypeOperationInput> parseInput(final Element operationElement) {
         return DocumentUtility.getElement(operationElement, WSDL_NAMESPACE, INPUT_NAMESPACE)
                 .flatMap(element -> this.getAttribute(element, MESSAGE_NAMESPACE))
                 .map(message -> PortTypeOperationInput.builder()
@@ -75,7 +75,7 @@ public final class WsdlPortTypeParser extends WsdlParser {
                         .build());
     }
 
-    private Optional<PortTypeOperationOutput> parseOutput(final Element operationElement){
+    private Optional<PortTypeOperationOutput> parseOutput(final Element operationElement) {
         return DocumentUtility.getElement(operationElement, WSDL_NAMESPACE, OUTPUT_NAMESPACE)
                 .flatMap(element -> this.getAttribute(element, MESSAGE_NAMESPACE))
                 .map(message -> PortTypeOperationOutput.builder()

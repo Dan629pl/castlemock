@@ -25,7 +25,7 @@ import java.util.List;
 public class AlphanumComparatorTest {
 
     @Test
-    public void compareTest1(){
+    public void compareTest1() {
         final AlphanumComparator comparator = new AlphanumComparator();
         final List<String> collection = Arrays.asList("a100", "a1", "a10", "a11", "a101");
         collection.sort(comparator);

@@ -40,9 +40,10 @@ import java.util.List;
  * The User Detail Security service is used upon authentication towards Castle Mock.
  * The class is responsible for locating users and match the incoming authentication credentials
  * towards the users.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see org.springframework.security.core.userdetails.User
+ * @since 1.0
  */
 @Service("userDetailsService")
 public class UserDetailSecurityService implements UserDetailsService {
@@ -52,9 +53,10 @@ public class UserDetailSecurityService implements UserDetailsService {
 
     /**
      * Loads a user by the username
+     *
      * @param username The user detail that will be loaded should match the provided username
      * @return User details that match the provided username
-     * @throws NullPointerException Throws NullPointerException if provided username is null
+     * @throws NullPointerException     Throws NullPointerException if provided username is null
      * @throws IllegalArgumentException Throws IllegalArgumentException if the username is empty
      */
     @Override
@@ -74,7 +76,8 @@ public class UserDetailSecurityService implements UserDetailsService {
 
     /**
      * Builds a user for the authentication
-     * @param user The user dto
+     *
+     * @param user        The user dto
      * @param authorities A list of authorities
      * @return Returns a new user that contain the same username and password as the provided user dto
      * @throws NullPointerException Throws NullPointerException if provided username or authorities parameters are null
@@ -89,6 +92,7 @@ public class UserDetailSecurityService implements UserDetailsService {
 
     /**
      * Build user authority
+     *
      * @param role The role which name will be used for the authority
      * @return Returns a list of granted authorities
      * @throws NullPointerException Throws NullPointerException if provided role parameter is null
@@ -103,10 +107,11 @@ public class UserDetailSecurityService implements UserDetailsService {
     /**
      * The method updates the current logged in user. This method is used when updating a new username to the logged in
      * user.
+     *
      * @param username The new name of the user that will be logged in
      * @see org.springframework.security.core.userdetails.User
      */
-    public void updateCurrentLoggedInUser(final String username){
+    public void updateCurrentLoggedInUser(final String username) {
         final UserDetails userDetails = loadUserByUsername(username);
         final Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);

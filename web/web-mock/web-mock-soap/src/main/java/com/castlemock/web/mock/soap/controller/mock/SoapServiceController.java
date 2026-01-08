@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * The SOAP requests will be processed and the correct mocked response
  * will be retrieved from the database. If no response is found, an error
  * response will be returned instead.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -47,16 +48,17 @@ public class SoapServiceController extends AbstractSoapServiceController {
     @Autowired
     public SoapServiceController(final ServiceProcessor serviceProcessor,
                                  final ServletContext servletContext,
-                                 final SoapStrategyFactory strategyFactory){
+                                 final SoapStrategyFactory strategyFactory) {
         super(serviceProcessor, servletContext, strategyFactory);
     }
 
     /**
      * The service is responsible for handling all the incoming SOAP requests. The SOAP requests will be processed
      * and a response will be generated and returned to the service consumer.
+     *
      * @param projectId The id of the project that the request belongs to
-     * @param request The incoming request that will be processed
-¨     * @return Returns a mocked response
+     * @param request   The incoming request that will be processed
+     *                  ¨     * @return Returns a mocked response
      * @see SoapProject
      * @see SoapOperation
      * @see SoapMockResponse

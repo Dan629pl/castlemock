@@ -23,9 +23,10 @@ import java.util.Objects;
 
 /**
  * Get system information output
+ *
  * @author Karl Dahlgren
- * @since 1.7
  * @see com.castlemock.service.core.system.input.GetSystemInformationInput
+ * @since 1.7
  */
 public final class GetSystemInformationOutput implements Output {
 
@@ -35,13 +36,12 @@ public final class GetSystemInformationOutput implements Output {
         this.systemInformation = Objects.requireNonNull(builder.systemInformation, "systemInformation");
     }
 
-    public SystemInformation getSystemInformation() {
-        return systemInformation;
-    }
-
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public SystemInformation getSystemInformation() {
+        return systemInformation;
     }
 
     public static final class Builder {

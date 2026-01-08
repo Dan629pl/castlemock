@@ -62,7 +62,7 @@ public class RestExportContainer extends ExportContainer {
     @XmlElement(name = "mockResponse")
     private final List<RestMockResponse> mockResponses;
 
-    private RestExportContainer(final Builder builder){
+    private RestExportContainer(final Builder builder) {
         this.project = Objects.requireNonNull(builder.project, "project");
         this.applications = Optional.ofNullable(builder.applications).orElseGet(List::of);
         this.resources = Optional.ofNullable(builder.resources).orElseGet(List::of);
@@ -70,6 +70,9 @@ public class RestExportContainer extends ExportContainer {
         this.mockResponses = Optional.ofNullable(builder.mockResponses).orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public RestProject getProject() {
         return project;
@@ -123,10 +126,6 @@ public class RestExportContainer extends ExportContainer {
                 ", methods=" + methods +
                 ", mockResponses=" + mockResponses +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

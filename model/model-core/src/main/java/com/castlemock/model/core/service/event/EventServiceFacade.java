@@ -25,10 +25,11 @@ import java.util.List;
 /**
  * The Event service facade is used to assembly all the events service layers and interact with them
  * in order to retrieve a unified answer independent of the event type.
+ *
  * @author Karl Dahlgren
+ * @see Event
+ * @see Event
  * @since 1.0
- * @see Event
- * @see Event
  */
 public interface EventServiceFacade extends ServiceFacade<Event, String> {
 

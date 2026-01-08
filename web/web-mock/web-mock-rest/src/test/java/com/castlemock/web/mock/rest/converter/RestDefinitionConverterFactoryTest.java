@@ -33,7 +33,7 @@ public class RestDefinitionConverterFactoryTest {
     private FileManager fileManager;
 
     @Test
-    public void testGetConverterRAML(){
+    public void testGetConverterRAML() {
         final RestDefinitionConverter converter =
                 RestDefinitionConverterFactory.getConverter(RestDefinitionType.RAML, fileManager);
 
@@ -41,7 +41,7 @@ public class RestDefinitionConverterFactoryTest {
     }
 
     @Test
-    public void testGetConverterSwagger(){
+    public void testGetConverterSwagger() {
         final RestDefinitionConverter converter =
                 RestDefinitionConverterFactory.getConverter(RestDefinitionType.SWAGGER, fileManager);
 
@@ -49,7 +49,7 @@ public class RestDefinitionConverterFactoryTest {
     }
 
     @Test
-    public void testGetConverterWADL(){
+    public void testGetConverterWADL() {
         final RestDefinitionConverter converter =
                 RestDefinitionConverterFactory.getConverter(RestDefinitionType.WADL, fileManager);
 

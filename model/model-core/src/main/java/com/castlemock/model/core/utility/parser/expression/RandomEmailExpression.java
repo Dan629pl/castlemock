@@ -23,28 +23,28 @@ import com.castlemock.model.core.utility.parser.expression.argument.ExpressionAr
 /**
  * {@link RandomEmailExpression} is an {@link Expression} and will
  * transform an matching input string into a random email.
+ *
  * @author Karl Dahlgren
  * @since 1.13
  */
 public class RandomEmailExpression extends AbstractExpression {
 
+    public static final String IDENTIFIER = "RANDOM_EMAIL";
     private static final int MIN_LENGTH = 5;
     private static final int MAX_LENGTH = 10;
-
     private static final String DOMAIN_ARGUMENT = "domain";
     private static final String TOP_DOMAIN_ARGUMENT = "topDomain";
     private static final String MIN_ARGUMENT = "min";
     private static final String MAX_ARGUMENT = "max";
-
     private static final String AT = "@";
     private static final String DOT = ".";
     private static final String DEFAULT_TOP_DOMAIN = "com";
-    public static final String IDENTIFIER = "RANDOM_EMAIL";
 
     /**
      * The transform method provides the functionality to transform a provided <code>input</code>.
      * The transformation and the end result will be determine by how it is implemented by each {@link Expression}.
      * Each {@link Expression} provides it's own functionality and will transform the text differently.
+     *
      * @param input The input string that will be transformed.
      * @return A transformed <code>input</code>.
      */
@@ -63,22 +63,22 @@ public class RandomEmailExpression extends AbstractExpression {
         int minLength = MIN_LENGTH;
         int maxLength = MAX_LENGTH;
 
-        if(domainArgument instanceof ExpressionArgumentString){
+        if (domainArgument instanceof ExpressionArgumentString) {
             domain = ((ExpressionArgumentString) domainArgument).getValue();
         } else {
             domain = randomString(RANDOM.nextInt(MAX_LENGTH) + MIN_LENGTH);
         }
 
-        if(topDomainArgument instanceof ExpressionArgumentString){
+        if (topDomainArgument instanceof ExpressionArgumentString) {
             topDomain = ((ExpressionArgumentString) topDomainArgument).getValue();
         } else {
             topDomain = DEFAULT_TOP_DOMAIN;
         }
 
-        if(minArgument instanceof ExpressionArgumentNumber){
+        if (minArgument instanceof ExpressionArgumentNumber) {
             minLength = ((ExpressionArgumentNumber) minArgument).getValue().intValue();
         }
-        if(maxArgument instanceof ExpressionArgumentNumber){
+        if (maxArgument instanceof ExpressionArgumentNumber) {
             maxLength = ((ExpressionArgumentNumber) maxArgument).getValue().intValue();
         }
 
@@ -89,6 +89,7 @@ public class RandomEmailExpression extends AbstractExpression {
     /**
      * The match method is used to determine if an <code>input</code> string matches
      * the criteria to be transformed.
+     *
      * @param input The input that will be determine if it matches the criteria to be transformed.
      * @return True if the input string matches the criteria. False otherwise.
      */

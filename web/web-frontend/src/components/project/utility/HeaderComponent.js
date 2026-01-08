@@ -49,23 +49,21 @@ class HeaderComponent extends PureComponent {
         ];
 
         this.state = {
-            newHeader: {
-
-            }
+            newHeader: {}
         };
     }
 
 
-    onAddHeaderClick(){
+    onAddHeaderClick() {
         this.props.onHeaderAdded(this.state.newHeader);
     }
 
-    onRemoveHeaderClick(row){
+    onRemoveHeaderClick(row) {
         this.props.onHeaderRemoved(row)
     }
 
     deleteHeaderFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -77,7 +75,7 @@ class HeaderComponent extends PureComponent {
     }
 
     deleteHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '50px' };
+        return {'whiteSpace': 'nowrap', width: '50px'};
     }
 
     setNewHeaderName(source) {
@@ -99,7 +97,6 @@ class HeaderComponent extends PureComponent {
     }
 
 
-
     render() {
         return (
             <div>
@@ -108,22 +105,24 @@ class HeaderComponent extends PureComponent {
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Name</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={this.setNewHeaderName} />
+                            <input className="form-control" type="text" onChange={this.setNewHeaderName}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Value</label>
                         <div className="col-sm-10">
-                            <input className="form-control" type="text" onChange={this.setNewHeaderValue} />
+                            <input className="form-control" type="text" onChange={this.setNewHeaderValue}/>
                         </div>
                     </div>
                     <div className="form-group row">
-                        <button className="btn btn-success demo-button-disabled menu-button" onClick={this.onAddHeaderClick}><FontAwesomeIcon icon={faPlus} className="button-icon"/><span>Add header</span></button>
+                        <button className="btn btn-success demo-button-disabled menu-button"
+                                onClick={this.onAddHeaderClick}><FontAwesomeIcon icon={faPlus} className="button-icon"/><span>Add header</span>
+                        </button>
                     </div>
                 </div>
                 <div className="table-result">
                     <ToolkitProvider bootstrap4
-                                     columns={ this.headerColumns}
+                                     columns={this.headerColumns}
                                      data={this.props.httpHeaders}
                                      keyField="name"
                                      search>

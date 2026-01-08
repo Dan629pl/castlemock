@@ -22,10 +22,10 @@ import java.util.Date;
 
 public final class EventTestBuilder {
 
-    private EventTestBuilder(){
+    private EventTestBuilder() {
     }
 
-    public static TestEvent.Builder builder(){
+    public static TestEvent.Builder builder() {
         return TestEvent.builder()
                 .id(IdUtility.generateId())
                 .startDate(new Date())
@@ -52,7 +52,7 @@ public final class EventTestBuilder {
             private Builder() {
             }
 
-            public TestEvent build(){
+            public TestEvent build() {
                 return new TestEvent(this);
             }
         }

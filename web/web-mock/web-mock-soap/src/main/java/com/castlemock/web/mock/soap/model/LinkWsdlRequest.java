@@ -39,6 +39,10 @@ public class LinkWsdlRequest {
         this.includeImports = Objects.requireNonNull(builder.includeImports, "includeImports");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getUrl() {
         return url;
     }
@@ -73,10 +77,6 @@ public class LinkWsdlRequest {
                 ", generateResponse=" + generateResponse +
                 ", includeImports=" + includeImports +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

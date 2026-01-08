@@ -31,24 +31,24 @@ public final class CreateRestEventInput implements Input {
         this.restEvent = restEvent;
     }
 
-    public RestEvent getRestEvent() {
-        return restEvent;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public RestEvent getRestEvent() {
+        return restEvent;
     }
 
     public static final class Builder {
 
         private RestEvent restEvent;
 
-        public Builder restEvent(final RestEvent restEvent){
+        public Builder restEvent(final RestEvent restEvent) {
             this.restEvent = restEvent;
             return this;
         }
 
-        public CreateRestEventInput build(){
+        public CreateRestEventInput build() {
             return new CreateRestEventInput(this.restEvent);
         }
 

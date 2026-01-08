@@ -39,7 +39,7 @@ public class CreateUserRequest {
     private final Status status;
     private final Role role;
 
-    private CreateUserRequest(final Builder builder){
+    private CreateUserRequest(final Builder builder) {
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = Objects.requireNonNull(builder.password, "password");
         this.email = builder.email;
@@ -48,9 +48,13 @@ public class CreateUserRequest {
         this.role = Objects.requireNonNull(builder.role, "role");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Get the user username
+     *
      * @return User username
      */
     @XmlElement
@@ -60,6 +64,7 @@ public class CreateUserRequest {
 
     /**
      * Get the user password
+     *
      * @return Returns the user password
      */
     @XmlElement
@@ -69,6 +74,7 @@ public class CreateUserRequest {
 
     /**
      * Get user email
+     *
      * @return Returns user email
      */
     @XmlElement
@@ -83,6 +89,7 @@ public class CreateUserRequest {
 
     /**
      * Get the current status of user
+     *
      * @return User status
      */
     @XmlElement
@@ -92,16 +99,12 @@ public class CreateUserRequest {
 
     /**
      * Returns the users current role
+     *
      * @return User role
      */
     @XmlElement
     public Role getRole() {
         return role;
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

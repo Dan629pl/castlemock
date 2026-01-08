@@ -59,15 +59,17 @@ import java.util.stream.Stream;
  * The Security Interceptor provides the functionality to check all the incoming request and verify that the logged
  * in users information is still valid. If not, then the user should be logged out from the system. The biggest reason
  * for why a user would suddenly be invalid is because the user's username has changed.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see MvcConfig
  * @see AbstractController
+ * @since 1.0
  *
  */
 @Component
 public class SecurityInterceptor implements HandlerInterceptor, Filter {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityInterceptor.class);
     @Autowired
     private ServiceProcessor serviceProcessor;
     @Autowired
@@ -75,7 +77,6 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
     @Autowired
     @Lazy
     private JWTEncoderDecoder jwtEncoderDecoder;
-    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityInterceptor.class);
 
     @Override
     public void init(final FilterConfig filterConfig) {
@@ -96,11 +97,12 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
 
     /**
      * The method will check if the logged in user is still valid.
-     * @param request The incoming request.
+     *
+     * @param request  The incoming request.
      * @param response The outgoing response
-     * @param handler The handler contains information about the method and controller that will process the incoming request
+     * @param handler  The handler contains information about the method and controller that will process the incoming request
      * @return Returns true if the logged in users information is still valid. Returns false if the user is not valid
-     * @throws IOException Upon unable to send a redirect as a response
+     * @throws IOException      Upon unable to send a redirect as a response
      * @throws ServletException Upon unable to logout the user
      */
     @Override
@@ -110,7 +112,7 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
         return process(request, response);
     }
 
-    private boolean process(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException{
+    private boolean process(final HttpServletRequest request, final HttpServletResponse response) throws IOException, ServletException {
         final String userId = getTokenFromCookie(request)
                 .flatMap(this::getUserId)
                 .orElseGet(() -> getTokenFromBearerHeader(request)
@@ -127,12 +129,12 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
         final ReadUserOutput readUserOutput = serviceProcessor.process(readUserInput);
         final User loggedInUser = readUserOutput.getUser()
                 .orElse(null);
-        if(loggedInUser == null){
+        if (loggedInUser == null) {
             LOGGER.info("The following logged in user is not valid anymore: " + userId);
             request.logout();
             response.sendRedirect(request.getContextPath());
             return false;
-        } else if(!Status.ACTIVE.equals(loggedInUser.getStatus())){
+        } else if (!Status.ACTIVE.equals(loggedInUser.getStatus())) {
             LOGGER.info("The following logged in user is not active anymore: " + userId);
             request.logout();
             response.sendRedirect(request.getContextPath());
@@ -164,7 +166,7 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
         }
 
         final String[] authorizationParts = authorizationHeader.split(" ");
-        if(authorizationParts.length != 2) {
+        if (authorizationParts.length != 2) {
             return Optional.empty();
         }
 
@@ -172,7 +174,7 @@ public class SecurityInterceptor implements HandlerInterceptor, Filter {
 
     }
 
-    private Optional<String> getUserId(final String token){
+    private Optional<String> getUserId(final String token) {
         try {
             final Map<String, Claim> claims = jwtEncoderDecoder.verify(token);
             return Optional.ofNullable(claims.get("userId"))

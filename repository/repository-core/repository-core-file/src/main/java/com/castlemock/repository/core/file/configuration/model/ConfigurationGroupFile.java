@@ -28,6 +28,7 @@ import java.util.Objects;
 
 /**
  * The configuration group is responsible for grouping configurations together.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -53,9 +54,13 @@ public class ConfigurationGroupFile implements Saveable<String> {
         this.configurations = Objects.requireNonNull(builder.configurations, "configurations");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     /**
      * Returns the configuration group id
+     *
      * @return The configuration group id
      */
     @Override
@@ -65,6 +70,7 @@ public class ConfigurationGroupFile implements Saveable<String> {
 
     /**
      * Returns the name of the configuration group
+     *
      * @return The new of the configuration group
      */
     public String getName() {
@@ -73,14 +79,11 @@ public class ConfigurationGroupFile implements Saveable<String> {
 
     /**
      * Returns a list of configurations the belongs to the group
+     *
      * @return Configurations that belongs to the configuration group
      */
     public List<ConfigurationFile> getConfigurations() {
         return configurations;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

@@ -33,24 +33,24 @@ public final class ReadSoapEventOutput implements Output {
         this.event = builder.event;
     }
 
-    public Optional<SoapEvent> getEvent() {
-        return Optional.ofNullable(event);
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public Optional<SoapEvent> getEvent() {
+        return Optional.ofNullable(event);
     }
 
     public static final class Builder {
 
         private SoapEvent event;
 
-        public Builder event(final SoapEvent event){
+        public Builder event(final SoapEvent event) {
             this.event = event;
             return this;
         }
 
-        public ReadSoapEventOutput build(){
+        public ReadSoapEventOutput build() {
             return new ReadSoapEventOutput(this);
         }
 

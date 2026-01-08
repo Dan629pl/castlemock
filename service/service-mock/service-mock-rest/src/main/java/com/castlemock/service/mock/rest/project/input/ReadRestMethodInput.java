@@ -38,6 +38,10 @@ public final class ReadRestMethodInput implements Input {
         this.methodId = Objects.requireNonNull(builder.methodId, "methodId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -52,10 +56,6 @@ public final class ReadRestMethodInput implements Input {
 
     public String getMethodId() {
         return methodId;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -91,27 +91,27 @@ public final class ReadRestMethodInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public ReadRestMethodInput build(){
+        public ReadRestMethodInput build() {
             return new ReadRestMethodInput(this);
         }
 

@@ -56,7 +56,7 @@ public class DeleteSoapMockResponseServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapMockResponse soapMockResponse = SoapMockResponseTestBuilder.builder().build();
         final SoapOperation soapOperation = SoapOperationTestBuilder.builder()
                 .mockResponses(List.of(soapMockResponse))

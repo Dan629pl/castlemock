@@ -36,6 +36,10 @@ public final class CreateRestProjectInput implements Input {
         this.description = builder.description;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
@@ -65,30 +69,26 @@ public final class CreateRestProjectInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private String name;
         private String description;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder description(final String description){
+        public Builder description(final String description) {
             this.description = description;
             return this;
         }
 
-        public CreateRestProjectInput build(){
+        public CreateRestProjectInput build() {
             return new CreateRestProjectInput(this);
         }
     }

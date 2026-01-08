@@ -41,6 +41,10 @@ public final class DuplicateRestMockResponsesInput implements Input {
         this.mockResponseIds = Objects.requireNonNull(builder.mockResponseIds);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -85,10 +89,6 @@ public final class DuplicateRestMockResponsesInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private String projectId;
@@ -100,32 +100,32 @@ public final class DuplicateRestMockResponsesInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public Builder mockResponseIds(final Set<String> mockResponseIds){
+        public Builder mockResponseIds(final Set<String> mockResponseIds) {
             this.mockResponseIds = mockResponseIds;
             return this;
         }
 
-        public DuplicateRestMockResponsesInput build(){
+        public DuplicateRestMockResponsesInput build() {
             return new DuplicateRestMockResponsesInput(this);
         }
     }

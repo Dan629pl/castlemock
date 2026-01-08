@@ -39,7 +39,7 @@ public class ReadSoapOperationServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapOperation operation = SoapOperationTestBuilder.builder().build();
         final SoapMockResponse mockResponse = SoapMockResponseTestBuilder.builder().build();
         final String projectId = "SOAP PROJECT";
@@ -72,7 +72,7 @@ public class ReadSoapOperationServiceTest {
     }
 
     @Test
-    public void testProcessWithDefaultXPathResponse(){
+    public void testProcessWithDefaultXPathResponse() {
         final SoapMockResponse mockResponse = SoapMockResponseTestBuilder.builder().build();
         final SoapOperation operation = SoapOperationTestBuilder.builder()
                 .defaultMockResponseId(mockResponse.getId())

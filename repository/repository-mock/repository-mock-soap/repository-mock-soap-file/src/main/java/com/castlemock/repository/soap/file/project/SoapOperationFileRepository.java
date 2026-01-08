@@ -96,10 +96,11 @@ public class SoapOperationFileRepository extends FileRepository<SoapOperationFil
      * the method {@link #initialize} has finished successful. The method does not contain any functionality and the
      * whole idea is the it should be overridden by subclasses, but only if certain functionality is required to
      * run after the {@link #initialize} method has completed.
+     *
      * @see #initialize
      */
     @Override
-    public void postInitiate(){
+    public void postInitiate() {
 
     }
 
@@ -125,13 +126,14 @@ public class SoapOperationFileRepository extends FileRepository<SoapOperationFil
 
     /**
      * The method provides the functionality to find a SOAP operation with a specific name
+     *
      * @param soapOperationName The name of the SOAP operation that should be retrieved
      * @return A SOAP operation that matches the search criteria. If no SOAP operation matches the provided
      * name then null will be returned.
      */
     @Override
     public Optional<SoapOperation> findWithName(final String soapPortId,
-                                               final String soapOperationName){
+                                                final String soapOperationName) {
         return this.collection.values()
                 .stream()
                 .filter(operation -> operation.getPortId().equals(soapPortId))
@@ -144,30 +146,30 @@ public class SoapOperationFileRepository extends FileRepository<SoapOperationFil
      * Find a {@link SoapOperation} with a provided {@link HttpMethod}, {@link SoapVersion}
      * and an identifier.
      *
-     * @param method     The HTTP method
-     * @param version    The SOAP version
+     * @param method              The HTTP method
+     * @param version             The SOAP version
      * @param operationIdentifier The identifier
      * @return A {@link SoapOperation} that matches the provided search criteria.
      */
     @Override
     public Optional<SoapOperation> findWithMethodAndVersionAndIdentifier(final String portId, final HttpMethod method,
-                                                               final SoapVersion version,
-                                                               final SoapOperationIdentifier operationIdentifier) {
-        for(SoapOperationFile soapOperation : this.collection.values()){
-            if(soapOperation.getPortId().equals(portId) &&
+                                                                         final SoapVersion version,
+                                                                         final SoapOperationIdentifier operationIdentifier) {
+        for (SoapOperationFile soapOperation : this.collection.values()) {
+            if (soapOperation.getPortId().equals(portId) &&
                     soapOperation.getHttpMethod().equals(method) &&
-                    soapOperation.getSoapVersion().equals(version)){
+                    soapOperation.getSoapVersion().equals(version)) {
 
                 final SoapOperationIdentifierFile operationIdentifierFile =
                         soapOperation.getOperationIdentifier();
 
-                if(operationIdentifier.getName().equalsIgnoreCase(operationIdentifierFile.getName())){
+                if (operationIdentifier.getName().equalsIgnoreCase(operationIdentifierFile.getName())) {
 
                     // Three ways to identify SOAP operation:
                     // 1. Namespace is missing from the stored files (Legacy)
                     // 2. The identify strategy is ELEMENT (Ignore namespace)
                     // 3. Both the name and namespace is matching
-                    if(operationIdentifierFile.getNamespace() == null ||
+                    if (operationIdentifierFile.getNamespace() == null ||
                             soapOperation.getIdentifyStrategy() == SoapOperationIdentifyStrategy.ELEMENT ||
                             operationIdentifierFile.getNamespace().equalsIgnoreCase(operationIdentifier.getNamespace().orElse(null))) {
                         return Optional.of(SoapOperationFileConverter.toSoapOperation(soapOperation));
@@ -190,15 +192,11 @@ public class SoapOperationFileRepository extends FileRepository<SoapOperationFil
     public String getPortId(String operationId) {
         final SoapOperationFile operationFile = this.collection.get(operationId);
 
-        if(operationFile == null){
+        if (operationFile == null) {
             throw new IllegalArgumentException("Unable to find an operation with the following id: " + operationId);
         }
         return operationFile.getPortId();
     }
-
-
-
-
 
 
 }

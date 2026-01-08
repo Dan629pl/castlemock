@@ -36,19 +36,20 @@ import java.util.Objects;
 /**
  * The {@link ProjectCoreRestController} is the REST controller that provides
  * the interface for the core operations.
+ *
  * @author Karl Dahlgren
  * @since 1.19
  */
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Project", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Project", description = "REST Operations for Castle Mock Core")
 @ConditionalOnExpression("${server.mode.demo} == false")
 public class ProjectCoreRestController extends AbstractRestController {
     private final ProjectServiceFacade projectServiceFacade;
 
     @Autowired
     public ProjectCoreRestController(final ServiceProcessor serviceProcessor,
-                                     final ProjectServiceFacade projectServiceFacade){
+                                     final ProjectServiceFacade projectServiceFacade) {
         super(serviceProcessor);
         this.projectServiceFacade = Objects.requireNonNull(projectServiceFacade, "projectServiceFacade");
     }
@@ -56,9 +57,10 @@ public class ProjectCoreRestController extends AbstractRestController {
 
     /**
      * The method retrieves all projects
+     *
      * @return The retrieved project.
      */
-    @Operation(summary =  "Get projects",
+    @Operation(summary = "Get projects",
             description = "Get projects. Required authorization: Reader, Modifier or Admin.")
     @RequestMapping(method = RequestMethod.GET, value = "/project")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")

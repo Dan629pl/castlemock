@@ -25,11 +25,11 @@ import com.castlemock.model.core.Output;
 public final class UpdateRestApplicationsStatusOutput implements Output {
 
 
-    private UpdateRestApplicationsStatusOutput(){
+    private UpdateRestApplicationsStatusOutput() {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -37,7 +37,8 @@ public final class UpdateRestApplicationsStatusOutput implements Output {
 
         private Builder() {
         }
-        public UpdateRestApplicationsStatusOutput build(){
+
+        public UpdateRestApplicationsStatusOutput build() {
             return new UpdateRestApplicationsStatusOutput();
         }
 

@@ -29,8 +29,12 @@ public final class CreateSoapMockResponseOutput implements Output {
 
     private final SoapMockResponse mockResponse;
 
-    private CreateSoapMockResponseOutput(final Builder builder){
+    private CreateSoapMockResponseOutput(final Builder builder) {
         this.mockResponse = Objects.requireNonNull(builder.mockResponse, "mockResponse");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public SoapMockResponse getMockResponse() {
@@ -57,24 +61,20 @@ public final class CreateSoapMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private SoapMockResponse mockResponse;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder mockResponse(final SoapMockResponse mockResponse){
+        public Builder mockResponse(final SoapMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public CreateSoapMockResponseOutput build(){
+        public CreateSoapMockResponseOutput build() {
             return new CreateSoapMockResponseOutput(this);
         }
     }

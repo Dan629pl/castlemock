@@ -52,7 +52,7 @@ class UpdateStatusModal extends PureComponent {
     }
 
     setUpdatePortStatus(status) {
-        this.setState({ updateStatus: status });
+        this.setState({updateStatus: status});
     }
 
     onUpdateStatusClick() {
@@ -88,16 +88,18 @@ class UpdateStatusModal extends PureComponent {
                             <p>Do you want update the status for the following operations?</p>
                             <div className="table-result">
                                 <ToolkitProvider bootstrap4
-                                                 columns={ this.columns}
-                                                 data={ this.props.selectedOperations }
+                                                 columns={this.columns}
+                                                 data={this.props.selectedOperations}
                                                  keyField="id">
                                     {
                                         (props) => (
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.props.selectedOperations} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.props.selectedOperations}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
                                                                 striped
-                                                                pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                pagination={PaginationFactory({hideSizePerPage: true})}/>
                                             </div>
                                         )}
                                 </ToolkitProvider>
@@ -105,7 +107,8 @@ class UpdateStatusModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Status</label>
                                 <div className="col-sm-10">
-                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED" onChange={event => this.setUpdatePortStatus(event.target.value)}>
+                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED"
+                                            onChange={event => this.setUpdatePortStatus(event.target.value)}>
                                         <option value={"MOCKED"}>{operationStatusFormatter("MOCKED")}</option>
                                         <option value={"DISABLED"}>{operationStatusFormatter("DISABLED")}</option>
                                         <option value={"FORWARDED"}>{operationStatusFormatter("FORWARDED")}</option>
@@ -117,7 +120,9 @@ class UpdateStatusModal extends PureComponent {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onUpdateStatusClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onUpdateStatusClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -25,7 +25,7 @@ public final class RestApplicationTestBuilder {
 
     }
 
-    public static RestApplication.Builder builder(){
+    public static RestApplication.Builder builder() {
         return RestApplication.builder()
                 .id("QLP2Nk")
                 .name("Swagger Petstore")

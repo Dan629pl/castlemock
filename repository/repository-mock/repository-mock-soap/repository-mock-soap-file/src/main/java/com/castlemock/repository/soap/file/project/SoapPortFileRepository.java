@@ -106,6 +106,7 @@ public class SoapPortFileRepository extends FileRepository<SoapPortFile, SoapPor
 
     /**
      * The method finds a {@link SoapPort} with the provided name
+     *
      * @param soapPortName The name of the {@link SoapPort}
      * @return A {@link SoapPort} that matches the provided search criteria.
      */
@@ -122,7 +123,7 @@ public class SoapPortFileRepository extends FileRepository<SoapPortFile, SoapPor
     /**
      * The method finds a {@link SoapPort} with the provided uri
      *
-     * @param uri       The uri used by the {@link SoapPort}
+     * @param uri The uri used by the {@link SoapPort}
      * @return A {@link SoapPort} that matches the provided search criteria.
      */
     @Override
@@ -147,12 +148,11 @@ public class SoapPortFileRepository extends FileRepository<SoapPortFile, SoapPor
     public String getProjectId(final String portId) {
         final SoapPortFile portFile = this.collection.get(portId);
 
-        if(portFile == null){
+        if (portFile == null) {
             throw new IllegalArgumentException("Unable to find a port with the following id: " + portId);
         }
         return portFile.getProjectId();
     }
-
 
 
 }

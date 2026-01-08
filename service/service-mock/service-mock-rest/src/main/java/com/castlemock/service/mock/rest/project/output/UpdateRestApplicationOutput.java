@@ -34,6 +34,10 @@ public final class UpdateRestApplicationOutput implements Output {
         this.application = application;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<RestApplication> getApplication() {
         return Optional.ofNullable(application);
     }
@@ -58,10 +62,6 @@ public final class UpdateRestApplicationOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestApplication application;
@@ -69,12 +69,12 @@ public final class UpdateRestApplicationOutput implements Output {
         private Builder() {
         }
 
-        public Builder application(final RestApplication application){
+        public Builder application(final RestApplication application) {
             this.application = application;
             return this;
         }
 
-        public UpdateRestApplicationOutput build(){
+        public UpdateRestApplicationOutput build() {
             return new UpdateRestApplicationOutput(this.application);
         }
 

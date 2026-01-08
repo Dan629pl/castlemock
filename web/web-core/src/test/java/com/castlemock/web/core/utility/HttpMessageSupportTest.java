@@ -40,14 +40,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Karl Dahlgren
- * @since 1.1
  * @see HttpMessageSupport
+ * @since 1.1
  */
 public class HttpMessageSupportTest {
 
 
     @Test
-    public void testExtractHttpHeadersRequest(){
+    public void testExtractHttpHeadersRequest() {
         final List<String> headerNames = Arrays.asList("Content-Type", "Accept", "Content-Length");
 
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
@@ -89,7 +89,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testExtractHttpHeadersConnection(){
+    public void testExtractHttpHeadersConnection() {
         final Map<String, List<String>> headers = new HashMap<>();
         headers.put("Content-Type", List.of("application/xml", "application/json"));
         headers.put("Accept", List.of("application/json"));
@@ -122,7 +122,7 @@ public class HttpMessageSupportTest {
 
     @Test
     @SuppressWarnings("varargs")
-    public void testGetBody(){
+    public void testGetBody() {
         final String readerOutput = "This is the output from the reader";
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
         final BufferedReader reader = Mockito.mock(BufferedReader.class);
@@ -143,7 +143,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testExtractParameters(){
+    public void testExtractParameters() {
         final List<String> parameterNames = Arrays.asList("Parameter1", "Parameter2");
 
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
@@ -175,7 +175,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testExtractParametersMultiple(){
+    public void testExtractParametersMultiple() {
         final List<String> parameterNames = List.of("Parameter1");
 
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
@@ -207,13 +207,13 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testBuildParameterUri(){
+    public void testBuildParameterUri() {
         final HttpParameter parameter1 = HttpParameter.builder()
                 .name("Parameter1")
                 .value("Value1")
                 .build();
 
-        final HttpParameter parameter2 =HttpParameter.builder()
+        final HttpParameter parameter2 = HttpParameter.builder()
                 .name("Parameter2")
                 .value("Value2")
                 .build();
@@ -226,13 +226,13 @@ public class HttpMessageSupportTest {
 
 
     @Test
-    public void testGetMTOMBody(){
+    public void testGetMTOMBody() {
         String body = """
                 ------=_Part_64_1526053806.1517665317492
                 Content-Type: text/xml; charset=UTF-8
                 Content-Transfer-Encoding: 8bit
                 Content-ID: <test@castlemock.org>
-
+                
                 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cas="http://castlemock.org/">
                    <soapenv:Header/>
                    <soapenv:Body>
@@ -250,7 +250,7 @@ public class HttpMessageSupportTest {
                 Content-Type: text/plain; charset=us-ascii; name="example"
                 Content-ID: <example>
                 Content-Disposition: attachment; name="example.txt"; filename="example.txt"
-
+                
                 This is an example
                 ------=_Part_24_1742827313.1517654770545--""";
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
@@ -269,7 +269,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testGetBodyRequestIOError(){
+    public void testGetBodyRequestIOError() {
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
 
         try {
@@ -281,7 +281,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testGetBodyReaderIOError(){
+    public void testGetBodyReaderIOError() {
         final HttpServletRequest httpServletRequest = Mockito.mock(HttpServletRequest.class);
         final BufferedReader reader = Mockito.mock(BufferedReader.class);
         try {
@@ -299,7 +299,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testExtractContentEncodingAll(){
+    public void testExtractContentEncodingAll() {
         final HttpURLConnection httpURLConnection = Mockito.mock(HttpURLConnection.class);
         Mockito.when(httpURLConnection.getContentEncoding()).thenReturn("gzip/deflate");
         List<HttpContentEncoding> contentEncodings = HttpMessageSupport.extractContentEncoding(httpURLConnection);
@@ -310,7 +310,7 @@ public class HttpMessageSupportTest {
     }
 
     @Test
-    public void testExtractContentEncodingDeflate(){
+    public void testExtractContentEncodingDeflate() {
         final HttpURLConnection httpURLConnection = Mockito.mock(HttpURLConnection.class);
         Mockito.when(httpURLConnection.getContentEncoding()).thenReturn("deflate");
         List<HttpContentEncoding> contentEncodings = HttpMessageSupport.extractContentEncoding(httpURLConnection);

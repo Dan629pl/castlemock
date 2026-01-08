@@ -35,7 +35,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 /**
  * @author Karl Dahlgren
@@ -56,7 +55,7 @@ public class CreateSoapMockResponseServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
         final SoapPort soapPort = SoapPortTestBuilder.builder().build();
         final SoapOperation soapOperation = SoapOperationTestBuilder.builder().build();

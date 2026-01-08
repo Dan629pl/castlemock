@@ -20,9 +20,10 @@ import com.castlemock.model.core.Input;
 
 /**
  * Get system information input
+ *
  * @author Karl Dahlgren
- * @since 1.7
  * @see com.castlemock.service.core.system.output.GetSystemInformationOutput
+ * @since 1.7
  */
 public final class GetSystemInformationInput implements Input {
 

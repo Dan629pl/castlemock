@@ -39,13 +39,12 @@ import java.util.List;
  */
 public class ConfigurationRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private ConfigurationFileRepository repository;
-
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -55,7 +54,7 @@ public class ConfigurationRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         List<ConfigurationGroup> configurationGroups = new ArrayList<>();
         ConfigurationGroup configurationGroup = ConfigurationGroupTestBuilder.builder().build();
         configurationGroups.add(configurationGroup);
@@ -65,10 +64,10 @@ public class ConfigurationRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final ConfigurationGroup configurationGroup = save();
         final ConfigurationGroup returnedConfigurationGroup = repository.findOne(configurationGroup.getId())
-                        .orElse(null);
+                .orElse(null);
 
         Assertions.assertNotNull(returnedConfigurationGroup);
         Assertions.assertEquals(configurationGroup.getId(), returnedConfigurationGroup.getId());
@@ -76,7 +75,7 @@ public class ConfigurationRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final ConfigurationGroup configurationGroup = save();
         final List<ConfigurationGroup> configurationGroups = repository.findAll();
         Assertions.assertEquals(configurationGroups.size(), 1);
@@ -85,26 +84,26 @@ public class ConfigurationRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(ConfigurationGroupFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final ConfigurationGroup configurationGroup = save();
         repository.delete(configurationGroup.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + configurationGroup.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private ConfigurationGroup save(){
+    private ConfigurationGroup save() {
         final ConfigurationGroup configurationGroup = ConfigurationGroupTestBuilder.builder().build();
         repository.save(configurationGroup);
         return configurationGroup;

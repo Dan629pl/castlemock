@@ -77,7 +77,7 @@ public class DeleteSoapProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapProject soapProject = SoapProjectTestBuilder.builder().build();
         final SoapPort soapPort = SoapPortTestBuilder.builder().build();
         final SoapOperation soapOperation = SoapOperationTestBuilder.builder().build();

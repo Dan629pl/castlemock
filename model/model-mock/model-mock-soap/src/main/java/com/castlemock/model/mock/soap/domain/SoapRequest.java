@@ -71,7 +71,7 @@ public class SoapRequest {
     @XmlElement
     private final SoapOperationIdentifier operationIdentifier;
 
-    private SoapRequest(final Builder builder){
+    private SoapRequest(final Builder builder) {
         this.body = Objects.requireNonNull(builder.body, "body");
         this.envelope = builder.envelope;
         this.contentType = builder.contentType;
@@ -83,6 +83,9 @@ public class SoapRequest {
         this.operationIdentifier = Objects.requireNonNull(builder.operationIdentifier, "operationIdentifier");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getBody() {
         return body;
@@ -120,10 +123,6 @@ public class SoapRequest {
         return Optional.ofNullable(httpHeaders)
                 .map(Set::copyOf)
                 .orElseGet(Set::of);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

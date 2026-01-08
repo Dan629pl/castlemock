@@ -57,7 +57,7 @@ public class EventServiceFacadeImplTest {
     }
 
     @Test
-    public void testClearAll(){
+    public void testClearAll() {
         serviceFacade.clearAll();
         Mockito.verify(eventServiceAdapter, Mockito.times(1)).clearAll();
 

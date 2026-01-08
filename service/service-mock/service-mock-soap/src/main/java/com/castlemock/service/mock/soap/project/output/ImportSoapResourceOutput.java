@@ -25,12 +25,16 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.19
  */
-public final class ImportSoapResourceOutput implements Output{
+public final class ImportSoapResourceOutput implements Output {
 
     private final SoapResource resource;
 
     private ImportSoapResourceOutput(final Builder builder) {
         this.resource = Objects.requireNonNull(builder.resource, "resource");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public SoapResource getResource() {
@@ -57,23 +61,19 @@ public final class ImportSoapResourceOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapResource resource;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder resource(final SoapResource resource){
+        public Builder resource(final SoapResource resource) {
             this.resource = resource;
             return this;
         }
 
-        public ImportSoapResourceOutput build(){
+        public ImportSoapResourceOutput build() {
             return new ImportSoapResourceOutput(this);
         }
     }

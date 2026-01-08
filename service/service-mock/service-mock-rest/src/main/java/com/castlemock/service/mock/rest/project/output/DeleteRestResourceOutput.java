@@ -30,8 +30,12 @@ public final class DeleteRestResourceOutput implements Output {
 
     private final RestResource resource;
 
-    private DeleteRestResourceOutput(final Builder builder){
+    private DeleteRestResourceOutput(final Builder builder) {
         this.resource = builder.resource;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestResource> getResource() {
@@ -58,10 +62,6 @@ public final class DeleteRestResourceOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestResource resource;
@@ -74,7 +74,7 @@ public final class DeleteRestResourceOutput implements Output {
             return this;
         }
 
-        public DeleteRestResourceOutput build(){
+        public DeleteRestResourceOutput build() {
             return new DeleteRestResourceOutput(this);
         }
 

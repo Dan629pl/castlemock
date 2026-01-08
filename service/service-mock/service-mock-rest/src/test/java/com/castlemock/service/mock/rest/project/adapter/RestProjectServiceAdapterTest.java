@@ -49,7 +49,7 @@ public class RestProjectServiceAdapterTest {
     }
 
     @Test
-    public void testReadAll(){
+    public void testReadAll() {
         final RestProject project = RestProjectTestBuilder.builder().build();
         final List<RestProject> projects = List.of(project);
         final ReadAllRestProjectsOutput output = ReadAllRestProjectsOutput.builder().projects(projects).build();

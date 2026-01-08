@@ -45,6 +45,10 @@ public class HttpParameter {
         this.value = Objects.requireNonNull(builder.value, "value");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
@@ -72,10 +76,6 @@ public class HttpParameter {
                 "name='" + name + '\'' +
                 ", value='" + value + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

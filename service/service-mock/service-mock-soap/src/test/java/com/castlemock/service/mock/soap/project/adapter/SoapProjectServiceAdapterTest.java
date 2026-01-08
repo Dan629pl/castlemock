@@ -50,7 +50,7 @@ public class SoapProjectServiceAdapterTest {
 
 
     @Test
-    public void testReadAll(){
+    public void testReadAll() {
         final SoapProject project = SoapProjectTestBuilder.builder().build();
         final List<SoapProject> projects = List.of(project);
         final ReadAllSoapProjectsOutput output = ReadAllSoapProjectsOutput.builder()

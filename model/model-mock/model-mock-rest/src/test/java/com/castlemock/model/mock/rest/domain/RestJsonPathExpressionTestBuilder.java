@@ -22,7 +22,7 @@ public final class RestJsonPathExpressionTestBuilder {
     }
 
 
-    public static RestJsonPathExpression.Builder builder(){
+    public static RestJsonPathExpression.Builder builder() {
         return RestJsonPathExpression.builder()
                 .expression("$.store.book[?(@.price < 10)]");
     }

@@ -26,12 +26,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadRestResourceOutput implements Output{
+public final class ReadRestResourceOutput implements Output {
 
     private final RestResource resource;
 
     private ReadRestResourceOutput(final Builder builder) {
         this.resource = builder.resource;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestResource> getResource() {
@@ -58,10 +62,6 @@ public final class ReadRestResourceOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestResource resource;
@@ -69,12 +69,12 @@ public final class ReadRestResourceOutput implements Output{
         private Builder() {
         }
 
-        public Builder resource(final RestResource resource){
+        public Builder resource(final RestResource resource) {
             this.resource = resource;
             return this;
         }
 
-        public ReadRestResourceOutput build(){
+        public ReadRestResourceOutput build() {
             return new ReadRestResourceOutput(this);
         }
 

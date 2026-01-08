@@ -43,9 +43,9 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
     }
 
 
-
     /**
      * The method provides the functionality to find a specific instance that matches the provided id
+     *
      * @param id The id that an instance has to match in order to be retrieved
      * @return Returns an instance that matches the provided id
      */
@@ -56,6 +56,7 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
 
     /**
      * Retrieves a list of all the instances of the specific type
+     *
      * @return A list that contains all the instances of the type that is managed by the operation
      */
     public List<D> findAll() {
@@ -64,14 +65,16 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
 
     /**
      * Count all the stored entities for the repository
+     *
      * @return The count of entities
      */
-    protected Integer count(){
+    protected Integer count() {
         return repository.count();
     }
 
     /**
      * The save method provides functionality to save the provided instance to the database
+     *
      * @param dto The instance that will be saved
      * @return Return the same instance that has been saved in the database
      */
@@ -83,6 +86,7 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
 
     /**
      * Delete an instance that match the provided id
+     *
      * @param id The instance that matches the provided id will be deleted in the database
      */
     protected Optional<D> delete(final I id) {
@@ -93,7 +97,8 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
     /**
      * Updates an instance that matches the provided id. The provided dto contains the new information that will be
      * stored
-     * @param id The id of the instance that will be updated
+     *
+     * @param id  The id of the instance that will be updated
      * @param dto The dto contains the new information that will be stored
      * @return The updated version of the instance that matches the id
      */
@@ -105,7 +110,7 @@ public abstract class AbstractService<D, I extends Serializable, R extends Repos
     }
 
 
-    protected <O extends Output> ServiceResult<O> createServiceResult(final O output){
+    protected <O extends Output> ServiceResult<O> createServiceResult(final O output) {
         return ServiceResult.<O>builder()
                 .output(output)
                 .build();

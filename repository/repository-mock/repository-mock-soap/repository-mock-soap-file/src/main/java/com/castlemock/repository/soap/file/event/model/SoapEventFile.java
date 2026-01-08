@@ -52,6 +52,9 @@ public class SoapEventFile extends EventFile {
         this.operationId = Objects.requireNonNull(builder.operationId, "operationId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public SoapRequestFile getRequest() {
         return request;
@@ -71,10 +74,6 @@ public class SoapEventFile extends EventFile {
 
     public String getOperationId() {
         return operationId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder extends EventFile.Builder<Builder> {

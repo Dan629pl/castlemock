@@ -111,7 +111,7 @@ public class SoapOperation {
     private final Boolean automaticForward;
 
 
-    private SoapOperation(final Builder builder){
+    private SoapOperation(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.operationIdentifier = Objects.requireNonNull(builder.operationIdentifier, "operationIdentifier");
@@ -134,6 +134,10 @@ public class SoapOperation {
         this.mockOnFailure = builder.mockOnFailure;
         this.automaticForward = builder.automaticForward;
         this.mockResponses = Optional.ofNullable(builder.mockResponses).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -159,7 +163,6 @@ public class SoapOperation {
     public SoapOperationStatus getStatus() {
         return status;
     }
-
 
     public List<SoapMockResponse> getMockResponses() {
         return Optional.ofNullable(mockResponses)
@@ -274,10 +277,6 @@ public class SoapOperation {
                 ", defaultResponseName='" + defaultResponseName + '\'' +
                 ", automaticForward=" + automaticForward +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

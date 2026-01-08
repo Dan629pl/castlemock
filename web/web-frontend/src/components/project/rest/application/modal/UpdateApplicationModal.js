@@ -51,7 +51,8 @@ class UpdateApplicationModal extends PureComponent {
     }
 
     setName(source) {
-        this.setState({ updateApplication: {
+        this.setState({
+            updateApplication: {
                 ...this.state.updateApplication,
                 name: source.target.value
             }
@@ -85,12 +86,15 @@ class UpdateApplicationModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Name</label>
                                 <div className="col-sm-10">
-                                    <input className="form-control" type="text" defaultValue={this.state.updateApplication.name} onChange={this.setName}/>
+                                    <input className="form-control" type="text"
+                                           defaultValue={this.state.updateApplication.name} onChange={this.setName}/>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

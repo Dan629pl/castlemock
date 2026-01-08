@@ -24,21 +24,21 @@ import com.castlemock.model.core.Output;
  */
 public final class UpdateSoapOperationsForwardedEndpointOutput implements Output {
 
-    private UpdateSoapOperationsForwardedEndpointOutput(final Builder builder){
+    private UpdateSoapOperationsForwardedEndpointOutput(final Builder builder) {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public UpdateSoapOperationsForwardedEndpointOutput build(){
+        public UpdateSoapOperationsForwardedEndpointOutput build() {
             return new UpdateSoapOperationsForwardedEndpointOutput(this);
         }
     }

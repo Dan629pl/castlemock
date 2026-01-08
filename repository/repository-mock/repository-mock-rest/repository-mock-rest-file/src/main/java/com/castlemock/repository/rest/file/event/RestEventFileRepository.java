@@ -36,10 +36,11 @@ import java.util.Optional;
  * The class is an implementation of the REST event repository and provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving rest events from the file system. Each rest event is stored as
  * a separate file. The class also contains the directory and the filename extension for the rest event.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see RestEventFileRepository
  * @see FileRepository
+ * @since 1.0
  */
 @Repository
 @Profile(Profiles.FILE)
@@ -57,6 +58,7 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -66,6 +68,7 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -79,8 +82,9 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param restEvent The instance of the type that will be checked and controlled before it is allowed to be saved on
-     *             the file system.
+     *                  the file system.
      * @see #save
      */
     @Override
@@ -93,15 +97,16 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
 
     /**
      * The service finds the oldest event
+     *
      * @return The oldest event
      */
     @Override
     public RestEvent getOldestEvent() {
         RestEventFile oldestEvent = null;
-        for(RestEventFile event : collection.values()){
-            if(oldestEvent == null){
+        for (RestEventFile event : collection.values()) {
+            if (oldestEvent == null) {
                 oldestEvent = event;
-            } else if(event.getStartDate().before(oldestEvent.getStartDate())){
+            } else if (event.getStartDate().before(oldestEvent.getStartDate())) {
                 oldestEvent = event;
             }
         }
@@ -113,6 +118,7 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
 
     /**
      * Find events by REST method ID
+     *
      * @param restMethodId The id of the REST method
      * @return A list of {@link RestEvent} that matches the provided <code>restMethodId</code>
      */
@@ -127,11 +133,12 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
 
     /**
      * The method finds and deletes the oldest event.
+     *
      * @return The event that was deleted.
      * @since 1.5
      */
     @Override
-    public synchronized RestEvent deleteOldestEvent(){
+    public synchronized RestEvent deleteOldestEvent() {
         final RestEvent event = getOldestEvent();
         this.delete(event.getId());
         return event;
@@ -139,6 +146,7 @@ public class RestEventFileRepository extends AbstractEventFileRepository<RestEve
 
     /**
      * The method clears and deletes all logs.
+     *
      * @since 1.7
      */
     @Override

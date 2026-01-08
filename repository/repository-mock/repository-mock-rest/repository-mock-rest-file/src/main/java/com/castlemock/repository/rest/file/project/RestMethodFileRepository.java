@@ -130,8 +130,8 @@ public class RestMethodFileRepository extends FileRepository<RestMethodFile, Res
     @Override
     public List<String> findIdsWithResourceId(final String resourceId) {
         final List<String> ids = new ArrayList<>();
-        for(RestMethodFile methodFile : this.collection.values()){
-            if(methodFile.getResourceId().equals(resourceId)){
+        for (RestMethodFile methodFile : this.collection.values()) {
+            if (methodFile.getResourceId().equals(resourceId)) {
                 ids.add(methodFile.getId());
             }
         }
@@ -150,7 +150,7 @@ public class RestMethodFileRepository extends FileRepository<RestMethodFile, Res
     public String getResourceId(final String methodId) {
         final RestMethodFile methodFile = this.collection.get(methodId);
 
-        if(methodFile == null){
+        if (methodFile == null) {
             throw new IllegalArgumentException("Unable to find a method with the following id: " + methodId);
         }
         return methodFile.getResourceId();

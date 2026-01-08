@@ -55,12 +55,13 @@ public class SoapUtility {
 
     /**
      * Extract the SOAP address from a port element
+     *
      * @param portElement The port element that contains the address
-     * @param namespace The namespace of the address
+     * @param namespace   The namespace of the address
      * @return The SOAP port address
      */
     public static Optional<String> extractSoapAddress(final Element portElement,
-                                                      final String namespace){
+                                                      final String namespace) {
         return DocumentUtility.getElements(portElement, namespace, ADDRESS_NAMESPACE).stream()
                 .map(element -> element.getAttribute(LOCATION_NAMESPACE))
                 .findFirst();
@@ -68,10 +69,11 @@ public class SoapUtility {
 
     /**
      * The method extract the operation name from the SOAP body
+     *
      * @param request The body that contains the operation name
      * @return The extracted operation name
      */
-    public static SoapOperationIdentifier extractSoapRequestName(final String request){
+    public static SoapOperationIdentifier extractSoapRequestName(final String request) {
         try {
             final Document document = getDocument(request);
             final Element body = getBodyElement(document);
@@ -86,7 +88,7 @@ public class SoapUtility {
                     .namespace(namespace.orElse(null))
                     .name(elementName.getLocalName())
                     .build();
-        }catch(Exception exception){
+        } catch (Exception exception) {
             LOGGER.error("Unable to extract SOAP request name", exception);
             throw new IllegalStateException(exception.getMessage(), exception);
         }
@@ -99,7 +101,7 @@ public class SoapUtility {
         return documentBuilder.parse(inputSource);
     }
 
-    private static Element getBodyElement(final Document document){
+    private static Element getBodyElement(final Document document) {
         return IntStream.range(0, document.getDocumentElement().getChildNodes().getLength())
                 .mapToObj(index -> document.getDocumentElement().getChildNodes().item(index))
                 .map(Node::getNodeName)
@@ -112,7 +114,7 @@ public class SoapUtility {
                 .orElseThrow(() -> new IllegalArgumentException("Unable to extract the SOAP body"));
     }
 
-    private static Node getRequestNode(final Node bodyElement){
+    private static Node getRequestNode(final Node bodyElement) {
         final NodeList bodyChildren = bodyElement.getChildNodes();
 
         if (bodyChildren.getLength() == 0) {
@@ -126,12 +128,12 @@ public class SoapUtility {
                 .orElseThrow(() -> new IllegalStateException("Unable to extract the service name"));
     }
 
-    private static Optional<String> getNamespace(final ElementName elementName, final Map<String, Node> attributes){
-        if(elementName.getNamespace().isPresent() &&
-                attributes.containsKey(elementName.getNamespace().get())){
+    private static Optional<String> getNamespace(final ElementName elementName, final Map<String, Node> attributes) {
+        if (elementName.getNamespace().isPresent() &&
+                attributes.containsKey(elementName.getNamespace().get())) {
             final Node namespaceNode = attributes.get(elementName.getNamespace().get());
             return Optional.ofNullable(namespaceNode.getNodeValue());
-        } else if(attributes.containsKey(XMLNS)){
+        } else if (attributes.containsKey(XMLNS)) {
             final Node namespaceNode = attributes.get(XMLNS);
             return Optional.ofNullable(namespaceNode.getNodeValue());
         }
@@ -139,10 +141,10 @@ public class SoapUtility {
         return Optional.empty();
     }
 
-    private static Map<String, Node> getAttributes(final Node bodyRequestNode){
+    private static Map<String, Node> getAttributes(final Node bodyRequestNode) {
         final Map<String, Node> attributes = new HashMap<>();
 
-        if(bodyRequestNode instanceof Element){
+        if (bodyRequestNode instanceof Element) {
             getAttributes((Element) bodyRequestNode, attributes);
         }
 
@@ -150,13 +152,13 @@ public class SoapUtility {
     }
 
     private static void getAttributes(final Element element,
-                                     final Map<String, Node> attributes){
+                                      final Map<String, Node> attributes) {
         final TypeInfo typeInfo = element.getSchemaTypeInfo();
 
-        if(typeInfo instanceof Node node){
+        if (typeInfo instanceof Node node) {
             final NamedNodeMap nodeMap = node.getAttributes();
 
-            for(int index = 0; index < nodeMap.getLength(); index++){
+            for (int index = 0; index < nodeMap.getLength(); index++) {
                 final Node attributeNode = nodeMap.item(index);
                 final String nodeName = attributeNode.getNodeName();
                 final ElementName elementName = getElementName(nodeName);
@@ -165,17 +167,18 @@ public class SoapUtility {
         }
 
         final Node parentNode = element.getParentNode();
-        if(parentNode instanceof Element elementParentNode){
+        if (parentNode instanceof Element elementParentNode) {
             getAttributes(elementParentNode, attributes);
         }
     }
 
     /**
      * Returns the element name or prefix
+     *
      * @param element The element with both the name and namespace
      * @return Either the element name or namespace
      */
-    private static ElementName getElementName(final String element){
+    private static ElementName getElementName(final String element) {
         final String[] elementDivided = element.split(DIVIDER);
 
         if (elementDivided.length == 1) {

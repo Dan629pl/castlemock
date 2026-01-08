@@ -23,9 +23,10 @@ import java.util.Objects;
 
 /**
  * Deletes a user
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see DeleteUserOutput
+ * @since 1.0
  */
 public final class DeleteUserInput implements Input {
 
@@ -35,12 +36,12 @@ public final class DeleteUserInput implements Input {
         this.userId = Objects.requireNonNull(builder.userId);
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
     public static Builder builder() {
         return new Builder();
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public static final class Builder {

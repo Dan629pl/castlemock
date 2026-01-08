@@ -33,6 +33,10 @@ public final class CreateRestResourceOutput implements Output {
         this.resource = Objects.requireNonNull(builder.resource, "resource");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public RestResource getResource() {
         return resource;
     }
@@ -57,10 +61,6 @@ public final class CreateRestResourceOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestResource resource;
@@ -68,12 +68,12 @@ public final class CreateRestResourceOutput implements Output {
         private Builder() {
         }
 
-        public Builder resource(final RestResource resource){
+        public Builder resource(final RestResource resource) {
             this.resource = resource;
             return this;
         }
 
-        public CreateRestResourceOutput build(){
+        public CreateRestResourceOutput build() {
             return new CreateRestResourceOutput(this);
         }
 

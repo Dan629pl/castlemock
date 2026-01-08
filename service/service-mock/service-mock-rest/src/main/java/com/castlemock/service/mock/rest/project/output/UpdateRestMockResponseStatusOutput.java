@@ -22,22 +22,22 @@ import com.castlemock.model.core.Output;
  * @author Karl Dahlgren
  * @since 1.52
  */
-public final class UpdateRestMockResponseStatusOutput implements Output{
+public final class UpdateRestMockResponseStatusOutput implements Output {
 
     private UpdateRestMockResponseStatusOutput(final Builder builder) {
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public UpdateRestMockResponseStatusOutput build(){
+        public UpdateRestMockResponseStatusOutput build() {
             return new UpdateRestMockResponseStatusOutput(this);
         }
     }

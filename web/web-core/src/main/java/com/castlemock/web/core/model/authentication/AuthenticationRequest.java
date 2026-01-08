@@ -28,13 +28,17 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.NONE)
 @JsonDeserialize(builder = AuthenticationRequest.Builder.class)
 public class AuthenticationRequest {
-    
+
     private final String username;
     private final String password;
 
-    private AuthenticationRequest(final Builder builder){
+    private AuthenticationRequest(final Builder builder) {
         this.username = Objects.requireNonNull(builder.username, "username");
         this.password = Objects.requireNonNull(builder.password, "password");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getUsername() {
@@ -65,11 +69,6 @@ public class AuthenticationRequest {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

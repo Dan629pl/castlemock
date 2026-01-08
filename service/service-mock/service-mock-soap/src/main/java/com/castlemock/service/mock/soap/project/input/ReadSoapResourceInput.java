@@ -34,6 +34,10 @@ public final class ReadSoapResourceInput implements Input {
         this.resourceId = Objects.requireNonNull(builder.resourceId, "resourceId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -63,29 +67,25 @@ public final class ReadSoapResourceInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String resourceId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public ReadSoapResourceInput build(){
+        public ReadSoapResourceInput build() {
             return new ReadSoapResourceInput(this);
         }
     }

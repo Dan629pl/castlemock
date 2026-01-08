@@ -27,12 +27,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadRestMethodOutput implements Output{
+public final class ReadRestMethodOutput implements Output {
 
     private final RestMethod method;
 
     private ReadRestMethodOutput(final RestMethod method) {
         this.method = method;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestMethod> getMethod() {
@@ -59,10 +63,6 @@ public final class ReadRestMethodOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMethod method;
@@ -70,12 +70,12 @@ public final class ReadRestMethodOutput implements Output{
         private Builder() {
         }
 
-        public Builder method(final RestMethod method){
+        public Builder method(final RestMethod method) {
             this.method = method;
             return this;
         }
 
-        public ReadRestMethodOutput build(){
+        public ReadRestMethodOutput build() {
             return new ReadRestMethodOutput(this.method);
         }
 

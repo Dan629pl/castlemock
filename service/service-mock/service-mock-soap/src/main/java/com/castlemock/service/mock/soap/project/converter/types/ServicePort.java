@@ -23,10 +23,14 @@ public class ServicePort {
     private final Attribute binding;
     private final ServicePortAddress address;
 
-    private ServicePort(final Builder builder){
+    private ServicePort(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.binding = Objects.requireNonNull(builder.binding);
         this.address = Objects.requireNonNull(builder.address);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -41,36 +45,32 @@ public class ServicePort {
         return address;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Attribute binding;
         private ServicePortAddress address;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder binding(final Attribute binding){
+        public Builder binding(final Attribute binding) {
             this.binding = binding;
             return this;
         }
 
-        public Builder address(final ServicePortAddress address){
+        public Builder address(final ServicePortAddress address) {
             this.address = address;
             return this;
         }
 
-        public ServicePort build(){
+        public ServicePort build() {
             return new ServicePort(this);
         }
     }

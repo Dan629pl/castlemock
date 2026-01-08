@@ -34,6 +34,10 @@ public final class UpdateSoapProjectOutput implements Output {
         this.project = builder.project;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<SoapProject> getProject() {
         return Optional.ofNullable(project);
     }
@@ -58,23 +62,19 @@ public final class UpdateSoapProjectOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapProject project;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder project(final SoapProject project){
+        public Builder project(final SoapProject project) {
             this.project = project;
             return this;
         }
 
-        public UpdateSoapProjectOutput build(){
+        public UpdateSoapProjectOutput build() {
             return new UpdateSoapProjectOutput(this);
         }
     }

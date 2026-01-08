@@ -51,7 +51,7 @@ public class UpdateSoapPortServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String projectId = "ProjectId";
         final String newUri = "newUri";
         final SoapPort port = SoapPortTestBuilder.builder().build();
@@ -68,7 +68,7 @@ public class UpdateSoapPortServiceTest {
         final ServiceResult<UpdateSoapPortOutput> result = service.process(serviceTask);
         final UpdateSoapPortOutput output = result.getOutput();
         final SoapPort returnedSoapPort = output.getPort()
-                        .orElse(null);
+                .orElse(null);
 
         Assertions.assertNotNull(returnedSoapPort);
         Assertions.assertEquals(port.getId(), returnedSoapPort.getId());

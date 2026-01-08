@@ -25,10 +25,14 @@ public final class BindingOperation {
     private final BindingOperationInput input;
     private final BindingOperationOutput output;
 
-    private BindingOperation(final Builder builder){
+    private BindingOperation(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.input = builder.input;
         this.output = builder.output;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -43,36 +47,32 @@ public final class BindingOperation {
         return Optional.ofNullable(output);
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private BindingOperationInput input;
         private BindingOperationOutput output;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder input(final BindingOperationInput input){
+        public Builder input(final BindingOperationInput input) {
             this.input = input;
             return this;
         }
 
-        public Builder output(final BindingOperationOutput output){
+        public Builder output(final BindingOperationOutput output) {
             this.output = output;
             return this;
         }
 
-        public BindingOperation build(){
+        public BindingOperation build() {
             return new BindingOperation(this);
         }
     }

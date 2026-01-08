@@ -24,9 +24,10 @@ import com.castlemock.model.core.Input;
  */
 public final class ReadAllRestProjectsInput implements Input {
 
-    private ReadAllRestProjectsInput(){}
+    private ReadAllRestProjectsInput() {
+    }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -34,7 +35,8 @@ public final class ReadAllRestProjectsInput implements Input {
 
         private Builder() {
         }
-        public ReadAllRestProjectsInput build(){
+
+        public ReadAllRestProjectsInput build() {
             return new ReadAllRestProjectsInput();
         }
 

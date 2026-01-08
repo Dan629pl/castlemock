@@ -57,12 +57,16 @@ public class RestApplication {
     @XmlTransient
     private final Map<RestMethodStatus, Integer> statusCount;
 
-    private RestApplication(final Builder builder){
+    private RestApplication(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
         this.resources = Optional.ofNullable(builder.resources).orElseGet(List::of);
         this.statusCount = Optional.ofNullable(builder.statusCount).orElseGet(Map::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -115,10 +119,6 @@ public class RestApplication {
                 ", resources=" + resources +
                 ", statusCount=" + statusCount +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

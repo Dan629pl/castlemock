@@ -33,6 +33,10 @@ public final class CreateSoapProjectOutput implements Output {
         this.project = Objects.requireNonNull(builder.project, "project");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public SoapProject getProject() {
         return project;
     }
@@ -57,23 +61,19 @@ public final class CreateSoapProjectOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapProject project;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder project(final SoapProject project){
+        public Builder project(final SoapProject project) {
             this.project = project;
             return this;
         }
 
-        public CreateSoapProjectOutput build(){
+        public CreateSoapProjectOutput build() {
             return new CreateSoapProjectOutput(this);
         }
     }

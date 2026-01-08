@@ -30,7 +30,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.springframework.test.util.ReflectionTestUtils;
 
 /**
@@ -53,7 +52,7 @@ public class CreateSoapEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
         Mockito.when(repository.save(Mockito.any(SoapEvent.class))).thenReturn(soapEvent);
         Mockito.when(repository.count()).thenReturn(0);
@@ -73,7 +72,7 @@ public class CreateSoapEventServiceTest {
     }
 
     @Test
-    public void testMaxCountReached(){
+    public void testMaxCountReached() {
         final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
         Mockito.when(repository.save(Mockito.any(SoapEvent.class))).thenReturn(soapEvent);
         Mockito.when(repository.count()).thenReturn(6);

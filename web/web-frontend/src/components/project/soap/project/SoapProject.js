@@ -30,10 +30,10 @@ import UpdateProjectModal from "./modal/UpdateProjectModal"
 import DeletePortsModal from "./modal/DeletePortsModal"
 import DeleteProjectModal from "./modal/DeleteProjectModal"
 import UploadWSDLModal from "./modal/UploadWSDLModal"
-import {faEdit, faTrash, faCloudDownloadAlt, faCloudUploadAlt, faCodeBranch} from "@fortawesome/free-solid-svg-icons";
+import {faCloudDownloadAlt, faCloudUploadAlt, faCodeBranch, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-const { SearchBar } = Search;
+const {SearchBar} = Search;
 
 const SELECT = true;
 const DESELECT = false;
@@ -162,11 +162,11 @@ class SoapProject extends PureComponent {
     }
 
     resourceTypeHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '140px' };
+        return {'whiteSpace': 'nowrap', width: '140px'};
     }
 
     statusHeaderStyle() {
-        return { 'whiteSpace': 'nowrap', width: '140px' };
+        return {'whiteSpace': 'nowrap', width: '140px'};
     }
 
     onRowSelect(value, mode) {
@@ -175,9 +175,9 @@ class SoapProject extends PureComponent {
             id: value.id,
             name: value.name
         };
-        if(mode === SELECT){
+        if (mode === SELECT) {
             ports.push(port);
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             let index = ports.indexOf(port);
             ports.splice(index, 1);
         }
@@ -187,7 +187,7 @@ class SoapProject extends PureComponent {
     }
 
     onRowSelectAll(mode) {
-        if(mode === SELECT){
+        if (mode === SELECT) {
             let ports = [];
             this.state.project.ports.forEach(value => {
                 let port = {
@@ -199,7 +199,7 @@ class SoapProject extends PureComponent {
             this.setState({
                 selectedPorts: ports
             });
-        } else if(mode === DESELECT){
+        } else if (mode === DESELECT) {
             this.setState({
                 selectedPorts: []
             });
@@ -207,7 +207,7 @@ class SoapProject extends PureComponent {
     }
 
     nameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -219,7 +219,7 @@ class SoapProject extends PureComponent {
     }
 
     resourceNameFormat(cell, row) {
-        if(cell == null){
+        if (cell == null) {
             return;
         }
 
@@ -245,7 +245,7 @@ class SoapProject extends PureComponent {
 
     onExportProjectClick() {
         axios({
-            url:  process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.state.projectId + "/export",
+            url: process.env.PUBLIC_URL + "/api/rest/soap/project/" + this.state.projectId + "/export",
             method: 'GET',
             responseType: 'blob'
         }).then((response) => {
@@ -256,9 +256,9 @@ class SoapProject extends PureComponent {
             document.body.appendChild(link);
             link.click();
         })
-        .catch(error => {
-            validateErrorResponse(error)
-        });
+            .catch(error => {
+                validateErrorResponse(error)
+            });
     }
 
     render() {
@@ -280,20 +280,34 @@ class SoapProject extends PureComponent {
                         <AuthenticationContext.Consumer>
                             {context => (
                                 <div className="menu" align="right">
-                                    <button className="btn btn-success demo-button-disabled menu-button" data-toggle="modal" data-target="#updateProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update project</span></button>
+                                    <button className="btn btn-success demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#updateProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faEdit} className="button-icon"/><span>Update project</span></button>
                                     <div className="btn-group demo-button-disabled menu-button" role="group">
-                                        <button id="btnGroupDrop1" type="button" className="btn btn-primary dropdown-toggle"
+                                        <button id="btnGroupDrop1" type="button"
+                                                className="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false" disabled={isOnlyReader(context.authentication.role)}>
+                                                aria-expanded="false"
+                                                disabled={isOnlyReader(context.authentication.role)}>
                                             <FontAwesomeIcon icon={faCloudUploadAlt} className="button-icon"/>
                                             Upload
                                         </button>
                                         <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            <button className="dropdown-item" data-toggle="modal" data-target="#uploadWSDLModal">WSDL</button>
+                                            <button className="dropdown-item" data-toggle="modal"
+                                                    data-target="#uploadWSDLModal">WSDL
+                                            </button>
                                         </div>
                                     </div>
-                                    <button className="btn btn-primary demo-button-disabled menu-button" onClick={this.onExportProjectClick} disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faCloudDownloadAlt} className="button-icon"/><span>Export project</span></button>
-                                    <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal" data-target="#deleteProjectModal" disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete project</span></button>
+                                    <button className="btn btn-primary demo-button-disabled menu-button"
+                                            onClick={this.onExportProjectClick}
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faCloudDownloadAlt} className="button-icon"/><span>Export project</span>
+                                    </button>
+                                    <button className="btn btn-danger demo-button-disabled menu-button"
+                                            data-toggle="modal" data-target="#deleteProjectModal"
+                                            disabled={isOnlyReader(context.authentication.role)}><FontAwesomeIcon
+                                        icon={faTrash} className="button-icon"/><span>Delete project</span></button>
                                 </div>
                             )}
                         </AuthenticationContext.Consumer>
@@ -314,7 +328,7 @@ class SoapProject extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.columns}
+                                             columns={this.columns}
                                              data={this.state.project.ports}
                                              keyField="id"
                                              search>
@@ -329,22 +343,31 @@ class SoapProject extends PureComponent {
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             selectRow={this.selectRow}
                                                             noDataIndication="Upload a WSDL file to load ports"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
                             <AuthenticationContext.Consumer>
                                 {context => (
                                     <div className="panel-buttons">
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedPorts.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit} className="button-icon"/><span>Update status</span></button>
-                                        <button className="btn btn-primary demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateStatusModal"><FontAwesomeIcon icon={faEdit}
+                                                                                                  className="button-icon"/><span>Update status</span>
+                                        </button>
+                                        <button className="btn btn-primary demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedPorts.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch} className="button-icon"/><span>Update endpoint</span></button>
-                                        <button className="btn btn-danger demo-button-disabled menu-button" data-toggle="modal"
+                                                data-target="#updateEndpointModal"><FontAwesomeIcon icon={faCodeBranch}
+                                                                                                    className="button-icon"/><span>Update endpoint</span>
+                                        </button>
+                                        <button className="btn btn-danger demo-button-disabled menu-button"
+                                                data-toggle="modal"
                                                 disabled={this.state.selectedPorts.length === 0 || isOnlyReader(context.authentication.role)}
-                                                data-target="#deletePortsModal"><FontAwesomeIcon icon={faTrash} className="button-icon"/><span>Delete port</span></button>
+                                                data-target="#deletePortsModal"><FontAwesomeIcon icon={faTrash}
+                                                                                                 className="button-icon"/><span>Delete port</span>
+                                        </button>
                                     </div>
                                 )}
                             </AuthenticationContext.Consumer>
@@ -356,7 +379,7 @@ class SoapProject extends PureComponent {
                         </div>
                         <div className="table-result">
                             <ToolkitProvider bootstrap4
-                                             columns={ this.resourceColumns}
+                                             columns={this.resourceColumns}
                                              data={this.state.project.resources}
                                              keyField="id"
                                              search>
@@ -364,10 +387,11 @@ class SoapProject extends PureComponent {
                                     (props) => (
                                         <div>
                                             <BootstrapTable {...props.baseProps} bootstrap4
-                                                            data={this.state.project.resources} columns={this.resourceColumns}
+                                                            data={this.state.project.resources}
+                                                            columns={this.resourceColumns}
                                                             defaultSorted={this.defaultSort} keyField='id' hover
                                                             noDataIndication="Upload a WSDL file to load ports"
-                                                            pagination={ PaginationFactory() }/>
+                                                            pagination={PaginationFactory()}/>
                                         </div>
                                     )}
                             </ToolkitProvider>
@@ -375,12 +399,16 @@ class SoapProject extends PureComponent {
                     </div>
                 </section>
 
-                <DeletePortsModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts} getProject={this.getProject}/>
+                <DeletePortsModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts}
+                                  getProject={this.getProject}/>
                 <DeleteProjectModal projectId={this.state.projectId}/>
-                <UpdateEndpointModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts} getProject={this.getProject}/>
-                <UpdateProjectModal projectId={this.state.projectId} project={this.state.project} getProject={this.getProject}/>
-                <UpdateStatusModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts} getProject={this.getProject}/>
-                <UploadWSDLModal  projectId={this.state.projectId} getProject={this.getProject}/>
+                <UpdateEndpointModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts}
+                                     getProject={this.getProject}/>
+                <UpdateProjectModal projectId={this.state.projectId} project={this.state.project}
+                                    getProject={this.getProject}/>
+                <UpdateStatusModal projectId={this.state.projectId} selectedPorts={this.state.selectedPorts}
+                                   getProject={this.getProject}/>
+                <UploadWSDLModal projectId={this.state.projectId} getProject={this.getProject}/>
             </div>
         )
     }

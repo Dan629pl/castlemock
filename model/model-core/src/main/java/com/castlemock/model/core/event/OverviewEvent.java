@@ -33,13 +33,9 @@ public class OverviewEvent extends Event {
     @XmlElement
     private final String type;
 
-    private OverviewEvent(final Builder builder){
+    private OverviewEvent(final Builder builder) {
         super(builder);
         this.type = Objects.requireNonNull(builder.type, "type");
-    }
-
-    public String getType() {
-        return type;
     }
 
     public static Builder builder() {
@@ -53,6 +49,10 @@ public class OverviewEvent extends Event {
                 .startDate(other.startDate)
                 .endDate(other.endDate);
 
+    }
+
+    public String getType() {
+        return type;
     }
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -22,9 +22,10 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * The Status enum contains the various statuses a user can have
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see User
+ * @since 1.0
  */
 @XmlType
 @XmlEnum

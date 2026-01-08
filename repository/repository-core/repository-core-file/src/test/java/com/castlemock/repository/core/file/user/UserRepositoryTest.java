@@ -40,13 +40,12 @@ import java.util.List;
  */
 public class UserRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private UserFileRepository repository;
-
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -56,7 +55,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         List<User> users = new ArrayList<>();
         User user = UserTestBuilder.builder().build();
         users.add(user);
@@ -66,10 +65,10 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final User user = save();
         final User returnedUser = repository.findOne(user.getId())
-                        .orElse(null);
+                .orElse(null);
         Assertions.assertNotNull(returnedUser);
         Assertions.assertEquals(user.getId(), returnedUser.getId());
         Assertions.assertEquals(user.getEmail(), returnedUser.getEmail());
@@ -80,7 +79,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final User user = save();
         final List<User> users = repository.findAll();
         Assertions.assertEquals(users.size(), 1);
@@ -88,26 +87,26 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(UserFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final User user = save();
         repository.delete(user.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + user.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private User save(){
+    private User save() {
         final User user = UserTestBuilder.builder().build();
         repository.save(user);
         return user;

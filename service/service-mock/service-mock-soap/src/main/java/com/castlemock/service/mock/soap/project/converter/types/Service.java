@@ -23,9 +23,13 @@ public class Service {
     private final String name;
     private final Set<ServicePort> ports;
 
-    private Service(final Builder builder){
+    private Service(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.ports = Objects.requireNonNull(builder.ports);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -36,30 +40,26 @@ public class Service {
         return ports;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Set<ServicePort> ports;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder ports(final Set<ServicePort> ports){
+        public Builder ports(final Set<ServicePort> ports) {
             this.ports = ports;
             return this;
         }
 
-        public Service build(){
+        public Service build() {
             return new Service(this);
         }
     }

@@ -37,6 +37,10 @@ public class UpdateRestResourceStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getResourceIds() {
         return Optional.of(resourceIds)
                 .map(Set::copyOf)
@@ -69,10 +73,6 @@ public class UpdateRestResourceStatusesRequest {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
 
@@ -96,5 +96,5 @@ public class UpdateRestResourceStatusesRequest {
             return new UpdateRestResourceStatusesRequest(this);
         }
     }
-    
+
 }

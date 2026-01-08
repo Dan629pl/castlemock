@@ -34,8 +34,12 @@ public class RestXPathExpression {
     private final String expression;
 
 
-    private RestXPathExpression(final Builder builder){
+    private RestXPathExpression(final Builder builder) {
         this.expression = Objects.requireNonNull(builder.expression, "expression");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getExpression() {
@@ -62,13 +66,9 @@ public class RestXPathExpression {
                 '}';
     }
 
-    public Builder toBuilder(){
+    public Builder toBuilder() {
         return builder()
                 .expression(expression);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

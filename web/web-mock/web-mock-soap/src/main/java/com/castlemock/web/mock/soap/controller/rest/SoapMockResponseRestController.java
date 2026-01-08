@@ -46,15 +46,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/soap")
-@Tag(name="SOAP - Mocked response", description="REST Operations for Castle Mock SOAP mocked response")
+@Tag(name = "SOAP - Mocked response", description = "REST Operations for Castle Mock SOAP mocked response")
 public class SoapMockResponseRestController extends AbstractRestController {
 
     @Autowired
-    public SoapMockResponseRestController(final ServiceProcessor serviceProcessor){
+    public SoapMockResponseRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get mocked response")
+    @Operation(summary = "Get mocked response")
     @RequestMapping(method = RequestMethod.GET,
             value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse/{responseId}")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -79,7 +79,7 @@ public class SoapMockResponseRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Create mocked response")
+    @Operation(summary = "Create mocked response")
     @RequestMapping(method = RequestMethod.POST,
             value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -106,7 +106,7 @@ public class SoapMockResponseRestController extends AbstractRestController {
         return ResponseEntity.ok(output.getMockResponse());
     }
 
-    @Operation(summary =  "Update mocked response")
+    @Operation(summary = "Update mocked response")
     @RequestMapping(method = RequestMethod.PUT,
             value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse/{responseId}")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -135,9 +135,10 @@ public class SoapMockResponseRestController extends AbstractRestController {
                 .build());
         return output.getMockResponse()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
-    @Operation(summary =  "Delete mocked response")
+    @Operation(summary = "Delete mocked response")
     @RequestMapping(method = RequestMethod.DELETE,
             value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse/{responseId}")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
@@ -161,7 +162,7 @@ public class SoapMockResponseRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Duplicate mocked response")
+    @Operation(summary = "Duplicate mocked response")
     @RequestMapping(method = RequestMethod.POST,
             value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse/duplicate")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")

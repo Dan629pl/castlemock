@@ -24,21 +24,21 @@ import com.castlemock.model.core.Output;
  */
 public final class CreateSoapPortsOutput implements Output {
 
-    private CreateSoapPortsOutput(final Builder builder){
+    private CreateSoapPortsOutput(final Builder builder) {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public CreateSoapPortsOutput build(){
+        public CreateSoapPortsOutput build() {
             return new CreateSoapPortsOutput(this);
         }
     }

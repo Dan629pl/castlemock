@@ -44,9 +44,13 @@ public class RestProject extends Project {
     private final List<RestApplication> applications;
 
 
-    private RestProject(final Builder builder){
+    private RestProject(final Builder builder) {
         super(builder);
         this.applications = Optional.ofNullable(builder.applications).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public List<RestApplication> getApplications() {
@@ -73,10 +77,6 @@ public class RestProject extends Project {
         return "RestProject{" +
                 "applications=" + applications +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

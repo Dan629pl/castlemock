@@ -30,8 +30,9 @@ import java.util.List;
 
 /**
  * The {@link RAMLRestDefinitionConverter} provides RAML related functionality.
- * @since 1.10
+ *
  * @author Karl Dahlgren
+ * @since 1.10
  */
 public class RAMLRestDefinitionConverter extends AbstractRestDefinitionConverter {
 
@@ -40,12 +41,13 @@ public class RAMLRestDefinitionConverter extends AbstractRestDefinitionConverter
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param file The file which will be converted to one or more {@link RestApplication}.
+     *
+     * @param file             The file which will be converted to one or more {@link RestApplication}.
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
     @Override
-    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse){
+    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse) {
         RamlModelResult ramlModelResult = new RamlModelBuilder().buildApi(file);
         return convert(ramlModelResult, generateResponse);
     }
@@ -53,12 +55,13 @@ public class RAMLRestDefinitionConverter extends AbstractRestDefinitionConverter
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param location The location of the definition file
+     *
+     * @param location         The location of the definition file
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
     @Override
-    public List<RestApplication> convert(final String location, final String projectId, final boolean generateResponse){
+    public List<RestApplication> convert(final String location, final String projectId, final boolean generateResponse) {
         RamlModelResult ramlModelResult = new RamlModelBuilder().buildApi(location);
         return convert(ramlModelResult, generateResponse);
     }
@@ -66,13 +69,14 @@ public class RAMLRestDefinitionConverter extends AbstractRestDefinitionConverter
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param ramlModelResult The RAML model result
+     *
+     * @param ramlModelResult  The RAML model result
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      * @throws IllegalStateException In case the {@link RamlModelResult} is not parsable.
      */
-    private List<RestApplication> convert(final RamlModelResult ramlModelResult, final boolean generateResponse){
-        if(!ramlModelResult.getValidationResults().isEmpty()){
+    private List<RestApplication> convert(final RamlModelResult ramlModelResult, final boolean generateResponse) {
+        if (!ramlModelResult.getValidationResults().isEmpty()) {
             throw new IllegalStateException("Unable to parse the RAML file");
         }
 

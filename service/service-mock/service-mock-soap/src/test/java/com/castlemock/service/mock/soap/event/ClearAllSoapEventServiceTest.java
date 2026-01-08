@@ -27,7 +27,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 /**
  * @author Karl Dahlgren
@@ -48,7 +47,7 @@ public class ClearAllSoapEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final ClearAllSoapEventInput input = ClearAllSoapEventInput.builder().build();
         final ServiceTask<ClearAllSoapEventInput> serviceTask = ServiceTask.of(input, "user");
         final ServiceResult<ClearAllSoapEventOutput> serviceResult = service.process(serviceTask);

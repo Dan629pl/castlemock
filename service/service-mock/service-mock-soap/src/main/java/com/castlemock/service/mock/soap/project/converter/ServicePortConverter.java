@@ -49,7 +49,7 @@ public final class ServicePortConverter {
     private static final String AUTO_GENERATED_MOCK_RESPONSE_DEFAULT_NAME = "Auto-generated mocked response";
     private static final Integer DEFAULT_HTTP_STATUS_CODE = 200;
 
-    private ServicePortConverter(){
+    private ServicePortConverter() {
 
     }
 
@@ -59,7 +59,7 @@ public final class ServicePortConverter {
                                       final Set<PortType> portTypes,
                                       final Set<Message> messages,
                                       final Set<Namespace> namespaces,
-                                      final boolean generateResponse){
+                                      final boolean generateResponse) {
         final Binding binding = bindings.stream()
                 .filter(tmp -> servicePort.getBinding().getLocalName().equals(tmp.getName()))
                 .findFirst()
@@ -73,7 +73,7 @@ public final class ServicePortConverter {
         final String portId = IdUtility.generateId();
         final List<SoapOperation> operations = binding.getOperations()
                 .stream()
-                .map(bindingOperation -> toSoapOperation(bindingOperation,portId, portType,
+                .map(bindingOperation -> toSoapOperation(bindingOperation, portId, portType,
                         messages, namespaces, servicePort.getAddress(), generateResponse))
                 .collect(Collectors.toList());
 
@@ -93,7 +93,7 @@ public final class ServicePortConverter {
                                                  final Set<Message> messages,
                                                  final Set<Namespace> namespaces,
                                                  final ServicePortAddress address,
-                                                 final boolean generateResponse){
+                                                 final boolean generateResponse) {
         final PortTypeOperation portTypeOperation = portType.getOperations().stream()
                 .filter(p -> bindingOperation.getName().equals(p.getName()))
                 .findFirst()
@@ -151,7 +151,7 @@ public final class ServicePortConverter {
     }
 
     private static SoapMockResponse createSoapMockResponse(final String defaultBody,
-                                                           final String operationId){
+                                                           final String operationId) {
         return SoapMockResponse.builder()
                 .id(IdUtility.generateId())
                 .operationId(operationId)

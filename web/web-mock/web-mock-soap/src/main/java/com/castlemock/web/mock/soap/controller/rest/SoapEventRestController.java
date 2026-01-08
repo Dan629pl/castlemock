@@ -35,15 +35,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/soap")
-@Tag(name="SOAP - Event")
+@Tag(name = "SOAP - Event")
 public class SoapEventRestController extends AbstractRestController {
 
     @Autowired
-    public SoapEventRestController(final ServiceProcessor serviceProcessor){
+    public SoapEventRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get SOAP event")
+    @Operation(summary = "Get SOAP event")
     @RequestMapping(method = RequestMethod.GET, value = "/event/{eventId}")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -56,6 +56,7 @@ public class SoapEventRestController extends AbstractRestController {
 
         return output.getEvent()
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());    }
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
 }

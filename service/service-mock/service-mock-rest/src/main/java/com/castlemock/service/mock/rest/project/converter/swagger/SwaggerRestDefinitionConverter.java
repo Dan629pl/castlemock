@@ -97,8 +97,9 @@ import java.util.Optional;
 
 /**
  * The {@link SwaggerRestDefinitionConverter} provides Swagger related functionality.
- * @since 1.10
+ *
  * @author Karl Dahlgren
+ * @since 1.10
  */
 public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConverter {
 
@@ -111,12 +112,13 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param file The file which will be converted to one or more {@link RestApplication}.
+     *
+     * @param file             The file which will be converted to one or more {@link RestApplication}.
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
     @Override
-    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse){
+    public List<RestApplication> convert(final File file, final String projectId, final boolean generateResponse) {
         final String swaggerContent = FileUtility.getFileContent(file);
         final Swagger swagger = new SwaggerParser().parse(swaggerContent);
         final RestApplication restApplication = convertSwagger(swagger, projectId, generateResponse);
@@ -126,12 +128,13 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param location The location of the definition file
+     *
+     * @param location         The location of the definition file
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
     @Override
-    public List<RestApplication> convert(final String location, final String projectId, final boolean generateResponse){
+    public List<RestApplication> convert(final String location, final String projectId, final boolean generateResponse) {
         final Swagger swagger = new SwaggerParser().read(location);
         final RestApplication restApplication = convertSwagger(swagger, projectId, generateResponse);
         return List.of(restApplication);
@@ -149,13 +152,14 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
      *     <li>HEAD</li>
      *     <li>OPTIONS</li>
      * </ul>
-     * @param swagger The Swagger content which will be generated into a {@link RestApplication}.
+     *
+     * @param swagger          The Swagger content which will be generated into a {@link RestApplication}.
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A {@link RestApplication} based on the provided Swagger content.
      */
-    private RestApplication convertSwagger(final Swagger swagger, final String projectId, final boolean generateResponse){
+    private RestApplication convertSwagger(final Swagger swagger, final String projectId, final boolean generateResponse) {
 
-        if(swagger == null){
+        if (swagger == null) {
             throw new IllegalArgumentException("Unable to parse the Swagger content.");
         }
 
@@ -164,42 +168,42 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
         final List<RestResource> resources = new ArrayList<>();
         final String applicationId = IdUtility.generateId();
-        for(Map.Entry<String, Path> pathEntry : swagger.getPaths().entrySet()){
+        for (Map.Entry<String, Path> pathEntry : swagger.getPaths().entrySet()) {
             final String resourceName = pathEntry.getKey();
             final Path resourcePath = pathEntry.getValue();
             final String resourceId = IdUtility.generateId();
 
             final List<RestMethod> methods = new ArrayList<>();
-            if(resourcePath.getGet() != null){
+            if (resourcePath.getGet() != null) {
                 Operation operation = resourcePath.getGet();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.GET, forwardAddress, resourceId, generateResponse);
                 methods.add(restMethod);
             }
-            if(resourcePath.getPost() != null){
+            if (resourcePath.getPost() != null) {
                 Operation operation = resourcePath.getPost();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.POST,
                         forwardAddress, resourceId, generateResponse);
                 methods.add(restMethod);
             }
-            if(resourcePath.getPut() != null){
+            if (resourcePath.getPut() != null) {
                 Operation operation = resourcePath.getPut();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.PUT,
                         forwardAddress, resourceId, generateResponse);
                 methods.add(restMethod);
             }
-            if(resourcePath.getDelete() != null){
+            if (resourcePath.getDelete() != null) {
                 Operation operation = resourcePath.getDelete();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.DELETE,
                         forwardAddress, resourceId, generateResponse);
                 methods.add(restMethod);
             }
-            if(resourcePath.getHead() != null){
+            if (resourcePath.getHead() != null) {
                 Operation operation = resourcePath.getHead();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.HEAD,
                         forwardAddress, resourceId, generateResponse);
                 methods.add(restMethod);
             }
-            if(resourcePath.getOptions() != null){
+            if (resourcePath.getOptions() != null) {
                 Operation operation = resourcePath.getOptions();
                 RestMethod restMethod = createRestMethod(operation, definitions, HttpMethod.OPTIONS,
                         forwardAddress, resourceId, generateResponse);
@@ -227,12 +231,13 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method extracts the forward address from the {@link Swagger} model.
+     *
      * @param swagger The {@link Swagger} model contains information about the source address.
      * @return The extracted source address configured in {@link Swagger}.
      */
-    private String getForwardAddress(final Swagger swagger){
+    private String getForwardAddress(final Swagger swagger) {
         String schemas = "http";
-        if(swagger.getSchemes() != null && !swagger.getSchemes().isEmpty()){
+        if (swagger.getSchemes() != null && !swagger.getSchemes().isEmpty()) {
             schemas = swagger.getSchemes().getFirst().toValue();
         }
 
@@ -242,23 +247,24 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * Create a {@link RestMethod} based on a Swagger {@link Operation} and a {@link HttpMethod}.
-     * @param operation The Swagger operation that will be converted to a {@link RestMethod}.
-     * @param httpMethod The {@link HttpMethod} of the new {@link RestMethod}.
-     * @param forwardAddress The configured forward address. The request for this method will be forwarded to
-     *                       this address if the service is configured to be {@link RestMethodStatus#FORWARDED},
-     *                       {@link RestMethodStatus#RECORDING} or  {@link RestMethodStatus#RECORD_ONCE}
+     *
+     * @param operation        The Swagger operation that will be converted to a {@link RestMethod}.
+     * @param httpMethod       The {@link HttpMethod} of the new {@link RestMethod}.
+     * @param forwardAddress   The configured forward address. The request for this method will be forwarded to
+     *                         this address if the service is configured to be {@link RestMethodStatus#FORWARDED},
+     *                         {@link RestMethodStatus#RECORDING} or  {@link RestMethodStatus#RECORD_ONCE}
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A {@link RestMethod} based on the provided Swagger {@link Operation} and the {@link HttpMethod}.
      */
     private RestMethod createRestMethod(final Operation operation, final Map<String, Model> definitions,
                                         final HttpMethod httpMethod, final String forwardAddress,
                                         final String resourceId,
-                                        final boolean generateResponse){
+                                        final boolean generateResponse) {
 
         String methodName;
-        if(operation.getOperationId() != null){
+        if (operation.getOperationId() != null) {
             methodName = operation.getOperationId();
-        } else if(operation.getSummary() != null){
+        } else if (operation.getSummary() != null) {
             methodName = operation.getSummary();
         } else {
             methodName = httpMethod.name();
@@ -266,8 +272,8 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
         final String methodId = IdUtility.generateId();
         List<RestMockResponse> mockResponses = List.of();
-        if(generateResponse){
-            if(!operation.getResponses().isEmpty()){
+        if (generateResponse) {
+            if (!operation.getResponses().isEmpty()) {
                 mockResponses = new ArrayList<>(generateResponse(operation.getResponses(), definitions, methodId, operation.getProduces()));
             } else {
                 RestMockResponse generatedResponse = generateResponse(methodId);
@@ -293,44 +299,45 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method generates a default response.
+     *
      * @param responses The Swagger response definitions
      * @return The newly generated {@link RestMockResponse}.
      */
-    private Collection<RestMockResponse> generateResponse(final Map<String,Response> responses,
+    private Collection<RestMockResponse> generateResponse(final Map<String, Response> responses,
                                                           final Map<String, Model> definitions,
                                                           final String methodId,
-                                                          final List<String> produces){
-        if(produces == null){
+                                                          final List<String> produces) {
+        if (produces == null) {
             return Collections.emptyList();
         }
 
         final List<RestMockResponse> mockResponses = new ArrayList<>();
-        for(Map.Entry<String, Response> responseEntry : responses.entrySet()){
+        for (Map.Entry<String, Response> responseEntry : responses.entrySet()) {
             Map<String, String> bodies = new HashMap<>();
             Response response = responseEntry.getValue();
-            for(String produce : produces){
+            for (String produce : produces) {
                 String body = null;
-                if(APPLICATION_XML.equalsIgnoreCase(produce)){
+                if (APPLICATION_XML.equalsIgnoreCase(produce)) {
                     body = generateXmlBody(response, definitions)
                             .orElse(null);
-                } else if(APPLICATION_JSON.equalsIgnoreCase(produce)){
+                } else if (APPLICATION_JSON.equalsIgnoreCase(produce)) {
                     body = generateJsonBody(response, definitions);
                 }
-                if(body != null && !body.isEmpty()){
+                if (body != null && !body.isEmpty()) {
                     bodies.put(produce, body);
                 }
             }
 
             int httpStatusCode = extractHttpStatusCode(responseEntry.getKey());
 
-            if(bodies.isEmpty()){
+            if (bodies.isEmpty()) {
                 RestMockResponse restMockResponse = generateResponse(httpStatusCode, methodId, response);
                 mockResponses.add(restMockResponse);
             } else {
-                for(Map.Entry<String, String> bodyEntry : bodies.entrySet()){
+                for (Map.Entry<String, String> bodyEntry : bodies.entrySet()) {
                     final String contentType = bodyEntry.getKey();
                     final String body = bodyEntry.getValue();
-                    final RestMockResponse restMockResponse = generateResponse(httpStatusCode,methodId, response);
+                    final RestMockResponse restMockResponse = generateResponse(httpStatusCode, methodId, response);
                     final HttpHeader httpHeader = HttpHeader.builder()
                             .name(CONTENT_TYPE)
                             .value(contentType)
@@ -349,24 +356,25 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
     /**
      * The method generates a mocked response based on the provided {@link Response} and the
      * <code>httpStatusCode</code>.
+     *
      * @param httpStatusCode The HTTP status code that the mocked response will have. Please note that
      *                       any mock response with status code different from OK (200), will be
      *                       marked as disabled.
-     * @param response The Swagger response that the mocked response will be based on.
+     * @param response       The Swagger response that the mocked response will be based on.
      * @return A new {@link RestMockResponse} based on the provided {@link Response}.
      */
-    private RestMockResponse generateResponse(final int httpStatusCode, final String methodId, final Response response){
+    private RestMockResponse generateResponse(final int httpStatusCode, final String methodId, final Response response) {
 
         final RestMockResponseStatus status;
-        if(httpStatusCode == DEFAULT_RESPONSE_CODE){
+        if (httpStatusCode == DEFAULT_RESPONSE_CODE) {
             status = RestMockResponseStatus.ENABLED;
         } else {
             status = RestMockResponseStatus.DISABLED;
         }
 
         final List<HttpHeader> headers = new ArrayList<>();
-        if(response.getHeaders() != null){
-            for(Map.Entry<String, Property> headerEntry : response.getHeaders().entrySet()){
+        if (response.getHeaders() != null) {
+            for (Map.Entry<String, Property> headerEntry : response.getHeaders().entrySet()) {
                 final String headerName = headerEntry.getKey();
                 final HttpHeader httpHeader = HttpHeader.builder()
                         .name(headerName)
@@ -391,16 +399,17 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
     /**
      * The method provides the functionality to generate an XML body based on a provided {@link Response}
      * and a list of {@link Model}s that might be required.
-     * @param response The Swagger response which the XML body will be based on.
+     *
+     * @param response    The Swagger response which the XML body will be based on.
      * @param definitions Definitions of Swagger models
      * @return An XML response body.
      * @since 1.13
      */
     @SuppressWarnings("deprecation")
-    private Optional<String> generateXmlBody(final Response response, final Map<String, Model> definitions){
+    private Optional<String> generateXmlBody(final Response response, final Map<String, Model> definitions) {
         // TODO Investigate deprecated schema
         final Property schema = response.getSchema();
-        if(schema == null){
+        if (schema == null) {
             return Optional.empty();
         }
 
@@ -419,7 +428,7 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
             final StreamResult result = new StreamResult(stringWriter);
             transformer.transform(source, result);
             return Optional.of(stringWriter.toString());
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error("Unable to generate a XML response body", e);
         }
 
@@ -428,34 +437,35 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method creates a DOM {@link Element} based on a {@link Property}.
-     * @param name The name of the element
-     * @param property The property that the element if based on.
+     *
+     * @param name        The name of the element
+     * @param property    The property that the element if based on.
      * @param definitions Models which may or may not be required
-     * @param document The XML DOM document
+     * @param document    The XML DOM document
      * @return An {@link Element}  based on the provided {@link Property}.
      * @since 1.13
      */
     private Optional<Element> getXmlElement(String name, final Property property, final Map<String, Model> definitions,
-                                  final Document document) {
+                                            final Document document) {
         Element element;
-        if(name == null){
+        if (name == null) {
             name = property.getType();
         }
 
-        if(property instanceof RefProperty refProperty){
+        if (property instanceof RefProperty refProperty) {
             final String simpleRef = refProperty.getSimpleRef();
             final Model model = definitions.get(simpleRef);
 
-            if(model == null){
+            if (model == null) {
                 LOGGER.warn("Unable to find the following definition in the Swagger file: " + simpleRef);
                 return Optional.empty();
             }
             element = getXmlElement(model, definitions, document);
-        } else if(property instanceof ArrayProperty arrayProperty){
+        } else if (property instanceof ArrayProperty arrayProperty) {
             final Property item = arrayProperty.getItems();
             final int maxItems = getMaxItems(arrayProperty.getMaxItems());
             element = document.createElement(name);
-            for(int index = 0; index < maxItems; index++){
+            for (int index = 0; index < maxItems; index++) {
                 getXmlElement(name, item, definitions, document)
                         .ifPresent(element::appendChild);
             }
@@ -463,7 +473,7 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
             final String expression = getExpressionIdentifier(property)
                     .orElse(null);
             element = document.createElement(name);
-            if(expression != null){
+            if (expression != null) {
                 final Text text = document.createTextNode(expression);
                 element.appendChild(text);
             }
@@ -474,45 +484,46 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * Method used to generate a response body based on a {@link Model} and perhaps related other {@link Model}.
-     * @param model The {@link Model} used to generate to the body.
+     *
+     * @param model       The {@link Model} used to generate to the body.
      * @param definitions Other {@link Model} that might be related and required.
-     * @param document The XML DOM document.
+     * @param document    The XML DOM document.
      * @since 1.13
      */
     private Element getXmlElement(final Model model, final Map<String, Model> definitions, final Document document) {
 
         Element element = null;
 
-        if(model instanceof ModelImpl){
+        if (model instanceof ModelImpl) {
             Xml xml = ((ModelImpl) model).getXml();
-            if(xml != null) {
-                if(xml.getName() != null){
+            if (xml != null) {
+                if (xml.getName() != null) {
                     element = document.createElement(xml.getName());
                 }
             }
         }
 
-        if(element == null){
+        if (element == null) {
             // Unclear when this can happen, but this should still be handled
             element = document.createElement("Result");
         }
 
-        if(model instanceof ArrayModel arrayModel){
+        if (model instanceof ArrayModel arrayModel) {
             final Property item = arrayModel.getItems();
             final int maxItems = getMaxItems(arrayModel.getMaxItems());
-            for(int index = 0; index < maxItems; index++){
+            for (int index = 0; index < maxItems; index++) {
                 getXmlElement(arrayModel.getType(), item, definitions, document)
                         .ifPresent(element::appendChild);
             }
-        } else if(model instanceof RefModel refModel){
+        } else if (model instanceof RefModel refModel) {
             final String simpleRef = refModel.getSimpleRef();
             final Model subModel = definitions.get(simpleRef);
             final Element child = getXmlElement(subModel, definitions, document);
             element.appendChild(child);
         }
 
-        if(model.getProperties() != null){
-            for(Map.Entry<String, Property> property : model.getProperties().entrySet()){
+        if (model.getProperties() != null) {
+            for (Map.Entry<String, Property> property : model.getProperties().entrySet()) {
                 getXmlElement(property.getKey(), property.getValue(), definitions, document)
                         .ifPresent(element::appendChild);
             }
@@ -524,17 +535,18 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method generates a body based on the provided {@link Response} and a map of {@link Model}.
-     * @param response The response which the body will be based on.
+     *
+     * @param response    The response which the body will be based on.
      * @param definitions The map of definitions that might be required to generate the response.
      * @return A HTTP response body based on the provided {@link Response}.
      * @since 1.13
      */
     @SuppressWarnings("deprecation")
-    private String generateJsonBody(final Response response, final Map<String, Model> definitions){
+    private String generateJsonBody(final Response response, final Map<String, Model> definitions) {
         final StringWriter writer = new StringWriter();
         // TODO Investigate the deprecated schema
         final Property schema = response.getSchema();
-        if(schema == null){
+        if (schema == null) {
             return writer.toString();
         }
 
@@ -547,7 +559,7 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
         } catch (IOException e) {
             LOGGER.error("Unable to generate a response body", e);
         } finally {
-            if(generator != null){
+            if (generator != null) {
                 try {
                     generator.close();
                 } catch (IOException e) {
@@ -561,34 +573,35 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method generates a response body based on a given name, {@link Property} and a map of {@link Model}.
-     * @param name The name of the property.
-     * @param property The property that will be part of the response.
+     *
+     * @param name        The name of the property.
+     * @param property    The property that will be part of the response.
      * @param definitions The map of definitions will be used when composing the response body.
-     * @param generator The {@link JsonGenerator}.
+     * @param generator   The {@link JsonGenerator}.
      * @since 1.13
      */
     private void generateJsonBody(final String name, final Property property,
-                              final Map<String, Model> definitions, final JsonGenerator generator) throws IOException {
+                                  final Map<String, Model> definitions, final JsonGenerator generator) throws IOException {
 
-        if(name != null){
+        if (name != null) {
             generator.writeFieldName(name);
         }
 
-        if(property instanceof RefProperty refProperty){
+        if (property instanceof RefProperty refProperty) {
             final String simpleRef = refProperty.getSimpleRef();
             final Model model = definitions.get(simpleRef);
 
-            if(model == null){
+            if (model == null) {
                 LOGGER.warn("Unable to find the following definition in the Swagger file: " + simpleRef);
                 return;
             }
             generateJsonBody(model, definitions, generator);
-        } else if(property instanceof ArrayProperty arrayProperty){
+        } else if (property instanceof ArrayProperty arrayProperty) {
             final Property item = arrayProperty.getItems();
             final int maxItems = getMaxItems(arrayProperty.getMaxItems());
             generator.writeStartArray();
 
-            for(int index = 0; index < maxItems; index++){
+            for (int index = 0; index < maxItems; index++) {
                 generateJsonBody(item.getName(), item, definitions, generator);
             }
             generator.writeEndArray();
@@ -604,29 +617,30 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * Method used to generate a response body based on a {@link Model} and perhaps related other {@link Model}.
-     * @param model The {@link Model} used to generate to the body.
+     *
+     * @param model       The {@link Model} used to generate to the body.
      * @param definitions Other {@link Model} that might be related and required.
-     * @param generator generator The {@link JsonGenerator}.
+     * @param generator   generator The {@link JsonGenerator}.
      * @since 1.13
      */
     private void generateJsonBody(final Model model, final Map<String, Model> definitions, final JsonGenerator generator) throws IOException {
         generator.writeStartObject();
-        if(model instanceof ArrayModel arrayModel){
+        if (model instanceof ArrayModel arrayModel) {
             final Property item = arrayModel.getItems();
             final int maxItems = getMaxItems(arrayModel.getMaxItems());
             generator.writeStartArray();
-            for(int index = 0; index < maxItems; index++){
+            for (int index = 0; index < maxItems; index++) {
                 generateJsonBody(item.getName(), item, definitions, generator);
             }
             generator.writeEndArray();
-        } else if(model instanceof RefModel refModel){
+        } else if (model instanceof RefModel refModel) {
             final String simpleRef = refModel.getSimpleRef();
             final Model subModel = definitions.get(simpleRef);
             generateJsonBody(subModel, definitions, generator);
         }
 
-        if(model.getProperties() != null){
-            for(Map.Entry<String, Property> property : model.getProperties().entrySet()){
+        if (model.getProperties() != null) {
+            for (Map.Entry<String, Property> property : model.getProperties().entrySet()) {
                 generateJsonBody(property.getKey(), property.getValue(), definitions, generator);
             }
         }
@@ -637,13 +651,14 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
 
     /**
      * The method returns an expression identifier for a given {@link Property}.
+     *
      * @param property The property that the expression identifier will be based on.
      * @return An expression identifier that matches the provided {@link Property}.
      * If nothing is matched, then <code>null</code> will be returned.
      * @see Expression
      * @see 1.13
      */
-    private Optional<String> getExpressionIdentifier(final Property property){
+    private Optional<String> getExpressionIdentifier(final Property property) {
         ExpressionInput expressionInput;
         switch (property) {
             case IntegerProperty integerProperty ->
@@ -693,13 +708,14 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
      * is a {@link String} and should be parsed to an integer. However, the response code
      * is not always the actual response code. In fact, it can be anything. Therefore,
      * upon {@link NumberFormatException} the default response code will be returned: 200.
+     *
      * @param responseCode The response code that will be parsed into an integer.
      * @return The parsed response code. 200 if the parsing failed.
      */
-    private int extractHttpStatusCode(final String responseCode){
+    private int extractHttpStatusCode(final String responseCode) {
         try {
             return Integer.parseInt(responseCode);
-        } catch (Exception e){
+        } catch (Exception e) {
             return DEFAULT_RESPONSE_CODE;
         }
     }
@@ -708,27 +724,28 @@ public class SwaggerRestDefinitionConverter extends AbstractRestDefinitionConver
      * Get the max item count. It is based in the value configured in the Swagger file.
      * If the <code>maxitemCount</code> is null, then the <code>MAX_RESPONSE_ITEMS</code>
      * will be returned.
-     *
+     * <p>
      * If <code>maxitemCount</code> is not null, then it will take the minimum of <code>maxitemCount</code>
      * and <code>MAX_RESPONSE_ITEMS</code>.
+     *
      * @param maxItemCount The max item count configured in the Swagger file.
      * @return The max item count.
      * ßee 1.13
      */
-    private int getMaxItems(final Integer maxItemCount){
-        if(maxItemCount == null){
+    private int getMaxItems(final Integer maxItemCount) {
+        if (maxItemCount == null) {
             return MAX_RESPONSE_ITEMS;
         }
         return Math.min(MAX_RESPONSE_ITEMS, maxItemCount);
     }
 
-    private String getApplicationName(final Swagger swagger){
-        if(swagger.getInfo() != null &&
-                swagger.getInfo().getTitle() != null){
+    private String getApplicationName(final Swagger swagger) {
+        if (swagger.getInfo() != null &&
+                swagger.getInfo().getTitle() != null) {
             return swagger.getInfo().getTitle();
-        } else if(swagger.getHost() != null){
+        } else if (swagger.getHost() != null) {
             return swagger.getHost();
-        } else if(swagger.getBasePath() != null){
+        } else if (swagger.getBasePath() != null) {
             return swagger.getBasePath();
         }
 

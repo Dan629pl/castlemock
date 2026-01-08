@@ -34,11 +34,12 @@ import java.util.Map;
  * The {@link ExpressionInputParser} is a parser class used to
  * parse expression inputs and convert them into {@link ExpressionInput}
  * and set of {@link ExpressionArgument}.
+ *
  * @author Karl Dahlgren
- * @since 1.14
  * @see ExpressionInput
  * @see ExpressionArgument
  * @see Expression
+ * @since 1.14
  */
 public final class ExpressionInputParser {
 
@@ -56,16 +57,18 @@ public final class ExpressionInputParser {
      * Private constructor for {@link ExpressionInputParser} to
      * prevent any instances of the class to be created.
      */
-    private ExpressionInputParser(){}
+    private ExpressionInputParser() {
+    }
 
 
     /**
      * The parse method provides the functionality to parse and convert
      * a String input into an {@link ExpressionInput}.
+     *
      * @param input The input that will be converted into an {@link ExpressionInput}.
      * @return an {@link ExpressionInput} based on the provided <code>input</code>.
      */
-    public static ExpressionInput parse(final String input){
+    public static ExpressionInput parse(final String input) {
         // Parse the input
         final CodePointCharStream stream = CharStreams.fromString(input);
         final ExpressionLexer lexer = new ExpressionLexer(stream);
@@ -76,7 +79,7 @@ public final class ExpressionInputParser {
         // Create expression details
         final String expressionName = expression.type.getText();
         final ExpressionInput expressionInput = new ExpressionInput(expressionName);
-        for(ExpressionParser.ArgumentContext argumentContext : expression.argument()){
+        for (ExpressionParser.ArgumentContext argumentContext : expression.argument()) {
             String argumentName = argumentContext.argumentName().getText();
             ExpressionParser.ArgumentValueContext argumentValueContext = argumentContext.argumentValue();
             ExpressionArgument<?> expressionArgument = parseArgument(argumentValueContext);
@@ -91,25 +94,26 @@ public final class ExpressionInputParser {
     /**
      * The method provides the functionality to convert a {@link ExpressionParser.ArgumentValueContext} into
      * a {@link ExpressionArgument}.
+     *
      * @param argumentValueContext The {@link ExpressionParser.ArgumentValueContext} that will be converted into
      *                             an {@link ExpressionArgument}.
      * @return An {@link ExpressionArgument} based on the provided {@link ExpressionParser.ArgumentValueContext}.
      */
-    private static ExpressionArgument<?> parseArgument(final ExpressionParser.ArgumentValueContext argumentValueContext){
-        if(argumentValueContext.argumentString() != null){
+    private static ExpressionArgument<?> parseArgument(final ExpressionParser.ArgumentValueContext argumentValueContext) {
+        if (argumentValueContext.argumentString() != null) {
             // String
             final String argumentValue = argumentValueContext.argumentString().value.getText();
             return new ExpressionArgumentString(argumentValue);
-        } else if(argumentValueContext.argumentNumber() != null){
+        } else if (argumentValueContext.argumentNumber() != null) {
             // Numeric
             final Double argumentValue = Double.parseDouble(argumentValueContext.argumentNumber().value.getText());
             return new ExpressionArgumentNumber(argumentValue);
-        } else if(argumentValueContext.array() != null){
+        } else if (argumentValueContext.array() != null) {
             // Array
             final ExpressionArgumentArray array = new ExpressionArgumentArray();
             final List<ExpressionParser.ArgumentValueContext> arrayItems = argumentValueContext.array().value;
 
-            for(ExpressionParser.ArgumentValueContext arrayItem : arrayItems){
+            for (ExpressionParser.ArgumentValueContext arrayItem : arrayItems) {
                 ExpressionArgument<?> subArgument = parseArgument(arrayItem);
                 array.addArgument(subArgument);
             }
@@ -122,10 +126,11 @@ public final class ExpressionInputParser {
     /**
      * The method provides the functionality to convert a given {@link ExpressionInput}
      * into an actual expression.
+     *
      * @param expressionInput The {@link ExpressionInput} into an expression.
      * @return A convert {@link ExpressionInput} as an expression in String format.
      */
-    public static String convert(final ExpressionInput expressionInput){
+    public static String convert(final ExpressionInput expressionInput) {
         final StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(START_EXPRESSION);
         stringBuilder.append(expressionInput.getName());
@@ -133,7 +138,7 @@ public final class ExpressionInputParser {
 
         final Iterator<Map.Entry<String, ExpressionArgument<?>>> argumentIterator =
                 expressionInput.getArguments().entrySet().iterator();
-        while(argumentIterator.hasNext()){
+        while (argumentIterator.hasNext()) {
             Map.Entry<String, ExpressionArgument<?>> argumentEntry = argumentIterator.next();
             String argumentName = argumentEntry.getKey();
             ExpressionArgument<?> argument = argumentEntry.getValue();
@@ -142,7 +147,7 @@ public final class ExpressionInputParser {
             stringBuilder.append(ARGUMENT_EQUAL_CHARACTER);
             convert(argument, stringBuilder);
 
-            if(argumentIterator.hasNext()){
+            if (argumentIterator.hasNext()) {
                 stringBuilder.append(ARGUMENT_SEPARATOR_CHARACTER);
             }
         }
@@ -155,31 +160,32 @@ public final class ExpressionInputParser {
     /**
      * Converts an {@link ExpressionArgument} into a String expression and adds it to
      * the provided {@link StringBuilder}.
-     * @param argument The {@link ExpressionArgument} that will be converted into a String expression.
+     *
+     * @param argument      The {@link ExpressionArgument} that will be converted into a String expression.
      * @param stringBuilder The {@link StringBuilder} which the converted {@link ExpressionArgument}
      *                      will be added to.
      */
-    private static void convert(final ExpressionArgument<?> argument, final StringBuilder stringBuilder){
-        if(argument instanceof ExpressionArgumentString argumentString){
+    private static void convert(final ExpressionArgument<?> argument, final StringBuilder stringBuilder) {
+        if (argument instanceof ExpressionArgumentString argumentString) {
             // String
             stringBuilder.append(ARGUMENT_QUOTE_CHARACTER);
             stringBuilder.append(argumentString.getValue());
             stringBuilder.append(ARGUMENT_QUOTE_CHARACTER);
 
-        } else if(argument instanceof ExpressionArgumentNumber argumentNumber){
+        } else if (argument instanceof ExpressionArgumentNumber argumentNumber) {
             // Number
             stringBuilder.append(argumentNumber.getValue());
 
-        } else if(argument instanceof ExpressionArgumentArray argumentArray){
+        } else if (argument instanceof ExpressionArgumentArray argumentArray) {
             // Array
             Iterator<ExpressionArgument<?>> iterator = argumentArray.iterator();
             stringBuilder.append(ARRAY_START_CHARACTER);
 
             // Iterate through sub arguments
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 ExpressionArgument<?> subArgument = iterator.next();
                 convert(subArgument, stringBuilder);
-                if(iterator.hasNext()) {
+                if (iterator.hasNext()) {
                     stringBuilder.append(ARGUMENT_SEPARATOR_CHARACTER);
                 }
             }

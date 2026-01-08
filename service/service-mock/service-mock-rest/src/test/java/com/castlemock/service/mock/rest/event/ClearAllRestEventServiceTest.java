@@ -27,7 +27,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 
 /**
  * @author Karl Dahlgren
@@ -48,7 +47,7 @@ public class ClearAllRestEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final ClearAllRestEventInput input = ClearAllRestEventInput.builder().build();
         final ServiceTask<ClearAllRestEventInput> serviceTask = ServiceTask.of(input, "user");
         final ServiceResult<ClearAllRestEventOutput> serviceResult = service.process(serviceTask);

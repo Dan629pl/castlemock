@@ -22,10 +22,11 @@ import java.util.Map;
 /**
  * The {@link ExpressionArgumentMap} is an String argument for an
  * {@link com.castlemock.model.core.utility.parser.expression.Expression}.
+ *
  * @author Karl Dahlgren
  * @since 1.14
  */
-public class ExpressionArgumentMap extends ExpressionArgument<Map<Object,ExpressionArgument<?>>> {
+public class ExpressionArgumentMap extends ExpressionArgument<Map<Object, ExpressionArgument<?>>> {
 
     /**
      * Constructor for {@link ExpressionArgumentMap}.
@@ -36,27 +37,30 @@ public class ExpressionArgumentMap extends ExpressionArgument<Map<Object,Express
 
     /**
      * Add a new {@link ExpressionArgument} to the map
-     * @param key The key that is used to identify the argument.
+     *
+     * @param key      The key that is used to identify the argument.
      * @param argument The {@link ExpressionArgument} that will be added to the array.
      */
-    public void addArgument(final Object key, final ExpressionArgument<?> argument){
+    public void addArgument(final Object key, final ExpressionArgument<?> argument) {
         super.value.put(key, argument);
     }
 
     /**
      * Returns an {@link ExpressionArgument} on the provided <code>key</code>.
+     *
      * @param key The key used to identify the {@link ExpressionArgument}.
      * @return The {@link ExpressionArgument} identified the provided <code>key</code>.
      */
-    public ExpressionArgument<?> getArgument(final Object key){
+    public ExpressionArgument<?> getArgument(final Object key) {
         return super.value.get(key);
     }
 
     /**
      * Get the size of the argument map.
+     *
      * @return The size of the argument map.
      */
-    public int getArgumentSize(){
+    public int getArgumentSize() {
         return this.value.size();
     }
 

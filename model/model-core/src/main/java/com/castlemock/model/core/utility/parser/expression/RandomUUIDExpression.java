@@ -21,6 +21,7 @@ import java.util.UUID;
 /**
  * {@link RandomUUIDExpression} is an {@link Expression} and will
  * transform an matching input string into a random UUID.
+ *
  * @author Karl Dahlgren
  * @since 1.13
  */
@@ -32,6 +33,7 @@ public class RandomUUIDExpression extends AbstractExpression {
      * The transform method provides the functionality to transform a provided <code>input</code>.
      * The transformation and the end result will be determine by how it is implemented by each {@link Expression}.
      * Each {@link Expression} provides it's own functionality and will transform the text differently.
+     *
      * @param input The input string that will be transformed.
      * @return A transformed <code>input</code>.
      */
@@ -43,6 +45,7 @@ public class RandomUUIDExpression extends AbstractExpression {
     /**
      * The match method is used to determine if an <code>input</code> string matches
      * the criteria to be transformed.
+     *
      * @param input The input that will be determine if it matches the criteria to be transformed.
      * @return True if the input string matches the criteria. False otherwise.
      */

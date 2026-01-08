@@ -25,9 +25,13 @@ public class ElementName {
     private final String namespace;
     private final String localName;
 
-    private ElementName(final Builder builder){
+    private ElementName(final Builder builder) {
         this.namespace = builder.namespace;
         this.localName = Objects.requireNonNull(builder.localName);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getNamespace() {
@@ -38,30 +42,26 @@ public class ElementName {
         return localName;
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String namespace;
         private String localName;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder namespace(final String namespace){
+        public Builder namespace(final String namespace) {
             this.namespace = namespace;
             return this;
         }
 
-        public Builder localName(final String localName){
+        public Builder localName(final String localName) {
             this.localName = localName;
             return this;
         }
 
-        public ElementName build(){
+        public ElementName build() {
             return new ElementName(this);
         }
     }

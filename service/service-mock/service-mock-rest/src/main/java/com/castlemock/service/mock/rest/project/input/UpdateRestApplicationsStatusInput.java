@@ -37,6 +37,10 @@ public final class UpdateRestApplicationsStatusInput implements Input {
         this.methodStatus = Objects.requireNonNull(builder.methodStatus, "methodStatus");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -72,10 +76,6 @@ public final class UpdateRestApplicationsStatusInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -85,22 +85,22 @@ public final class UpdateRestApplicationsStatusInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder methodStatus(final RestMethodStatus methodStatus){
+        public Builder methodStatus(final RestMethodStatus methodStatus) {
             this.methodStatus = methodStatus;
             return this;
         }
 
-        public UpdateRestApplicationsStatusInput build(){
+        public UpdateRestApplicationsStatusInput build() {
             return new UpdateRestApplicationsStatusInput(this);
         }
 

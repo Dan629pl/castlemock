@@ -52,7 +52,7 @@ class UpdateStatusModal extends PureComponent {
     }
 
     setStatus(event) {
-        this.setState({ updateStatus: event.target.value });
+        this.setState({updateStatus: event.target.value});
     }
 
     onUpdateStatusClick() {
@@ -75,6 +75,7 @@ class UpdateStatusModal extends PureComponent {
                 validateErrorResponse(error)
             });
     }
+
     render() {
         return (
 
@@ -92,16 +93,18 @@ class UpdateStatusModal extends PureComponent {
                             <p>Do you want update the status for the following methods?</p>
                             <div className="table-result">
                                 <ToolkitProvider bootstrap4
-                                                 columns={ this.columns}
-                                                 data={ this.props.selectedMockResponses }
+                                                 columns={this.columns}
+                                                 data={this.props.selectedMockResponses}
                                                  keyField="id">
                                     {
                                         (props) => (
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.props.selectedMockResponses} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.props.selectedMockResponses}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
                                                                 striped
-                                                                pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                pagination={PaginationFactory({hideSizePerPage: true})}/>
                                             </div>
                                         )}
                                 </ToolkitProvider>
@@ -109,7 +112,8 @@ class UpdateStatusModal extends PureComponent {
                             <div className="form-group row">
                                 <label className="col-sm-2 col-form-label">Status</label>
                                 <div className="col-sm-10">
-                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED" onChange={this.setStatus}>
+                                    <select id="inputStatus" className="form-control" defaultValue="MOCKED"
+                                            onChange={this.setStatus}>
                                         <option value={"ENABLED"}>{mockResponseStatusFormatter("ENABLED")}</option>
                                         <option value={"DISABLED"}>{mockResponseStatusFormatter("DISABLED")}</option>
                                     </select>
@@ -117,7 +121,9 @@ class UpdateStatusModal extends PureComponent {
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onUpdateStatusClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onUpdateStatusClick}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

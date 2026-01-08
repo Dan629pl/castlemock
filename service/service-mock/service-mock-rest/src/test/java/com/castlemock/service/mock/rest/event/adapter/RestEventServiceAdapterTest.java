@@ -51,9 +51,9 @@ public class RestEventServiceAdapterTest {
     }
 
     @Test
-    public void testReadAll(){
+    public void testReadAll() {
         final List<RestEvent> restEvents = new ArrayList<>();
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final RestEvent restEvent = RestEventTestBuilder.builder().build();
             restEvents.add(restEvent);
 
@@ -64,7 +64,7 @@ public class RestEventServiceAdapterTest {
 
         final List<RestEvent> returnedRestEvents = serviceAdapter.readAll();
 
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final RestEvent restEvent = restEvents.get(index);
             final RestEvent returnedRestEvent = returnedRestEvents.get(index);
 
@@ -77,7 +77,7 @@ public class RestEventServiceAdapterTest {
     }
 
     @Test
-    public void testClearAll(){
+    public void testClearAll() {
         serviceAdapter.clearAll();
         Mockito.verify(serviceProcessor, Mockito.times(1)).process(Mockito.any(ClearAllRestEventInput.class));
     }

@@ -22,6 +22,7 @@ import java.util.Random;
 
 /**
  * The {@link AbstractExpression} is used as a based for all {@link Expression}
+ *
  * @author Karl Dahlgren
  * @since 1.6
  */
@@ -31,11 +32,12 @@ public abstract class AbstractExpression implements Expression {
 
     /**
      * The method generates a {@link String} with a given length.
+     *
      * @param length The length of the generated {@link String}
      * @return A generated {@link String}
      * @since 1.13
      */
-    protected String randomString(final int length){
+    protected String randomString(final int length) {
         return RandomStringUtils.insecure().nextAlphanumeric(length);
     }
 

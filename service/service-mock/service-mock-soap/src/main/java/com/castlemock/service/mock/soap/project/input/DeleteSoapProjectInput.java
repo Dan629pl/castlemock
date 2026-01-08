@@ -24,12 +24,16 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteSoapProjectInput implements Input{
+public final class DeleteSoapProjectInput implements Input {
 
     private final String projectId;
 
     private DeleteSoapProjectInput(final Builder builder) {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -56,23 +60,19 @@ public final class DeleteSoapProjectInput implements Input{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public DeleteSoapProjectInput build(){
+        public DeleteSoapProjectInput build() {
             return new DeleteSoapProjectInput(this);
         }
     }

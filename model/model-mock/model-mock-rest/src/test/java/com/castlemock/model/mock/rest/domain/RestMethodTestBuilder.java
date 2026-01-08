@@ -22,7 +22,7 @@ import java.util.List;
 
 public final class RestMethodTestBuilder {
 
-    private RestMethodTestBuilder(){
+    private RestMethodTestBuilder() {
 
     }
 

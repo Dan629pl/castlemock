@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * The response strategy defines how mocked instances should decide which response
  * should be returned to the consumer.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */

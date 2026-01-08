@@ -33,7 +33,8 @@ public interface RestDefinitionConverter {
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param file The file which will be converted to one or more {@link RestApplication}.
+     *
+     * @param file             The file which will be converted to one or more {@link RestApplication}.
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */
@@ -42,7 +43,8 @@ public interface RestDefinitionConverter {
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
-     * @param location The location of the definition file
+     *
+     * @param location         The location of the definition file
      * @param generateResponse Will generate a default response if true. No response will be generated if false.
      * @return A list of {@link RestApplication} based on the provided file.
      */

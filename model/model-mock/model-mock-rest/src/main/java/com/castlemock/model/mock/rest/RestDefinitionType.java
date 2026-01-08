@@ -27,7 +27,7 @@ public enum RestDefinitionType {
 
     private final String displayName;
 
-    RestDefinitionType(final String displayName){
+    RestDefinitionType(final String displayName) {
         this.displayName = displayName;
     }
 

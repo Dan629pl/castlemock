@@ -24,12 +24,16 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteRestProjectInput implements Input{
+public final class DeleteRestProjectInput implements Input {
 
     private final String projectId;
 
     private DeleteRestProjectInput(final Builder builder) {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -56,10 +60,6 @@ public final class DeleteRestProjectInput implements Input{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -67,12 +67,12 @@ public final class DeleteRestProjectInput implements Input{
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public DeleteRestProjectInput build(){
+        public DeleteRestProjectInput build() {
             return new DeleteRestProjectInput(this);
         }
 

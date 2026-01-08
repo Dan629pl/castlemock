@@ -48,14 +48,11 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
 
     private static final String WSDL_DIRECTORY = "wsdl";
     private static final String SCHEMA_DIRECTORY = "schema";
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(SoapResourceFileRepository.class);
     @Value(value = "${soap.resource.file.directory}")
     private String fileDirectory;
     @Value(value = "${soap.resource.file.extension}")
     private String fileExtension;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SoapResourceFileRepository.class);
-
     @Autowired
     private FileRepositorySupport fileRepositorySupport;
 
@@ -137,9 +134,9 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
         final SoapResourceFile soapResource = this.collection.get(soapResourceId);
         String path = this.fileDirectory + File.separator;
 
-        if(SoapResourceType.WSDL.equals(soapResource.getType())){
+        if (SoapResourceType.WSDL.equals(soapResource.getType())) {
             path += WSDL_DIRECTORY;
-        } else if(SoapResourceType.SCHEMA.equals(soapResource.getType())){
+        } else if (SoapResourceType.SCHEMA.equals(soapResource.getType())) {
             path += SCHEMA_DIRECTORY;
         }
 
@@ -151,7 +148,7 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
      * The method adds a new {@link SoapResource}.
      *
      * @param soapResource The  instance of {@link SoapResource} that will be saved.
-     * @param resource        The raw resource
+     * @param resource     The raw resource
      * @return The saved {@link SoapResource}
      * @see SoapResource
      */
@@ -159,18 +156,18 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
     public SoapResource saveSoapResource(final SoapResource soapResource, final String resource) {
         final SoapResource saveSoapResource = save(soapResource);
 
-        if(resource != null) {
+        if (resource != null) {
             final SoapResourceFile resourceFile = SoapResourceConverter.toSoapResourceFile(soapResource);
             final StringBuilder path = new StringBuilder(this.fileDirectory)
                     .append(File.separator);
-            if(SoapResourceType.WSDL.equals(resourceFile.getType())){
+            if (SoapResourceType.WSDL.equals(resourceFile.getType())) {
                 path.append(WSDL_DIRECTORY);
-            } else if(SoapResourceType.SCHEMA.equals(resourceFile.getType())){
+            } else if (SoapResourceType.SCHEMA.equals(resourceFile.getType())) {
                 path.append(SCHEMA_DIRECTORY);
             }
             try {
                 this.fileRepositorySupport.save(path.toString(), saveSoapResource.getId() + this.fileExtension, resource);
-            } catch (Exception e){
+            } catch (Exception e) {
                 LOGGER.error("Unable to upload SOAP resource", e);
             }
         }
@@ -180,6 +177,7 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
 
     /**
      * Delete an instance that match the provided id
+     *
      * @param id The instance that matches the provided id will be deleted in the database
      */
     @Override
@@ -188,12 +186,12 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
 
         SoapResourceFile soapResource = this.collection.remove(id);
 
-        if(soapResource != null){
+        if (soapResource != null) {
             String path = this.fileDirectory + File.separator;
 
-            if(SoapResourceType.WSDL.equals(soapResource.getType())){
+            if (SoapResourceType.WSDL.equals(soapResource.getType())) {
                 path += WSDL_DIRECTORY;
-            } else if(SoapResourceType.SCHEMA.equals(soapResource.getType())){
+            } else if (SoapResourceType.SCHEMA.equals(soapResource.getType())) {
                 path += SCHEMA_DIRECTORY;
             }
 
@@ -205,7 +203,7 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
                 // If that is the case, we should only log
                 // that we weren't able to delete the resource file.
                 this.fileRepositorySupport.delete(path, soapResource.getId() + this.fileExtension);
-            } catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 LOGGER.warn("Unable to delete the following SOAP resource: " + id);
             }
 
@@ -220,7 +218,7 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
      * search criteria.
      *
      * @param soapProjectId The id of the project.
-     * @param types          The types of {@link SoapResource} that should be returned.
+     * @param types         The types of {@link SoapResource} that should be returned.
      * @return A list of {@link SoapResource} of the specific provided type.
      * All resources will be returned if the type is null.
      * @since 1.16
@@ -249,12 +247,11 @@ public class SoapResourceFileRepository extends FileRepository<SoapResourceFile,
     public String getProjectId(final String portId) {
         final SoapResourceFile resourceFile = this.collection.get(portId);
 
-        if(resourceFile == null){
+        if (resourceFile == null) {
             throw new IllegalArgumentException("Unable to find a resource with the following id: " + portId);
         }
         return resourceFile.getProjectId();
     }
-
 
 
 }

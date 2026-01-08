@@ -37,6 +37,10 @@ public class UpdateRestMockResponseStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getMockResponseIds() {
         return Optional.of(mockResponseIds)
                 .map(Set::copyOf)
@@ -69,10 +73,6 @@ public class UpdateRestMockResponseStatusesRequest {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
 
@@ -96,5 +96,5 @@ public class UpdateRestMockResponseStatusesRequest {
             return new UpdateRestMockResponseStatusesRequest(this);
         }
     }
-    
+
 }

@@ -59,7 +59,7 @@ public class PushStateResourceResolver implements ResourceResolver {
     }
 
     private Optional<Resource> resolve(String requestPath, List<? extends Resource> locations) {
-        if(requestPath.startsWith("web/")){
+        if (requestPath.startsWith("web/")) {
             requestPath = requestPath.replace("web/", "");
         }
 

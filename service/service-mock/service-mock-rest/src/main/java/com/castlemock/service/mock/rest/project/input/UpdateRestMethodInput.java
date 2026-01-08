@@ -61,6 +61,10 @@ public final class UpdateRestMethodInput implements Input {
         this.automaticForward = builder.automaticForward;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -111,10 +115,6 @@ public final class UpdateRestMethodInput implements Input {
 
     public Optional<Boolean> getAutomaticForward() {
         return Optional.ofNullable(automaticForward);
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -178,22 +178,22 @@ public final class UpdateRestMethodInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
@@ -244,7 +244,7 @@ public final class UpdateRestMethodInput implements Input {
         }
 
 
-        public UpdateRestMethodInput build(){
+        public UpdateRestMethodInput build() {
             return new UpdateRestMethodInput(this);
         }
 

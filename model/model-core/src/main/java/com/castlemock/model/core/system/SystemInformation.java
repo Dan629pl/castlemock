@@ -28,6 +28,7 @@ import java.util.Objects;
 /**
  * The {@link SystemInformation} contains information about the system
  * which the application is running on.
+ *
  * @author Karl Dahlgren
  * @since 1.7
  */
@@ -72,7 +73,7 @@ public class SystemInformation {
     @XmlElement
     private final boolean showCastleMockHomeDirectory;
 
-    public SystemInformation(final Builder builder){
+    public SystemInformation(final Builder builder) {
         this.operatingSystemName = Objects.requireNonNull(builder.operatingSystemName, "operatingSystemName");
         this.javaVersion = Objects.requireNonNull(builder.javaVersion, "javaVersion");
         this.javaVendor = Objects.requireNonNull(builder.javaVendor, "javaVendor");
@@ -85,6 +86,10 @@ public class SystemInformation {
         this.availableProcessors = Objects.requireNonNull(builder.availableProcessors, "availableProcessors");
         this.castleMockHomeDirectory = Objects.requireNonNull(builder.castleMockHomeDirectory, "castleMockHomeDirectory");
         this.showCastleMockHomeDirectory = Objects.requireNonNull(builder.showCastleMockHomeDirectory, "showCastleMockHomeDirectory");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getOperatingSystemName() {
@@ -133,10 +138,6 @@ public class SystemInformation {
 
     public boolean isShowCastleMockHomeDirectory() {
         return showCastleMockHomeDirectory;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

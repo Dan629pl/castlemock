@@ -33,9 +33,10 @@ public abstract class AbstractRestDefinitionConverter implements RestDefinitionC
 
     /**
      * The method generates a default response.
+     *
      * @return The newly generated {@link RestMockResponse}.
      */
-    protected RestMockResponse generateResponse(final String methodId){
+    protected RestMockResponse generateResponse(final String methodId) {
         return RestMockResponse.builder()
                 .id(IdUtility.generateId())
                 .methodId(methodId)

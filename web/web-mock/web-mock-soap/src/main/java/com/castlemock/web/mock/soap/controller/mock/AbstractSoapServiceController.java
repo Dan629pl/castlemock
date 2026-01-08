@@ -82,8 +82,8 @@ public abstract class AbstractSoapServiceController extends AbstractController {
      * sent to the AbstractServiceController. This is used by AbstractServiceController
      * to indicate the type of the incoming request
      *
-     * @param projectId           The id of the project which the incoming request and mocked response belongs to
-     * @param httpServletRequest  The incoming request
+     * @param projectId          The id of the project which the incoming request and mocked response belongs to
+     * @param httpServletRequest The incoming request
      * @return Returns the response as a String
      */
     protected ResponseEntity<?> process(final String projectId,
@@ -144,12 +144,12 @@ public abstract class AbstractSoapServiceController extends AbstractController {
                         .filter(soapResource -> SoapResourceType.WSDL.equals(soapResource.getType()))
                         .findFirst()
                         .flatMap(soapResource -> {
-                    final LoadSoapResourceOutput loadOutput =
-                            this.serviceProcessor.process(LoadSoapResourceInput.builder()
-                                    .projectId(projectId)
-                                    .resourceId(soapResource.getId())
-                                    .build());
-                    return loadOutput.getResource();
+                            final LoadSoapResourceOutput loadOutput =
+                                    this.serviceProcessor.process(LoadSoapResourceInput.builder()
+                                            .projectId(projectId)
+                                            .resourceId(soapResource.getId())
+                                            .build());
+                            return loadOutput.getResource();
                         }));
     }
 
@@ -158,10 +158,10 @@ public abstract class AbstractSoapServiceController extends AbstractController {
      * finding the appropriate response. The method is also responsible for creating
      * events and storing them.
      *
-     * @param soapProjectId       The id of the project that the incoming request belong to
-     * @param soapPortId          The id of the port that the incoming request belong to
-     * @param soapOperation       The operation that contain the appropriate mocked response
-     * @param request             The incoming request
+     * @param soapProjectId The id of the project that the incoming request belong to
+     * @param soapPortId    The id of the port that the incoming request belong to
+     * @param soapOperation The operation that contain the appropriate mocked response
+     * @param request       The incoming request
      * @return Returns the response as a String
      */
     protected ResponseEntity<?> process(final String soapProjectId,

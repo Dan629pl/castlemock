@@ -18,14 +18,14 @@ package com.castlemock.web.core.model.authentication;
 
 public class AuthenticationRequestTestBuilder {
 
-    private AuthenticationRequestTestBuilder(){
+    private AuthenticationRequestTestBuilder() {
 
     }
 
-    public static AuthenticationRequest.Builder builder(){
+    public static AuthenticationRequest.Builder builder() {
         return AuthenticationRequest.builder()
-            .username("username")
-            .password("password");
+                .username("username")
+                .password("password");
     }
 
 

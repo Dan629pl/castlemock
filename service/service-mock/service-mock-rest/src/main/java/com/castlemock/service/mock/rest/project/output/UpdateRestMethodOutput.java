@@ -34,6 +34,10 @@ public final class UpdateRestMethodOutput implements Output {
         this.method = method;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<RestMethod> getMethod() {
         return Optional.ofNullable(method);
     }
@@ -58,10 +62,6 @@ public final class UpdateRestMethodOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestMethod method;
@@ -69,12 +69,12 @@ public final class UpdateRestMethodOutput implements Output {
         private Builder() {
         }
 
-        public Builder method(final RestMethod method){
+        public Builder method(final RestMethod method) {
             this.method = method;
             return this;
         }
 
-        public UpdateRestMethodOutput build(){
+        public UpdateRestMethodOutput build() {
             return new UpdateRestMethodOutput(this.method);
         }
 

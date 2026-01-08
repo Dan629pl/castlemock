@@ -30,7 +30,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.springframework.test.util.ReflectionTestUtils;
 
 /**
@@ -53,7 +52,7 @@ public class CreateRestEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestEvent restEvent = RestEventTestBuilder.builder().build();
         Mockito.when(repository.save(Mockito.any(RestEvent.class))).thenReturn(RestEventTestBuilder.builder().build());
 
@@ -71,7 +70,7 @@ public class CreateRestEventServiceTest {
 
 
     @Test
-    public void testMaxCountReached(){
+    public void testMaxCountReached() {
         final RestEvent restEvent = RestEventTestBuilder.builder().build();
         Mockito.when(repository.save(Mockito.any(RestEvent.class))).thenReturn(restEvent);
         Mockito.when(repository.count()).thenReturn(6);

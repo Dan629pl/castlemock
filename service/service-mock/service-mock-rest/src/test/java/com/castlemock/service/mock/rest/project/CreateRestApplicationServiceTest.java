@@ -51,7 +51,7 @@ public class CreateRestApplicationServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final String projectId = "ProjectId";
         final RestApplication application = RestApplicationTestBuilder.builder().build();
         Mockito.when(applicationRepository.save(any(RestApplication.class))).thenReturn(application);

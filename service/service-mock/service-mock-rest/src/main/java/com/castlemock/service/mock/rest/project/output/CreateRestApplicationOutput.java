@@ -33,12 +33,12 @@ public final class CreateRestApplicationOutput implements Output {
         this.application = Objects.requireNonNull(application, "application");
     }
 
-    public RestApplication getApplication() {
-        return application;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public RestApplication getApplication() {
+        return application;
     }
 
     @Override
@@ -68,12 +68,12 @@ public final class CreateRestApplicationOutput implements Output {
         private Builder() {
         }
 
-        public Builder application(final RestApplication application){
+        public Builder application(final RestApplication application) {
             this.application = application;
             return this;
         }
 
-        public CreateRestApplicationOutput build(){
+        public CreateRestApplicationOutput build() {
             return new CreateRestApplicationOutput(this.application);
         }
 

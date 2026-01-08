@@ -48,6 +48,7 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
      *
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -60,10 +61,10 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
 
         Set<SoapPortConverterResult> results;
         try {
-            if(input.getFiles() != null){
+            if (input.getFiles() != null) {
                 results = soapPortConverter.getSoapPorts(input.getFiles(), soapProjectId, input.getGenerateResponse()
                         .orElse(false));
-            } else if(input.getLocation().isPresent()){
+            } else if (input.getLocation().isPresent()) {
                 results = soapPortConverter.getSoapPorts(input.getLocation().get(), soapProjectId,
                         input.getGenerateResponse().orElse(false), input.getIncludeImports().orElse(false));
             } else {
@@ -73,21 +74,21 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
             throw new IllegalStateException("Unable to parse the WSDL file", e);
         }
 
-        for(SoapPortConverterResult result : results){
-            for(SoapPort newSoapPort : result.getPorts()){
+        for (SoapPortConverterResult result : results) {
+            for (SoapPort newSoapPort : result.getPorts()) {
                 final SoapPort existingSoapPort = this.portRepository.findWithName(soapProjectId, newSoapPort.getName())
                         .orElse(null);
 
-                if(existingSoapPort == null){
+                if (existingSoapPort == null) {
                     final SoapPort savedSoapPort = this.portRepository.save(newSoapPort.toBuilder()
                             .projectId(soapProjectId)
                             .build());
 
-                    for(SoapOperation soapOperation : newSoapPort.getOperations()){
+                    for (SoapOperation soapOperation : newSoapPort.getOperations()) {
                         final SoapOperation savedSoapOperation = this.operationRepository.save(soapOperation.toBuilder()
                                 .portId(savedSoapPort.getId())
                                 .build());
-                        for(SoapMockResponse soapMockResponse : soapOperation.getMockResponses()){
+                        for (SoapMockResponse soapMockResponse : soapOperation.getMockResponses()) {
                             this.mockResponseRepository.save(soapMockResponse.toBuilder()
                                     .operationId(savedSoapOperation.getId())
                                     .build());
@@ -97,12 +98,12 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
                     continue;
                 }
 
-                for(SoapOperation newSoapOperation : newSoapPort.getOperations()){
+                for (SoapOperation newSoapOperation : newSoapPort.getOperations()) {
                     final SoapOperation existingSoapOperation =
                             this.operationRepository.findWithName(existingSoapPort.getId(), newSoapOperation.getName())
                                     .orElse(null);
 
-                    if(existingSoapOperation != null){
+                    if (existingSoapOperation != null) {
                         this.operationRepository.update(existingSoapOperation.getId(), existingSoapOperation
                                 .toBuilder()
                                 .originalEndpoint(newSoapOperation.getOriginalEndpoint()
@@ -113,7 +114,7 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
                         final SoapOperation savedSoapOperation = this.operationRepository.save(newSoapOperation.toBuilder()
                                 .portId(existingSoapPort.getId())
                                 .build());
-                        for(SoapMockResponse soapMockResponse : newSoapOperation.getMockResponses()){
+                        for (SoapMockResponse soapMockResponse : newSoapOperation.getMockResponses()) {
                             this.mockResponseRepository.save(soapMockResponse.toBuilder()
                                     .operationId(savedSoapOperation.getId())
                                     .build());
@@ -126,11 +127,11 @@ public class CreateSoapPortsService extends AbstractSoapProjectService implement
         final Collection<SoapResource> wsdlSoapResources =
                 this.resourceRepository.findSoapResources(soapProjectId, SoapResourceType.WSDL, SoapResourceType.WSDL_IMPORT);
 
-        for(SoapResource wsdlSoapResource : wsdlSoapResources){
+        for (SoapResource wsdlSoapResource : wsdlSoapResources) {
             this.resourceRepository.delete(wsdlSoapResource.getId());
         }
 
-        for(SoapPortConverterResult result : results){
+        for (SoapPortConverterResult result : results) {
             final SoapResource soapResource = SoapResource.builder()
                     .id(IdUtility.generateId())
                     .projectId(soapProjectId)

@@ -40,7 +40,7 @@ public class ReadSoapPortServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final SoapPort port = SoapPortTestBuilder.builder().build();
         final SoapOperation operation = SoapOperationTestBuilder.builder().build();
         final String projectId = "SOAP PROJECT";

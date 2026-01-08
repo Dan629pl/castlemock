@@ -33,21 +33,21 @@ public class RestJsonPathExpression {
     @XmlElement
     private final String expression;
 
-    private RestJsonPathExpression(final Builder builder){
+    private RestJsonPathExpression(final Builder builder) {
         this.expression = Objects.requireNonNull(builder.expression, "expression");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getExpression() {
         return expression;
     }
 
-    public Builder toBuilder(){
+    public Builder toBuilder() {
         return builder()
                 .expression(expression);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

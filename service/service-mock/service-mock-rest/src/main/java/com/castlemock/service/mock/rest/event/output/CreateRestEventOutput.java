@@ -33,24 +33,24 @@ public final class CreateRestEventOutput implements Output {
         this.createdRestEvent = Objects.requireNonNull(createdRestEvent, "createdRestEvent");
     }
 
-    public RestEvent getCreatedRestEvent() {
-        return createdRestEvent;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public RestEvent getCreatedRestEvent() {
+        return createdRestEvent;
     }
 
     public static final class Builder {
 
         private RestEvent createdRestEvent;
 
-        public Builder createdRestEvent(final RestEvent createdRestEvent){
+        public Builder createdRestEvent(final RestEvent createdRestEvent) {
             this.createdRestEvent = createdRestEvent;
             return this;
         }
 
-        public CreateRestEventOutput build(){
+        public CreateRestEventOutput build() {
             return new CreateRestEventOutput(this.createdRestEvent);
         }
 

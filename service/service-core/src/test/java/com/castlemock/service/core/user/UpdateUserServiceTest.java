@@ -57,7 +57,7 @@ public class UpdateUserServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final User user = UserTestBuilder.builder().build();
         final User updatedUser = UserTestBuilder.builder()
                 .id(user.getId())

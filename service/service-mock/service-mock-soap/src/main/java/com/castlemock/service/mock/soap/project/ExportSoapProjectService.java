@@ -44,6 +44,7 @@ public class ExportSoapProjectService extends AbstractSoapProjectService impleme
     /**
      * The process message is responsible for processing an incoming serviceTask and generate
      * a response based on the incoming serviceTask input
+     *
      * @param serviceTask The serviceTask that will be processed by the service
      * @return A result based on the processed incoming serviceTask
      * @see ServiceTask
@@ -71,11 +72,11 @@ public class ExportSoapProjectService extends AbstractSoapProjectService impleme
         final List<SoapOperation> operations = new ArrayList<>();
         final List<SoapMockResponse> mockResponses = new ArrayList<>();
 
-        for(SoapPort port : ports){
+        for (SoapPort port : ports) {
             List<SoapOperation> tempOperations = this.operationRepository.findWithPortId(port.getId());
             operations.addAll(tempOperations);
 
-            for(SoapOperation tempOperation : tempOperations){
+            for (SoapOperation tempOperation : tempOperations) {
                 List<SoapMockResponse> tempMockResponses = this.mockResponseRepository.findWithOperationId(tempOperation.getId());
                 mockResponses.addAll(tempMockResponses);
             }

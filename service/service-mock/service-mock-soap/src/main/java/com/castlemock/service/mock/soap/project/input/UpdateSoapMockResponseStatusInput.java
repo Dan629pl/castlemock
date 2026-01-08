@@ -41,6 +41,10 @@ public final class UpdateSoapMockResponseStatusInput implements Input {
         this.mockResponseStatus = Objects.requireNonNull(builder.mockResponseStatus, "mockResponseStatus");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -87,10 +91,6 @@ public final class UpdateSoapMockResponseStatusInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
@@ -98,36 +98,36 @@ public final class UpdateSoapMockResponseStatusInput implements Input {
         private String mockResponseId;
         private SoapMockResponseStatus mockResponseStatus;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder mockResponseId(final String mockResponseId){
+        public Builder mockResponseId(final String mockResponseId) {
             this.mockResponseId = mockResponseId;
             return this;
         }
 
-        public Builder mockResponseStatus(final SoapMockResponseStatus mockResponseStatus){
+        public Builder mockResponseStatus(final SoapMockResponseStatus mockResponseStatus) {
             this.mockResponseStatus = mockResponseStatus;
             return this;
         }
 
-        public UpdateSoapMockResponseStatusInput build(){
+        public UpdateSoapMockResponseStatusInput build() {
             return new UpdateSoapMockResponseStatusInput(this);
         }
     }

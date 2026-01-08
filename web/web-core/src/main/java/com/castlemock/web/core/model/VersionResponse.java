@@ -31,8 +31,12 @@ public class VersionResponse {
 
     private final String version;
 
-    private VersionResponse(final Builder builder){
+    private VersionResponse(final Builder builder) {
         this.version = Objects.requireNonNull(builder.version, "version");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getVersion() {
@@ -59,13 +63,9 @@ public class VersionResponse {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
-        
+
         private String version;
 
         private Builder() {

@@ -33,22 +33,21 @@ public class SoapXPathExpression {
     @XmlElement
     private final String expression;
 
-    private SoapXPathExpression(final Builder builder){
+    private SoapXPathExpression(final Builder builder) {
         this.expression = Objects.requireNonNull(builder.expression, "expression");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getExpression() {
         return expression;
     }
 
-    public Builder toBuilder(){
+    public Builder toBuilder() {
         return builder()
                 .expression(expression);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

@@ -48,6 +48,10 @@ public class RestResourceFile implements Saveable<String> {
         this.applicationId = Objects.requireNonNull(builder.applicationId, "applicationId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public String getId() {
         return id;
@@ -63,10 +67,6 @@ public class RestResourceFile implements Saveable<String> {
 
     public String getApplicationId() {
         return applicationId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

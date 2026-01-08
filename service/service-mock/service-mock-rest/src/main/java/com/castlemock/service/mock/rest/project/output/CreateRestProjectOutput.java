@@ -33,6 +33,10 @@ public final class CreateRestProjectOutput implements Output {
         this.project = Objects.requireNonNull(builder.project, "project");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public RestProject getProject() {
         return project;
     }
@@ -57,10 +61,6 @@ public final class CreateRestProjectOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestProject project;
@@ -68,12 +68,12 @@ public final class CreateRestProjectOutput implements Output {
         private Builder() {
         }
 
-        public Builder project(final RestProject project){
+        public Builder project(final RestProject project) {
             this.project = project;
             return this;
         }
 
-        public CreateRestProjectOutput build(){
+        public CreateRestProjectOutput build() {
             return new CreateRestProjectOutput(this);
         }
 

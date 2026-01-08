@@ -25,12 +25,16 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ExportRestProjectOutput implements Output{
+public final class ExportRestProjectOutput implements Output {
 
     private final String exportedProject;
 
     private ExportRestProjectOutput(final String exportedProject) {
         this.exportedProject = exportedProject;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<String> getExportedProject() {
@@ -57,10 +61,6 @@ public final class ExportRestProjectOutput implements Output{
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String exportedProject;
@@ -68,12 +68,12 @@ public final class ExportRestProjectOutput implements Output{
         private Builder() {
         }
 
-        public Builder exportedProject(final String exportedProject){
+        public Builder exportedProject(final String exportedProject) {
             this.exportedProject = exportedProject;
             return this;
         }
 
-        public ExportRestProjectOutput build(){
+        public ExportRestProjectOutput build() {
             return new ExportRestProjectOutput(this.exportedProject);
         }
 

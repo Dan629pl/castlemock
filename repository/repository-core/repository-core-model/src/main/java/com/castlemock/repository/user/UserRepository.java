@@ -23,11 +23,12 @@ import com.castlemock.repository.Repository;
  * The user file repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving users to the file system. Each
  * user is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see User
  * @see User
  * @see Repository
+ * @since 1.0
  */
 public interface UserRepository extends Repository<User, String> {
 }

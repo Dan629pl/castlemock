@@ -54,7 +54,7 @@ public class UpdateRestMockResponseRequest {
     private final List<RestHeaderQuery> headerQueries;
 
 
-    private UpdateRestMockResponseRequest(final Builder builder){
+    private UpdateRestMockResponseRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
         this.body = Objects.requireNonNull(builder.body, "body");
         this.httpStatusCode = Objects.requireNonNull(builder.httpStatusCode, "httpStatusCode");
@@ -65,7 +65,11 @@ public class UpdateRestMockResponseRequest {
         this.parameterQueries = Optional.ofNullable(builder.parameterQueries).orElseGet(List::of);
         this.xpathExpressions = Optional.ofNullable(builder.xpathExpressions).orElseGet(List::of);
         this.jsonPathExpressions = Optional.ofNullable(builder.jsonPathExpressions).orElseGet(List::of);
-        this.headerQueries =Optional.ofNullable(builder.headerQueries).orElseGet(List::of);
+        this.headerQueries = Optional.ofNullable(builder.headerQueries).orElseGet(List::of);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -179,10 +183,6 @@ public class UpdateRestMockResponseRequest {
                 ", jsonPathExpressions=" + jsonPathExpressions +
                 ", headerQueries=" + headerQueries +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

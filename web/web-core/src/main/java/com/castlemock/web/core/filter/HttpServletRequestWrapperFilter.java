@@ -28,6 +28,7 @@ import jakarta.servlet.http.HttpServletRequest;
  * The {@link HttpServletRequestWrapperFilter} is a filter
  * that will wrap all incoming SOAP requests with the
  * {@link HttpServletRequestWrapper}.
+ *
  * @author Karl Dahlgren
  * @since 1.18
  */
@@ -37,17 +38,17 @@ public class HttpServletRequestWrapperFilter implements Filter {
 
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
             throws java.io.IOException, ServletException {
-        if(request instanceof HttpServletRequest httpServletRequest){
+        if (request instanceof HttpServletRequest httpServletRequest) {
             // Wrap the incoming request if it is a HTTP Servlet request
             final HttpServletRequestWrapper requestWrapper = new HttpServletRequestWrapper(httpServletRequest);
-            chain.doFilter(requestWrapper,response);
+            chain.doFilter(requestWrapper, response);
         } else {
             // Don't wrap the request if it is not a HTTP Servlet request
-            chain.doFilter(request,response);
+            chain.doFilter(request, response);
         }
     }
 
-    public void destroy( ){
+    public void destroy() {
 
     }
 }

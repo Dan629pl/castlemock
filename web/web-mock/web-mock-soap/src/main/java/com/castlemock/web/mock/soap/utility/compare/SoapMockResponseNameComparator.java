@@ -23,7 +23,7 @@ import java.util.Comparator;
 
 public class SoapMockResponseNameComparator implements Comparator<SoapMockResponse> {
 
-    private final static  AlphanumComparator ALPHANUM_COMPARATOR = new AlphanumComparator();
+    private final static AlphanumComparator ALPHANUM_COMPARATOR = new AlphanumComparator();
 
     @Override
     public int compare(SoapMockResponse o1, SoapMockResponse o2) {

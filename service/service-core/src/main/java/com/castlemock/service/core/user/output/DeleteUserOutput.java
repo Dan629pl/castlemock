@@ -21,8 +21,8 @@ import com.castlemock.service.core.user.input.DeleteUserInput;
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see DeleteUserInput
+ * @since 1.0
  */
 public final class DeleteUserOutput implements Output {
 }

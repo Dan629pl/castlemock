@@ -61,13 +61,17 @@ public class SoapResponse {
     @XmlElement(name = "contentEncoding")
     private final List<HttpContentEncoding> contentEncodings;
 
-    private SoapResponse(final Builder builder){
+    private SoapResponse(final Builder builder) {
         this.body = Objects.requireNonNull(builder.body, "body");
         this.httpStatusCode = Objects.requireNonNull(builder.httpStatusCode, "httpStatusCode");
         this.httpHeaders = Optional.ofNullable(builder.httpHeaders).orElseGet(List::of);
         this.contentEncodings = builder.contentEncodings;
         this.contentType = builder.contentType;
         this.mockResponseName = builder.mockResponseName;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getBody() {
@@ -96,10 +100,6 @@ public class SoapResponse {
         return Optional.ofNullable(contentEncodings)
                 .map(List::copyOf)
                 .orElseGet(List::of);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @Override

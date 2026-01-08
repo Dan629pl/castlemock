@@ -23,11 +23,12 @@ import com.castlemock.repository.Repository;
  * The configuration file repository provides the functionality to interact with the file system.
  * The repository is responsible for loading and saving configuration groups for the file system. Each
  * configuration group is stored as a separate file.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see ConfigurationGroup
  * @see ConfigurationGroup
  * @see Repository
+ * @since 1.0
  */
 public interface ConfigurationRepository extends Repository<ConfigurationGroup, String> {
 }

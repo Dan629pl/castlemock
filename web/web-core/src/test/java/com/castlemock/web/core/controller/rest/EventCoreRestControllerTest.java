@@ -41,7 +41,7 @@ class EventCoreRestControllerTest {
     private EventCoreRestController eventCoreRestController;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         final ServiceProcessor serviceProcessor = mock(ServiceProcessor.class);
         this.eventServiceFacade = mock(EventServiceFacade.class);
         this.eventCoreRestController = new EventCoreRestController(serviceProcessor, eventServiceFacade);
@@ -49,7 +49,7 @@ class EventCoreRestControllerTest {
 
     @Test
     @DisplayName("Get events")
-    void testGetEvents(){
+    void testGetEvents() {
         final List<OverviewEvent> events = List.of(OverviewEventTestBuilder.builder().build());
         when(eventServiceFacade.findAll()).thenReturn(events);
 
@@ -63,7 +63,7 @@ class EventCoreRestControllerTest {
 
     @Test
     @DisplayName("Delete all events")
-    void testDeleteAllEvents(){
+    void testDeleteAllEvents() {
         final ResponseEntity<Void> responseEntity = eventCoreRestController.deleteAllEvents();
 
         assertNotNull(responseEntity);

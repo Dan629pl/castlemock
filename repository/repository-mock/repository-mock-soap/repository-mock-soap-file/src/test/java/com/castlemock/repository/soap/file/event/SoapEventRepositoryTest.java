@@ -39,12 +39,12 @@ import java.util.List;
  */
 public class SoapEventRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private SoapEventFileRepository repository;
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -54,7 +54,7 @@ public class SoapEventRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         List<SoapEvent> soapEvents = new ArrayList<>();
         SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
         soapEvents.add(soapEvent);
@@ -64,7 +64,7 @@ public class SoapEventRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final SoapEvent soapEvent = save();
         final SoapEvent returnedSoapEvent = repository.findOne(soapEvent.getId()).orElse(null);
         Assertions.assertNotNull(returnedSoapEvent);
@@ -77,7 +77,7 @@ public class SoapEventRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final SoapEvent soapEvent = save();
         final List<SoapEvent> soapEvents = repository.findAll();
         Assertions.assertEquals(soapEvents.size(), 1);
@@ -87,30 +87,30 @@ public class SoapEventRepositoryTest {
         Assertions.assertEquals(soapEvents.getFirst().getOperationId(), soapEvent.getOperationId());
         Assertions.assertEquals(soapEvents.getFirst().getPortId(), soapEvent.getPortId());
         Assertions.assertEquals(soapEvents.getFirst().getResourceName(), soapEvent.getResourceName());
-        
+
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(SoapEventFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final SoapEvent soapEvent = save();
         repository.delete(soapEvent.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + soapEvent.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         final SoapEvent soapEvent = save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private SoapEvent save(){
+    private SoapEvent save() {
         final SoapEvent soapEvent = SoapEventTestBuilder.builder().build();
         repository.save(soapEvent);
         return soapEvent;

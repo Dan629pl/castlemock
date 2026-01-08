@@ -38,23 +38,24 @@ import java.util.List;
 
 /**
  * The {@link RAML10Parser}
- * @since 1.10
+ *
  * @author Karl Dahlgren
+ * @since 1.10
  */
 class RAML10Parser extends AbstractRAMLParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RAML10Parser.class);
 
     public void getResources(final List<Resource> resources, final List<RestResource> result,
-                             final String path, final boolean generateResponse){
-        if(resources.isEmpty()){
+                             final String path, final boolean generateResponse) {
+        if (resources.isEmpty()) {
             return;
         }
 
-        for(Resource resource : resources){
+        for (Resource resource : resources) {
             final String uri = path + resource.relativeUri().value();
             final List<Method> methods = resource.methods();
-            if(!methods.isEmpty()){
+            if (!methods.isEmpty()) {
                 final RestResource restResource = RestResource.builder()
                         .id(IdUtility.generateId())
                         .name(resource.displayName().value())
@@ -62,16 +63,16 @@ class RAML10Parser extends AbstractRAMLParser {
                         .build();
                 result.add(restResource);
 
-                for(Method method : methods){
+                for (Method method : methods) {
                     HttpMethod httpMethod = HttpMethod.getValue(method.method())
                             .orElse(null);
-                    if(httpMethod == null){
+                    if (httpMethod == null) {
                         LOGGER.error("The REST method '" + method.method() + "' is not supported.");
                         continue;
                     }
 
                     final List<RestMockResponse> mockResponses = new ArrayList<>();
-                    if(generateResponse){
+                    if (generateResponse) {
                         mockResponses.addAll(createMockResponses(method.responses()));
                     }
 
@@ -92,33 +93,33 @@ class RAML10Parser extends AbstractRAMLParser {
         }
     }
 
-    private Collection<RestMockResponse> createMockResponses(final List<Response> responses){
+    private Collection<RestMockResponse> createMockResponses(final List<Response> responses) {
         final List<RestMockResponse> mockResponses = new ArrayList<>();
 
-        for(int index = 0; index < responses.size(); index++){
+        for (int index = 0; index < responses.size(); index++) {
             final Response response = responses.get(index);
             final String responseCode = response.code().value();
             final int httpStatusCode = super.extractHttpStatusCode(responseCode);
 
             final RestMockResponseStatus status;
-            if(httpStatusCode == DEFAULT_RESPONSE_CODE){
+            if (httpStatusCode == DEFAULT_RESPONSE_CODE) {
                 status = RestMockResponseStatus.ENABLED;
             } else {
                 status = RestMockResponseStatus.DISABLED;
             }
 
             String body = "";
-            if(response.body() != null && !response.body().isEmpty()){
+            if (response.body() != null && !response.body().isEmpty()) {
                 final TypeDeclaration typeDeclaration = response.body().getFirst();
 
-                if(typeDeclaration.example() != null){
+                if (typeDeclaration.example() != null) {
                     body = typeDeclaration.example().value();
                 }
             }
 
             final List<HttpHeader> headers = new ArrayList<>();
-            if(response.headers() != null){
-                for(TypeDeclaration parameter : response.headers()){
+            if (response.headers() != null) {
+                for (TypeDeclaration parameter : response.headers()) {
                     final HttpHeader httpHeader = HttpHeader.builder()
                             .name(parameter.name())
                             .value(parameter.defaultValue())

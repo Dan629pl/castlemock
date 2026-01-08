@@ -41,6 +41,10 @@ public final class UpdateRestMethodsForwardedEndpointInput implements Input {
         this.forwardedEndpoint = Objects.requireNonNull(builder.forwardedEndpoint, "forwardedEndpoint");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -76,10 +80,6 @@ public final class UpdateRestMethodsForwardedEndpointInput implements Input {
         return Objects.hash(projectId, applicationId, resourceId, methodIds, forwardedEndpoint);
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -91,33 +91,33 @@ public final class UpdateRestMethodsForwardedEndpointInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String restProjectId){
+        public Builder projectId(final String restProjectId) {
             this.projectId = restProjectId;
             return this;
         }
 
-        public Builder applicationId(final String restApplicationId){
+        public Builder applicationId(final String restApplicationId) {
             this.applicationId = restApplicationId;
             return this;
         }
 
-        public Builder resourceId(final String restResourceId){
+        public Builder resourceId(final String restResourceId) {
             this.resourceId = restResourceId;
             return this;
         }
 
-        public Builder methodIds(final Set<String> methodIds){
+        public Builder methodIds(final Set<String> methodIds) {
             this.methodIds = methodIds;
             return this;
         }
 
-        public Builder forwardedEndpoint(final String forwardedEndpoint){
+        public Builder forwardedEndpoint(final String forwardedEndpoint) {
             this.forwardedEndpoint = forwardedEndpoint;
             return this;
         }
 
 
-        public UpdateRestMethodsForwardedEndpointInput build(){
+        public UpdateRestMethodsForwardedEndpointInput build() {
             return new UpdateRestMethodsForwardedEndpointInput(this);
         }
 

@@ -340,7 +340,7 @@ public class OpenApiRestDefinitionConverterTest {
     }
 
     private void verifyResultForMalformedFile(final List<RestApplication> restApplications,
-                              final boolean generatedResponse) {
+                                              final boolean generatedResponse) {
 
         Assertions.assertNotNull(restApplications);
         Assertions.assertEquals(1, restApplications.size());

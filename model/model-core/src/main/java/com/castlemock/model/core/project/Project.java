@@ -30,6 +30,7 @@ import java.util.Optional;
 
 /**
  * The Project DTO is a DTO (Data transfer object) class for the project class.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -54,7 +55,7 @@ public class Project {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     protected final String description;
 
-    protected Project(final Builder<?> builder){
+    protected Project(final Builder<?> builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.updated = Objects.requireNonNull(builder.updated, "updated");

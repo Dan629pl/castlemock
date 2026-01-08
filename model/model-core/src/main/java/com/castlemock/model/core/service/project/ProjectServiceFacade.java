@@ -28,9 +28,10 @@ import java.util.List;
  * in order to retrieve a unified answer independent of the project type. The class is responsible for keeping
  * tracks of all the project services and providing the basic functionality shared among all the
  * project services, such as get, delete, update.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Project
+ * @since 1.0
  */
 public interface ProjectServiceFacade extends ServiceFacade<Project, String> {
 

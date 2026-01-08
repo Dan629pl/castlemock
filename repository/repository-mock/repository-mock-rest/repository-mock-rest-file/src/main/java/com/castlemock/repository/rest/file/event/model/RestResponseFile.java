@@ -62,6 +62,10 @@ public class RestResponseFile {
                 .orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getBody() {
         return body;
     }
@@ -84,10 +88,6 @@ public class RestResponseFile {
 
     public List<HttpContentEncoding> getContentEncodings() {
         return contentEncodings;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

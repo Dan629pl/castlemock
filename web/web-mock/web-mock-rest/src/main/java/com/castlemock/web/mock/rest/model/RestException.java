@@ -22,6 +22,7 @@ import java.io.Serial;
 /**
  * The RestException is the main exception for the all REST related issues. All REST related exceptions
  * should inherit from the class.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -33,6 +34,7 @@ public class RestException extends RuntimeException {
 
     /**
      * The default constructor for the RestException class
+     *
      * @param message The exception message
      */
     public RestException(final String message) {
@@ -41,6 +43,7 @@ public class RestException extends RuntimeException {
 
     /**
      * The default constructor for the RestException class
+     *
      * @param exception The exception
      */
     public RestException(final Exception exception) {

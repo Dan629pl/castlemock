@@ -53,7 +53,7 @@ public class ReadAllConfigurationGroupsServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<ConfigurationGroup> configurationGroups = new ArrayList<>();
         final Configuration configuration = Configuration.builder()
                 .key("Key")

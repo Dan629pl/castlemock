@@ -40,12 +40,12 @@ import java.util.List;
  */
 public class RestProjectRepositoryTest {
 
+    private static final String DIRECTORY = "/directory";
+    private static final String EXTENSION = ".extension";
     @Mock
     private FileRepositorySupport fileRepositorySupport;
     @InjectMocks
     private RestProjectFileRepository repository;
-    private static final String DIRECTORY = "/directory";
-    private static final String EXTENSION = ".extension";
 
     @BeforeEach
     public void setup() {
@@ -55,7 +55,7 @@ public class RestProjectRepositoryTest {
     }
 
     @Test
-    public void testInitialize(){
+    public void testInitialize() {
         List<RestProject> restProjects = new ArrayList<>();
         RestProject restProject = RestProjectTestBuilder.builder().build();
         restProjects.add(restProject);
@@ -65,7 +65,7 @@ public class RestProjectRepositoryTest {
     }
 
     @Test
-    public void testFindOne(){
+    public void testFindOne() {
         final RestProject restProject = save();
         final RestProject returnedRestEvent = repository.findOne(restProject.getId()).orElse(null);
         Assertions.assertNotNull(returnedRestEvent);
@@ -75,7 +75,7 @@ public class RestProjectRepositoryTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         final RestProject restProject = save();
         final List<RestProject> restProjects = repository.findAll();
         Assertions.assertEquals(restProjects.size(), 1);
@@ -85,26 +85,26 @@ public class RestProjectRepositoryTest {
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         final RestProject restProject = save();
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).save(Mockito.any(RestProjectFile.class), Mockito.anyString());
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         final RestProject restProject = save();
         repository.delete(restProject.getId());
         Mockito.verify(fileRepositorySupport, Mockito.times(1)).delete(DIRECTORY + File.separator + restProject.getId() + EXTENSION);
     }
 
     @Test
-    public void testCount(){
+    public void testCount() {
         final RestProject restProject = save();
         final Integer count = repository.count();
         Assertions.assertEquals(Integer.valueOf(1), count);
     }
 
-    private RestProject save(){
+    private RestProject save() {
         RestProject restProject = RestProjectTestBuilder.builder().build();
         repository.save(restProject);
         return restProject;

@@ -46,8 +46,13 @@ public class ConfigurationFile {
 
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Returns the identifier for the configuration
+     *
      * @return The configuration key
      */
     public String getKey() {
@@ -56,6 +61,7 @@ public class ConfigurationFile {
 
     /**
      * Returns the value for the configuration
+     *
      * @return Configuration value
      */
     public String getValue() {
@@ -64,15 +70,11 @@ public class ConfigurationFile {
 
     /**
      * Returns the configuration type
+     *
      * @return The configuration type
      */
     public ConfigurationType getType() {
         return type;
-    }
-
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

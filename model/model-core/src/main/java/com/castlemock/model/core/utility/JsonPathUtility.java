@@ -43,7 +43,8 @@ public final class JsonPathUtility {
     /**
      * The method extracts a value from the provided <code>body</code> with
      * the JSON Path <code>expression</code>
-     * @param body The body which contains the value that will be extracted.
+     *
+     * @param body       The body which contains the value that will be extracted.
      * @param expression The expression used to locate the requested value.
      * @return The value or an empty optional.
      */
@@ -54,11 +55,11 @@ public final class JsonPathUtility {
                 .parse(document)
                 .read(expression);
 
-        if(result instanceof List<?> jsonArray){
+        if (result instanceof List<?> jsonArray) {
 
-            if(jsonArray.isEmpty()) {
+            if (jsonArray.isEmpty()) {
                 return Optional.empty();
-            } else if(jsonArray.size() == 1) {
+            } else if (jsonArray.size() == 1) {
                 return jsonArray.stream()
                         .findFirst()
                         .map(Object::toString);

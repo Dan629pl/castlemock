@@ -56,7 +56,8 @@ class UpdateProjectModal extends PureComponent {
 
 
     setUpdateProjectName(event) {
-        this.setState({ updateProject: {
+        this.setState({
+            updateProject: {
                 ...this.state.updateProject,
                 name: event.target.value
             }
@@ -64,7 +65,8 @@ class UpdateProjectModal extends PureComponent {
     }
 
     setUpdateProjectDescription(event) {
-        this.setState({ updateProject: {
+        this.setState({
+            updateProject: {
                 ...this.state.updateProject,
                 description: event.target.value
             }
@@ -99,19 +101,27 @@ class UpdateProjectModal extends PureComponent {
                                 <div className="form-group row">
                                     <label htmlFor="updateProjectName" className="col-sm-2 col-form-label">Name</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" defaultValue={this.props.project.name} onChange={this.setUpdateProjectName} onKeyDown={preventEnterEvent} required/>
+                                        <input className="form-control" type="text"
+                                               defaultValue={this.props.project.name}
+                                               onChange={this.setUpdateProjectName} onKeyDown={preventEnterEvent}
+                                               required/>
                                     </div>
                                 </div>
                                 <div className="form-group row">
-                                    <label htmlFor="updateProjectDescription" className="col-sm-2 col-form-label">Description</label>
+                                    <label htmlFor="updateProjectDescription"
+                                           className="col-sm-2 col-form-label">Description</label>
                                     <div className="col-sm-10">
-                                        <textarea className="form-control" value={this.state.updateProject.description} onChange={this.setUpdateProjectDescription}/>
+                                        <textarea className="form-control" value={this.state.updateProject.description}
+                                                  onChange={this.setUpdateProjectDescription}/>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onUpdateProjectClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Update</button>
+                            <button className="btn btn-success" data-dismiss="modal"
+                                    onClick={this.onUpdateProjectClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                         className="button-icon"/>Update
+                            </button>
                         </div>
                     </div>
                 </div>

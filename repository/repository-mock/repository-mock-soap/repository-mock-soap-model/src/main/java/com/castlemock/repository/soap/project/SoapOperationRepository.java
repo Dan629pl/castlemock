@@ -33,7 +33,8 @@ public interface SoapOperationRepository extends Repository<SoapOperation, Strin
 
     /**
      * The method provides the functionality to find a SOAP operation with a specific name
-     * @param soapPortId The id of the SOAP port.
+     *
+     * @param soapPortId        The id of the SOAP port.
      * @param soapOperationName The name of the SOAP operation that should be retrieved
      * @return A SOAP operation that matches the search criteria. If no SOAP operation matches the provided
      * name then null will be returned.
@@ -43,19 +44,21 @@ public interface SoapOperationRepository extends Repository<SoapOperation, Strin
     /**
      * Find a {@link SoapOperation} with a provided {@link HttpMethod}, {@link SoapVersion}
      * and an identifier.
-     * @param portId The id of the port
-     * @param method The HTTP method
-     * @param version The SOAP version
+     *
+     * @param portId              The id of the port
+     * @param method              The HTTP method
+     * @param version             The SOAP version
      * @param operationIdentifier The identifier
      * @return A {@link SoapOperation} that matches the provided search criteria.
      */
     Optional<SoapOperation> findWithMethodAndVersionAndIdentifier(String portId, HttpMethod method,
-                                                        SoapVersion version,
-                                                        SoapOperationIdentifier operationIdentifier);
+                                                                  SoapVersion version,
+                                                                  SoapOperationIdentifier operationIdentifier);
 
     /**
      * Retrieve the {@link com.castlemock.model.mock.soap.domain.SoapPort} id
      * for the {@link SoapOperation} with the provided id.
+     *
      * @param operationId The id of the {@link SoapOperation}.
      * @return The id of the port.
      * @since 1.20

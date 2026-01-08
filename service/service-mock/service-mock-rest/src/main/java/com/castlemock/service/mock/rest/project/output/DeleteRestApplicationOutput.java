@@ -30,8 +30,12 @@ public final class DeleteRestApplicationOutput implements Output {
 
     private final RestApplication application;
 
-    private DeleteRestApplicationOutput(final Builder builder){
+    private DeleteRestApplicationOutput(final Builder builder) {
         this.application = builder.application;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<RestApplication> getApplication() {
@@ -58,10 +62,6 @@ public final class DeleteRestApplicationOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private RestApplication application;
@@ -69,12 +69,12 @@ public final class DeleteRestApplicationOutput implements Output {
         private Builder() {
         }
 
-        public Builder application(final RestApplication application){
+        public Builder application(final RestApplication application) {
             this.application = application;
             return this;
         }
 
-        public DeleteRestApplicationOutput build(){
+        public DeleteRestApplicationOutput build() {
             return new DeleteRestApplicationOutput(this);
         }
 

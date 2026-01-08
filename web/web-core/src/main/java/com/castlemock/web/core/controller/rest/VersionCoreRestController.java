@@ -31,17 +31,17 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/rest/core")
-@Tag(name="Core - Version", description="REST Operations for Castle Mock Core")
+@Tag(name = "Core - Version", description = "REST Operations for Castle Mock Core")
 public class VersionCoreRestController extends AbstractRestController {
 
     @Value("${app.version:Undefined}")
     private String version;
 
-    public VersionCoreRestController(final ServiceProcessor serviceProcessor){
+    public VersionCoreRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get system version")
+    @Operation(summary = "Get system version")
     @RequestMapping(method = RequestMethod.GET, value = "/version")
     public @ResponseBody
     ResponseEntity<VersionResponse> getVersion() {

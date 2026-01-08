@@ -33,12 +33,12 @@ public final class CreateRestMethodOutput implements Output {
         this.method = Objects.requireNonNull(method, "method");
     }
 
-    public RestMethod getMethod() {
-        return method;
+    public static Builder builder() {
+        return new Builder();
     }
 
-    public static Builder builder(){
-        return new Builder();
+    public RestMethod getMethod() {
+        return method;
     }
 
     @Override
@@ -68,12 +68,12 @@ public final class CreateRestMethodOutput implements Output {
         private Builder() {
         }
 
-        public Builder method(final RestMethod method){
+        public Builder method(final RestMethod method) {
             this.method = method;
             return this;
         }
 
-        public CreateRestMethodOutput build(){
+        public CreateRestMethodOutput build() {
             return new CreateRestMethodOutput(this.method);
         }
 

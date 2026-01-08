@@ -26,29 +26,31 @@ import com.castlemock.service.mock.rest.project.converter.wadl.WADLRestDefinitio
 
 /**
  * The {@link RestDefinitionConverterFactory} is a factory class responsible for creating new {@link RestDefinitionConverter}.
+ *
  * @author Karl Dahlgren
- * @since 1.10
  * @see SwaggerRestDefinitionConverter
  * @see WADLRestDefinitionConverter
+ * @since 1.10
  */
 public final class RestDefinitionConverterFactory {
 
     /**
      * Private constructor
      */
-    private RestDefinitionConverterFactory(){
+    private RestDefinitionConverterFactory() {
 
     }
 
 
     /**
      * The method returns the requested type of {@link RestDefinitionConverter}.
+     *
      * @param converterType The tyoe pf {@link RestDefinitionConverter} that will be created.
      * @return A {@link RestDefinitionConverter} which matches the provided <code>converterType</code>
      * @throws IllegalArgumentException If not converter is matching the provided {@link RestDefinitionType}
      */
     public static RestDefinitionConverter getConverter(final RestDefinitionType converterType,
-                                                       final FileManager fileManager){
+                                                       final FileManager fileManager) {
         return switch (converterType) {
             case WADL -> new WADLRestDefinitionConverter(fileManager);
             case SWAGGER -> new SwaggerRestDefinitionConverter();

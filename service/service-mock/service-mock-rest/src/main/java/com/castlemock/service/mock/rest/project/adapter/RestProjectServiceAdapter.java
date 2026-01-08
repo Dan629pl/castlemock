@@ -29,9 +29,10 @@ import java.util.List;
 /**
  * The REST project service adapter is responsible for providing the basic functionality for all the
  * project services.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see RestProject
+ * @since 1.0
  */
 @Service
 public class RestProjectServiceAdapter implements ProjectServiceAdapter<RestProject> {
@@ -42,6 +43,7 @@ public class RestProjectServiceAdapter implements ProjectServiceAdapter<RestProj
 
     /**
      * The method is responsible for retrieving all instances from all the various service types.
+     *
      * @return A list containing all the instance independent from type
      */
     @Override

@@ -70,14 +70,14 @@ import static org.mockito.Mockito.when;
  */
 class SoapServiceControllerTest {
 
-    private static final String PROJECT_ID = "ProjectId";
-    private static final String SOAP_PORT_ID = "SoapPortId";
-    private static final String SOAP_OPERATION_ID = "SoapOperationId";
     protected static final String CONTEXT = "/castlemock";
     protected static final String SLASH = "/";
     protected static final String PROJECT = "project";
     protected static final String MOCK = "mock";
     protected static final String SOAP = "soap";
+    private static final String PROJECT_ID = "ProjectId";
+    private static final String SOAP_PORT_ID = "SoapPortId";
+    private static final String SOAP_OPERATION_ID = "SoapOperationId";
     private static final String APPLICATION_XML = "application/xml";
     private static final String CONTENT_TYPE_HEADER = "Content-type";
     private static final String ACCEPT_HEADER = "Accept";
@@ -87,7 +87,7 @@ class SoapServiceControllerTest {
             Content-Type: text/xml; charset=UTF-8
             Content-Transfer-Encoding: 8bit
             Content-ID: <test@castlemock.org>
-
+            
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cas="http://castlemock.com/">
                <soapenv:Header/>
                <soapenv:Body>
@@ -105,7 +105,7 @@ class SoapServiceControllerTest {
             Content-Type: text/plain; charset=us-ascii; name="example"
             Content-ID: <example>
             Content-Disposition: attachment; name="example.txt"; filename="example.txt"
-
+            
             This is an example
             ------=_Part_24_1742827313.1517654770545--""";
 
@@ -160,7 +160,7 @@ class SoapServiceControllerTest {
                 .response(soapResponse)
                 .build());
 
-        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext , strategyFactory);
+        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext, strategyFactory);
         final ResponseEntity<?> responseEntity = controller.postMethod(PROJECT_ID, httpServletRequest);
         Assertions.assertEquals(RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -183,7 +183,7 @@ class SoapServiceControllerTest {
 
         // Input
         final HttpServletRequest httpServletRequest = getMockedMultipartHttpServletRequest(REQUEST_MTOM_BODY);
-        
+
 
         final SoapXPathExpression xPathExpression = SoapXPathExpression.builder()
                 .expression("//TestService/Variable1[text()='Input1']")
@@ -233,7 +233,7 @@ class SoapServiceControllerTest {
                 .build());
 
 
-        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext , strategyFactory);
+        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext, strategyFactory);
         final ResponseEntity<?> responseEntity = controller.postMethod(PROJECT_ID, httpServletRequest);
         Assertions.assertEquals(RESPONSE_BODY, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -267,8 +267,8 @@ class SoapServiceControllerTest {
 
         final SoapProject soapProject = SoapProjectTestBuilder.builder()
                 .resources(List.of(SoapResourceTestBuilder.builder()
-                    .type(SoapResourceType.WSDL)
-                    .build()))
+                        .type(SoapResourceType.WSDL)
+                        .build()))
                 .build();
         final ReadSoapProjectOutput readSoapProjectOutput = ReadSoapProjectOutput.builder()
                 .project(soapProject)
@@ -283,7 +283,7 @@ class SoapServiceControllerTest {
         when(serviceProcessor.process(isA(LoadSoapResourceInput.class)))
                 .thenReturn(loadSoapResourceOutput);
 
-        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext , strategyFactory);
+        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext, strategyFactory);
         final ResponseEntity<?> responseEntity = controller.getMethod(PROJECT_ID, httpServletRequest);
         Assertions.assertEquals(WSDL, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -325,7 +325,7 @@ class SoapServiceControllerTest {
         when(serviceProcessor.process(isA(LoadSoapResourceInput.class))).thenReturn(loadSoapResourceOutput);
         when(servletContext.getContextPath()).thenReturn(CONTEXT);
 
-        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext , strategyFactory);
+        final SoapServiceController controller = new SoapServiceController(serviceProcessor, servletContext, strategyFactory);
         final ResponseEntity<?> responseEntity = controller.getWildcardMethod(PROJECT_ID, httpServletRequest);
         Assertions.assertEquals(WSDL, responseEntity.getBody());
         Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());

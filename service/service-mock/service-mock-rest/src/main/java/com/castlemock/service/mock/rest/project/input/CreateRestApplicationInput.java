@@ -34,16 +34,16 @@ public final class CreateRestApplicationInput implements Input {
         this.name = Objects.requireNonNull(builder.name, "name");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
 
     public String getName() {
         return name;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -74,17 +74,17 @@ public final class CreateRestApplicationInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String restProjectId){
+        public Builder projectId(final String restProjectId) {
             this.projectId = restProjectId;
             return this;
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public CreateRestApplicationInput build(){
+        public CreateRestApplicationInput build() {
             return new CreateRestApplicationInput(this);
         }
 

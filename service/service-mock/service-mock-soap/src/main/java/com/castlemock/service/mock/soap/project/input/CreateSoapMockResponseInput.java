@@ -49,13 +49,17 @@ public final class CreateSoapMockResponseInput implements Input {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
         this.portId = Objects.requireNonNull(builder.portId, "portId");
         this.operationId = Objects.requireNonNull(builder.operationId, "operationId");
-        this.name = Objects.requireNonNull(builder.name,"name");
+        this.name = Objects.requireNonNull(builder.name, "name");
         this.status = Objects.requireNonNull(builder.status, "status");
         this.httpStatusCode = Objects.requireNonNull(builder.httpStatusCode, "httpStatusCode");
         this.httpHeaders = builder.httpHeaders;
         this.xpathExpressions = builder.xpathExpressions;
         this.body = builder.body;
         this.usingExpressions = builder.usingExpressions;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -132,10 +136,6 @@ public final class CreateSoapMockResponseInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
@@ -148,21 +148,21 @@ public final class CreateSoapMockResponseInput implements Input {
         private List<HttpHeader> httpHeaders;
         private List<SoapXPathExpression> xpathExpressions;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
@@ -202,7 +202,7 @@ public final class CreateSoapMockResponseInput implements Input {
             return this;
         }
 
-        public CreateSoapMockResponseInput build(){
+        public CreateSoapMockResponseInput build() {
             return new CreateSoapMockResponseInput(this);
         }
     }

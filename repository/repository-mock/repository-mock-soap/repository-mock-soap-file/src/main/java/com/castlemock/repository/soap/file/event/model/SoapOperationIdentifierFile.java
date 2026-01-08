@@ -40,16 +40,16 @@ public class SoapOperationIdentifierFile {
         this.namespace = builder.namespace;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getName() {
         return name;
     }
 
     public String getNamespace() {
         return namespace;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

@@ -24,7 +24,7 @@ import java.util.Objects;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class DeleteRestMethodInput implements Input{
+public final class DeleteRestMethodInput implements Input {
 
     private final String projectId;
     private final String applicationId;
@@ -36,6 +36,10 @@ public final class DeleteRestMethodInput implements Input{
         this.applicationId = Objects.requireNonNull(builder.applicationId, "applicationId");
         this.resourceId = Objects.requireNonNull(builder.resourceId, "resourceId");
         this.methodId = Objects.requireNonNull(builder.methodId, "methodId");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getProjectId() {
@@ -52,10 +56,6 @@ public final class DeleteRestMethodInput implements Input{
 
     public String getMethodId() {
         return methodId;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -91,28 +91,28 @@ public final class DeleteRestMethodInput implements Input{
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
-        public Builder methodId(final String methodId){
+        public Builder methodId(final String methodId) {
             this.methodId = methodId;
             return this;
         }
 
-        public DeleteRestMethodInput build(){
+        public DeleteRestMethodInput build() {
             return new DeleteRestMethodInput(this);
         }
 

@@ -48,13 +48,17 @@ public class RestParameterQuery {
     @XmlElement
     private final boolean urlEncoded;
 
-    private RestParameterQuery(final Builder builder){
+    private RestParameterQuery(final Builder builder) {
         this.parameter = Objects.requireNonNull(builder.parameter, "parameter");
         this.query = Objects.requireNonNull(builder.query, "query");
         this.matchCase = Objects.requireNonNull(builder.matchCase, "matchCase");
         this.matchAny = Objects.requireNonNull(builder.matchAny, "matchAny");
         this.matchRegex = Objects.requireNonNull(builder.matchRegex, "matchRegex");
         this.urlEncoded = Objects.requireNonNull(builder.urlEncoded, "urlEncoded");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getParameter() {
@@ -114,10 +118,6 @@ public class RestParameterQuery {
                 .matchAny(matchAny)
                 .matchRegex(matchRegex)
                 .urlEncoded(urlEncoded);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

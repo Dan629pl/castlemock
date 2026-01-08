@@ -55,7 +55,7 @@ public class FileRepositorySupport {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileRepositorySupport.class);
 
-    public String load(String directory, String filename){
+    public String load(String directory, String filename) {
         final Path path = FileSystems.getDefault().getPath(directory);
         this.createDirectory(path);
 
@@ -69,7 +69,7 @@ public class FileRepositorySupport {
         }
     }
 
-    public void save(final String directory, final String filename, final String data){
+    public void save(final String directory, final String filename, final String data) {
         final Path path = FileSystems.getDefault().getPath(directory);
         this.createDirectory(path);
 
@@ -84,7 +84,7 @@ public class FileRepositorySupport {
             throw new IllegalStateException("Unable to save the following file: " + filename, e);
         } finally {
             try {
-                if(writer != null) {
+                if (writer != null) {
                     writer.close();
                 }
             } catch (IOException e) {
@@ -93,7 +93,7 @@ public class FileRepositorySupport {
         }
     }
 
-    public <T> Collection<T> load(final Class<T> entityClass, final String directory, final String postfix){
+    public <T> Collection<T> load(final Class<T> entityClass, final String directory, final String postfix) {
         final Path path = FileSystems.getDefault().getPath(directory);
         this.createDirectory(path);
 
@@ -111,9 +111,9 @@ public class FileRepositorySupport {
     }
 
     @SuppressWarnings("unchecked")
-    private <T> Optional<T> load(final File file, final Class<T> entityClass){
-        try(final InputStream inputStream= new FileInputStream(file)) {
-            try(final Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)){
+    private <T> Optional<T> load(final File file, final Class<T> entityClass) {
+        try (final InputStream inputStream = new FileInputStream(file)) {
+            try (final Reader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 final JAXBContext jaxbContext = JAXBContext.newInstance(entityClass, HttpHeaderFile.class, HttpParameterFile.class);
                 final Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
                 LOGGER.debug("\tLoaded " + file.getName());
@@ -125,7 +125,7 @@ public class FileRepositorySupport {
         return Optional.empty();
     }
 
-    public <T> void save(T type, String filename){
+    public <T> void save(T type, String filename) {
         Writer writer = null;
         try {
             final JAXBContext context = JAXBContext.newInstance(type.getClass());
@@ -150,24 +150,24 @@ public class FileRepositorySupport {
         }
     }
 
-    public void delete(String filename){
+    public void delete(String filename) {
         File file = new File(filename);
-        if(!file.delete()){
+        if (!file.delete()) {
             LOGGER.error("Unable to delete the following file: " + filename);
             throw new IllegalStateException("Unable to delete the following file: " + filename);
         }
     }
 
-    public void delete(String directory, String filename){
+    public void delete(String directory, String filename) {
         File file = new File(directory, filename);
-        if(!file.delete()){
+        if (!file.delete()) {
             LOGGER.error("Unable to delete the following file: " + filename);
             throw new IllegalStateException("Unable to delete the following file: " + filename);
         }
     }
 
-    private void createDirectory(Path path){
-        if(!Files.exists(path)){
+    private void createDirectory(Path path) {
+        if (!Files.exists(path)) {
             try {
                 LOGGER.debug("Creating the following directory: " + path);
                 Files.createDirectories(path);
@@ -176,7 +176,7 @@ public class FileRepositorySupport {
                 throw new IllegalStateException("Unable to create the following folder: " + path);
             }
         }
-        if(!Files.isDirectory(path)){
+        if (!Files.isDirectory(path)) {
             throw new IllegalStateException("The provided path is not a directory: " + path);
         }
     }

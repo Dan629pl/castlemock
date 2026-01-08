@@ -81,23 +81,28 @@ class DuplicateMockResponsesModal extends PureComponent {
                             <p>Do you want duplicate the following responses?</p>
                             <div className="table-result">
                                 <ToolkitProvider bootstrap4
-                                                 columns={ this.columns}
-                                                 data={ this.props.selectedMockResponses }
+                                                 columns={this.columns}
+                                                 data={this.props.selectedMockResponses}
                                                  keyField="id">
                                     {
                                         (props) => (
                                             <div>
-                                                <BootstrapTable { ...props.baseProps } bootstrap4 data={this.props.selectedMockResponses} columns={this.columns}
-                                                                defaultSorted={ this.defaultSort } keyField='id' hover
+                                                <BootstrapTable {...props.baseProps} bootstrap4
+                                                                data={this.props.selectedMockResponses}
+                                                                columns={this.columns}
+                                                                defaultSorted={this.defaultSort} keyField='id' hover
                                                                 striped
-                                                                pagination={ PaginationFactory({hideSizePerPage: true}) }/>
+                                                                pagination={PaginationFactory({hideSizePerPage: true})}/>
                                             </div>
                                         )}
                                 </ToolkitProvider>
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-primary" data-dismiss="modal" onClick={this.onDuplicateMockResponsesClick}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Duplicate</button>
+                            <button className="btn btn-primary" data-dismiss="modal"
+                                    onClick={this.onDuplicateMockResponsesClick}><FontAwesomeIcon icon={faCheckCircle}
+                                                                                                  className="button-icon"/>Duplicate
+                            </button>
                         </div>
                     </div>
                 </div>

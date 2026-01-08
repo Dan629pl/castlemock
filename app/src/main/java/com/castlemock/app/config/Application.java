@@ -44,7 +44,7 @@ import java.util.Map;
  * @author Mohammad Hewedy
  * @since 1.0
  */
-public abstract class Application extends SpringBootServletInitializer{
+public abstract class Application extends SpringBootServletInitializer {
 
     @Value("${app.version}")
     private String version;
@@ -55,7 +55,7 @@ public abstract class Application extends SpringBootServletInitializer{
     @Autowired
     private ApplicationContext applicationContext;
     @Autowired
-    private ServiceRegistry<?,?> serviceRegistry;
+    private ServiceRegistry<?, ?> serviceRegistry;
     @Autowired
     private SessionTokenRepository tokenRepository;
     @Autowired
@@ -63,11 +63,12 @@ public abstract class Application extends SpringBootServletInitializer{
 
     /**
      * The initialize method is responsible for initiating all the components when the application has been started.
+     *
      * @see Repository
      * @see com.castlemock.model.core.Service
      */
     @PostConstruct
-    protected void initiate(){
+    protected void initiate() {
         this.printLogo();
         this.initializeUnSecureTLS();
         this.initializeProcessRegistry();
@@ -76,7 +77,7 @@ public abstract class Application extends SpringBootServletInitializer{
         this.initializeTokenRepository();
     }
 
-    protected void printLogo(){
+    protected void printLogo() {
         final StringBuilder logo = new StringBuilder();
         logo.append("  _____          _   _        __  __            _   \n");
         logo.append(" / ____|        | | | |      |  \\/  |          | |   \n");
@@ -94,14 +95,15 @@ public abstract class Application extends SpringBootServletInitializer{
 
     /**
      * The method provides the functionality to retrieve all the repositories and initialize them
+     *
      * @see Repository
      */
     @SuppressWarnings("rawtypes")
-    protected void initializeRepository(){
+    protected void initializeRepository() {
         final Map<String, Object> repositories = applicationContext.getBeansWithAnnotation(org.springframework.stereotype.Repository.class);
-        for(Map.Entry<String, Object> entry : repositories.entrySet()){
+        for (Map.Entry<String, Object> entry : repositories.entrySet()) {
             final Object value = entry.getValue();
-            if(value instanceof Repository repository){
+            if (value instanceof Repository repository) {
                 repository.initialize();
             }
         }
@@ -110,34 +112,37 @@ public abstract class Application extends SpringBootServletInitializer{
 
     /**
      * The method provides the functionality to retrieve all the service facades and initialize them
+     *
      * @see ServiceFacade
      * @see com.castlemock.model.core.Service
      */
     @SuppressWarnings("rawtypes")
-    protected void initializeServiceFacade(){
+    protected void initializeServiceFacade() {
         final Map<String, Object> components = applicationContext.getBeansWithAnnotation(Service.class);
-        for(Map.Entry<String, Object> entry : components.entrySet()){
+        for (Map.Entry<String, Object> entry : components.entrySet()) {
             final Object value = entry.getValue();
-            if(value instanceof ServiceFacade serviceFacade){
+            if (value instanceof ServiceFacade serviceFacade) {
                 serviceFacade.initiate();
             }
         }
     }
 
-    protected void initializeTokenRepository(){
+    protected void initializeTokenRepository() {
         this.tokenRepository.initialize();
     }
 
     /**
      * The method provides the functionality to retrieve all the repositories and initialize them
+     *
      * @see Repository
      */
-    protected void initializeProcessRegistry(){
+    protected void initializeProcessRegistry() {
         this.serviceRegistry.initialize();
     }
 
     /**
      * Conditionally bypass http ssl/tls check for all websites
+     *
      * @since 1.36
      */
     private void initializeUnSecureTLS() {

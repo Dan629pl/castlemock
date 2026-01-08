@@ -29,13 +29,13 @@ import java.util.stream.Collectors;
 
 public final class RestParameterQueryValidator {
 
-    private RestParameterQueryValidator(){
+    private RestParameterQueryValidator() {
 
     }
 
     public static boolean validate(final List<RestParameterQuery> parameterQueries,
-                                   final Map<String, Set<String>> pathParameters){
-        for(Map.Entry<String, Set<String>> pathParameterEntry : pathParameters.entrySet()){
+                                   final Map<String, Set<String>> pathParameters) {
+        for (Map.Entry<String, Set<String>> pathParameterEntry : pathParameters.entrySet()) {
             final String pathParameter = pathParameterEntry.getKey();
             final Set<RestParameterQuery> matching = pathParameterEntry.getValue()
                     .stream()
@@ -53,22 +53,22 @@ public final class RestParameterQueryValidator {
     }
 
     private static boolean validate(final String pathQuery,
-                                    final RestParameterQuery parameterQuery){
+                                    final RestParameterQuery parameterQuery) {
         String query = pathQuery;
-        if(parameterQuery.getUrlEncoded()) {
+        if (parameterQuery.getUrlEncoded()) {
             query = URLEncoder.encode(pathQuery, StandardCharsets.UTF_8);
         }
 
-        if(parameterQuery.getMatchAny()){
+        if (parameterQuery.getMatchAny()) {
             return true;
-        } else if(parameterQuery.getMatchRegex()){
+        } else if (parameterQuery.getMatchRegex()) {
             final Pattern pattern = parameterQuery.getMatchCase() ?
                     Pattern.compile(parameterQuery.getQuery()) :
                     Pattern.compile(parameterQuery.getQuery(), Pattern.CASE_INSENSITIVE);
 
             final Matcher matcher = pattern.matcher(query);
             return matcher.matches();
-        } else if(parameterQuery.getMatchCase()){
+        } else if (parameterQuery.getMatchCase()) {
             return query.equals(parameterQuery.getQuery());
         }
 

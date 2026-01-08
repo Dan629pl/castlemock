@@ -25,7 +25,7 @@ import java.util.Optional;
  * @author Karl Dahlgren
  * @since 1.0
  */
-public final class ReadRestProjectOutput implements Output{
+public final class ReadRestProjectOutput implements Output {
 
     private final RestProject project;
 
@@ -33,13 +33,12 @@ public final class ReadRestProjectOutput implements Output{
         this.project = builder.project;
     }
 
-    public Optional<RestProject> getProject() {
-        return Optional.ofNullable(project);
+    public static Builder builder() {
+        return new Builder();
     }
 
-
-    public static Builder builder(){
-        return new Builder();
+    public Optional<RestProject> getProject() {
+        return Optional.ofNullable(project);
     }
 
     public static final class Builder {
@@ -49,12 +48,12 @@ public final class ReadRestProjectOutput implements Output{
         private Builder() {
         }
 
-        public Builder project(final RestProject project){
+        public Builder project(final RestProject project) {
             this.project = project;
             return this;
         }
 
-        public ReadRestProjectOutput build(){
+        public ReadRestProjectOutput build() {
             return new ReadRestProjectOutput(this);
         }
 

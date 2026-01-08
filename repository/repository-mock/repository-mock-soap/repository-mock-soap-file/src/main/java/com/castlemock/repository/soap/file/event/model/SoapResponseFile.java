@@ -61,6 +61,10 @@ public class SoapResponseFile {
         this.mockResponseName = builder.mockResponseName;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getBody() {
         return body;
     }
@@ -83,10 +87,6 @@ public class SoapResponseFile {
 
     public List<HttpContentEncoding> getContentEncodings() {
         return contentEncodings;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

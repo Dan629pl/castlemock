@@ -32,6 +32,10 @@ public final class ExportRestProjectInput implements Input {
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -56,10 +60,6 @@ public final class ExportRestProjectInput implements Input {
         return Objects.hash(projectId);
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -67,12 +67,12 @@ public final class ExportRestProjectInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public ExportRestProjectInput build(){
+        public ExportRestProjectInput build() {
             return new ExportRestProjectInput(this);
         }
 

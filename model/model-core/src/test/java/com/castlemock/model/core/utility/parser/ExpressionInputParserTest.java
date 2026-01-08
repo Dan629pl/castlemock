@@ -33,19 +33,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExpressionInputParserTest {
 
     @Test
-    public void testParse(){
+    public void testParse() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_ENUM}");
         assertEquals(expressionInput.getName(), "RANDOM_ENUM");
     }
 
     @Test
-    public void testParseWithNoArguments(){
+    public void testParseWithNoArguments() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_ENUM()}");
         assertEquals(expressionInput.getName(), "RANDOM_ENUM");
     }
 
     @Test
-    public void testParseWithStringArgument(){
+    public void testParseWithStringArgument() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_ENUM(Key=\"Value\")}");
         assertEquals(expressionInput.getName(), "RANDOM_ENUM");
         assertEquals(1, expressionInput.getArguments().size());
@@ -57,7 +57,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testParseWithNumberArgument(){
+    public void testParseWithNumberArgument() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_INTEGER(min=123)}");
         assertEquals(expressionInput.getName(), "RANDOM_INTEGER");
         assertEquals(1, expressionInput.getArguments().size());
@@ -69,7 +69,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testParseWithArrayArgument(){
+    public void testParseWithArrayArgument() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_ENUM(values=[\"X\",\"Y\",\"Z\"])}");
         assertEquals(expressionInput.getName(), "RANDOM_ENUM");
         assertEquals(1, expressionInput.getArguments().size());
@@ -85,7 +85,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testParseWithMixedArguments(){
+    public void testParseWithMixedArguments() {
         ExpressionInput expressionInput = ExpressionInputParser.parse("${RANDOM_ENUM(value1=\"This is a value\", value2=999.9, value3=[\"X\",\"Y\",\"Z\"])}");
         assertEquals(expressionInput.getName(), "RANDOM_ENUM");
         assertEquals(3, expressionInput.getArguments().size());
@@ -112,14 +112,14 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testConvert(){
+    public void testConvert() {
         ExpressionInput expressionInput = new ExpressionInput("RANDOM_INTEGER");
         String output = ExpressionInputParser.convert(expressionInput);
         assertEquals("${RANDOM_INTEGER()}", output);
     }
 
     @Test
-    public void testConvertWithStringArgument(){
+    public void testConvertWithStringArgument() {
         ExpressionInput expressionInput = new ExpressionInput("RANDOM_INTEGER");
         expressionInput.addArgument("Key", new ExpressionArgumentString("Value"));
         String output = ExpressionInputParser.convert(expressionInput);
@@ -127,7 +127,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testConvertWithNumberArgument(){
+    public void testConvertWithNumberArgument() {
         ExpressionInput expressionInput = new ExpressionInput("RANDOM_INTEGER");
         expressionInput.addArgument("min", new ExpressionArgumentNumber(1000.0));
         String output = ExpressionInputParser.convert(expressionInput);
@@ -135,7 +135,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testConvertWithArrayArgument(){
+    public void testConvertWithArrayArgument() {
         ExpressionInput expressionInput = new ExpressionInput("RANDOM_ENUM");
         ExpressionArgumentArray argumentArray = new ExpressionArgumentArray();
         argumentArray.addArgument(new ExpressionArgumentString("X"));
@@ -147,7 +147,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testConvertWithMixedArguments(){
+    public void testConvertWithMixedArguments() {
         ExpressionInput expressionInput = new ExpressionInput("RANDOM_ENUM");
         expressionInput.addArgument("Key1", new ExpressionArgumentString("Value"));
         expressionInput.addArgument("Key2", new ExpressionArgumentNumber(1000.0));
@@ -161,7 +161,7 @@ public class ExpressionInputParserTest {
     }
 
     @Test
-    public void testParseWithQuotationMarksInExpression(){
+    public void testParseWithQuotationMarksInExpression() {
         final String expression = "${BODY_XPATH(expression=\"substring-after(//GetWhoIS/HostName/text(), 'V'\")}";
         final ExpressionInput input = ExpressionInputParser.parse(expression);
 

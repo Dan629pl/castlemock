@@ -40,6 +40,10 @@ public class UpdateSoapOperationStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getOperationIds() {
         return Optional.of(operationIds)
                 .map(Set::copyOf)
@@ -72,10 +76,6 @@ public class UpdateSoapOperationStatusesRequest {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
 
@@ -99,5 +99,5 @@ public class UpdateSoapOperationStatusesRequest {
             return new UpdateSoapOperationStatusesRequest(this);
         }
     }
-    
+
 }

@@ -34,22 +34,23 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping("/doc/api/rest")
-@Tag(name="Core - Documentation")
+@Tag(name = "Core - Documentation")
 public class DocumentationController {
 
     @Autowired
     private final ServletContext servletContext;
 
     @Autowired
-    public DocumentationController(final ServletContext servletContext){
+    public DocumentationController(final ServletContext servletContext) {
         this.servletContext = Objects.requireNonNull(servletContext, "servletContext");
     }
 
     /**
      * Forward the user to the documentation
+     *
      * @return Forward the user to the Swagger UI
      */
-    @Operation(summary =  "Documentation",description = "Swagger REST API Documentation")
+    @Operation(summary = "Documentation", description = "Swagger REST API Documentation")
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody RedirectView forward() {
         return new RedirectView(servletContext.getContextPath() + "/swagger-ui/");

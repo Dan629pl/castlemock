@@ -33,14 +33,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ResourceController extends AbstractRestController {
 
     @Autowired
-    public ResourceController(final ServiceProcessor serviceProcessor){
+    public ResourceController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/{projectId}/resource/{resourceId}")
     public ResponseEntity<String> getResource(@PathVariable final String projectId,
-                              @PathVariable final String resourceId) {
+                                              @PathVariable final String resourceId) {
         final LoadSoapResourceOutput output =
                 this.serviceProcessor.process(LoadSoapResourceInput.builder()
                         .projectId(projectId)

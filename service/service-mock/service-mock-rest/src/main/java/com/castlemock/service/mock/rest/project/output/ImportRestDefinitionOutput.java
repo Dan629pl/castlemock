@@ -24,11 +24,11 @@ import com.castlemock.model.core.Output;
  */
 public final class ImportRestDefinitionOutput implements Output {
 
-    private ImportRestDefinitionOutput(){
+    private ImportRestDefinitionOutput() {
 
     }
 
-    public static Builder builder(){
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -37,7 +37,7 @@ public final class ImportRestDefinitionOutput implements Output {
         private Builder() {
         }
 
-        public ImportRestDefinitionOutput build(){
+        public ImportRestDefinitionOutput build() {
             return new ImportRestDefinitionOutput();
         }
 

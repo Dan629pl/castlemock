@@ -19,6 +19,7 @@ package com.castlemock.model.core.utility.parser.expression.argument;
 /**
  * The {@link ExpressionArgumentNumber} is an numeric argument for an
  * {@link com.castlemock.model.core.utility.parser.expression.Expression}.
+ *
  * @author Karl Dahlgren
  * @since 1.14
  */
@@ -26,6 +27,7 @@ public class ExpressionArgumentNumber extends ExpressionArgument<Double> {
 
     /**
      * Constructor for {@link ExpressionArgumentNumber}.
+     *
      * @param value The numeric value.
      */
     public ExpressionArgumentNumber(final Double value) {

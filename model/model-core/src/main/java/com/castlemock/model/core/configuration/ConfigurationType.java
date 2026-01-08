@@ -18,9 +18,10 @@ package com.castlemock.model.core.configuration;
 
 /**
  * The various configuration types The types are used to identify which value is acceptable for a configuration.
+ *
  * @author Karl Dahlgren
- * @since 1.0
  * @see Configuration
+ * @since 1.0
  */
 public enum ConfigurationType {
 

@@ -67,7 +67,7 @@ public class JsonPathUtilityTest {
     }
 
     @Test
-    public void testGetValue1(){
+    public void testGetValue1() {
         final String body = getBody();
         final String expression = "$.store.book[?(@.price > 20)].author";
         final Optional<String> value = JsonPathUtility.getValueWithJsonPathExpr(body, expression);
@@ -75,7 +75,7 @@ public class JsonPathUtilityTest {
     }
 
     @Test
-    public void testGetValueList(){
+    public void testGetValueList() {
         final String body = getBody();
         final String expression = "$.store.book[*]";
         final Optional<String> value = JsonPathUtility.getValueWithJsonPathExpr(body, expression);
@@ -83,7 +83,7 @@ public class JsonPathUtilityTest {
     }
 
     @Test
-    public void testGetValueList2(){
+    public void testGetValueList2() {
         final String body = getBody();
         final String expression = "$.store.book[?(@.price > 1)].author";
         final Optional<String> value = JsonPathUtility.getValueWithJsonPathExpr(body, expression);
@@ -91,7 +91,7 @@ public class JsonPathUtilityTest {
     }
 
     @Test
-    public void shouldParseValueWhenPropertyIsDefinite(){
+    public void shouldParseValueWhenPropertyIsDefinite() {
         final String body = getBodyWithDefiniteProperty();
         final String expression = "$.definite";
         final Optional<String> value = JsonPathUtility.getValueWithJsonPathExpr(body, expression);
@@ -99,7 +99,7 @@ public class JsonPathUtilityTest {
     }
 
     @Test
-    public void testGetValueLength(){
+    public void testGetValueLength() {
         final String body = getBody();
         final String expression = "$.store.book.length()";
         final Optional<String> value = JsonPathUtility.getValueWithJsonPathExpr(body, expression);

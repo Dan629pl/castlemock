@@ -25,8 +25,8 @@ import java.util.Optional;
 
 /**
  * @author Karl Dahlgren
- * @since 1.0
  * @see UpdateCurrentUserInput
+ * @since 1.0
  */
 public final class UpdateCurrentUserOutput implements Output {
 
@@ -34,6 +34,10 @@ public final class UpdateCurrentUserOutput implements Output {
 
     private UpdateCurrentUserOutput(final Builder builder) {
         this.updatedUser = builder.updatedUser;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Optional<User> getUpdatedUser() {
@@ -58,10 +62,6 @@ public final class UpdateCurrentUserOutput implements Output {
         return "UpdateCurrentUserOutput{" +
                 "updatedUser=" + updatedUser +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

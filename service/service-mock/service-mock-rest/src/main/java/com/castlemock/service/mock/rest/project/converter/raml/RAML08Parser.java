@@ -42,20 +42,20 @@ import java.util.List;
  * @author Karl Dahlgren
  * @since 1.10
  */
-class RAML08Parser extends AbstractRAMLParser{
+class RAML08Parser extends AbstractRAMLParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RAML08Parser.class);
 
     public void getResources(final List<Resource> resources, final List<RestResource> result,
                              final String path, boolean generateResponse) {
-        if(resources.isEmpty()){
+        if (resources.isEmpty()) {
             return;
         }
 
-        for(Resource resource : resources){
+        for (Resource resource : resources) {
             final String uri = path + resource.relativeUri().value();
             final List<Method> methods = resource.methods();
-            if(!methods.isEmpty()){
+            if (!methods.isEmpty()) {
                 final RestResource restResource = RestResource.builder()
                         .id(IdUtility.generateId())
                         .name(uri)
@@ -63,16 +63,16 @@ class RAML08Parser extends AbstractRAMLParser{
                         .build();
                 result.add(restResource);
 
-                for(Method method : methods){
+                for (Method method : methods) {
                     final HttpMethod httpMethod = HttpMethod.getValue(method.method())
                             .orElse(null);
-                    if(httpMethod == null){
+                    if (httpMethod == null) {
                         LOGGER.error("The REST method '" + method.method() + "' is not supported.");
                         continue;
                     }
 
                     final List<RestMockResponse> mockResponses = new ArrayList<>();
-                    if(generateResponse){
+                    if (generateResponse) {
                         mockResponses.addAll(createMockResponses(method.responses()));
                     }
 
@@ -94,34 +94,34 @@ class RAML08Parser extends AbstractRAMLParser{
         }
     }
 
-    private Collection<RestMockResponse> createMockResponses(List<Response> responses){
+    private Collection<RestMockResponse> createMockResponses(List<Response> responses) {
         final List<RestMockResponse> mockResponses = new ArrayList<>();
 
 
-        for(int index = 0; index < responses.size(); index++){
+        for (int index = 0; index < responses.size(); index++) {
             Response response = responses.get(index);
             String responseCode = response.code().value();
             int httpStatusCode = super.extractHttpStatusCode(responseCode);
 
             final RestMockResponseStatus status;
-            if(httpStatusCode == DEFAULT_RESPONSE_CODE){
+            if (httpStatusCode == DEFAULT_RESPONSE_CODE) {
                 status = RestMockResponseStatus.ENABLED;
             } else {
                 status = RestMockResponseStatus.DISABLED;
             }
 
             String body = "";
-            if(response.body() != null && !response.body().isEmpty()){
+            if (response.body() != null && !response.body().isEmpty()) {
                 final BodyLike bodyLike = response.body().getFirst();
 
-                if(bodyLike.example() != null){
+                if (bodyLike.example() != null) {
                     body = bodyLike.example().value();
                 }
             }
 
             final List<HttpHeader> headers = new ArrayList<>();
-            if(response.headers() != null){
-                for(Parameter parameter : response.headers()){
+            if (response.headers() != null) {
+                for (Parameter parameter : response.headers()) {
                     final HttpHeader httpHeader = HttpHeader.builder()
                             .name(parameter.name())
                             .value(parameter.defaultValue())

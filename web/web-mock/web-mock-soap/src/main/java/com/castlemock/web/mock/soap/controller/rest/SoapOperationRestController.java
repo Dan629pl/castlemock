@@ -41,15 +41,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("api/rest/soap")
-@Tag(name="SOAP - Operation", description="REST Operations for Castle Mock SOAP Operation")
+@Tag(name = "SOAP - Operation", description = "REST Operations for Castle Mock SOAP Operation")
 public class SoapOperationRestController extends AbstractRestController {
 
     @Autowired
-    public SoapOperationRestController(final ServiceProcessor serviceProcessor){
+    public SoapOperationRestController(final ServiceProcessor serviceProcessor) {
         super(serviceProcessor);
     }
 
-    @Operation(summary =  "Get Operation")
+    @Operation(summary = "Get Operation")
     @RequestMapping(method = RequestMethod.GET, value = "/project/{projectId}/port/{portId}/operation/{operationId}")
     @PreAuthorize("hasAuthority('READER') or hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -70,7 +70,7 @@ public class SoapOperationRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Update Operation")
+    @Operation(summary = "Update Operation")
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/port/{portId}/operation/{operationId}")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -107,7 +107,7 @@ public class SoapOperationRestController extends AbstractRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @Operation(summary =  "Update mock response statuses")
+    @Operation(summary = "Update mock response statuses")
     @RequestMapping(method = RequestMethod.PUT, value = "/project/{projectId}/port/{portId}/operation/{operationId}/mockresponse/status")
     @PreAuthorize("hasAuthority('MODIFIER') or hasAuthority('ADMIN')")
     public @ResponseBody
@@ -118,7 +118,7 @@ public class SoapOperationRestController extends AbstractRestController {
             @PathVariable(value = "portId") final String portId,
             @Parameter(name = "operationId", description = "The id of the operation")
             @PathVariable(value = "operationId") final String operationId,
-            @RequestBody UpdateSoapMockResponseStatusesRequest request){
+            @RequestBody UpdateSoapMockResponseStatusesRequest request) {
         request.getMockResponseIds()
                 .forEach(mockResponseId -> super.serviceProcessor.process(UpdateSoapMockResponseStatusInput.builder()
                         .projectId(projectId)

@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 public class SoapUtilityTest {
 
     @Test
-    public void testExtractSoapRequestName(){
+    public void testExtractSoapRequestName() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -48,7 +48,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameWithoutNamespaces(){
+    public void testExtractSoapRequestNameWithoutNamespaces() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -67,7 +67,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameWithHref(){
+    public void testExtractSoapRequestNameWithHref() {
         final String requestBody =
                 """
                         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -86,7 +86,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameNamespacesInElement(){
+    public void testExtractSoapRequestNameNamespacesInElement() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -105,7 +105,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapSameNamespaceAndName(){
+    public void testExtractSoapSameNamespaceAndName() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -125,7 +125,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameWithoutBodyNamespace(){
+    public void testExtractSoapRequestNameWithoutBodyNamespace() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -144,7 +144,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameWithBodyNamespace(){
+    public void testExtractSoapRequestNameWithBodyNamespace() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -163,7 +163,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameWithoutSoapNamespaces(){
+    public void testExtractSoapRequestNameWithoutSoapNamespaces() {
         final String requestBody =
                 """
                         <?xml version="1.0"?>
@@ -181,7 +181,7 @@ public class SoapUtilityTest {
     }
 
     @Test
-    public void testExtractSoapRequestNameInvalidRequestBody(){
+    public void testExtractSoapRequestNameInvalidRequestBody() {
         Assertions.assertThrows(IllegalStateException.class, () -> SoapUtility.extractSoapRequestName(""));
     }
 

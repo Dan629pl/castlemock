@@ -34,6 +34,7 @@ import org.springframework.stereotype.Repository;
  * The repository is responsible for loading and saving configuration groups for the file system. Each configuration
  * group is stored as a separate file. The class also contains the directory and the filename extension for the
  * configuration group.
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
@@ -58,6 +59,7 @@ public class ConfigurationFileRepository extends FileRepository<ConfigurationGro
     /**
      * The method returns the directory for the specific file repository. The directory will be used to indicate
      * where files should be saved and loaded from.
+     *
      * @return The file directory where the files for the specific file repository could be saved and loaded from.
      */
     @Override
@@ -67,6 +69,7 @@ public class ConfigurationFileRepository extends FileRepository<ConfigurationGro
 
     /**
      * The method returns the postfix for the file that the file repository is responsible for managing.
+     *
      * @return The file extension for the file type that the repository is responsible for managing .
      */
     @Override
@@ -80,8 +83,9 @@ public class ConfigurationFileRepository extends FileRepository<ConfigurationGro
      * will always be called before a type is about to be saved. The main reason for why this is vital and done before
      * saving is to make sure that the type can be correctly saved to the file system, but also loaded from the
      * file system upon application startup. The method will throw an exception in case of the type not being acceptable.
+     *
      * @param configurationGroup The instance of the type that will be checked and controlled before it is allowed to be saved on
-     *             the file system.
+     *                           the file system.
      * @see #save
      * @see ConfigurationGroupFile
      */
@@ -93,7 +97,7 @@ public class ConfigurationFileRepository extends FileRepository<ConfigurationGro
         Preconditions.checkNotNull(configurationGroup.getConfigurations(), "Configuration group configuration list cannot be null");
         Preconditions.checkArgument(!configurationGroup.getName().isEmpty(), "Configuration group name cannot be empty");
 
-        for(ConfigurationFile configuration : configurationGroup.getConfigurations()){
+        for (ConfigurationFile configuration : configurationGroup.getConfigurations()) {
             Preconditions.checkNotNull(configuration.getType());
             Preconditions.checkNotNull(configuration.getKey());
             Preconditions.checkNotNull(configuration.getValue());

@@ -37,41 +37,45 @@ public class ExpressionInput {
 
     /**
      * Constructor for {@link ExpressionInput}.
+     *
      * @param name The name of the expression.
      */
-    public ExpressionInput(final String name){
+    public ExpressionInput(final String name) {
         this.name = Objects.requireNonNull(name, "name");
         this.arguments = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
     /**
      * Get an argument that with a given argument name.
+     *
      * @param name The name of the argument that should be returned.
      * @return An {@link ExpressionArgument} that matches the provided search criteria.
      * Null otherwise.
      */
-    public ExpressionArgument<?> getArgument(final String name){
+    public ExpressionArgument<?> getArgument(final String name) {
         return this.arguments.get(name);
     }
 
     /**
      * Add a new {@link ExpressionArgument}.
-     * @param name The name and identifier for the {@link ExpressionArgument}.
+     *
+     * @param name     The name and identifier for the {@link ExpressionArgument}.
      * @param argument The {@link ExpressionArgument} that will be added.
      */
-    public void addArgument(final String name, final ExpressionArgument<?> argument){
+    public void addArgument(final String name, final ExpressionArgument<?> argument) {
         this.arguments.put(name, argument);
     }
 
     /**
      * Get the expression name.
+     *
      * @return The name of the expression.
      */
     public String getName() {
         return name;
     }
 
-    public Map<String, ExpressionArgument<?>> getArguments(){
+    public Map<String, ExpressionArgument<?>> getArguments() {
         final Map<String, ExpressionArgument<?>> output = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         output.putAll(arguments);
         return output;

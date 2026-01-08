@@ -34,6 +34,10 @@ public final class UpdateSoapMockResponseOutput implements Output {
         this.mockResponse = builder.mockResponse;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Optional<SoapMockResponse> getMockResponse() {
         return Optional.ofNullable(mockResponse);
     }
@@ -58,23 +62,19 @@ public final class UpdateSoapMockResponseOutput implements Output {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private SoapMockResponse mockResponse;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder mockResponse(final SoapMockResponse mockResponse){
+        public Builder mockResponse(final SoapMockResponse mockResponse) {
             this.mockResponse = mockResponse;
             return this;
         }
 
-        public UpdateSoapMockResponseOutput build(){
+        public UpdateSoapMockResponseOutput build() {
             return new UpdateSoapMockResponseOutput(this);
         }
     }

@@ -28,18 +28,14 @@ import java.util.Objects;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.NONE)
 @JsonDeserialize(builder = OverviewProject.Builder.class)
-public class OverviewProject extends Project{
+public class OverviewProject extends Project {
 
     @XmlElement
     private final String type;
 
-    private OverviewProject(final Builder builder){
+    private OverviewProject(final Builder builder) {
         super(builder);
         this.type = Objects.requireNonNull(builder.type, "type");
-    }
-
-    public String getType() {
-        return type;
     }
 
     public static Builder builder() {
@@ -55,10 +51,15 @@ public class OverviewProject extends Project{
                 .description(other.description);
     }
 
+    public String getType() {
+        return type;
+    }
+
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder extends Project.Builder<Builder> {
 
         private String type;
+
         private Builder() {
         }
 

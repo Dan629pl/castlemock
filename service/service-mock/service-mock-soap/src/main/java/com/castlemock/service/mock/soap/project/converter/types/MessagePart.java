@@ -23,9 +23,13 @@ public final class MessagePart {
     private final String name;
     private final Attribute element;
 
-    private MessagePart(final Builder builder){
+    private MessagePart(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name);
         this.element = builder.element;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -36,30 +40,26 @@ public final class MessagePart {
         return Optional.ofNullable(element);
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
-    public static class Builder{
+    public static class Builder {
 
         private String name;
         private Attribute element;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder element(final Attribute element){
+        public Builder element(final Attribute element) {
             this.element = element;
             return this;
         }
 
-        public MessagePart build(){
+        public MessagePart build() {
             return new MessagePart(this);
         }
     }

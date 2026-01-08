@@ -37,6 +37,10 @@ public class UpdateRestMethodStatusesRequest {
         this.status = Objects.requireNonNull(builder.status, "status");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public Set<String> getMethodIds() {
         return Optional.of(methodIds)
                 .map(Set::copyOf)
@@ -69,10 +73,6 @@ public class UpdateRestMethodStatusesRequest {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
 
@@ -96,5 +96,5 @@ public class UpdateRestMethodStatusesRequest {
             return new UpdateRestMethodStatusesRequest(this);
         }
     }
-    
+
 }

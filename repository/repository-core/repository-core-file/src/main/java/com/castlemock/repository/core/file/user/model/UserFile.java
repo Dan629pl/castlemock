@@ -70,8 +70,13 @@ public class UserFile implements Saveable<String> {
         this.role = Objects.requireNonNull(builder.role, "role");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Get the user id
+     *
      * @return User id
      */
     @Override
@@ -81,6 +86,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Get the user username
+     *
      * @return User username
      */
     public String getUsername() {
@@ -89,6 +95,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Get user email
+     *
      * @return Returns user email
      */
     public String getEmail() {
@@ -101,6 +108,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Get the user password
+     *
      * @return Returns the user password
      */
     public String getPassword() {
@@ -109,6 +117,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Return the timestamp for when the user was updated
+     *
      * @return Updated timestamp
      */
     public Date getUpdated() {
@@ -117,6 +126,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Returns the timestamp of when the user was created
+     *
      * @return Created timestamp
      */
     public Date getCreated() {
@@ -125,6 +135,7 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Get the current status of user
+     *
      * @return User status
      */
     public Status getStatus() {
@@ -133,14 +144,11 @@ public class UserFile implements Saveable<String> {
 
     /**
      * Returns the users current role
+     *
      * @return User role
      */
     public Role getRole() {
         return role;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

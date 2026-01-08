@@ -26,7 +26,7 @@ public final class SoapProjectTestBuilder {
 
     }
 
-    public static SoapProject.Builder builder(){
+    public static SoapProject.Builder builder() {
         return SoapProject.builder()
                 .created(new Date())
                 .description("Project description")

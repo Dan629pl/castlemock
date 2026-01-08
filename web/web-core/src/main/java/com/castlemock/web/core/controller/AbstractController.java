@@ -22,12 +22,11 @@ import java.util.Objects;
 
 /**
  * The AbstractController provides functionality that are shared among all the controllers in Castle Mock
+ *
  * @author Karl Dahlgren
  * @since 1.0
  */
 public abstract class AbstractController {
-
-    protected final ServiceProcessor serviceProcessor;
 
     protected static final String CONTENT_TYPE = "Content-Type";
     protected static final String ACCEPT_HEADER = "Accept";
@@ -36,10 +35,10 @@ public abstract class AbstractController {
     protected static final String PROJECT = "project";
     protected static final String SLASH = "/";
     protected static final String SPACE = " ";
-
     protected static final int DEFAULT_ECHO_RESPONSE_CODE = 200;
+    protected final ServiceProcessor serviceProcessor;
 
-    protected AbstractController(final ServiceProcessor serviceProcessor){
+    protected AbstractController(final ServiceProcessor serviceProcessor) {
         this.serviceProcessor = Objects.requireNonNull(serviceProcessor, "serviceProcessor");
     }
 

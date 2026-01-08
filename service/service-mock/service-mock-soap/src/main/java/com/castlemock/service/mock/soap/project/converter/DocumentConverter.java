@@ -41,21 +41,22 @@ public final class DocumentConverter {
     private static final WsdlPortTypeParser PORT_TYPE_PARSER = new WsdlPortTypeParser();
     private static final WsdlNamespaceParser NAMESPACE_PARSER = new WsdlNamespaceParser();
 
-    private DocumentConverter(){
+    private DocumentConverter() {
 
     }
 
     /**
      * THe method provides the functionality to parse a document and extract all the SOAP ports from the SOAP ports.
      * The method will also generate mocked responses if the {@code generateResponse}
-     * @param document The document which will be parsed
+     *
+     * @param document         The document which will be parsed
      * @param generateResponse Boolean value determining if a response should be generated for each extracted
      *                         operation.
      * @return A list of SOAP ports
      */
     public static Set<SoapPort> toSoapParts(final Document document,
-                                        final String projectId,
-                                        final boolean generateResponse){
+                                            final String projectId,
+                                            final boolean generateResponse) {
         final Set<Binding> bindings = BINDING_PARSER.parseBindings(document);
         final Set<Message> messages = MESSAGE_PARSER.parseMessages(document);
         final Set<Service> services = SERVICE_PARSER.parseServices(document);
@@ -70,10 +71,8 @@ public final class DocumentConverter {
                 .collect(Collectors.toSet());
 
 
-
         return ports;
     }
-
 
 
 }

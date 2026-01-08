@@ -53,7 +53,7 @@ public class SoapResource {
     private final SoapResourceType type;
 
 
-    private SoapResource(final Builder builder){
+    private SoapResource(final Builder builder) {
         this.id = Objects.requireNonNull(builder.id, "id");
         this.name = Objects.requireNonNull(builder.name, "name");
         this.projectId = Objects.requireNonNull(builder.projectId, "projectId");
@@ -61,6 +61,9 @@ public class SoapResource {
         this.content = builder.content;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
 
     public String getId() {
         return id;
@@ -80,10 +83,6 @@ public class SoapResource {
 
     public Optional<String> getContent() {
         return Optional.ofNullable(content);
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

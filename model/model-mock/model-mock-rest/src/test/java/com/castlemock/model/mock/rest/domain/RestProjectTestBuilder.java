@@ -27,7 +27,7 @@ public final class RestProjectTestBuilder {
 
     }
 
-    public static RestProject.Builder builder(){
+    public static RestProject.Builder builder() {
         return RestProject.builder()
                 .id("EqbLQU")
                 .name("Swagger")

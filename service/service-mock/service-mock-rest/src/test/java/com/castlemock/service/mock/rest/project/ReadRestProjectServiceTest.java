@@ -51,7 +51,7 @@ public class ReadRestProjectServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final RestProject project = RestProjectTestBuilder.builder().build();
         final RestApplication application = RestApplicationTestBuilder.builder().build();
         final RestResource resource = RestResourceTestBuilder.builder().build();

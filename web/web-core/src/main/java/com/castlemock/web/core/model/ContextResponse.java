@@ -31,8 +31,12 @@ public class ContextResponse {
 
     private final String context;
 
-    private ContextResponse(final Builder builder){
+    private ContextResponse(final Builder builder) {
         this.context = Objects.requireNonNull(builder.context);
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public String getContext() {
@@ -59,13 +63,9 @@ public class ContextResponse {
                 '}';
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     @JsonPOJOBuilder(withPrefix = "")
     public static final class Builder {
-        
+
         private String context;
 
         private Builder() {

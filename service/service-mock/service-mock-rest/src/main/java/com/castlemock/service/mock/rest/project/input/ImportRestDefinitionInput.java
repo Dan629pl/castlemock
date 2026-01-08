@@ -46,6 +46,10 @@ public final class ImportRestDefinitionInput implements Input {
                 .orElseGet(List::of);
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -92,10 +96,6 @@ public final class ImportRestDefinitionInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static final class Builder {
 
         private String projectId;
@@ -107,32 +107,32 @@ public final class ImportRestDefinitionInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder generateResponse(final Boolean generateResponse){
+        public Builder generateResponse(final Boolean generateResponse) {
             this.generateResponse = generateResponse;
             return this;
         }
 
-        public Builder definitionType(final RestDefinitionType definitionType){
+        public Builder definitionType(final RestDefinitionType definitionType) {
             this.definitionType = definitionType;
             return this;
         }
 
-        public Builder files(final List<File> files){
+        public Builder files(final List<File> files) {
             this.files = files;
             return this;
         }
 
-        public Builder location(final String location){
+        public Builder location(final String location) {
             this.location = location;
             return this;
         }
 
-        public ImportRestDefinitionInput build(){
+        public ImportRestDefinitionInput build() {
             return new ImportRestDefinitionInput(this);
         }
 

@@ -57,7 +57,7 @@ public class DeleteUserServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final User user = UserTestBuilder.builder()
                 .role(Role.MODIFIER)
                 .build();
@@ -73,7 +73,7 @@ public class DeleteUserServiceTest {
     }
 
     @Test
-    public void testProcessDeleteLastAdmin(){
+    public void testProcessDeleteLastAdmin() {
         final User user = UserTestBuilder
                 .builder()
                 .role(Role.ADMIN)

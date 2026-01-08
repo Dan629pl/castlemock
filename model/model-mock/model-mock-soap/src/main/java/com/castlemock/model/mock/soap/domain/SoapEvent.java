@@ -50,7 +50,7 @@ public class SoapEvent extends Event {
     private final String operationId;
 
 
-    private SoapEvent(final Builder builder){
+    private SoapEvent(final Builder builder) {
         super(builder);
         this.request = Objects.requireNonNull(builder.request, "request");
         this.response = builder.response;
@@ -59,8 +59,13 @@ public class SoapEvent extends Event {
         this.operationId = Objects.requireNonNull(builder.operationId, "operationId");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     /**
      * Returns the SOAP request
+     *
      * @return The SOAP request
      */
 
@@ -70,6 +75,7 @@ public class SoapEvent extends Event {
 
     /**
      * Returns the SOAP response variable
+     *
      * @return The SOAP response variable. The SOAP response will be null if the event has not yet finished
      */
     public Optional<SoapResponse> getResponse() {
@@ -78,6 +84,7 @@ public class SoapEvent extends Event {
 
     /**
      * Returns the SOAP operation id
+     *
      * @return The SOAP operation id
      */
     public String getOperationId() {
@@ -87,24 +94,21 @@ public class SoapEvent extends Event {
     /**
      * The SOAP project id is used to identify the project for which the
      * event spans from
+     *
      * @return The id of the project which the event affected
      */
     public String getProjectId() {
         return projectId;
     }
 
-
     /**
      * The SOAP port id is used to identify the port for which the
      * event spans from
+     *
      * @return The id of the port which the event affected
      */
     public String getPortId() {
         return portId;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public Builder toBuilder() {

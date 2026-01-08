@@ -38,6 +38,10 @@ public final class UpdateCurrentMockResponseSequenceIndexInput implements Input 
         this.currentResponseSequenceIndex = Objects.requireNonNull(builder.currentResponseSequenceIndex, "currentResponseSequenceIndex");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getOperationId() {
         return operationId;
     }
@@ -79,41 +83,37 @@ public final class UpdateCurrentMockResponseSequenceIndexInput implements Input 
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
         private String projectId;
         private String portId;
         private String operationId;
         private Integer currentResponseSequenceIndex;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder portId(final String portId){
+        public Builder portId(final String portId) {
             this.portId = portId;
             return this;
         }
 
-        public Builder operationId(final String operationId){
+        public Builder operationId(final String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-        public Builder currentResponseSequenceIndex(final Integer currentResponseSequenceIndex){
+        public Builder currentResponseSequenceIndex(final Integer currentResponseSequenceIndex) {
             this.currentResponseSequenceIndex = currentResponseSequenceIndex;
             return this;
         }
 
-        public UpdateCurrentMockResponseSequenceIndexInput build(){
+        public UpdateCurrentMockResponseSequenceIndexInput build() {
             return new UpdateCurrentMockResponseSequenceIndexInput(this);
         }
     }

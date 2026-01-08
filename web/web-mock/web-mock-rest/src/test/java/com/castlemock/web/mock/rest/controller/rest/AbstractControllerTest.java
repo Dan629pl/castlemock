@@ -39,17 +39,17 @@ import static org.mockito.Mockito.when;
 public abstract class AbstractControllerTest {
 
 
-    @Mock
-    protected MessageSource messageSource;
-    @Mock
-    protected ServletContext servletContext;
-    protected MockMvc mockMvc;
     protected static final String CONTEXT = "/castlemock";
     protected static final String SLASH = "/";
     protected static final String PROJECT = "project";
     protected static final String MOCK = "mock";
     protected static final String REST = "rest";
     protected static final String APPLICATION = "application";
+    @Mock
+    protected MessageSource messageSource;
+    @Mock
+    protected ServletContext servletContext;
+    protected MockMvc mockMvc;
 
     @BeforeEach
     public void initiateTest() {

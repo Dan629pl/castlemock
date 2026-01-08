@@ -130,12 +130,11 @@ public class RestApplicationFileRepository extends FileRepository<RestApplicatio
     public String getProjectId(final String applicationId) {
         final RestApplicationFile applicationFile = this.collection.get(applicationId);
 
-        if(applicationFile == null){
+        if (applicationFile == null) {
             throw new IllegalArgumentException("Unable to find an application with the following id: " + applicationId);
         }
         return applicationFile.getProjectId();
     }
-
 
 
 }

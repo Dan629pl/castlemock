@@ -37,6 +37,10 @@ public final class UpdateSoapProjectInput implements Input {
         this.description = builder.description;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -72,36 +76,32 @@ public final class UpdateSoapProjectInput implements Input {
                 '}';
     }
 
-    public static Builder builder(){
-        return new Builder();
-    }
-
     public static class Builder {
 
         private String projectId;
         private String name;
         private String description;
 
-        private Builder(){
+        private Builder() {
 
         }
 
-        public Builder projectId(final String projectId){
+        public Builder projectId(final String projectId) {
             this.projectId = projectId;
             return this;
         }
 
-        public Builder name(final String name){
+        public Builder name(final String name) {
             this.name = name;
             return this;
         }
 
-        public Builder description(final String description){
+        public Builder description(final String description) {
             this.description = description;
             return this;
         }
 
-        public UpdateSoapProjectInput build(){
+        public UpdateSoapProjectInput build() {
             return new UpdateSoapProjectInput(this);
         }
     }

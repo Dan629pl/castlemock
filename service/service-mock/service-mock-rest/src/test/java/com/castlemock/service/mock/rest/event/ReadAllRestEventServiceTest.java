@@ -52,9 +52,9 @@ public class ReadAllRestEventServiceTest {
     }
 
     @Test
-    public void testProcess(){
+    public void testProcess() {
         final List<RestEvent> restEvents = new ArrayList<>();
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final RestEvent restEvent = RestEventTestBuilder.builder().build();
             restEvents.add(restEvent);
         }
@@ -68,7 +68,7 @@ public class ReadAllRestEventServiceTest {
 
         Assertions.assertEquals(restEvents.size(), output.getRestEvents().size());
 
-        for(int index = 0; index < 3; index++){
+        for (int index = 0; index < 3; index++) {
             final RestEvent restEvent = restEvents.get(index);
             final RestEvent returnedRestEvent = output.getRestEvents().get(index);
 

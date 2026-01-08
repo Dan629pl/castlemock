@@ -18,7 +18,7 @@ import React, {PureComponent} from "react";
 import axios from "axios";
 import validateErrorResponse from "../../../../../utility/HttpResponseValidator";
 import preventEnterEvent from "../../../../../utility/KeyboardUtility"
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -72,13 +72,19 @@ class CreateApplicationModal extends PureComponent {
                                 <div className="form-group row">
                                     <label className="col-sm-2 col-form-label">Name</label>
                                     <div className="col-sm-10">
-                                        <input className="form-control" type="text" value={this.state.newApplication.name} onChange={event => this.setNewApplicationName(event.target.value)} onKeyDown={preventEnterEvent}/>
+                                        <input className="form-control" type="text"
+                                               value={this.state.newApplication.name}
+                                               onChange={event => this.setNewApplicationName(event.target.value)}
+                                               onKeyDown={preventEnterEvent}/>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button className="btn btn-success" data-dismiss="modal" onClick={this.onCreateApplicationClick} onKeyDown={this.onCreateApplication}><FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create</button>
+                            <button className="btn btn-success" data-dismiss="modal"
+                                    onClick={this.onCreateApplicationClick} onKeyDown={this.onCreateApplication}>
+                                <FontAwesomeIcon icon={faCheckCircle} className="button-icon"/>Create
+                            </button>
                         </div>
                     </div>
                 </div>

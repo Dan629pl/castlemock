@@ -33,8 +33,12 @@ public class UpdateRestApplicationRequest {
 
     private final String name;
 
-    private UpdateRestApplicationRequest(final Builder builder){
+    private UpdateRestApplicationRequest(final Builder builder) {
         this.name = Objects.requireNonNull(builder.name, "name");
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @XmlElement
@@ -60,10 +64,6 @@ public class UpdateRestApplicationRequest {
         return "RestApplication{" +
                 "name='" + name + '\'' +
                 '}';
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     @JsonPOJOBuilder(withPrefix = "")

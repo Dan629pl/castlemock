@@ -41,6 +41,10 @@ public final class CreateRestMethodInput implements Input {
         this.httpMethod = Objects.requireNonNull(builder.httpMethod, "httpMethod");
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getProjectId() {
         return projectId;
     }
@@ -59,10 +63,6 @@ public final class CreateRestMethodInput implements Input {
 
     public HttpMethod getHttpMethod() {
         return httpMethod;
-    }
-
-    public static Builder builder(){
-        return new Builder();
     }
 
     @Override
@@ -99,17 +99,17 @@ public final class CreateRestMethodInput implements Input {
         private Builder() {
         }
 
-        public Builder projectId(final String restProjectId){
+        public Builder projectId(final String restProjectId) {
             this.projectId = restProjectId;
             return this;
         }
 
-        public Builder applicationId(final String applicationId){
+        public Builder applicationId(final String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-        public Builder resourceId(final String resourceId){
+        public Builder resourceId(final String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
@@ -124,7 +124,7 @@ public final class CreateRestMethodInput implements Input {
             return this;
         }
 
-        public CreateRestMethodInput build(){
+        public CreateRestMethodInput build() {
             return new CreateRestMethodInput(this);
         }
     }

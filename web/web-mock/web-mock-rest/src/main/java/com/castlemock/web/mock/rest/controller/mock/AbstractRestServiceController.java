@@ -97,7 +97,7 @@ public abstract class AbstractRestServiceController extends AbstractController {
 
     protected AbstractRestServiceController(final ServiceProcessor serviceProcessor,
                                             final ServletContext servletContext,
-                                            final RestClient restClient){
+                                            final RestClient restClient) {
         super(serviceProcessor);
         this.servletContext = Objects.requireNonNull(servletContext, "servletContext");
         this.restClient = Objects.requireNonNull(restClient, "restClient");
@@ -177,11 +177,11 @@ public abstract class AbstractRestServiceController extends AbstractController {
      * and a corresponding action will be applied for the request. The following actions are support:
      * Forward, record, mock or disable.
      *
-     * @param restRequest         The incoming request
-     * @param projectId           The id of the project that the incoming request belongs to
-     * @param applicationId       The id of the application that the incoming request belongs to
-     * @param resourceId          The id of the resource that the incoming request belongs to
-     * @param restMethod          The REST method which the incoming request belongs to
+     * @param restRequest   The incoming request
+     * @param projectId     The id of the project that the incoming request belongs to
+     * @param applicationId The id of the application that the incoming request belongs to
+     * @param resourceId    The id of the resource that the incoming request belongs to
+     * @param restMethod    The REST method which the incoming request belongs to
      * @return A response in String format
      */
     protected ResponseEntity<String> process(final RestRequest restRequest,
@@ -332,7 +332,6 @@ public abstract class AbstractRestServiceController extends AbstractController {
      * @since 1.14
      */
     private RestResponse echoResponse(final RestRequest request) {
-
 
 
         final List<HttpHeader> headers = request.getContentType()
@@ -503,7 +502,7 @@ public abstract class AbstractRestServiceController extends AbstractController {
                                                               final List<RestMockResponse> mockResponses) {
         return restMethod.getDefaultMockResponseId()
                 .flatMap(defaultMockResponseId -> mockResponses.stream()
-                        .filter(tmpMockResponse-> tmpMockResponse.getId().equals(defaultMockResponseId))
+                        .filter(tmpMockResponse -> tmpMockResponse.getId().equals(defaultMockResponseId))
                         .findFirst());
     }
 

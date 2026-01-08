@@ -60,6 +60,10 @@ public class RestRequestFile {
         this.httpParameters = builder.httpParameters;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getBody() {
         return body;
     }
@@ -82,10 +86,6 @@ public class RestRequestFile {
 
     public List<HttpParameterFile> getHttpParameters() {
         return httpParameters;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public static final class Builder {

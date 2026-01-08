@@ -22,7 +22,7 @@ public final class RestParameterQueryTestBuilder {
     private RestParameterQueryTestBuilder() {
     }
 
-    public static RestParameterQuery.Builder builder(){
+    public static RestParameterQuery.Builder builder() {
         return RestParameterQuery.builder()
                 .parameter("user")
                 .query("karl")
