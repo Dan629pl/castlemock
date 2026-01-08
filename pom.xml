@@ -72,7 +72,7 @@
     <modules>
         <module>app</module>
         <module>model</module>
-        <module>deploy</module>
+        <module>deploy-tomcat-jar</module>
         <module>repository</module>
         <module>web</module>
         <module>service</module>
@@ -162,16 +162,6 @@
             <dependency>
                 <groupId>com.castlemock.app</groupId>
                 <artifactId>app</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.castlemock.deploy.tomcat</groupId>
-                <artifactId>deploy-tomcat-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.castlemock.deploy.jetty</groupId>
-                <artifactId>deploy-jetty-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

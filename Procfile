@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar deploy/jetty/jar/target/castlemock.jar
